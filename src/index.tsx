@@ -1,12 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import { QueryClientProvider } from 'react-query';
+import { SnackbarProvider } from 'notistack';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { queryClient } from './server-state/react-query';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <SnackbarProvider maxSnack={3}>
+          <App />
+        </SnackbarProvider>
+      </BrowserRouter>
+      <ReactQueryDevtools position="bottom-left" />
+    </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

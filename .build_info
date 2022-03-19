@@ -1,0 +1,2 @@
+export IMAGE_NAME=example/client
+export APP=client

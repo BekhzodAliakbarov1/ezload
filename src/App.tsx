@@ -1,26 +1,19 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import LogoLoader from 'components/loaders/logo-loader/logo-loader';
+import { GlobalStyle } from 'styles/global';
+import GlobalWrapper from 'wrappers/global-wrapper/global-wrapper';
+import AppProvider from 'global-state/store';
+import Views from './views';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = () => (
+  <AppProvider>
+    <GlobalStyle />
+    <GlobalWrapper>
+      <React.Suspense fallback={<LogoLoader />}>
+        <Views />
+      </React.Suspense>
+    </GlobalWrapper>
+  </AppProvider>
+);
 
 export default App;

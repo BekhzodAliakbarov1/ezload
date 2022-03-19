@@ -1,0 +1,91 @@
+services:
+  - docker:19.03.1-dind
+
+stages:
+  - build_staging
+  - build_prod
+  - deploy_staging
+  - deploy_prod
+
+.anchor:
+  - &install-aws-cli2 export GLIBC_VER=2.31-r0
+    && apk --no-cache add binutils curl
+    && curl -sL https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub -o /etc/apk/keys/sgerrand.rsa.pub
+    && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-${GLIBC_VER}.apk
+    && curl -sLO https://github.com/sgerrand/alpine-pkg-glibc/releases/download/${GLIBC_VER}/glibc-bin-${GLIBC_VER}.apk
+    && apk add --no-cache glibc-${GLIBC_VER}.apk glibc-bin-${GLIBC_VER}.apk
+    && curl -sL https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip -o awscliv2.zip
+    && unzip awscliv2.zip
+    && aws/install
+    && rm -rf awscliv2.zip aws /usr/local/aws-cli/v2/*/dist/aws_completer /usr/local/aws-cli/v2/*/dist/awscli/data/ac.index /usr/local/aws-cli/v2/*/dist/awscli/examples
+    && apk --no-cache del binutils curl
+    && rm -rf glibc-${GLIBC_VER}.apk glibc-bin-${GLIBC_VER}.apk /var/cache/apk/*
+  - &install-libs apt update && apt-get install -y gdal-bin python3-gdal libpq-dev
+
+build_staging:
+  tags:
+    - novalab
+  only:
+    - staging
+  stage: build_staging
+  before_script:
+    - *install-aws-cli2
+  script:
+    - source .build_info
+    - aws ecr get-login-password | docker login --username AWS --password-stdin ${DOCKER_REGISTRY}
+    - printenv > .env
+    - echo ${REACT_APP_BASE_URL}
+    - echo ${REACT_APP_WEBSOCKET_URL}
+    - docker build -t ${IMAGE_NAME} .
+    - docker tag ${IMAGE_NAME}:latest ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest
+    - docker push ${DOCKER_REGISTRY}/${IMAGE_NAME}:latest
+  environment: staging
+
+build_prod:
+  tags:
+    - novalab
+  only:
+    - master
+  stage: build_prod
+  before_script:
+    - *install-aws-cli2
+  script:
+    - source .build_info
+    - aws ecr get-login-password | docker login --username AWS --password-stdin ${PROD_DOCKER_REGISTRY}
+    - printenv > .env
+    - echo ${REACT_APP_BASE_URL}
+    - echo ${REACT_APP_WEBSOCKET_URL}
+    - docker build -t ${IMAGE_NAME} .
+    - docker tag ${IMAGE_NAME}:latest ${PROD_DOCKER_REGISTRY}/${IMAGE_NAME}:production
+    - docker push ${PROD_DOCKER_REGISTRY}/${IMAGE_NAME}:production
+  environment: production
+
+deploy_staging:
+  tags:
+    - novalab
+  stage: deploy_staging
+  only:
+    - staging
+  script:
+    - source .build_info
+    - apk update && apk add openssh
+    - cp $TEST_PEM_FILE file.pem
+    - chmod 600 file.pem
+    - ssh -i file.pem -o StrictHostKeyChecking=no  ubuntu@$TEST_SERVER_HOST 'aws ecr get-login-password | docker login --username AWS --password-stdin '$DOCKER_REGISTRY' && docker service update --with-registry-auth --image '$DOCKER_REGISTRY'/'$IMAGE_NAME':'latest' createhq_'$APP''
+    - rm file.pem $SERVER_PEM_FILE
+  environment: staging
+
+deploy_prod:
+  tags:
+    - novalab
+  stage: deploy_prod
+  only:
+    - master
+  script:
+    - source .build_info
+    - apk update && apk add openssh
+    - cp $PROD_PEM_FILE file.pem
+    - chmod 600 file.pem
+    - ssh -i file.pem -o StrictHostKeyChecking=no  ubuntu@$PROD_SERVER_HOST 'aws ecr get-login-password | docker login --username AWS --password-stdin '$PROD_DOCKER_REGISTRY' && docker service update --with-registry-auth --image '$PROD_DOCKER_REGISTRY'/'$IMAGE_NAME':'production' createhq_'$APP''
+    - rm file.pem $SERVER_PEM_FILE
+  environment: production
