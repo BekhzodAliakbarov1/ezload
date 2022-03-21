@@ -1,6 +1,4 @@
-import React, { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { AUTH_PREFIX_PATH } from '../../configs/route.config';
 import styled from 'styled-components';
 
 const Text = styled.h1`
