@@ -1,3 +1,4 @@
+import { Switch } from '@mui/material';
 import CheckListIcon from 'assets/icons/checklist.icon';
 import CloseIcon from 'assets/icons/close.icon';
 import FalgIcon from 'assets/icons/flag.icon';
@@ -10,6 +11,7 @@ import SearchIcon from 'assets/icons/search.icon';
 import SettingIcon from 'assets/icons/settings.icon';
 import ShowEyeIcon from 'assets/icons/show_eye.icon';
 import XIcon from 'assets/icons/x.icon';
+import { useTheme } from 'global-state/theme/theme.state';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -17,22 +19,32 @@ const Text = styled.h1`
   color: ${(props) => props.theme.text.main};
 `;
 
-const Example0 = () => (
-  <>
-    <CheckListIcon />
-    <CloseIcon />
-    <FalgIcon />
-    <HeaderPhoneIcon />
-    <HideEyeIcon />
-    <LocationIcon />
-    <LogoutIcon />
-    <PenIcon />
-    <SearchIcon />
-    <SettingIcon />
-    <ShowEyeIcon />
-    <XIcon />
-  </>
-);
+const ExampleDiv = styled.div`
+  svg {
+    color: ${(props) => props.theme.text.main};
+  }
+`;
+
+const Example0 = () => {
+  const { theme, toggleTheme } = useTheme();
+  return (
+    <ExampleDiv>
+      <Switch checked={theme === 'dark'} onChange={toggleTheme} />
+      <CheckListIcon />
+      <CloseIcon />
+      <FalgIcon />
+      <HeaderPhoneIcon />
+      <HideEyeIcon />
+      <LocationIcon />
+      <LogoutIcon />
+      <PenIcon />
+      <SearchIcon />
+      <SettingIcon />
+      <ShowEyeIcon />
+      <XIcon />
+    </ExampleDiv>
+  );
+};
 const Example1 = () => <Text>hello1</Text>;
 const Example2 = () => <Text>hello2</Text>;
 
