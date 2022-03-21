@@ -45,8 +45,8 @@ const Example0 = () => {
     </ExampleDiv>
   );
 };
-const Example1 = () => <Text>hello1</Text>;
-const Example2 = () => <Text>hello2</Text>;
+const Example1 = () => <Text>helH1/Roboto/Light/96pxlo1</Text>;
+const Example2 = () => <Text>helH1/Roboto/Light/96pxslo2</Text>;
 
 export const AuthViews = () => (
   <Routes>
