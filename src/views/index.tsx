@@ -20,7 +20,7 @@ const Views = () => {
   const { tokens } = useAuth();
   return (
     <Routes>
-      {!tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
+      {tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
     </Routes>
   );
 };
