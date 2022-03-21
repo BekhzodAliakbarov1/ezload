@@ -11,7 +11,9 @@ const iosStyles = css`
 
 const StyledProgress = styled(isIOS() ? IosSpinner : CircularProgress)`
   color: ${({ theme }) =>
-    theme.palette.mode === 'light' ? theme.primary.main : theme.text.main};
+    theme.palette.mode === 'light'
+      ? theme.colors.primary
+      : theme.colors.primary};
   ${isIOS() ? iosStyles : ''}
 `;
 

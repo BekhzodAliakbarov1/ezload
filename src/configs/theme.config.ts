@@ -2,36 +2,71 @@ import { CurrentTheme, CustomTheme } from 'types/theme.types';
 import { createTheme } from '@mui/material/styles';
 import { colors, sizes } from '../styles/variables';
 
-// we write all dark colors in this darkTheme or we can import it from sizez file
+const {
+  bg_dark,
+  bg_light,
+  dark_gray_dark,
+  dark_gray_light,
+  disabled,
+  gray_dark,
+  gray_ligth,
+  primary,
+  primary_variant,
+  secondary,
+  stroke_dark,
+  stroke_light,
+  tertiary,
+  text_dark,
+  text_light,
+  white,
+} = colors;
+
 const darkTheme: CustomTheme = {
   bg: {
-    main: 'main color',
-    light: 'light color',
+    main: bg_dark,
   },
   text: {
-    main: colors.main,
-    light: colors.light,
+    main: text_dark,
   },
-  primary: {
-    main: colors.main,
-    light: colors.light,
+  gray: {
+    main: gray_dark,
+    dark: dark_gray_dark,
+  },
+  stroke: {
+    main: stroke_dark,
+  },
+  colors: {
+    disabled,
+    primary,
+    primary_variant,
+    secondary,
+    white,
+    tertiary,
   },
   sizes: sizes.breakpoints,
 };
-// we light all dark colors in this lightTheme or we can import it from sizez file
 
 const lightTheme: CustomTheme = {
   bg: {
-    main: colors.main,
-    light: colors.light,
+    main: bg_light,
   },
   text: {
-    main: colors.main,
-    light: colors.light,
+    main: text_light,
   },
-  primary: {
-    main: colors.main,
-    light: colors.light,
+  gray: {
+    main: gray_ligth,
+    dark: dark_gray_light,
+  },
+  stroke: {
+    main: stroke_light,
+  },
+  colors: {
+    disabled,
+    primary,
+    primary_variant,
+    secondary,
+    tertiary,
+    white,
   },
   sizes: sizes.breakpoints,
 };
@@ -46,10 +81,9 @@ export const getCurrentThemeObject = (mode: CurrentTheme) =>
     palette: {
       mode,
       primary: {
-        main: colors.main,
+        main: primary,
       },
     },
-    // font family
     typography: {
       fontFamily: 'Rubik, sans-serif',
     },

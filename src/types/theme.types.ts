@@ -1,15 +1,24 @@
 export interface CustomTheme {
   bg: {
     main: string;
-    light: string;
   };
   text: {
     main: string;
-    light: string;
   };
-  primary: {
+  gray: {
     main: string;
-    light: string;
+    dark: string;
+  };
+  stroke: {
+    main: string;
+  };
+  colors: {
+    primary: string;
+    primary_variant: string;
+    tertiary: string;
+    disabled: string;
+    secondary: string;
+    white: string;
   };
   sizes: {
     md: string;

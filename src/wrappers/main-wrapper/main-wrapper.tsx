@@ -7,7 +7,7 @@ interface Props extends Omit<BoxProps, 'bgcolor'> {
 }
 
 const StyledBox = styled(Box)<Props>`
-  background-color: ${(props) => props.bgcolor || props.theme.bg.main};
+  background-color: ${(props) => props.theme.colors.primary};
   width: 100%;
   display: flex;
   flex-direction: column;
