@@ -12,7 +12,9 @@ const UnAuthenticatedRouter = () => (
   </>
 );
 
-const AuthenticatedRouter = () => <Route path="/*" element={<AppLayout />} />;
+const AuthenticatedRouter = () => (
+  <Route path={`${APP_PREFIX_PATH}*`} element={<AppLayout />} />
+);
 
 const Views = () => {
   const { tokens } = useAuth();
