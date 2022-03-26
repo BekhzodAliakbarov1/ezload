@@ -1,16 +1,4 @@
 import { Switch } from '@mui/material';
-import CheckListIcon from 'assets/icons/checklist.icon';
-import CloseIcon from 'assets/icons/close.icon';
-import FalgIcon from 'assets/icons/flag.icon';
-import HeaderPhoneIcon from 'assets/icons/headerphone.icon';
-import HideEyeIcon from 'assets/icons/hide_eye.icon';
-import LocationIcon from 'assets/icons/location.icon';
-import LogoutIcon from 'assets/icons/logout.icon';
-import PenIcon from 'assets/icons/pen.icon';
-import SearchIcon from 'assets/icons/search.icon';
-import SettingIcon from 'assets/icons/settings.icon';
-import ShowEyeIcon from 'assets/icons/show_eye.icon';
-import XIcon from 'assets/icons/x.icon';
 import { useTheme } from 'global-state/theme/theme.state';
 import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
@@ -30,18 +18,6 @@ const Example0 = () => {
   return (
     <ExampleDiv>
       <Switch checked={theme === 'dark'} onChange={toggleTheme} />
-      <CheckListIcon />
-      <CloseIcon />
-      <FalgIcon />
-      <HeaderPhoneIcon />
-      <HideEyeIcon />
-      <LocationIcon />
-      <LogoutIcon />
-      <PenIcon />
-      <SearchIcon />
-      <SettingIcon />
-      <ShowEyeIcon />
-      <XIcon />
     </ExampleDiv>
   );
 };
