@@ -4,13 +4,23 @@ export interface CustomTheme {
   };
   text: {
     main: string;
+    light: string;
+    dark: string;
+    white: string;
   };
   gray: {
     main: string;
     dark: string;
   };
-  stroke: {
-    main: string;
+  button: {
+    contained: string;
+    dark: string;
+    warning: string;
+    secondary_dark: string;
+    secondary_dark_hover: string;
+    contained_hover: string;
+    dark_hover: string;
+    warning_hover: string;
   };
   colors: {
     primary: string;

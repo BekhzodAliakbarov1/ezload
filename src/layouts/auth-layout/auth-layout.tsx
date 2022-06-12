@@ -1,4 +1,3 @@
-import Container from 'wrappers/container/container';
 import React from 'react';
 import styled from 'styled-components';
 import AuthViews from 'views/auth';
@@ -12,9 +11,7 @@ const Main = styled.main`
 const AuthLayout = () => (
   <React.Fragment>
     <Main>
-      <Container>
-        <AuthViews />
-      </Container>
+      <AuthViews />
     </Main>
   </React.Fragment>
 );

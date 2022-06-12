@@ -7,7 +7,7 @@ export const GlobalStyle = createGlobalStyle`
   *,html,body {
     margin: 0;
     padding: 0;
-    font-family: 'Rubik', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   body {
     background: ${(props) => props.theme.bg.main};

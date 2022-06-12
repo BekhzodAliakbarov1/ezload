@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import lightLogo from 'assets/img/logo.png';
-import darkLogo from 'assets/img/logo.png';
+import lightLogo from 'assets/img/logo-light.svg';
+import darkLogo from 'assets/img/logo-light.svg';
 import { Portal } from '@mui/material';
 import { useTheme } from 'global-state/theme/theme.state';
 
