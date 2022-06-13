@@ -7,9 +7,22 @@ import {
 } from './date-input.styles';
 
 export const DateRangePickerInput = () => {
-  const [value, setValue] = React.useState<Date | null>(new Date());
-  const handleChange = (newValue: Date | null) => {
-    setValue(newValue);
+  const today = new Date();
+  const tommorrow = new Date();
+  tommorrow.setDate(today.getDate() + 1);
+  const [startDate, setStartDate] = React.useState<Date>(today);
+  const [endDate, setEndDate] = React.useState<Date>(tommorrow);
+
+  const handleStartDateChange = (newValue: Date | null) => {
+    if (newValue) {
+      setStartDate(newValue);
+    }
+  };
+
+  const handleEndDateChange = (newValue: Date | null) => {
+    if (newValue) {
+      setEndDate(newValue);
+    }
   };
 
   return (
@@ -17,8 +30,8 @@ export const DateRangePickerInput = () => {
       <Text weight="500">From</Text>
       <DateTimePicker
         // label="Date&Time picker"
-        value={value}
-        onChange={handleChange}
+        value={startDate}
+        onChange={handleStartDateChange}
         renderInput={(params) => <StyledTextFiled {...params} />}
         inputFormat="dd-MMM, hh-mm"
         disablePast
@@ -26,8 +39,8 @@ export const DateRangePickerInput = () => {
       <Text weight="500">To</Text>
       <DateTimePicker
         // label="Date&Time picker"
-        value={value}
-        onChange={handleChange}
+        value={endDate}
+        onChange={handleEndDateChange}
         renderInput={(params) => <StyledTextFiled {...params} />}
         inputFormat="dd-MMM, hh-mm"
         disablePast

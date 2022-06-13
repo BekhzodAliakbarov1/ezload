@@ -19,6 +19,14 @@ const LoadDateTime = () => {
           <DateRangePickerInput />
         </DateFromToWrapper>
       </DateSelectBox>
+      <DateSelectBox>
+        <Text size="md" weight="500">
+          Delivery date
+        </Text>
+        <DateFromToWrapper>
+          <DateRangePickerInput />
+        </DateFromToWrapper>
+      </DateSelectBox>
     </LoadDateTimeWrapper>
   );
 };
