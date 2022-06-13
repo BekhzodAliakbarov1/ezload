@@ -4,15 +4,18 @@ import { GlobalStyle } from 'styles/global';
 import GlobalWrapper from 'wrappers/global-wrapper/global-wrapper';
 import AppProvider from 'global-state/store';
 import Views from './views';
-
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 const App = () => (
   <AppProvider>
-    <GlobalStyle />
-    <GlobalWrapper>
-      <React.Suspense fallback={<LogoLoader />}>
-        <Views />
-      </React.Suspense>
-    </GlobalWrapper>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <GlobalStyle />
+      <GlobalWrapper>
+        <React.Suspense fallback={<LogoLoader />}>
+          <Views />
+        </React.Suspense>
+      </GlobalWrapper>
+    </LocalizationProvider>
   </AppProvider>
 );
 
