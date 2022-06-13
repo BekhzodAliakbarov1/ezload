@@ -20,7 +20,8 @@ const Views = () => {
   const { tokens } = useAuth();
   return (
     <Routes>
-      {tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
+      {/* after implement sign in api remove ! this from begining of next line */}
+      {!tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
     </Routes>
   );
 };

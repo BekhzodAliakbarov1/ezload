@@ -9,7 +9,7 @@ interface IPopperState {
   id: 'simple-popover' | undefined;
 }
 
-const usePopper = (): IPopperState => {
+export const usePopper = (): IPopperState => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const isOpen = !!anchorEl;
   const open = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,5 +41,3 @@ export const bindPopper = (state: IPopperState) => ({
   anchorEl: state.anchorEl,
   onClose: state.close,
 });
-
-export default usePopper;
