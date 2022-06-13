@@ -33,7 +33,7 @@ const SignInLayout: React.FC<{ type: 'customer' | 'driver' }> = ({ type }) => {
       <SignInImageWrapper style={{ backgroundImage: `url(${image})` }}>
         <img src={logo} alt="Logo" />
       </SignInImageWrapper>
-      <CustomerSignIn />
+      {type === 'customer' ? <CustomerSignIn /> : ''}
     </SignInLayoutWrapper>
   );
 };

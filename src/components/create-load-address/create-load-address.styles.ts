@@ -78,9 +78,10 @@ export const CreateLoadMapWrapper = styled.div`
 
 export const SaveAddressWrapper = styled.div`
   width: 320px;
-  padding: 14px 0px;
+  padding: 13px 0px;
   display: flex;
   align-items: center;
+  margin-top: 11px;
   > div {
     width: 24px;
     height: 24px;
