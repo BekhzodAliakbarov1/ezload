@@ -9,9 +9,10 @@ import {
   NavbarLinksWrapper,
   NavbarWrapper,
   ProfileAndLanguageWrapper,
-  StledDropdownButton,
+  StyledDropdownButton,
   NavbarLogoWrapper,
   StyledtText,
+  NavbarPositionEffectEraiser,
 } from './navbar.styles';
 import logo from 'assets/img/logo-light.svg';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
@@ -45,84 +46,87 @@ const Navbar = () => {
   const account = useMenu();
   const language = useMenu();
   return (
-    <NavbarWrapper>
-      <NavbarLinksWrapper>
-        {links.map((link) => {
-          return (
-            <Link to={link.to} key={link.id}>
-              <Text weight="600" size="md">
-                {link.name}
-              </Text>
-            </Link>
-          );
-        })}
-      </NavbarLinksWrapper>
-      <NavbarLogoWrapper>
-        <Link to="/">
-          <img src={logo} alt="logo" />
-        </Link>
-      </NavbarLogoWrapper>
-      <ProfileAndLanguageWrapper>
-        <RightContentItemWrapper>
-          <Text size="md" weight="600">
-            My Account
-          </Text>
-          <StledDropdownButton onClick={account.handleClick}>
-            <ChevronDownIcon size="30" />
-          </StledDropdownButton>
-          <StyledMenu
-            id="basic-menu"
-            anchorEl={account.element}
-            open={account.isMenuOpen}
-            onClose={account.handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-            anchorOrigin={{
-              vertical: 'bottom',
-              horizontal: 'left',
-            }}
-            transformOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-          >
-            <Link to="/">
-              <StyledtText>Profile</StyledtText>
-            </Link>
-            <Link to="/">
-              <StyledtText>My Loads</StyledtText>
-            </Link>
-            <Link to="/">
-              <StyledtText>My adresses</StyledtText>
-            </Link>
-            <Link to="/">
-              <StyledtText>Log out</StyledtText>
-            </Link>
-          </StyledMenu>
-        </RightContentItemWrapper>
-        <RightContentItemWrapper>
-          <Text size="md" weight="600">
-            En
-          </Text>
-          <StledDropdownButton onClick={language.handleClick}>
-            <ChevronDownIcon size="30" />
-          </StledDropdownButton>
-          <Menu
-            id="basic-menu"
-            anchorEl={language.element}
-            open={language.isMenuOpen}
-            onClose={language.handleClose}
-            MenuListProps={{
-              'aria-labelledby': 'basic-button',
-            }}
-          >
-            {/* languages will implemented also */}
-            <MenuItem onClick={language.handleClose}>Profile</MenuItem>
-          </Menu>
-        </RightContentItemWrapper>
-      </ProfileAndLanguageWrapper>
-    </NavbarWrapper>
+    <>
+      <NavbarWrapper>
+        <NavbarLinksWrapper>
+          {links.map((link) => {
+            return (
+              <Link to={link.to} key={link.id}>
+                <Text weight="600" size="md">
+                  {link.name}
+                </Text>
+              </Link>
+            );
+          })}
+        </NavbarLinksWrapper>
+        <NavbarLogoWrapper>
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
+        </NavbarLogoWrapper>
+        <ProfileAndLanguageWrapper>
+          <RightContentItemWrapper>
+            <Text size="md" weight="600">
+              My Account
+            </Text>
+            <StyledDropdownButton onClick={account.handleClick}>
+              <ChevronDownIcon size="30" />
+            </StyledDropdownButton>
+            <StyledMenu
+              id="basic-menu"
+              anchorEl={account.element}
+              open={account.isMenuOpen}
+              onClose={account.handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+            >
+              <Link to="/">
+                <StyledtText>Profile</StyledtText>
+              </Link>
+              <Link to="/">
+                <StyledtText>My Loads</StyledtText>
+              </Link>
+              <Link to="/">
+                <StyledtText>My adresses</StyledtText>
+              </Link>
+              <Link to="/">
+                <StyledtText>Log out</StyledtText>
+              </Link>
+            </StyledMenu>
+          </RightContentItemWrapper>
+          <RightContentItemWrapper>
+            <Text size="md" weight="600">
+              En
+            </Text>
+            <StyledDropdownButton onClick={language.handleClick}>
+              <ChevronDownIcon size="30" />
+            </StyledDropdownButton>
+            <Menu
+              id="basic-menu"
+              anchorEl={language.element}
+              open={language.isMenuOpen}
+              onClose={language.handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              {/* languages will implemented also */}
+              <MenuItem onClick={language.handleClose}>Profile</MenuItem>
+            </Menu>
+          </RightContentItemWrapper>
+        </ProfileAndLanguageWrapper>
+      </NavbarWrapper>
+      <NavbarPositionEffectEraiser />
+    </>
   );
 };
 

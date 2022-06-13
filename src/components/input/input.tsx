@@ -48,7 +48,7 @@ const StyledInput = styled.input<InputProps>`
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
-  padding: 16px 13px;
+  padding: 12px 13px;
   color: ${(props) => props.theme.text.dark};
 
   &:placeholder-shown ~ span {

@@ -10,7 +10,8 @@ export const NavbarWrapper = styled.div`
   align-items: center;
   max-width: 1296px;
   position: fixed;
-  position: relative;
+  z-index: 1000;
+  background-color: ${colors.green_5};
 `;
 
 export const NavbarLogoWrapper = styled.div`
@@ -46,12 +47,13 @@ export const RightContentItemWrapper = styled.div`
   width: fit-content;
   display: flex;
   align-items: center;
+  margin-right: 20px;
   p {
     letter-spacing: 0.15px;
   }
 `;
 
-export const StledDropdownButton = styled(IconButton)`
+export const StyledDropdownButton = styled(IconButton)`
   && {
     min-width: unset;
     width: 32px;
@@ -74,4 +76,9 @@ export const StyledtText = styled.p`
   :hover {
     background-color: ${colors.green_20};
   }
+`;
+
+export const NavbarPositionEffectEraiser = styled.div`
+  width: 100%;
+  height: 92px;
 `;
