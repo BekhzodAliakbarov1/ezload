@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { links } from './nav-links';
+import { links, profile } from './nav-links';
 import {
   RightContentItemWrapper,
   NavbarLinksWrapper,
@@ -89,15 +89,11 @@ const Navbar = () => {
                 horizontal: 'left',
               }}
             >
-              <Link to="/profile">
-                <StyledtText>Profile</StyledtText>
-              </Link>
-              <Link to="/">
-                <StyledtText>My Loads</StyledtText>
-              </Link>
-              <Link to="/">
-                <StyledtText>My adresses</StyledtText>
-              </Link>
+              {profile.map((item) => (
+                <Link onClick={account.handleClose} key={item.id} to={item.to}>
+                  <StyledtText>{item.name}</StyledtText>
+                </Link>
+              ))}
               <Link to="/">
                 <StyledtText>Log out</StyledtText>
               </Link>

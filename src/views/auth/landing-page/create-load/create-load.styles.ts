@@ -1,5 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CreateLoadWrapper = styled.div`
-    width: 100%;
-`
+  width: 100%;
+`;
