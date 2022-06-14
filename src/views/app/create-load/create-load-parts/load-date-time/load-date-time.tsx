@@ -16,7 +16,7 @@ const LoadDateTime = () => {
           Pickup date
         </Text>
         <DateFromToWrapper>
-          <DateRangePickerInput />
+          <DateRangePickerInput type="start" />
         </DateFromToWrapper>
       </DateSelectBox>
       <DateSelectBox>
@@ -24,7 +24,7 @@ const LoadDateTime = () => {
           Delivery date
         </Text>
         <DateFromToWrapper>
-          <DateRangePickerInput />
+          <DateRangePickerInput type="end" />
         </DateFromToWrapper>
       </DateSelectBox>
     </LoadDateTimeWrapper>

@@ -7,7 +7,7 @@ export const DateInputComponentWrapper = styled.div`
   gap: 24px;
   display: flex;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 `;
 
 export const StyledTextFiled = styled(TextField)`

@@ -89,7 +89,7 @@ const Navbar = () => {
                 horizontal: 'left',
               }}
             >
-              <Link to="/">
+              <Link to="/profile">
                 <StyledtText>Profile</StyledtText>
               </Link>
               <Link to="/">
