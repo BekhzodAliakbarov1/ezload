@@ -5,30 +5,34 @@ import {
   DateInputComponentWrapper,
   StyledTextFiled,
 } from './date-input.styles';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
-export const DateRangePickerInput: React.FC<{ type: 'start' | 'end' }> = ({
-  type,
-}) => {
-  const today = new Date();
-  const tommorrow = new Date();
-  if (type === 'start') {
-    tommorrow.setDate(tommorrow.getDate() + 2);
-  } else {
-    today.setDate(today.getDate() + 10);
-    tommorrow.setDate(tommorrow.getDate() + 12);
-  }
-  const [startDate, setStartDate] = React.useState<Date>(today);
-  const [endDate, setEndDate] = React.useState<Date>(tommorrow);
+export const DateRangePickerInput: React.FC<{
+  type: 'pickup' | 'delivery';
+}> = ({ type }) => {
+  const { data, setValues } = useData();
 
   const handleStartDateChange = (newValue: Date | null) => {
     if (newValue) {
-      setStartDate(newValue);
+      setValues({
+        ...data,
+        dates: {
+          ...data.dates,
+          [type]: { ...data.dates[type], start: newValue },
+        },
+      });
     }
   };
 
   const handleEndDateChange = (newValue: Date | null) => {
     if (newValue) {
-      setEndDate(newValue);
+      setValues({
+        ...data,
+        dates: {
+          ...data.dates,
+          [type]: { ...data.dates[type], end: newValue },
+        },
+      });
     }
   };
 
@@ -36,20 +40,22 @@ export const DateRangePickerInput: React.FC<{ type: 'start' | 'end' }> = ({
     <DateInputComponentWrapper>
       <Text weight="500">From</Text>
       <DateTimePicker
-        value={startDate}
+        value={data.dates[type].start}
         onChange={handleStartDateChange}
         renderInput={(params) => <StyledTextFiled {...params} />}
-        inputFormat="dd-MMM, hh-mm"
+        disableMaskedInput
+        inputFormat="d-MMMM , HH:mm "
         disablePast
       />
       <Text weight="500">To</Text>
       <DateTimePicker
-        value={endDate}
+        value={data.dates[type].end}
         onChange={handleEndDateChange}
         renderInput={(params) => <StyledTextFiled {...params} />}
-        inputFormat="dd-MMM, hh-mm"
+        disableMaskedInput
+        inputFormat="d-MMMM , HH:mm "
         disablePast
-        minDate={startDate}
+        minDate={data.dates[type].start}
       />
     </DateInputComponentWrapper>
   );
