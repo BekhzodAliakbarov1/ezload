@@ -12,15 +12,6 @@ export interface Props extends AvatarProps {
   avatarstyles?: CSSProp;
 }
 
-export const BorderWrapper = styled.div<Props>`
-  border-radius: 100%;
-  /* background: ${(props) => (props.hasStory ? colors : 'transparent')}; */
-  padding: 2px;
-  width: 104px;
-  height: 104px;
-  cursor: pointer;
-`;
-
 const StyledAvatar = styled(MuiAvatar)<Props>`
   ${(props) => props.avatarstyles}
   border: 3px solid ${colors.white};
@@ -44,18 +35,16 @@ const Avatar = ({
   sizes,
   ...props
 }: Props) => (
-  <BorderWrapper className={className} hasStory={hasStory}>
-    <StyledAvatar
-      avatarstyles={avatarstyles}
-      sx={{ width: sizes, height: sizes }}
-    >
-      {props.src === undefined || props.src === '' ? (
-        <ProfileIcon className="fallbackImg" size={60} />
-      ) : (
-        <LazyImage src={props.src} alt="avatar" />
-      )}
-    </StyledAvatar>
-  </BorderWrapper>
+  <StyledAvatar
+    avatarstyles={avatarstyles}
+    sx={{ width: sizes, height: sizes }}
+  >
+    {props.src === undefined || props.src === '' ? (
+      <ProfileIcon className="fallbackImg" size={60} />
+    ) : (
+      <LazyImage src={props.src} alt="avatar" />
+    )}
+  </StyledAvatar>
 );
 
 export default Avatar;

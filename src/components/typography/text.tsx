@@ -42,8 +42,14 @@ const StyledText = styled.p<TextProps>`
   letter-spacing: 0.5px;
 `;
 
-const Text: React.FC<TextProps> = ({ children, size, color, ...other }) => (
-  <StyledText color={color} size={size} {...other}>
+const Text: React.FC<TextProps> = ({
+  children,
+  size,
+  weight = '500',
+  color,
+  ...other
+}) => (
+  <StyledText color={color} size={size} weight={weight} {...other}>
     {children}
   </StyledText>
 );
