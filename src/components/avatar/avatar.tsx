@@ -37,18 +37,17 @@ const StyledAvatar = styled(MuiAvatar)<Props>`
 `;
 
 const Avatar = ({
-  width,
-  height,
   hasStory,
   sx,
   className,
   avatarstyles,
+  sizes,
   ...props
 }: Props) => (
   <BorderWrapper className={className} hasStory={hasStory}>
     <StyledAvatar
       avatarstyles={avatarstyles}
-      sx={{ width: '100%', height: '100%' }}
+      sx={{ width: sizes, height: sizes }}
     >
       {props.src === undefined || props.src === '' ? (
         <ProfileIcon className="fallbackImg" size={60} />

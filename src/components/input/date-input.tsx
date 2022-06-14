@@ -6,10 +6,17 @@ import {
   StyledTextFiled,
 } from './date-input.styles';
 
-export const DateRangePickerInput = () => {
+export const DateRangePickerInput: React.FC<{ type: 'start' | 'end' }> = ({
+  type,
+}) => {
   const today = new Date();
   const tommorrow = new Date();
-  tommorrow.setDate(today.getDate() + 1);
+  if (type === 'start') {
+    tommorrow.setDate(tommorrow.getDate() + 2);
+  } else {
+    today.setDate(today.getDate() + 10);
+    tommorrow.setDate(tommorrow.getDate() + 12);
+  }
   const [startDate, setStartDate] = React.useState<Date>(today);
   const [endDate, setEndDate] = React.useState<Date>(tommorrow);
 
@@ -29,7 +36,6 @@ export const DateRangePickerInput = () => {
     <DateInputComponentWrapper>
       <Text weight="500">From</Text>
       <DateTimePicker
-        // label="Date&Time picker"
         value={startDate}
         onChange={handleStartDateChange}
         renderInput={(params) => <StyledTextFiled {...params} />}
@@ -38,12 +44,12 @@ export const DateRangePickerInput = () => {
       />
       <Text weight="500">To</Text>
       <DateTimePicker
-        // label="Date&Time picker"
         value={endDate}
         onChange={handleEndDateChange}
         renderInput={(params) => <StyledTextFiled {...params} />}
         inputFormat="dd-MMM, hh-mm"
         disablePast
+        minDate={startDate}
       />
     </DateInputComponentWrapper>
   );
