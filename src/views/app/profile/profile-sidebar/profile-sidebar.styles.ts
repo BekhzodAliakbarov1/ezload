@@ -10,6 +10,11 @@ export const ProfileSidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  > p {
+    font-size: 24px;
+    line-height: 29px;
+    margin-bottom: 16px;
+  }
 `;
 
 export const StyledLink = styled(Text)<{ active: boolean }>`
