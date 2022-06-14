@@ -1,4 +1,4 @@
-import CreateLoadAddress from 'components/create-load-address/create-load-address';
+import ActionLoadAddress from 'components/create-load-address/create-load-address';
 import LocationIcon from 'components/icons/location.icon';
 import Text from 'components/typography/text';
 import React from 'react';
@@ -25,8 +25,8 @@ const LoadAddress = () => {
           </LoccationIconWrapper>
         </VerticalLineWrapper>
         <AllLocationInputsWrapper>
-          <CreateLoadAddress title="Select pickup location" />
-          <CreateLoadAddress title="Select destination location" />
+          <ActionLoadAddress title="Select pickup location" />
+          <ActionLoadAddress title="Select destination location" />
         </AllLocationInputsWrapper>
       </LoadAddressFlexWrapper>
     </LoadAddressWrapper>

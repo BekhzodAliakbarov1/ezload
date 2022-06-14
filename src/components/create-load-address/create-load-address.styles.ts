@@ -2,7 +2,7 @@ import { IconButton, Select } from '@mui/material';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
-export const CreateLoaddAddressWrapper = styled.div`
+export const ActionLoaddAddressWrapper = styled.div`
   width: 100%;
   text-align: left;
 
@@ -51,14 +51,14 @@ export const ClearTextWrapper = styled.div`
   }
 `;
 
-export const CreateLoadInputAndMapWrapper = styled.div`
+export const ActionLoadInputAndMapWrapper = styled.div`
   display: flex;
   width: 100%;
 
   gap: 31px;
 `;
 
-export const CreateLoadInputsWrapper = styled.div`
+export const ActionLoadInputsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -66,12 +66,12 @@ export const CreateLoadInputsWrapper = styled.div`
   max-width: 353px;
 `;
 
-export const CreateLoadMapContentWrapper = styled.div`
+export const ActionLoadMapContentWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
 
-export const CreateLoadMapWrapper = styled.div`
+export const ActionLoadMapWrapper = styled.div`
   width: 100%;
   height: 286px;
 `;

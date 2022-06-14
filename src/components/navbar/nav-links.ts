@@ -15,3 +15,21 @@ export const links = [
     id: 3,
   },
 ];
+
+export const profile = [
+  {
+    name: 'Profile',
+    to: '/profile',
+    id: 1,
+  },
+  {
+    name: 'My Loads',
+    to: '/profile/my-loads',
+    id: 2,
+  },
+  {
+    name: 'My adresses',
+    to: '/profile/my-addresses',
+    id: 3,
+  },
+];

@@ -1,10 +1,10 @@
-import CreateLoad from './create-load';
+import ActionLoad from './create-load';
 import { LandingPageWrapper } from './landing-page.styles';
 
 const LandingPage = () => {
   return (
     <LandingPageWrapper>
-      <CreateLoad />
+      <ActionLoad />
     </LandingPageWrapper>
   );
 };

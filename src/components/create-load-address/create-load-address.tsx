@@ -1,15 +1,15 @@
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import {
-  CreateLoaddAddressWrapper,
-  CreateLoadInputAndMapWrapper,
-  CreateLoadInputsWrapper,
+  ActionLoaddAddressWrapper,
+  ActionLoadInputAndMapWrapper,
+  ActionLoadInputsWrapper,
   StyledSelectInput,
   StyledText,
-  CreateLoadMapContentWrapper,
+  ActionLoadMapContentWrapper,
   ChooseAndCreateTextWrapper,
   ClearTextWrapper,
-  CreateLoadMapWrapper,
+  ActionLoadMapWrapper,
   SaveAddressWrapper,
   StyledIconButton,
 } from './create-load-address.styles';
@@ -21,7 +21,7 @@ import image from 'assets/img/default-image.png';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
 
-const CreateLoadAddress: React.FC<{ title: string }> = ({ title }) => {
+const ActionLoadAddress: React.FC<{ title: string }> = ({ title }) => {
   const [age, setAge] = useState<string>('Samarkand');
   const [checked, setChecked] = useState(false);
   console.log(checked);
@@ -30,7 +30,7 @@ const CreateLoadAddress: React.FC<{ title: string }> = ({ title }) => {
     setAge(event.target.value as string);
   };
   return (
-    <CreateLoaddAddressWrapper>
+    <ActionLoaddAddressWrapper>
       <Text size="md" weight="600">
         {title}
       </Text>
@@ -53,27 +53,27 @@ const CreateLoadAddress: React.FC<{ title: string }> = ({ title }) => {
           <Text weight="500">Clear form</Text>
         </ClearTextWrapper>
       </ChooseAndCreateTextWrapper>
-      <CreateLoadInputAndMapWrapper>
-        <CreateLoadInputsWrapper>
+      <ActionLoadInputAndMapWrapper>
+        <ActionLoadInputsWrapper>
           <Input placeholder="Addressline 1" />
           <Input placeholder="Addressline 2" />
           <Input placeholder="Street" />
           <Input placeholder="Region" />
           <Input placeholder="Country" />
           <Input placeholder="Zip Code" />
-        </CreateLoadInputsWrapper>
-        <CreateLoadMapContentWrapper>
-          <CreateLoadMapWrapper style={{ backgroundImage: `url(${image})` }} />
+        </ActionLoadInputsWrapper>
+        <ActionLoadMapContentWrapper>
+          <ActionLoadMapWrapper style={{ backgroundImage: `url(${image})` }} />
           <SaveAddressWrapper>
             <StyledIconButton onClick={() => setChecked(!checked)}>
               {checked ? <TickIcon /> : <TickIcon fill={colors.dark_50} />}
             </StyledIconButton>
             <Text weight="500">Save to my addresses</Text>
           </SaveAddressWrapper>
-        </CreateLoadMapContentWrapper>
-      </CreateLoadInputAndMapWrapper>
-    </CreateLoaddAddressWrapper>
+        </ActionLoadMapContentWrapper>
+      </ActionLoadInputAndMapWrapper>
+    </ActionLoaddAddressWrapper>
   );
 };
 
-export default CreateLoadAddress;
+export default ActionLoadAddress;

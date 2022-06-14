@@ -4,6 +4,7 @@ import ProfileSidebar from './profile-sidebar/profile-sidebar';
 import { ProfileViewFlexBox, ProfileViewWrapper } from './profile.styles';
 import { Route, Routes } from 'react-router-dom';
 import PersonalInformation from './personal-information/personal-information';
+import ProfileLoads from './profile-loads/profile-loads';
 
 const ProfileView = () => {
   return (
@@ -13,6 +14,9 @@ const ProfileView = () => {
         <ProfileSidebar />
         <Routes>
           <Route path="/" element={<PersonalInformation />} />
+        </Routes>
+        <Routes>
+          <Route path="/my-loads" element={<ProfileLoads />} />
         </Routes>
       </ProfileViewFlexBox>
     </ProfileViewWrapper>
