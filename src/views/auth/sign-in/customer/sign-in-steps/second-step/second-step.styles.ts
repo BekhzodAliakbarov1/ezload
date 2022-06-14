@@ -70,35 +70,5 @@ export const SecondStepDataWrapper = styled.div`
 
 export const ConfirmCodeWrapper = styled.div<{ error?: boolean }>`
   width: 100%;
-
-  div {
-    width: 100% !important;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 74px;
-    margin-bottom: 40px;
-    > div {
-      input {
-        padding: 0px 8px 16px 8px;
-        height: 100% !important;
-        width: 49px !important;
-        border: none !important;
-        border-top-right-radius: 0px !important;
-        border-top-left-radius: 0px !important;
-        border-bottom-right-radius: 0px !important;
-        border-bottom-left-radius: 0px !important;
-        background-color: transparent;
-        border-bottom: 4px solid
-          ${(props) => (props.error ? colors.red_100 : colors.dark_30)} !important;
-        font-size: 48px !important;
-        font-weight: 700;
-        color: ${colors.dark_90};
-
-        :focus-visible {
-          outline: none;
-        }
-      }
-    }
-  }
+  margin-bottom: 40px;
 `;

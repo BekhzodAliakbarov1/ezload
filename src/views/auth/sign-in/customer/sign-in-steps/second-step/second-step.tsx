@@ -9,9 +9,9 @@ import {
   ErrorMessageWrapper,
   SecondStepDataWrapper,
 } from './second-step.styles';
-import ReactCodeInput from 'react-verification-code-input';
 import { useForm } from 'react-hook-form';
 import { useSteps } from 'global-state/step/step-context';
+import ReactCodeInputComponent from 'components/code-input/react-code-input';
 
 const SecondStep = () => {
   const [hasError, setHasError] = useState(false);
@@ -53,9 +53,7 @@ const SecondStep = () => {
             We just sent a code to your phone +1 919 980 6800
           </Text>
           <ConfirmCodeWrapper error={hasError}>
-            <ReactCodeInput
-              onComplete={(number) => setVerificationCode(number)}
-            />
+            <ReactCodeInputComponent size="lg" setCode={setVerificationCode} />
           </ConfirmCodeWrapper>
           <Button loading={isLoading} type="submit" fullWidth>
             Confirm code
