@@ -27,14 +27,7 @@ const StyledAvatar = styled(MuiAvatar)<Props>`
   }
 `;
 
-const Avatar = ({
-  hasStory,
-  sx,
-  className,
-  avatarstyles,
-  sizes,
-  ...props
-}: Props) => (
+const Avatar = ({ avatarstyles, sizes, ...props }: Props) => (
   <StyledAvatar
     avatarstyles={avatarstyles}
     sx={{ width: sizes, height: sizes }}

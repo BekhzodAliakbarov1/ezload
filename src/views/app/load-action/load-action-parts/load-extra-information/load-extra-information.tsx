@@ -10,26 +10,47 @@ import {
   StyledTextFiled,
 } from './load-extra-information.styles';
 import MenuItem from '@mui/material/MenuItem';
-import { TextField } from '@mui/material';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
 const LoadExtraInformation = () => {
-  const [currency, setCurrency] = React.useState('USD');
+  const { data, setValues } = useData();
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleChange = (value: string) => {
-    setCurrency(value);
+  const handleChangeCurrency = (value: string) => {
+    setValues({ ...data, currency_type: value });
   };
+
+  const handleChangeLugageSize = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...data, lugage_size: e.target.value });
+  };
+
+  const handleChangeCost = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...data, cost: e.target.value });
+  };
+
+  const handleDescriptionCost = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValues({ ...data, description: e.target.value });
+  };
+
   return (
     <LoadExtraInformationWrapper>
       <Text weight="700">Extra information</Text>
       <LoadExtraInformationInputsWrapper>
         <LoadExtraInformationLeftSideInputsBox>
-          <Input placeholder="Lugage size " />
+          <Input
+            placeholder="Lugage size "
+            value={data.lugage_size}
+            onChange={handleChangeLugageSize}
+          />
           <LoadExtraInformationPriceInputWrapper>
-            <Input placeholder="Cost" type="number" />
+            <Input
+              placeholder="Cost"
+              type="number"
+              value={data.cost}
+              onChange={handleChangeCost}
+            />
             <StyledSelect
-              value={currency}
-              onChange={(e) => handleChange(e.target.value as string)}
+              value={data.currency_type}
+              onChange={(e) => handleChangeCurrency(e.target.value as string)}
             >
               <MenuItem value={'USD'}>USD</MenuItem>
               <MenuItem value={'UZS'}>UZS</MenuItem>
@@ -37,7 +58,13 @@ const LoadExtraInformation = () => {
             </StyledSelect>
           </LoadExtraInformationPriceInputWrapper>
         </LoadExtraInformationLeftSideInputsBox>
-        <StyledTextFiled multiline fullWidth placeholder="Extra information" />
+        <StyledTextFiled
+          multiline
+          fullWidth
+          placeholder="Extra information"
+          value={data.description}
+          onChange={handleDescriptionCost}
+        />
       </LoadExtraInformationInputsWrapper>
     </LoadExtraInformationWrapper>
   );

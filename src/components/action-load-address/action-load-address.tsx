@@ -12,7 +12,7 @@ import {
   ActionLoadMapWrapper,
   SaveAddressWrapper,
   StyledIconButton,
-} from './create-load-address.styles';
+} from './action-load-address.styles';
 import { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Input from 'components/input/input';
@@ -20,14 +20,30 @@ import CloseIcon from 'components/icons/close.icon';
 import image from 'assets/img/default-image.png';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
-const ActionLoadAddress: React.FC<{ title: string }> = ({ title }) => {
-  const [age, setAge] = useState<string>('Samarkand');
+const ActionLoadAddress: React.FC<{
+  title: string;
+  type: 'pickup' | 'delivery';
+}> = ({ title, type }) => {
+  const [location, setLocation] = useState<string>('Samarkand');
   const [checked, setChecked] = useState(false);
-  console.log(checked);
+  const { data, setValues } = useData();
+  const { addresline_1, addresline_2, country, region, street, zipcode } =
+    data[type];
 
-  const handleChange = (event: SelectChangeEvent<unknown>) => {
-    setAge(event.target.value as string);
+  const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
+    setLocation(event.target.value as string);
+  };
+
+  const handleInputChange = (value: string, filed_name: string) => {
+    setValues({
+      ...data,
+      [type]: {
+        ...data[type],
+        [filed_name]: value,
+      },
+    });
   };
   return (
     <ActionLoaddAddressWrapper>
@@ -37,8 +53,8 @@ const ActionLoadAddress: React.FC<{ title: string }> = ({ title }) => {
       <StyledSelectInput
         fullWidth
         id="demo-simple-select"
-        value={age}
-        onChange={handleChange}
+        value={location}
+        onChange={handleSelectChange}
       >
         <MenuItem value={'Tashkent'}>Tashkent</MenuItem>
         <MenuItem value={'Samarkand'}>Samarkand</MenuItem>
@@ -55,12 +71,36 @@ const ActionLoadAddress: React.FC<{ title: string }> = ({ title }) => {
       </ChooseAndCreateTextWrapper>
       <ActionLoadInputAndMapWrapper>
         <ActionLoadInputsWrapper>
-          <Input placeholder="Addressline 1" />
-          <Input placeholder="Addressline 2" />
-          <Input placeholder="Street" />
-          <Input placeholder="Region" />
-          <Input placeholder="Country" />
-          <Input placeholder="Zip Code" />
+          <Input
+            onChange={(e) => handleInputChange(e.target.value, 'addresline_1')}
+            placeholder="Addressline 1"
+            value={addresline_1}
+          />
+          <Input
+            onChange={(e) => handleInputChange(e.target.value, 'addresline_2')}
+            placeholder="Addressline 2"
+            value={addresline_2}
+          />
+          <Input
+            onChange={(e) => handleInputChange(e.target.value, 'street')}
+            placeholder="Street"
+            value={street}
+          />
+          <Input
+            onChange={(e) => handleInputChange(e.target.value, 'region')}
+            placeholder="Region"
+            value={region}
+          />
+          <Input
+            onChange={(e) => handleInputChange(e.target.value, 'country')}
+            placeholder="Country"
+            value={country}
+          />
+          <Input
+            onChange={(e) => handleInputChange(e.target.value, 'zipcode')}
+            placeholder="Zip Code"
+            value={zipcode}
+          />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>
           <ActionLoadMapWrapper style={{ backgroundImage: `url(${image})` }} />
