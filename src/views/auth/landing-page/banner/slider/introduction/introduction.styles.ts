@@ -10,7 +10,7 @@ export const IntroductionWrapper = styled.div`
   right: 0;
   top: 350px;
   transform: translate(16.5%, 0%);
-  background-color: white;
+  background-color: ${colors.green_5};
   z-index: 10;
   padding: 51px 0;
   border-radius: 50%;
@@ -66,5 +66,5 @@ export const Paragraph = styled(Text)`
 
 export const CreateLoadBtn = styled(Button)`
   margin: 47px 0 107px 0 !important;
-  max-width: 215.5px;
+  width: 230.5px;
 `;

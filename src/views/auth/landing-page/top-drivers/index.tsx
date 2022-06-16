@@ -1,5 +1,5 @@
-import CreatorList from './creator-list';
-import { TopCreatorsWrapper } from './top-creators.styles';
+import CreatorList from './drivers-list';
+import { TopCreatorsWrapper } from './top-drivers.styles';
 
 const TopCreators = () => {
   return (
