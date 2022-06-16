@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors } from 'styles/variables';
 import Container from 'wrappers/container/container';
 
-export const CreatorListWrapper = styled.div`
+export const DriverListWrapper = styled.div`
   width: 100%;
   background: ${colors.dark_90};
 `;

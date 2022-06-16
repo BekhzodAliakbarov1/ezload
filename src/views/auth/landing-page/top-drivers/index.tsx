@@ -1,12 +1,12 @@
-import CreatorList from './drivers-list';
-import { TopCreatorsWrapper } from './top-drivers.styles';
+import DriverList from './drivers-list';
+import { TopDriversWrapper } from './top-drivers.styles';
 
-const TopCreators = () => {
+const TopDrivers = () => {
   return (
-    <TopCreatorsWrapper>
-      <CreatorList />
-    </TopCreatorsWrapper>
+    <TopDriversWrapper>
+      <DriverList />
+    </TopDriversWrapper>
   );
 };
 
-export default TopCreators;
+export default TopDrivers;

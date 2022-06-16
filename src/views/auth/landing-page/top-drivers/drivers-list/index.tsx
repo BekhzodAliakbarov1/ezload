@@ -1,6 +1,6 @@
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import {
-  CreatorListWrapper,
+  DriverListWrapper,
   StyledContainer,
   ViewButton,
 } from './drivers-list.styles';
@@ -15,7 +15,7 @@ import Button from 'components/button/button';
 
 SwiperCore.use([Pagination, Navigation]);
 
-const CreatorList = () => {
+const DriverList = () => {
   const [isDisabled, setIsDisabled] = useState({
     nextDisabled: false,
     prevDisabled: true,
@@ -32,7 +32,7 @@ const CreatorList = () => {
   };
   return (
     <>
-      <CreatorListWrapper>
+      <DriverListWrapper>
         <Container>
           <SliderNav
             isEnd={isDisabled.nextDisabled}
@@ -41,7 +41,7 @@ const CreatorList = () => {
             prevClass="button-prev"
           />
         </Container>
-      </CreatorListWrapper>
+      </DriverListWrapper>
       <StyledContainer>
         <DriversSlider slideChangeHandle={slideChangeHandle} />
         <ViewButton>SEE ALL DRIVERS</ViewButton>
@@ -50,4 +50,4 @@ const CreatorList = () => {
   );
 };
 
-export default CreatorList;
+export default DriverList;
