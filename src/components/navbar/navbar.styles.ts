@@ -13,6 +13,7 @@ export const NavbarWrapper = styled.div`
   z-index: 1000;
   background-color: ${colors.green_5};
   transition: all 0.5s ease;
+  margin: auto;
 `;
 
 export const NavbarLogoWrapper = styled.div`
@@ -80,6 +81,8 @@ export const StyledtText = styled.p`
 `;
 
 export const NavbarPositionEffectEraiser = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 92px;
+  background-color: ${colors.green_5};
+  z-index: 10;
 `;

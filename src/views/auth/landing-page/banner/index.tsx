@@ -7,7 +7,6 @@ const Banner = () => {
   return (
     <>
       <BannerWrapper>
-        <h1>Header</h1>
         <Slider />
         <Availibility />
       </BannerWrapper>

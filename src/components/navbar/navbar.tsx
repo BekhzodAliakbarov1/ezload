@@ -43,7 +43,7 @@ const StyledMenu = styled((props: MenuProps) => (
   },
 }));
 
-const Navbar = () => {
+const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   const account = useMenu();
   const language = useMenu();
 
@@ -84,40 +84,48 @@ const Navbar = () => {
           </Link>
         </NavbarLogoWrapper>
         <ProfileAndLanguageWrapper>
-          <RightContentItemWrapper>
-            <Text size="md" weight="600">
-              My Account
-            </Text>
-            <StyledDropdownButton onClick={account.handleClick}>
-              <ChevronDownIcon size="30" />
-            </StyledDropdownButton>
-            <StyledMenu
-              id="basic-menu"
-              anchorEl={account.element}
-              open={account.isMenuOpen}
-              onClose={account.handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-            >
-              {profile.map((item) => (
-                <Link onClick={account.handleClose} key={item.id} to={item.to}>
-                  <StyledtText>{item.name}</StyledtText>
+          {isLoggedIn ? (
+            <RightContentItemWrapper>
+              <Text size="md" weight="600">
+                My Account
+              </Text>
+              <StyledDropdownButton onClick={account.handleClick}>
+                <ChevronDownIcon size="30" />
+              </StyledDropdownButton>
+              <StyledMenu
+                id="basic-menu"
+                anchorEl={account.element}
+                open={account.isMenuOpen}
+                onClose={account.handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+              >
+                {profile.map((item) => (
+                  <Link
+                    onClick={account.handleClose}
+                    key={item.id}
+                    to={item.to}
+                  >
+                    <StyledtText>{item.name}</StyledtText>
+                  </Link>
+                ))}
+                <Link to="/">
+                  <StyledtText>Log out</StyledtText>
                 </Link>
-              ))}
-              <Link to="/">
-                <StyledtText>Log out</StyledtText>
-              </Link>
-            </StyledMenu>
-          </RightContentItemWrapper>
+              </StyledMenu>
+            </RightContentItemWrapper>
+          ) : (
+            'hello'
+          )}
           <RightContentItemWrapper>
             <Text size="md" weight="600">
               En
