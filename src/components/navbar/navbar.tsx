@@ -4,6 +4,7 @@ import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { links, profile } from './nav-links';
+import { useRef } from 'react';
 import {
   RightContentItemWrapper,
   NavbarLinksWrapper,
@@ -45,9 +46,27 @@ const StyledMenu = styled((props: MenuProps) => (
 const Navbar = () => {
   const account = useMenu();
   const language = useMenu();
+
+  const headerRef = useRef<HTMLDivElement>(null);
+  let prevScrollpos = window.pageYOffset;
+  window.onscroll = () => {
+    if (headerRef.current) {
+      const currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos || currentScrollPos < 1) {
+        headerRef.current.style.top = '0';
+      } else {
+        headerRef.current.style.top = '-100px';
+      }
+      // if (currentScrollPos < 1) {
+      //   headerRef.current.style.top = '0';
+      // }
+      prevScrollpos = currentScrollPos;
+    }
+  };
+
   return (
     <>
-      <NavbarWrapper>
+      <NavbarWrapper ref={headerRef}>
         <NavbarLinksWrapper>
           {links.map((link) => {
             return (

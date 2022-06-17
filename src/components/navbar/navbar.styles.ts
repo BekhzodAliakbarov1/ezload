@@ -12,6 +12,7 @@ export const NavbarWrapper = styled.div`
   position: fixed;
   z-index: 1000;
   background-color: ${colors.green_5};
+  transition: all 0.5s ease;
 `;
 
 export const NavbarLogoWrapper = styled.div`
