@@ -14,10 +14,13 @@ import {
   NavbarLogoWrapper,
   StyledtText,
   NavbarPositionEffectEraiser,
+  NavbarLoginButton,
+  NabarBox,
 } from './navbar.styles';
 import logo from 'assets/img/logo-light.svg';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
+import Button from 'components/button/button';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -66,88 +69,96 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
 
   return (
     <>
-      <NavbarWrapper ref={headerRef}>
-        <NavbarLinksWrapper>
-          {links.map((link) => {
-            return (
-              <Link to={link.to} key={link.id}>
-                <Text weight="600" size="md">
-                  {link.name}
+      <NabarBox ref={headerRef} isLoggedIn={isLoggedIn}>
+        <NavbarWrapper>
+          <NavbarLinksWrapper>
+            {links.map((link) => {
+              return (
+                <Link to={link.to} key={link.id}>
+                  <Text weight="600" size="md">
+                    {link.name}
+                  </Text>
+                </Link>
+              );
+            })}
+          </NavbarLinksWrapper>
+          <NavbarLogoWrapper>
+            <Link to="/">
+              <img src={logo} alt="logo" />
+            </Link>
+          </NavbarLogoWrapper>
+          <ProfileAndLanguageWrapper>
+            {isLoggedIn ? (
+              <RightContentItemWrapper>
+                <Text size="md" weight="600">
+                  My Account
                 </Text>
-              </Link>
-            );
-          })}
-        </NavbarLinksWrapper>
-        <NavbarLogoWrapper>
-          <Link to="/">
-            <img src={logo} alt="logo" />
-          </Link>
-        </NavbarLogoWrapper>
-        <ProfileAndLanguageWrapper>
-          {isLoggedIn ? (
+                <StyledDropdownButton onClick={account.handleClick}>
+                  <ChevronDownIcon size="30" />
+                </StyledDropdownButton>
+                <StyledMenu
+                  id="basic-menu"
+                  anchorEl={account.element}
+                  open={account.isMenuOpen}
+                  onClose={account.handleClose}
+                  MenuListProps={{
+                    'aria-labelledby': 'basic-button',
+                  }}
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  }}
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'left',
+                  }}
+                >
+                  {profile.map((item) => (
+                    <Link
+                      onClick={account.handleClose}
+                      key={item.id}
+                      to={item.to}
+                    >
+                      <StyledtText>{item.name}</StyledtText>
+                    </Link>
+                  ))}
+                  <Link to="/">
+                    <StyledtText>Log out</StyledtText>
+                  </Link>
+                </StyledMenu>
+              </RightContentItemWrapper>
+            ) : (
+              <>
+                <NavbarLoginButton>
+                  <Text weight="600">Login</Text>
+                </NavbarLoginButton>
+                <Link to="/auth/creator/login">Sign Up</Link>
+              </>
+            )}
             <RightContentItemWrapper>
               <Text size="md" weight="600">
-                My Account
+                En
               </Text>
-              <StyledDropdownButton onClick={account.handleClick}>
+              <StyledDropdownButton onClick={language.handleClick}>
                 <ChevronDownIcon size="30" />
               </StyledDropdownButton>
-              <StyledMenu
+              <Menu
                 id="basic-menu"
-                anchorEl={account.element}
-                open={account.isMenuOpen}
-                onClose={account.handleClose}
+                anchorEl={language.element}
+                open={language.isMenuOpen}
+                onClose={language.handleClose}
                 MenuListProps={{
                   'aria-labelledby': 'basic-button',
                 }}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
               >
-                {profile.map((item) => (
-                  <Link
-                    onClick={account.handleClose}
-                    key={item.id}
-                    to={item.to}
-                  >
-                    <StyledtText>{item.name}</StyledtText>
-                  </Link>
-                ))}
-                <Link to="/">
-                  <StyledtText>Log out</StyledtText>
-                </Link>
-              </StyledMenu>
+                <MenuItem onClick={language.handleClose}>En</MenuItem>
+                {/* <MenuItem onClick={language.handleClose}>Uz</MenuItem> */}
+                {/* <MenuItem onClick={language.handleClose}>Ru</MenuItem> */}
+              </Menu>
             </RightContentItemWrapper>
-          ) : (
-            'hello'
-          )}
-          <RightContentItemWrapper>
-            <Text size="md" weight="600">
-              En
-            </Text>
-            <StyledDropdownButton onClick={language.handleClick}>
-              <ChevronDownIcon size="30" />
-            </StyledDropdownButton>
-            <Menu
-              id="basic-menu"
-              anchorEl={language.element}
-              open={language.isMenuOpen}
-              onClose={language.handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              {/* languages will implemented also */}
-              <MenuItem onClick={language.handleClose}>Profile</MenuItem>
-            </Menu>
-          </RightContentItemWrapper>
-        </ProfileAndLanguageWrapper>
-      </NavbarWrapper>
+          </ProfileAndLanguageWrapper>
+        </NavbarWrapper>
+      </NabarBox>
       <NavbarPositionEffectEraiser />
     </>
   );

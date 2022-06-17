@@ -2,26 +2,29 @@ import styled from 'styled-components';
 import { colors } from 'styles/variables';
 import { IconButton } from '@mui/material';
 
+export const NabarBox = styled.div<{ isLoggedIn: boolean }>`
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: ${(props) => (props.isLoggedIn ? '' : 'center')};
+  z-index: 1000;
+  background-color: ${colors.green_5};
+  transition: all 0.5s ease;
+`;
+
 export const NavbarWrapper = styled.div`
   width: 100%;
   height: 92px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1296px;
-  position: fixed;
-  z-index: 1000;
-  background-color: ${colors.green_5};
-  transition: all 0.5s ease;
-  margin: auto;
+  max-width: 1290px;
+  /* margin: auto; */
 `;
 
 export const NavbarLogoWrapper = styled.div`
   cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin-left: -6%;
 `;
 
 export const NavbarLinksWrapper = styled.div`
@@ -44,12 +47,25 @@ export const ProfileAndLanguageWrapper = styled.div`
   height: 100%;
   align-items: center;
   gap: 24px;
+  a {
+    padding: 4px 12px 6px;
+    background: ${colors.red_90};
+    border-radius: 2px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.15px;
+    color: #f5fbfa;
+    :hover {
+      background: ${colors.red_100};
+    }
+  }
 `;
 export const RightContentItemWrapper = styled.div`
   width: fit-content;
   display: flex;
   align-items: center;
-  margin-right: 20px;
+  /* margin-right: 20px; */
   p {
     letter-spacing: 0.15px;
   }
@@ -85,4 +101,21 @@ export const NavbarPositionEffectEraiser = styled.div`
   height: 92px;
   background-color: ${colors.green_5};
   z-index: 10;
+`;
+
+export const NavbarLoginButton = styled.div`
+  p {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    /* identical to box height, or 125% */
+
+    letter-spacing: 0.15px;
+
+    color: ${colors.dark_70};
+    cursor: pointer;
+    :hover {
+      color: ${colors.dark_100};
+    }
+  }
 `;

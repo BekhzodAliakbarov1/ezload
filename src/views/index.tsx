@@ -21,7 +21,7 @@ const Views = () => {
   return (
     <Routes>
       {/* after implement sign in api remove ! this from begining of next line */}
-      {tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
+      {!tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
     </Routes>
   );
 };
