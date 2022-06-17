@@ -27,7 +27,9 @@ export const SignInImageWrapper = styled.div`
   }
 `;
 
-const SignInLayout: React.FC<{ type: 'customer' | 'driver' }> = ({ type }) => {
+const SignInLayout: React.FC<{ type: 'customer' | 'driver' | '' }> = ({
+  type,
+}) => {
   return (
     <SignInLayoutWrapper>
       <SignInImageWrapper style={{ backgroundImage: `url(${image})` }}>

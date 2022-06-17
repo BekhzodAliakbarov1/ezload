@@ -3,7 +3,7 @@ import { styled } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { links, profile } from './nav-links';
+import { links, profileCustomer, profileDrivers } from './nav-links';
 import { useRef } from 'react';
 import {
   RightContentItemWrapper,
@@ -16,11 +16,13 @@ import {
   NavbarPositionEffectEraiser,
   NavbarLoginButton,
   NabarBox,
+  JustFunComponent,
 } from './navbar.styles';
 import logo from 'assets/img/logo-light.svg';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
-import Button from 'components/button/button';
+import { useAuth } from 'global-state/auth/auth.state';
+import { Switch } from '@mui/material';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -49,6 +51,9 @@ const StyledMenu = styled((props: MenuProps) => (
 const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   const account = useMenu();
   const language = useMenu();
+  const { userType, login } = useAuth();
+
+  const accountLinks = userType === 'driver' ? profileDrivers : profileCustomer;
 
   const headerRef = useRef<HTMLDivElement>(null);
   let prevScrollpos = window.pageYOffset;
@@ -64,6 +69,22 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
       //   headerRef.current.style.top = '0';
       // }
       prevScrollpos = currentScrollPos;
+    }
+  };
+
+  const clickHandler = () => {
+    if (userType === 'customer') {
+      login({
+        tokens: { access: '1221', refresh: '1221' },
+        userId: '1221',
+        userType: 'driver',
+      });
+    } else {
+      login({
+        tokens: { access: '1221', refresh: '1221' },
+        userId: '1221',
+        userType: 'customer',
+      });
     }
   };
 
@@ -113,7 +134,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
                     horizontal: 'left',
                   }}
                 >
-                  {profile.map((item) => (
+                  {accountLinks.map((item) => (
                     <Link
                       onClick={account.handleClose}
                       key={item.id}
@@ -160,6 +181,10 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
         </NavbarWrapper>
       </NabarBox>
       <NavbarPositionEffectEraiser />
+      <JustFunComponent>
+        <Text>{userType}</Text>
+        <Switch onClick={clickHandler} />
+      </JustFunComponent>
     </>
   );
 };

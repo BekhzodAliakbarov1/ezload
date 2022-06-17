@@ -6,13 +6,14 @@ export interface Tokens {
 }
 
 export interface AuthCredentials extends Tokens {
-  userName: string | null;
   userId: string;
-  userType: 1 | 3 | 4 | null;
+  userType: 'driver' | 'customer' | string;
 }
 
 export interface AuthContextInterface extends AuthCredentials {
-  login: (data: { userId: string } & Tokens) => void;
+  login: (
+    data: { userId: string; userType: 'driver' | 'customer' | '' } & Tokens
+  ) => void;
   logout: () => void;
 }
 
@@ -23,15 +24,15 @@ export type Login = {
     accessToken: string;
     refreshToken: string;
     userId: string;
+    userType: 'driver' | 'customer' | '';
   };
 };
 
 export type SetAuthCredentials = {
   type: 'SET_AUTH_CREDENTIALS';
   payload: {
-    userName: string;
     userId: string;
-    userType: 1 | 3 | 4;
+    userType: 'driver' | 'customer' | '';
   };
 };
 
