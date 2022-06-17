@@ -9,7 +9,7 @@ import TopDrivers from './top-drivers';
 const LandingPage = () => {
   return (
     <LandingPageWrapper>
-      <Navbar />
+      <Navbar isLoggedIn={false} />
       <Container>
         <Banner />
       </Container>

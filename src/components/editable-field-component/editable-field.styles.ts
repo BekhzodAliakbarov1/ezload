@@ -77,7 +77,7 @@ export const VerificationCodeWrapper = styled.div`
   margin-top: 32px;
   > p {
     letter-spacing: 0.15px;
-    color: #52666d;
+    color: ${colors.dark_70};
     margin-bottom: 33px;
   }
 `;
