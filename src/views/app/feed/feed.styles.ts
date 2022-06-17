@@ -70,6 +70,10 @@ export const FeedStatisticsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 120px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 50px;
+  }
 `;
 
 export const FeedStatisticsCard = styled.div`
