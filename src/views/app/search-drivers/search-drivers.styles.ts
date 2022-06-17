@@ -9,6 +9,6 @@ export const SearchDriversWrapper = styled.div`
 `;
 
 export const SearhDriversBox = styled.div`
-  padding-top: 48px;
+  padding: 48px 0px;
   display: flex;
 `;
