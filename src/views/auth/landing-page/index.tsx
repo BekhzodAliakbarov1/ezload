@@ -1,4 +1,5 @@
 import { LeftBox, RightBox } from 'assets/svg';
+import Navbar from 'components/navbar/navbar';
 import Container from 'wrappers/container/container';
 import Banner from './banner';
 import { BackgrounImageWrapper } from './banner/banner.styles';
@@ -8,6 +9,7 @@ import TopDrivers from './top-drivers';
 const LandingPage = () => {
   return (
     <LandingPageWrapper>
+      <Navbar isLoggedIn={false} />
       <Container>
         <Banner />
       </Container>

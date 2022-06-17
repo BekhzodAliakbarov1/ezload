@@ -70,6 +70,7 @@ export const FeedStatisticsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 120px;
+  margin-bottom: 100px;
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 50px;
