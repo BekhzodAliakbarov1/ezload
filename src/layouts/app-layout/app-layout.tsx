@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Container from 'wrappers/container/container';
 import Navbar from 'components/navbar/navbar';
 import { colors } from 'styles/variables';
+import Footer from 'components/footer';
 
 const Main = styled.main`
   width: 100%;
@@ -19,6 +20,7 @@ const AppLayout: React.FC = () => (
         <Navbar />
         <AppViews />
       </Container>
+      <Footer />
     </Main>
   </>
 );
