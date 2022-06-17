@@ -36,12 +36,16 @@ export const StyledContainer = styled(Container)`
 `;
 
 export const ViewButton = styled(Button)`
-  margin: 72px auto 88px auto !important;
+  margin: 72px auto 100px auto !important;
   width: 234px;
   font-size: 14px !important;
   align-items: center !important;
   line-height: 18px !important;
   letter-spacing: 0.25px !important;
-  padding: auto;
   text-transform: uppercase;
+`;
+
+export const Stick = styled.div`
+  margin: 88px auto;
+  border-bottom: 2px dashed ${colors.green_20};
 `;
