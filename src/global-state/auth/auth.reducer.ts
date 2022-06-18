@@ -2,9 +2,8 @@ import { AuthActions, AuthCredentials } from 'types/auth.types';
 import { getStorage } from '../../utils/local-storage';
 
 export const initialState = {
-  userName: null,
   userId: getStorage('userId') ?? '',
-  userType: null,
+  userType: getStorage('userType') ?? '',
   tokens: {
     access: getStorage('accessToken') ?? '',
     refresh: getStorage('refreshToken') ?? '',
@@ -21,11 +20,11 @@ export const authReducer = (state: AuthCredentials, action: AuthActions) => {
           access: action.payload.accessToken,
         },
         userId: action.payload.userId,
+        userType: action.payload.userType,
       };
     case 'SET_AUTH_CREDENTIALS':
       return {
         ...state,
-        userName: action.payload.userName,
         userId: action.payload.userId,
         userType: action.payload.userType,
       };
@@ -34,7 +33,7 @@ export const authReducer = (state: AuthCredentials, action: AuthActions) => {
       return {
         userName: null,
         userId: '',
-        userType: null,
+        userType: '',
         tokens: {
           access: '',
           refresh: '',

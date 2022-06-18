@@ -119,3 +119,11 @@ export const NavbarLoginButton = styled.div`
     }
   }
 `;
+
+export const JustFunComponent = styled.div`
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: red;
+  z-index: 10000;
+`;

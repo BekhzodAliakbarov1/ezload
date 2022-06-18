@@ -4,7 +4,9 @@ import InfoIcon from 'components/icons/info.icon';
 import FileInput from 'components/input/file-input';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
+import { useAuth } from 'global-state/auth/auth.state';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   CreatorSignInThirdStepWrapper,
   ErrorMessageData,
@@ -17,6 +19,20 @@ import {
 
 const ThirdStep = () => {
   const [hasError, setHasError] = useState(false);
+  const { login, userType } = useAuth();
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    login({
+      tokens: {
+        access: '1221',
+        refresh: '1221',
+      },
+      userId: '1221',
+      userType: 'driver',
+    });
+    navigate('/');
+  };
 
   return (
     <CreatorSignInThirdStepWrapper>
@@ -50,7 +66,9 @@ const ThirdStep = () => {
             <Input placeholder="Write your name" id="name" />
           </NameInputWrapper>
         </PictureAndNameWrapper>
-        <Button fullWidth>Save</Button>
+        <Button fullWidth onClick={clickHandler}>
+          Save
+        </Button>
       </ThirdStepDataWrapper>
     </CreatorSignInThirdStepWrapper>
   );
