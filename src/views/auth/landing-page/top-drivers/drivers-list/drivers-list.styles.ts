@@ -1,6 +1,6 @@
 import Button from 'components/button/button';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { colors, sizes } from 'styles/variables';
 import Container from 'wrappers/container/container';
 
 export const DriverListWrapper = styled.div`
@@ -13,8 +13,12 @@ export const SliderWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 30px;
   align-items: center;
   flex-wrap: wrap;
+  @media (max-width: ${sizes.breakpoints.lg}) {
+    justify-content: space-around;
+  }
   margin: 88px auto 72px auto;
 `;
 
@@ -46,6 +50,6 @@ export const ViewButton = styled(Button)`
 `;
 
 export const Stick = styled.div`
-  margin: 88px auto;
+  padding: 88px auto;
   border-bottom: 2px dashed ${colors.green_20};
 `;

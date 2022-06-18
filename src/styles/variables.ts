@@ -10,6 +10,7 @@ export const colors = {
   stroke_dark: '#1E2547',
   dark_gray_light: '#9A9A9A',
   dark_gray_dark: '#8E9BDF',
+  dark_gray_lighter: '#aeaeae',
   white: '#FFFFFF',
   bg_light: '#FFFFFF',
   bg_dark: '#0A0C1E',
