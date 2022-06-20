@@ -2,7 +2,6 @@ import { CustomerImg, ProfileImg } from 'assets/svg';
 import Button from 'components/button/button';
 import Container from 'wrappers/container/container';
 import { BoldText, StyledText, TextBox } from '../courage/courage.styles';
-import { BigRectangle } from '../download-app/download-app.styles';
 import {
   Center,
   FirstBox,

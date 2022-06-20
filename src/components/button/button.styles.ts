@@ -4,6 +4,7 @@ import { CircularProgress } from '@mui/material';
 import { ButtonProps } from './button.types';
 import IosSpinner from '../loaders/ios-spinner';
 import isIOS from '../../utils/is-IOS';
+import { colors as globalColors } from 'styles/variables';
 
 const colors = {
   contained: css`
@@ -32,6 +33,13 @@ const colors = {
     color: ${(props) => props.theme.text.white};
     &:hover {
       background-color: ${(props) => props.theme.button.warning_hover};
+    }
+  `,
+  white: css`
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${globalColors.red_100};
+    &:hover {
+      background-color: ${(props) => props.theme.bg.main};
     }
   `,
 };

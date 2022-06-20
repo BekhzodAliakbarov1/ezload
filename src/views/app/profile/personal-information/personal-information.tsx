@@ -7,10 +7,13 @@ import {
 import Avatar from 'components/avatar';
 import img from 'assets/img/profile.png';
 import EditableFiled from 'components/editable-field-component/editable-field';
+import TruckInfo from './truck-part';
+import { useDriver } from 'hooks/use-driver';
 
 const PersonalInformation = () => {
   const [name, setName] = useState('Asror Namozov');
   const [phone, setPhone] = useState('998996026611');
+  const { isDriver } = useDriver();
 
   const handleNameSubmit = (value: string) => {
     setName(value);
@@ -44,6 +47,13 @@ const PersonalInformation = () => {
           />
         </NamePhoneNumberWrapper>
       </PersonalInformationTopPartWrapper>
+      {isDriver && (
+        <TruckInfo
+          car_capacity="2000 tonnes"
+          car_model="Man"
+          car_number="01  T 533 UU"
+        />
+      )}
     </PersonalInformationWrapper>
   );
 };
