@@ -22,15 +22,16 @@ export const NavbarWrapper = styled.div`
   /* margin: auto; */
 `;
 
-export const NavbarLogoWrapper = styled.div`
+export const NavbarLogoWrapper = styled.div<{ isDriver: boolean }>`
   cursor: pointer;
-  margin-left: -6%;
+  margin-left: ${(props) => (props.isDriver ? '10%' : '')};
 `;
 
 export const NavbarLinksWrapper = styled.div`
   width: 100%;
-  max-width: 361px;
+  max-width: fit-content;
   display: flex;
+  gap: 24px;
   justify-content: space-between;
   align-items: center;
   a {
@@ -101,23 +102,6 @@ export const NavbarPositionEffectEraiser = styled.div`
   height: 92px;
   background-color: ${colors.green_5};
   z-index: 10;
-`;
-
-export const NavbarLoginButton = styled.div`
-  p {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    /* identical to box height, or 125% */
-
-    letter-spacing: 0.15px;
-
-    color: ${colors.dark_70};
-    cursor: pointer;
-    :hover {
-      color: ${colors.dark_100};
-    }
-  }
 `;
 
 export const JustFunComponent = styled.div`
