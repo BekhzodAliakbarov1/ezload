@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import {
   NamePhoneNumberWrapper,
+  PersonalInformationTopPartWrapper,
   PersonalInformationWrapper,
 } from './personal-information.styles';
 import Avatar from 'components/avatar';
@@ -20,27 +21,29 @@ const PersonalInformation = () => {
 
   return (
     <PersonalInformationWrapper>
-      <Avatar sizes="141px" src={img} />
-      <NamePhoneNumberWrapper>
-        <EditableFiled
-          inputType="text"
-          label="Your name"
-          value={name}
-          placeholder="Enter name"
-          onSubmit={handleNameSubmit}
-          // it will correct when connect to api
-          isLoading={false}
-        />
-        <EditableFiled
-          inputType="number"
-          label="Your phone number"
-          value={phone}
-          placeholder="Enter phone number"
-          onSubmit={handlePhoneSubmit}
-          // it will correct when connect to api
-          isLoading={false}
-        />
-      </NamePhoneNumberWrapper>
+      <PersonalInformationTopPartWrapper>
+        <Avatar sizes="141px" src={img} />
+        <NamePhoneNumberWrapper>
+          <EditableFiled
+            inputType="text"
+            label="Your name"
+            value={name}
+            placeholder="Enter name"
+            onSubmit={handleNameSubmit}
+            // it will correct when connect to api
+            isLoading={false}
+          />
+          <EditableFiled
+            inputType="number"
+            label="Your phone number"
+            value={phone}
+            placeholder="Enter phone number"
+            onSubmit={handlePhoneSubmit}
+            // it will correct when connect to api
+            isLoading={false}
+          />
+        </NamePhoneNumberWrapper>
+      </PersonalInformationTopPartWrapper>
     </PersonalInformationWrapper>
   );
 };

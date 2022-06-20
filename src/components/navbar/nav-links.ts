@@ -1,9 +1,17 @@
-export const links = [
+export const driverLinks = [
   {
     name: 'Search loads',
     to: '/search-load',
     id: 1,
   },
+  // {
+  //   name: 'Create Load',
+  //   to: '/create-load',
+  //   id: 3,
+  // },
+];
+
+export const customerLinks = [
   {
     name: 'Search drivers',
     to: '/search-driver',
@@ -47,7 +55,7 @@ export const profileDrivers = [
   },
   {
     name: 'My statistics',
-    to: '/profile/statistics',
+    to: '/profile/my-statistics',
     id: 3,
   },
   {

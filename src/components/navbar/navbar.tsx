@@ -3,7 +3,12 @@ import { styled } from '@mui/material/styles';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { links, profileCustomer, profileDrivers } from './nav-links';
+import {
+  customerLinks,
+  driverLinks,
+  profileCustomer,
+  profileDrivers,
+} from './nav-links';
 import { useRef } from 'react';
 import {
   RightContentItemWrapper,
@@ -14,7 +19,6 @@ import {
   NavbarLogoWrapper,
   StyledtText,
   NavbarPositionEffectEraiser,
-  NavbarLoginButton,
   NabarBox,
   JustFunComponent,
 } from './navbar.styles';
@@ -23,6 +27,7 @@ import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
 import { useAuth } from 'global-state/auth/auth.state';
 import { Switch } from '@mui/material';
+import { useDriver } from 'hooks/use-driver';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -52,8 +57,10 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   const account = useMenu();
   const language = useMenu();
   const { userType, login } = useAuth();
+  const { isDriver } = useDriver();
 
-  const accountLinks = userType === 'driver' ? profileDrivers : profileCustomer;
+  const accountProfile = isDriver ? profileDrivers : profileCustomer;
+  const accountLinks = isDriver ? driverLinks : customerLinks;
 
   const headerRef = useRef<HTMLDivElement>(null);
   let prevScrollpos = window.pageYOffset;
@@ -73,17 +80,17 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   };
 
   const clickHandler = () => {
-    if (userType === 'customer') {
+    if (isDriver) {
       login({
         tokens: { access: '1221', refresh: '1221' },
         userId: '1221',
-        userType: 'driver',
+        userType: 'customer',
       });
     } else {
       login({
         tokens: { access: '1221', refresh: '1221' },
         userId: '1221',
-        userType: 'customer',
+        userType: 'driver',
       });
     }
   };
@@ -93,7 +100,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
       <NabarBox ref={headerRef} isLoggedIn={isLoggedIn}>
         <NavbarWrapper>
           <NavbarLinksWrapper>
-            {links.map((link) => {
+            {accountLinks.map((link) => {
               return (
                 <Link to={link.to} key={link.id}>
                   <Text weight="600" size="md">
@@ -103,7 +110,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
               );
             })}
           </NavbarLinksWrapper>
-          <NavbarLogoWrapper>
+          <NavbarLogoWrapper isDriver={isDriver}>
             <Link to="/">
               <img src={logo} alt="logo" />
             </Link>
@@ -134,7 +141,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
                     horizontal: 'left',
                   }}
                 >
-                  {accountLinks.map((item) => (
+                  {accountProfile.map((item) => (
                     <Link
                       onClick={account.handleClose}
                       key={item.id}
@@ -150,10 +157,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
               </RightContentItemWrapper>
             ) : (
               <>
-                <NavbarLoginButton>
-                  <Text weight="600">Login</Text>
-                </NavbarLoginButton>
-                <Link to="/auth/creator/login">Sign Up</Link>
+                <Link to="/auth/creator/login">Login</Link>
               </>
             )}
             <RightContentItemWrapper>
