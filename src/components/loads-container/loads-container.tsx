@@ -6,11 +6,12 @@ import Button from 'components/button/button';
 
 const LoadsContainer: React.FC<{
   loads: SingleLoadInterface[];
-}> = ({ loads }) => {
+  clickable?: boolean;
+}> = ({ loads, clickable }) => {
   return (
     <LoadsContainerBox>
       {loads.map((load) => {
-        return <LoadCard key={load.id} {...load} />;
+        return <LoadCard clickable={clickable} key={load.id} {...load} />;
       })}
       <Button fullWidth buttonType="secondary_dark">
         Load more

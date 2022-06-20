@@ -42,6 +42,13 @@ const colors = {
       background-color: ${(props) => props.theme.bg.main};
     }
   `,
+  disabled: css`
+    background-color: ${globalColors.dark_40};
+    color: ${globalColors.white} !important;
+    &:hover {
+      background-color: ${(props) => props.theme.bg.main};
+    }
+  `,
 };
 
 const loadingStyles = css`
@@ -78,19 +85,9 @@ export const StyledButton = styled(MuiButton).withConfig({
     font-weight: 700;
     ${(props) => colors[props.buttonType ?? 'contained']};
     ${(props) => (props.loading ? loadingStyles : '')}
-    /* img {
-      width: 16px;
-      height: 16px;
-      margin-right: 10px;
-    } */
     @media (max-width: ${(props) => props.theme.sizes.sm}) {
       font-size: 14px;
       width: 100%;
-      /* img {
-        width: 14px;
-        height: 14px;
-        margin-right: 8px;
-      } */
     }
   }
 `;

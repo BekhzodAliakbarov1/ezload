@@ -6,6 +6,7 @@ import SearchDriverLayout from 'layouts/search-driver-layout';
 import DriverInfoLayout from 'layouts/driver-info-layout/driver-info-layout';
 import SearchLoadLayout from 'layouts/search-load-layout';
 import { useDriver } from 'hooks/use-driver';
+import LoadInfoLayout from 'layouts/load-info-layout';
 
 const CustomerView = () => (
   <Routes>
@@ -13,7 +14,7 @@ const CustomerView = () => (
     <Route path="/profile/*" element={<ProfileLayout />} />
     <Route path="/create-load" element={<ActionLoadLayout />} />
     <Route path="/edit-load" element={<ActionLoadLayout />} />
-    <Route path="/search-driver/*" element={<SearchDriverLayout />} />
+    <Route path="/search-driver" element={<SearchDriverLayout />} />
     <Route path="/drivers/:id" element={<DriverInfoLayout />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
@@ -21,9 +22,10 @@ const CustomerView = () => (
 
 const DriverView = () => (
   <Routes>
-    <Route path="/search-load/*" element={<SearchLoadLayout />} />
     <Route path="/" element={<Feed />} />
     <Route path="/profile/*" element={<ProfileLayout />} />
+    <Route path="/search-load" element={<SearchLoadLayout />} />
+    <Route path="/load/:id" element={<LoadInfoLayout />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );

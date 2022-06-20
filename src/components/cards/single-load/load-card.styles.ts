@@ -2,13 +2,18 @@ import Text from 'components/typography/text';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
-export const LoadCardWrapper = styled.div`
+export const LoadCardWrapper = styled.div<{ clickable: boolean }>`
   background-color: ${colors.green_5};
   border-radius: 8px;
   width: 100%;
   max-width: 370px;
   padding: 24px 32px;
   min-width: 350px;
+  cursor: ${(props) => (props.clickable ? 'pointer' : 'default')};
+  transition: all 0.2s ease;
+  :hover {
+    box-shadow: ${(props) => props.clickable && '0px 0px 19px -11px'};
+  }
 `;
 
 export const LoadCarLocationBox = styled.div`
