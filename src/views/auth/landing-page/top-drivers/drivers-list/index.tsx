@@ -12,7 +12,6 @@ import { useState } from 'react';
 import SliderNav from './slider-nav';
 import Container from 'wrappers/container/container';
 import DriversSlider from './slider';
-import Button from 'components/button/button';
 
 SwiperCore.use([Pagination, Navigation]);
 
