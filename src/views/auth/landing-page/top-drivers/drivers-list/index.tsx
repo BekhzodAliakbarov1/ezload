@@ -1,6 +1,7 @@
 import SwiperCore, { Navigation, Pagination } from 'swiper';
 import {
   DriverListWrapper,
+  Stick,
   StyledContainer,
   ViewButton,
 } from './drivers-list.styles';
@@ -44,7 +45,8 @@ const DriverList = () => {
       </DriverListWrapper>
       <StyledContainer>
         <DriversSlider slideChangeHandle={slideChangeHandle} />
-        <ViewButton>SEE ALL DRIVERS</ViewButton>
+        <ViewButton>SEE ALL DRIVER</ViewButton>
+        <Stick></Stick>
       </StyledContainer>
     </>
   );

@@ -1,6 +1,6 @@
 import Button from 'components/button/button';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+import { colors, sizes } from 'styles/variables';
 import Container from 'wrappers/container/container';
 
 export const DriverListWrapper = styled.div`
@@ -13,8 +13,12 @@ export const SliderWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: space-between;
+  gap: 30px;
   align-items: center;
   flex-wrap: wrap;
+  @media (max-width: ${sizes.breakpoints.lg}) {
+    justify-content: space-around;
+  }
   margin: 88px auto 72px auto;
 `;
 
@@ -36,12 +40,16 @@ export const StyledContainer = styled(Container)`
 `;
 
 export const ViewButton = styled(Button)`
-  margin: 72px auto 88px auto !important;
+  margin: 72px auto 100px auto !important;
   width: 234px;
   font-size: 14px !important;
   align-items: center !important;
   line-height: 18px !important;
   letter-spacing: 0.25px !important;
-  padding: auto;
   text-transform: uppercase;
+`;
+
+export const Stick = styled.div`
+  padding: 88px auto;
+  border-bottom: 2px dashed ${colors.green_20};
 `;
