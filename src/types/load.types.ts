@@ -9,4 +9,5 @@ export interface SingleLoadInterface {
   bid_count: string | number;
   view_count: string | number;
   id: string | number;
+  clickable?: boolean;
 }

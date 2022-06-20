@@ -34,9 +34,11 @@ const LoadCard: React.FC<SingleLoadInterface> = ({
   pickup_country,
   pickup_date,
   view_count,
+  clickable = false,
 }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
+
   const handleDelete = () => {
     // Delete api will connect here
     console.log(id);
@@ -63,7 +65,10 @@ const LoadCard: React.FC<SingleLoadInterface> = ({
 
   return (
     <>
-      <LoadCardWrapper>
+      <LoadCardWrapper
+        clickable={clickable}
+        onClick={() => navigate(`/load/${id}`)}
+      >
         <LoadCarLocationBox>
           <LoadCardSvgDistanceWrapper>
             <LoadCardSvgWrapper>
