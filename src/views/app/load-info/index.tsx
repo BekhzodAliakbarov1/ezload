@@ -1,15 +1,20 @@
+import { Modal } from '@mui/material';
 import Button from 'components/button/button';
 import LoadInfoCard from 'components/cards/load-info-card';
 import LoadCard from 'components/cards/single-load/load-card';
 import BidIcon from 'components/icons/bid.icon';
+import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
+import { useModal } from 'hooks/use-modal';
 import React, { useState } from 'react';
 import LoadCreator from './load-creator';
 import {
   LoadInfoDataWrapperBox,
   LoadInfoViewWrapper,
   LoadInfowViewHeader,
+  MakeBidModalWrapper,
+  ModalButtonsWrapper,
 } from './load-info.styles';
 
 const date = new Date();
@@ -30,7 +35,17 @@ const LoadInfoView = () => {
   const [loadType, setLoadType] = useState<'NEW' | 'BIDDED' | 'ON_THE_WAY'>(
     'ON_THE_WAY'
   );
+  const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
+
+  const submitHandler = (e: any) => {
+    e.preventDefault();
+    // just for fun
+    setLoadType('BIDDED');
+
+    // last step is close modal
+    close();
+  };
 
   return (
     <>
@@ -40,7 +55,7 @@ const LoadInfoView = () => {
           {isDriver && (
             <>
               {loadType === 'NEW' ? (
-                <Button>Bid to the load</Button>
+                <Button onClick={open}>Bid to the load</Button>
               ) : (
                 loadType === 'BIDDED' && (
                   <Button
@@ -64,6 +79,20 @@ const LoadInfoView = () => {
         <LoadCreator loadType={loadType} />
         {/* if user type is customer do next row */}
       </LoadInfoViewWrapper>
+      {/* Bid Modal */}
+      <Modal open={isOpen} onClose={close}>
+        <MakeBidModalWrapper onSubmit={submitHandler}>
+          <Text className="header">Make a bid</Text>
+          <Text className="cost">Customer’s suggestion 4 500 000 SUM</Text>
+          <Input placeholder="Your bid" />
+          <ModalButtonsWrapper>
+            <Button>Submit</Button>
+            <Button type="button" onClick={close} buttonType="white">
+              Cancel
+            </Button>
+          </ModalButtonsWrapper>
+        </MakeBidModalWrapper>
+      </Modal>
     </>
   );
 };
