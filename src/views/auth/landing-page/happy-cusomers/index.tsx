@@ -1,4 +1,3 @@
-import { CustomerImg, ProfileImg } from 'assets/svg';
 import Button from 'components/button/button';
 import Container from 'wrappers/container/container';
 import { BoldText, StyledText, TextBox } from '../courage/courage.styles';
@@ -12,6 +11,8 @@ import {
   ThirdBox,
 } from './happy-customers.styles';
 import UserReview from './user-review';
+import customerImage from 'assets/img/customer-image.png';
+import profileImage from 'assets/img/profile.png';
 
 const HappyCustomers = () => {
   return (
@@ -30,24 +31,24 @@ const HappyCustomers = () => {
               <UserReview
                 location="Programmer, Andijan"
                 name="Jasur"
-                photo={ProfileImg}
+                photo={profileImage}
                 size="small"
                 text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis "
               />
               <UserReview
                 location="Programmer, Andijan"
                 name="Jasur"
-                photo={ProfileImg}
+                photo={profileImage}
                 size="small"
                 text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis "
               />
             </FirstBox>
             <SecondBox>
-              <img width="100%" src={CustomerImg} alt="happy-customer" />
+              <img width="100%" src={customerImage} alt="happy-customer" />
               <UserReview
                 location="Programmer, Andijan"
                 name="Jasur"
-                photo={ProfileImg}
+                photo={profileImage}
                 size="large"
                 text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis "
               />
@@ -56,14 +57,14 @@ const HappyCustomers = () => {
               <UserReview
                 location="Programmer, Andijan"
                 name="Jasur"
-                photo={ProfileImg}
+                photo={profileImage}
                 size="small"
                 text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis "
               />
               <UserReview
                 location="Programmer, Andijan"
                 name="Jasur"
-                photo={ProfileImg}
+                photo={profileImage}
                 size="small"
                 text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis "
               />

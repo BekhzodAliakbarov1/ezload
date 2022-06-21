@@ -15,6 +15,8 @@ const DriverCard: React.FC<{
   sizes?: string;
   shadow?: boolean;
   styles?: CSSProperties;
+  clickable?: boolean;
+  bg_color?: string;
 }> = ({
   load_weight,
   car_type,
@@ -25,9 +27,16 @@ const DriverCard: React.FC<{
   styles,
   load_number,
   shadow = false,
+  clickable = false,
+  bg_color = '',
 }) => {
   return (
-    <DriverCardWrapper style={styles} shadow={shadow}>
+    <DriverCardWrapper
+      bg_color={bg_color}
+      style={styles}
+      shadow={shadow}
+      clickable={clickable}
+    >
       <Avatar sizes={sizes} src={image} />
       <DriverCardInfoWrapper>
         <Text color="main" size="lg" weight="700">

@@ -8,6 +8,7 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React, { useState } from 'react';
+import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
 import {
   LoadInfoDataWrapperBox,
@@ -76,8 +77,9 @@ const LoadInfoView = () => {
           <LoadInfoCard loadType={loadType} />
         </LoadInfoDataWrapperBox>
         {/* if user type is creatot do next row */}
-        <LoadCreator loadType={loadType} />
+        {/* <LoadCreator loadType={loadType} /> */}
         {/* if user type is customer do next row */}
+        <LoadBids />
       </LoadInfoViewWrapper>
       {/* Bid Modal */}
       <Modal open={isOpen} onClose={close}>
