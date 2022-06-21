@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import image from 'assets/img/login-bg-image.jpg';
 import logo from 'assets/img/logo-white.svg';
 import styled from 'styled-components';
 import CustomerSignIn from 'views/auth/sign-in/customer/customer-sign-in';
 import { colors } from 'styles/variables';
+import CheckUserType from 'views/auth/sign-in/check-user-type';
+import DriverSignIn from 'views/auth/sign-in/driver/driver-sign-in';
 
 export const SignInLayoutWrapper = styled.div`
   width: 100%;
@@ -27,15 +29,20 @@ export const SignInImageWrapper = styled.div`
   }
 `;
 
-const SignInLayout: React.FC<{ type: 'customer' | 'driver' | '' }> = ({
-  type,
-}) => {
+const SignInLayout = () => {
+  const [type, setType] = useState<'customer' | 'driver' | ''>('');
+
+  const handleChangeUserType = (val: 'customer' | 'driver' | '') => {
+    setType(val);
+  };
   return (
     <SignInLayoutWrapper>
       <SignInImageWrapper style={{ backgroundImage: `url(${image})` }}>
         <img src={logo} alt="Logo" />
       </SignInImageWrapper>
-      {type === 'customer' ? <CustomerSignIn /> : ''}
+      {type === '' && <CheckUserType onChange={handleChangeUserType} />}
+      {type === 'customer' && <CustomerSignIn />}
+      {type === 'driver' && <DriverSignIn />}
     </SignInLayoutWrapper>
   );
 };

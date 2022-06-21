@@ -4,7 +4,7 @@ import FirstStep from './sign-in-steps/first-step/first-step';
 import SecondStep from './sign-in-steps/second-step/second-step';
 import ThirdStep from './sign-in-steps/third-step/third-step';
 
-const CustomerSignIn = () => {
+const DriverSignIn = () => {
   return (
     <StepsProvider>
       <Step step={1}>
@@ -20,4 +20,4 @@ const CustomerSignIn = () => {
   );
 };
 
-export default CustomerSignIn;
+export default DriverSignIn;
