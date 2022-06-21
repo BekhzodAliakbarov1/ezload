@@ -11,7 +11,6 @@ import {
 } from './search-drivers-filter.styles';
 import Rating from '@mui/material/Rating';
 import FilledStarIcon from 'components/icons/filled-star.icon';
-import { colors } from 'styles/variables';
 import Button from 'components/button/button';
 
 const SearchDriversFilter = () => {

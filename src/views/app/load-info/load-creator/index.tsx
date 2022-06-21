@@ -56,7 +56,7 @@ const LoadCreator: React.FC<{
               multiline
               fullWidth
               placeholder="Please, provide reason and explain of cancelling the load"
-            />{' '}
+            />
           </ModalInputsWrapper>
           <ModalButtonsWrapper>
             <Button>Submit</Button>

@@ -1,4 +1,6 @@
+import { TextField } from '@mui/material';
 import styled from 'styled-components';
+import { colors } from 'styles/variables';
 
 export const LoadBidsWrapper = styled.div`
   width: 100%;
@@ -6,6 +8,9 @@ export const LoadBidsWrapper = styled.div`
     font-size: 24px;
     line-height: 29px;
     margin-bottom: 48px;
+  }
+  > button {
+    max-width: 296px;
   }
 `;
 

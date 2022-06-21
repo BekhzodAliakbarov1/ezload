@@ -76,10 +76,11 @@ const LoadInfoView = () => {
           <LoadCard {...data} />
           <LoadInfoCard loadType={loadType} />
         </LoadInfoDataWrapperBox>
-        {/* if user type is creatot do next row */}
-        {/* <LoadCreator loadType={loadType} /> */}
-        {/* if user type is customer do next row */}
-        <LoadBids />
+        {isDriver ? (
+          <LoadCreator loadType={loadType} />
+        ) : (
+          <LoadBids loadType={loadType} />
+        )}
       </LoadInfoViewWrapper>
       {/* Bid Modal */}
       <Modal open={isOpen} onClose={close}>
