@@ -27,6 +27,7 @@ const DriverProfileView = () => (
     <Route path="/" element={<PersonalInformation />} />
     <Route path="/my-loads" element={<ProfileLoads />} />
     <Route path="/my-statistics" element={<PersonalStatistics />} />
+    <Route path="/my-routes" element={<PersonalStatistics />} />
 
     {/* Navigator */}
     <Route path="*" element={<Navigate to="/" replace />} />
