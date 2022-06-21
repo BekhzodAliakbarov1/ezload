@@ -3,8 +3,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Pagination, Navigation } from 'swiper';
 import { NextButton, PrevButton, SwiperWrapper } from './swiper-slider.styles';
 import NavigateRightIcon from 'components/icons/navigate-right.icon';
-import { Truck } from 'assets/svg';
 import { Image } from '../slider.styles';
+import truckImage from 'assets/img/truck.png';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -38,13 +38,13 @@ const SwiperSlider = () => {
         onSlideChange={slideChangeHandle}
       >
         <SwiperSlide data-hash="slide1">
-          <Image src={Truck} alt="truck" />
+          <Image src={truckImage} alt="truck" />
         </SwiperSlide>
         <SwiperSlide data-hash="slide2">
-          <Image src={Truck} alt="truck" />
+          <Image src={truckImage} alt="truck" />
         </SwiperSlide>
         <SwiperSlide data-hash="slide3">
-          <Image src={Truck} alt="truck" />
+          <Image src={truckImage} alt="truck" />
         </SwiperSlide>
         <PrevButton disabled={isDisabled.prevDisabled} className="button-prev">
           <NavigateRightIcon />

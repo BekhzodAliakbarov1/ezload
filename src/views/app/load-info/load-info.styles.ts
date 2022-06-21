@@ -29,3 +29,42 @@ export const LoadInfoDataWrapperBox = styled.div`
   justify-content: space-between;
   gap: 40px;
 `;
+
+export const MakeBidModalWrapper = styled.form`
+  width: fit-content;
+  height: fit-content;
+  padding: 56px 80px;
+  background-color: ${colors.white};
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  align-items: center;
+  border-radius: 8px;
+  input {
+    width: 352px;
+  }
+  .header {
+    font-size: 24px;
+    line-height: 24px;
+    text-align: center;
+  }
+  .cost {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: 0.25px;
+    color: ${colors.dark_60};
+  }
+`;
+
+export const ModalButtonsWrapper = styled.div`
+  display: flex;
+  gap: 24px;
+  button {
+    width: 120px;
+  }
+`;
