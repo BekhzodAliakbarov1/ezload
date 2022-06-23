@@ -35,14 +35,13 @@ export const ErrorMessageData = styled.div`
 export const ThirdStepDataWrapper = styled.div`
   width: 100%;
   max-width: 460px;
-  height: 100%;
-  max-height: 290px;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   p {
     font-size: 24px;
-    margin: 40px 0px;
+    margin-bottom: 32px;
   }
   form {
     display: flex;
@@ -85,5 +84,36 @@ export const NameInputWrapper = styled.div`
     letter-spacing: 0.15px;
     margin-bottom: 16px;
     color: ${colors.dark_70};
+  }
+`;
+
+export const SignInStepShowInfoWrapper = styled.div`
+  width: auto;
+  margin-left: auto;
+  margin-bottom: 40px;
+  p {
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.25px;
+    color: ${colors.dark_90};
+  }
+`;
+
+export const TruckInputsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  margin-bottom: 48px;
+  > p {
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.15px;
+    color: ${colors.dark_70};
+    margin-bottom: 32px;
+  }
+  input {
+    margin-bottom: 16px;
+    width: 100%;
   }
 `;
