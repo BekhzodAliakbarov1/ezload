@@ -9,6 +9,7 @@ import CreateAddress from './create-address/create-address';
 import { useDriver } from 'hooks/use-driver';
 import PersonalStatistics from './personal-statistics';
 import ProfileRoutes from './profile-routes';
+import ProfileRate from './profile-rate';
 
 const CustomerProfileView = () => (
   <Routes>
@@ -29,6 +30,7 @@ const DriverProfileView = () => (
     <Route path="/my-loads" element={<ProfileLoads />} />
     <Route path="/my-statistics" element={<PersonalStatistics />} />
     <Route path="/my-routes" element={<ProfileRoutes />} />
+    <Route path="/my-rates" element={<ProfileRate />} />
 
     {/* Navigator */}
     <Route path="*" element={<Navigate to="/" replace />} />
