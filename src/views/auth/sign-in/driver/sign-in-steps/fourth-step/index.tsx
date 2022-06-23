@@ -5,6 +5,7 @@ import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
+import { useAuth } from 'global-state/auth/auth.state';
 import { useSteps } from 'global-state/step/step-context';
 import React, { useState, useRef, useEffect } from 'react';
 import { v4 as uuid } from 'uuid';
@@ -19,6 +20,7 @@ import {
   LastButtonWrapper,
   StyledGreenText,
 } from './fourth-step.styles';
+import { useNavigate } from 'react-router-dom';
 
 const FourthStep = () => {
   const { previusStep } = useSteps();
@@ -32,6 +34,8 @@ const FourthStep = () => {
       region: string;
     }[]
   >([]);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     locationsDiv.current?.scrollTo(0, 100);
@@ -64,6 +68,15 @@ const FourthStep = () => {
 
   const completeButton = () => {
     console.log('complete all ');
+    login({
+      tokens: {
+        access: '1221',
+        refresh: '1221',
+      },
+      userId: '1221',
+      userType: 'driver',
+    });
+    navigate('/');
   };
 
   return (
@@ -118,9 +131,13 @@ const FourthStep = () => {
         <StyledGreenText onClick={handleClickWithNewCountry}>
           + Add new country
         </StyledGreenText>
-        <Button buttonType="dark">Submit</Button>
+        <Button buttonType="dark" onClick={submitLocations}>
+          Submit
+        </Button>
         <LastButtonWrapper>
-          <Button fullWidth>Complete</Button>
+          <Button fullWidth onClick={completeButton}>
+            Complete
+          </Button>
         </LastButtonWrapper>
       </FourthStepDataWrapper>
     </DriverSignInFourthStepWrapper>
