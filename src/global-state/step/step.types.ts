@@ -4,6 +4,7 @@ export interface StepContextInterface {
   currentStep: number;
   nextStep: () => void;
   setStep: (step: number) => void;
+  previusStep: () => void;
 }
 
 export interface StepProps {

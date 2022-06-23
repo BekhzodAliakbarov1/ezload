@@ -4,9 +4,8 @@ import InfoIcon from 'components/icons/info.icon';
 import FileInput from 'components/input/file-input';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
-import { useAuth } from 'global-state/auth/auth.state';
+import { useSteps } from 'global-state/step/step-context';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import {
   DriverSignInThirdStepWrapper,
   ErrorMessageData,
@@ -14,25 +13,14 @@ import {
   NameInputWrapper,
   PictureAndNameWrapper,
   ProfilePhotoUploaderWrapper,
+  SignInStepShowInfoWrapper,
   ThirdStepDataWrapper,
+  TruckInputsWrapper,
 } from './third-step.styles';
 
 const ThirdStep = () => {
   const [hasError, setHasError] = useState(false);
-  const { login, userType } = useAuth();
-  const navigate = useNavigate();
-
-  const clickHandler = () => {
-    login({
-      tokens: {
-        access: '1221',
-        refresh: '1221',
-      },
-      userId: '1221',
-      userType: 'driver',
-    });
-    navigate('/');
-  };
+  const { nextStep } = useSteps();
 
   return (
     <DriverSignInThirdStepWrapper>
@@ -46,8 +34,13 @@ const ThirdStep = () => {
       )}
       <ThirdStepDataWrapper>
         <Text size="lg" weight="800">
-          Additional Infomartion
+          Personal and truck info
         </Text>
+        <SignInStepShowInfoWrapper>
+          <Text size="lg" weight="800">
+            Step 1/2
+          </Text>
+        </SignInStepShowInfoWrapper>
         <PictureAndNameWrapper>
           <form>
             <label htmlFor="profile_photo">
@@ -62,12 +55,18 @@ const ThirdStep = () => {
             </label>
           </form>
           <NameInputWrapper>
-            <label htmlFor="name">Your displayed name</label>
+            <label htmlFor="name">Display photo and name</label>
             <Input placeholder="Write your name" id="name" />
           </NameInputWrapper>
         </PictureAndNameWrapper>
-        <Button fullWidth onClick={clickHandler}>
-          Save
+        <TruckInputsWrapper>
+          <Text>Truck info</Text>
+          <Input placeholder="Truck model" />
+          <Input placeholder="Plate number" />
+          <Input placeholder="Truck capacity (in tonnes)" />
+        </TruckInputsWrapper>
+        <Button fullWidth onClick={nextStep}>
+          Next
         </Button>
       </ThirdStepDataWrapper>
     </DriverSignInThirdStepWrapper>

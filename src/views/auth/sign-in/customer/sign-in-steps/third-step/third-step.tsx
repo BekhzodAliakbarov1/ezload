@@ -19,7 +19,7 @@ import {
 
 const ThirdStep = () => {
   const [hasError, setHasError] = useState(false);
-  const { login, userType } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const clickHandler = () => {
