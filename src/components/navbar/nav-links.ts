@@ -61,11 +61,11 @@ export const profileDrivers = [
   {
     name: 'My routes',
     id: 4,
-    to: '/profile/routes',
+    to: '/profile/my-routes',
   },
   {
     name: 'Rates & Testimonials',
     id: 5,
-    to: '/profile/rates',
+    to: '/profile/my-rates',
   },
 ];
