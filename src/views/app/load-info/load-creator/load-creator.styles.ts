@@ -17,10 +17,6 @@ export const LoadCardDataWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_60};
-  }
-  > p:nth-child(3) {
-    color: ${colors.dark_80};
   }
 `;
 
@@ -66,7 +62,7 @@ export const ModalInputsWrapper = styled.div`
 export const ModalStyledTextFiled = styled(TextField)`
   max-width: 506px;
   height: 118px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
   padding: 16px;
   > div {
     height: 100%;

@@ -39,10 +39,10 @@ const DriverCard: React.FC<{
     >
       <Avatar sizes={sizes} src={image} />
       <DriverCardInfoWrapper>
-        <Text color="main" size="lg" weight="700">
+        <Text color="main_100" size="lg" weight="700">
           {name}
         </Text>
-        <Text size="sm" color="light" weight="400">
+        <Text size="sm" color="main_100" weight="400">
           {car_type} ({load_weight})
         </Text>
         <Text size="md" weight="600">

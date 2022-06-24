@@ -4,7 +4,7 @@ const Label = styled.label`
   font-size: 16px;
   font-weight: 700;
   line-height: 17px;
-  color: ${(props) => props.theme.text.light};
+  color: ${(props) => props.theme.text.main_100};
   margin-bottom: 16px;
   width: max-content;
 `;

@@ -9,7 +9,7 @@ import {
 const Introduction = () => {
   return (
     <IntroductionWrapper>
-      <BoldText>Sending cargo is now easy</BoldText>
+      <BoldText color="main_100">Sending cargo is now easy</BoldText>
       <Paragraph>
         Internationally or regionally, simple process, simple delivery
       </Paragraph>

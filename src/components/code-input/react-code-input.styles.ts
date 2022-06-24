@@ -30,7 +30,7 @@ export const ReactCodeInputWrapper = styled.div<{
         font-size: ${(props) =>
           props.size === 'lg' ? '48px' : '32px'} !important;
         font-weight: 700;
-        color: ${colors.dark_90};
+        color: ${(props) => props.theme.text.main_90};
 
         :focus-visible {
           outline: none;

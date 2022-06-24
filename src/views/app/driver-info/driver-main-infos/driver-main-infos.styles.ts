@@ -39,25 +39,24 @@ export const DriversMainInfoDataWrapper = styled.div`
     font-size: 24px;
     line-height: 24px;
     margin-bottom: 24px;
-    color: ${colors.dark_90};
   }
   .weight_loads {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_60};
+    color: ${(props) => props.theme.text.main_60};
     margin-bottom: 17px;
   }
   .number_loads {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_60};
+    color: ${(props) => props.theme.text.main_60};
     margin-bottom: 32px;
   }
   .label_number {
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
   .car_number {
     font-size: 18px;
@@ -71,7 +70,6 @@ export const DriversMainInfoLocationsWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
   }
   > div {
     display: flex;
@@ -79,7 +77,6 @@ export const DriversMainInfoLocationsWrapper = styled.div`
     > p {
       font-size: 18px;
       line-height: 32px;
-      color: ${colors.dark_80};
     }
   }
 `;
@@ -94,13 +91,12 @@ export const DriverMainInfoContactWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
   }
   h2 {
     font-weight: 700;
     font-size: 24px;
     line-height: 24px;
-    color: ${colors.dark_100};
+    color: ${(props) => props.theme.text.main_100};
   }
 `;
 

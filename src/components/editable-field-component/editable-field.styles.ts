@@ -10,7 +10,7 @@ export const FieldsWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_40};
+    color: ${(props) => props.theme.text.main_40};
   }
 `;
 
@@ -18,9 +18,6 @@ export const EditableFieldWrapper = styled.div`
   display: flex;
   gap: 18px;
   align-items: center;
-  p {
-    color: ${colors.dark_100};
-  }
 `;
 
 export const PersonalInformationSvgWrapper = styled.div`
@@ -30,7 +27,7 @@ export const PersonalInformationSvgWrapper = styled.div`
   > p {
     letter-spacing: 0.15px;
     text-decoration-line: underline;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
 `;
 
@@ -77,7 +74,7 @@ export const VerificationCodeWrapper = styled.div`
   margin-top: 32px;
   > p {
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     margin-bottom: 33px;
   }
 `;

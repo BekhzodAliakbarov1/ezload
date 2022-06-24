@@ -91,7 +91,7 @@ export const StyledtText = styled.p`
   line-height: 16px;
   letter-spacing: 0.5px;
 
-  color: ${colors.dark_70};
+  color: ${(props) => props.theme.text.main_70};
   text-align: left;
   padding: 12px 0px;
   padding-left: 16px;

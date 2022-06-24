@@ -30,17 +30,17 @@ const SearchLoadsFilter = () => {
       <Text weight="700">Filters</Text>
       <SearchLoadsFilterInputsForm onSubmit={handleSubmit}>
         <SearchLoadsFiltersBox>
-          <Text>Pickup location</Text>
+          <Text color="main_90">Pickup location</Text>
           <Input placeholder="Country" />
           <Input placeholder="Region" />
         </SearchLoadsFiltersBox>
         <SearchLoadsFiltersBox>
-          <Text>Delivery location</Text>
+          <Text color="main_90">Delivery location</Text>
           <Input placeholder="Country" />
           <Input placeholder="Region" />
         </SearchLoadsFiltersBox>
         <SearchLoadsFiltersBox>
-          <Text>Pickup date</Text>
+          <Text color="main_90">Pickup date</Text>
           <DateTimePicker
             value={value}
             onChange={handleChange}
@@ -51,7 +51,7 @@ const SearchLoadsFilter = () => {
           />
         </SearchLoadsFiltersBox>
         <SearchLoadsFiltersBox>
-          <Text>Delivery date</Text>
+          <Text color="main_90">Delivery date</Text>
           <DateTimePicker
             value={value}
             onChange={handleChange}
@@ -62,11 +62,11 @@ const SearchLoadsFilter = () => {
           />
         </SearchLoadsFiltersBox>
         <SearchLoadsFiltersBox>
-          <Text>Weight (in tonnes)</Text>
+          <Text color="main_90">Weight (in tonnes)</Text>
           <Input placeholder="e.g 500 " />
         </SearchLoadsFiltersBox>
         <SearchLoadsFiltersBox>
-          <Text>Budget (in USD)</Text>
+          <Text color="main_90">Budget (in USD)</Text>
           <Input placeholder="e.g 500 " />
           <Input placeholder="e.g 500 " />
           <StyledSelect

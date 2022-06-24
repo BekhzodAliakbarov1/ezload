@@ -16,11 +16,6 @@ export const TruckLabelWrapper = styled.div`
   > p {
     font-size: 24px;
     line-height: 24px;
-    /* identical to box height, or 100% */
-
-    /* 3/Ezload Dark 90% */
-
-    color: ${colors.dark_90};
   }
 `;
 
@@ -33,7 +28,7 @@ export const TruckEditButtonWrapper = styled.div`
     line-height: 20px;
     letter-spacing: 0.15px;
     text-decoration-line: underline;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     cursor: pointer;
   }
 `;
@@ -54,16 +49,11 @@ export const TruckInfoChangeInput = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_40};
+    color: ${(props) => props.theme.text.main_40};
   }
   > p:nth-child(2) {
     font-size: 18px;
     line-height: 32px;
-    /* identical to box height, or 178% */
-
-    /* 3/Ezload Dark 100% */
-
-    color: ${colors.dark_100};
   }
 `;
 

@@ -38,7 +38,6 @@ export const FourthStepInfoWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_90};
   }
 `;
 
@@ -51,7 +50,7 @@ export const FourthStepNavigateBack = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
 `;
 

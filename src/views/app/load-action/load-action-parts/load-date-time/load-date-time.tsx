@@ -10,7 +10,9 @@ import {
 const LoadDateTime = () => {
   return (
     <LoadDateTimeWrapper>
-      <Text weight="700">Load date & time</Text>
+      <Text color="main_80" weight="700">
+        Load date & time
+      </Text>
       <DateSelectBox>
         <Text size="md" weight="500">
           Pickup date

@@ -32,9 +32,11 @@ const LoadCreator: React.FC<{
       <LoadCreatorWrapper>
         <Avatar sizes="96px" src={ProfileImg} />
         <LoadCardDataWrapper>
-          <Text>Load owner</Text>
+          <Text color="main_60">Load owner</Text>
           <Text weight="600">Asror Namozov</Text>
-          <Text weight="600">+99894 555 66 66</Text>
+          <Text color="main_80" weight="600">
+            +99894 555 66 66
+          </Text>
         </LoadCardDataWrapper>
       </LoadCreatorWrapper>
       {loadType === 'ON_THE_WAY' && (

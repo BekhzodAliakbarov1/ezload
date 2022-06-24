@@ -14,7 +14,7 @@ import {
 } from './editable-field.styles';
 import ReactCodeInputComponent from 'components/code-input/react-code-input';
 
-const EditableFiled: React.FC<{
+const EditableField: React.FC<{
   label: string;
   value: string;
   onSubmit: (value: string) => void;
@@ -54,7 +54,7 @@ const EditableFiled: React.FC<{
       <Text weight="500">{label}</Text>
       {!editClicked && (
         <EditableFieldWrapper>
-          <Text weight="600" size="md">
+          <Text color="main_100" weight="600" size="md">
             {inputType === 'number' && '+'}
             {value}
           </Text>
@@ -107,4 +107,4 @@ const EditableFiled: React.FC<{
   );
 };
 
-export default EditableFiled;
+export default EditableField;

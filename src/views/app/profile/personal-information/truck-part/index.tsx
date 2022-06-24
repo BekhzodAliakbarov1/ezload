@@ -11,7 +11,7 @@ import {
   TruckInfoChangeWrapper,
   TruckLabelWrapper,
   TruckMainInfosWrapper,
-} from './turck-part.styles';
+} from './truck-part.styles';
 
 const TruckInfo: React.FC<{
   car_model: string;
@@ -33,7 +33,7 @@ const TruckInfo: React.FC<{
   return (
     <TruckInfoChangeWrapper>
       <TruckLabelWrapper onClick={() => setisEditing((val) => !val)}>
-        <Text>Truck info</Text>
+        <Text color="main_90">Truck info</Text>
         <TruckEditButtonWrapper>
           <IconButton>
             <PenIcon />
@@ -69,7 +69,9 @@ const TruckInfo: React.FC<{
               onChange={(e) => setcarNumber(e.target.value)}
             />
           ) : (
-            <Text weight="600">{carNumber}</Text>
+            <Text color="main_100" weight="600">
+              {carNumber}
+            </Text>
           )}
         </TruckInfoChangeInput>
       </TruckMainInfosWrapper>

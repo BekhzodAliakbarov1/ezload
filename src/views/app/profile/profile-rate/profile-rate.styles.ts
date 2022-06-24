@@ -26,7 +26,7 @@ export const ProfileRatesStarsWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     margin-bottom: 38px;
   }
 `;
@@ -40,7 +40,7 @@ export const OveralRatingDataWrapper = styled.div`
   > p {
     font-size: 24px;
     line-height: 24px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
   span {
     display: flex;
@@ -67,7 +67,7 @@ export const RatingsRaw = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_60};
+    color: ${(props) => props.theme.text.main_60};
   }
 `;
 
@@ -95,6 +95,6 @@ export const EmptyReviewWrapper = styled.div`
   > p {
     font-size: 24px;
     line-height: 24px;
-    color: ${colors.dark_30};
+    color: ${(props) => props.theme.text.main_30};
   }
 `;

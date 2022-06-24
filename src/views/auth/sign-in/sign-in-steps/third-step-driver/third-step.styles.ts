@@ -83,7 +83,7 @@ export const NameInputWrapper = styled.div`
     line-height: 20px;
     letter-spacing: 0.15px;
     margin-bottom: 16px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
 `;
 
@@ -95,7 +95,6 @@ export const SignInStepShowInfoWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_90};
   }
 `;
 
@@ -109,7 +108,7 @@ export const TruckInputsWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     margin-bottom: 32px;
   }
   input {

@@ -13,7 +13,7 @@ export const ActionLoaddAddressWrapper = styled.div`
 `;
 
 export const StyledSelectInput = styled(Select)`
-  border: 1px solid ${colors.dark_20};
+  border: 1px solid ${(props) => props.theme.text.main_20};
   border-radius: 2px;
   height: 46px;
   text-align: left;

@@ -9,7 +9,6 @@ export const LoadExtraInformationWrapper = styled.div`
   margin-top: 16px;
   > p {
     letter-spacing: 0.15px;
-    color: ${colors.dark_80};
     margin-bottom: 24px;
   }
 `;
@@ -37,7 +36,7 @@ export const StyledSelect = styled(Select)`
   width: 100%;
   max-width: 96px;
   height: 47px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
   > div {
     padding: 0px;
   }
@@ -46,7 +45,7 @@ export const StyledSelect = styled(Select)`
 export const StyledTextFiled = styled(TextField)`
   max-width: 506px;
   height: 118px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
   padding: 16px;
   > div {
     height: 100%;

@@ -33,7 +33,7 @@ export const LoadBitsModalButtonsWrapper = styled.div`
 
 export const ModalStyledTextFiled = styled(TextField)`
   height: 118px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
   padding: 16px;
   > div {
     height: 100%;

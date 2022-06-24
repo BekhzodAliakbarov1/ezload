@@ -28,7 +28,7 @@ const ThirdStepDriver = () => {
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p color="light">Sorry, this mobile not registered</p>
+            <p>Sorry, this mobile not registered</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
@@ -37,7 +37,7 @@ const ThirdStepDriver = () => {
           Personal and truck info
         </Text>
         <SignInStepShowInfoWrapper>
-          <Text size="lg" weight="800">
+          <Text color="main_90" size="lg" weight="800">
             Step 1/2
           </Text>
         </SignInStepShowInfoWrapper>

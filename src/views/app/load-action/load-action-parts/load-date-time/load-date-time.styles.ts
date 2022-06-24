@@ -7,7 +7,6 @@ export const LoadDateTimeWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   > p {
-    color: ${colors.dark_80};
     margin-bottom: 24px;
   }
 `;

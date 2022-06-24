@@ -24,20 +24,20 @@ const LoadInfoCard: React.FC<{
       <LoadInfoCardDataBox>
         <LoadInfoCardDataSingleBox>
           <Text>Load owner</Text>
-          <Text>Abdukarim Abdusalomov</Text>
+          <Text color="main_100">Abdukarim Abdusalomov</Text>
         </LoadInfoCardDataSingleBox>
         <LoadInfoCardDataSingleBox>
           <Text>Load Weight</Text>
-          <Text>21 tonnes</Text>
+          <Text color="main_100">21 tonnes</Text>
         </LoadInfoCardDataSingleBox>
         <LoadInfoCardDataSingleBox>
           <Text>Payment</Text>
-          <Text>3 000 000 sum</Text>
+          <Text color="main_100">3 000 000 sum</Text>
         </LoadInfoCardDataSingleBox>
       </LoadInfoCardDataBox>
       <LoadDescriptionWrapper>
         <Text>Description</Text>
-        <Text>
+        <Text color="main_100">
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry.
         </Text>
@@ -45,11 +45,11 @@ const LoadInfoCard: React.FC<{
       <LoadBidAndViewCountWrapper>
         <LoadBidAndViewBox>
           <Text>Bid Count</Text>
-          <Text>213</Text>
+          <Text color="main_100">213</Text>
         </LoadBidAndViewBox>
         <LoadBidAndViewBox>
           <Text>Seen Count</Text>
-          <Text>431</Text>
+          <Text color="main_100">431</Text>
         </LoadBidAndViewBox>
       </LoadBidAndViewCountWrapper>
     </LoadInfoCradWrapper>

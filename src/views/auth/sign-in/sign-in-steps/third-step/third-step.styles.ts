@@ -84,6 +84,6 @@ export const NameInputWrapper = styled.div`
     line-height: 20px;
     letter-spacing: 0.15px;
     margin-bottom: 16px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
 `;

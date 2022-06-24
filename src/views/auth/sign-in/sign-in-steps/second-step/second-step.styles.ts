@@ -50,7 +50,7 @@ export const SecondStepDataWrapper = styled.div`
       line-height: 20px;
       letter-spacing: 0.15px;
       text-decoration-line: underline;
-      color: ${colors.dark_90};
+      color: ${(props) => props.theme.text.main_90};
       padding-bottom: 3px;
     }
     button {

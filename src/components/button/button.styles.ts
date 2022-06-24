@@ -9,28 +9,28 @@ import { colors as globalColors } from 'styles/variables';
 const colors = {
   contained: css`
     background-color: ${(props) => props.theme.button.contained};
-    color: ${(props) => props.theme.text.white};
+    color: ${(props) => props.theme.text.light};
     &:hover {
       background-color: ${(props) => props.theme.button.contained_hover};
     }
   `,
   dark: css`
     background-color: ${(props) => props.theme.button.dark};
-    color: ${(props) => props.theme.text.white};
+    color: ${(props) => props.theme.text.light};
     &:hover {
       background-color: ${(props) => props.theme.button.dark_hover};
     }
   `,
   secondary_dark: css`
     background-color: ${(props) => props.theme.button.secondary_dark};
-    color: ${(props) => props.theme.text.dark};
+    color: ${(props) => props.theme.text.main_100};
     &:hover {
       background-color: ${(props) => props.theme.button.secondary_dark_hover};
     }
   `,
   warning: css`
     background-color: ${(props) => props.theme.button.warning};
-    color: ${(props) => props.theme.text.white};
+    color: ${(props) => props.theme.text.light};
     &:hover {
       background-color: ${(props) => props.theme.button.warning_hover};
     }
@@ -60,7 +60,7 @@ export const StyledProgress = styled(isIOS() ? IosSpinner : CircularProgress)<
   Pick<ButtonProps, 'buttonType'>
 >`
   position: absolute;
-  color: ${(props) => props.theme.text.white};
+  color: ${(props) => props.theme.text.main_100};
 `;
 
 export const StyledButton = styled(MuiButton).withConfig({

@@ -5,7 +5,7 @@ import Container from 'wrappers/container/container';
 
 export const DriverListWrapper = styled.div`
   width: 100%;
-  background: ${colors.dark_90};
+  background: ${(props) => props.theme.text.main_90};
 `;
 
 export const SliderWrapper = styled.div`

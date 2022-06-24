@@ -70,6 +70,6 @@ export const PhoneNumberWrapper = styled.div`
 export const LineDiv = styled.div`
   width: 100%;
   height: 1px;
-  background-color: ${colors.dark_20};
+  background-color: ${(props) => props.theme.text.main_20};
   margin: 40px 0px;
 `;

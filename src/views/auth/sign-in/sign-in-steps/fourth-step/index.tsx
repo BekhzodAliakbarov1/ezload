@@ -94,7 +94,7 @@ const FourthStep = () => {
               Personal and truck info
             </Text>
           </FourthStepNavigateBack>
-          <Text>Step 2/2</Text>
+          <Text color="main_90">Step 2/2</Text>
         </FourthStepInfoWrapper>
         {locations.length > 0 && (
           <FourthStepCreatedLocationsWrapper>

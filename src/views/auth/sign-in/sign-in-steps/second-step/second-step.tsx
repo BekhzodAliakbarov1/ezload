@@ -52,7 +52,7 @@ const SecondStep: React.FC<{
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p color="light">Sorry, this mobile not registered</p>
+            <p>Sorry, this mobile not registered</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}

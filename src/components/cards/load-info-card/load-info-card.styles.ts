@@ -34,13 +34,12 @@ export const LoadInfoCardDataSingleBox = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_50};
+    color: ${(props) => props.theme.text.main_50};
   }
   > p:nth-child(2) {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_100};
   }
 `;
 
@@ -55,13 +54,12 @@ export const LoadDescriptionWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_50};
+    color: ${(props) => props.theme.text.main_50};
   }
   > p:nth-child(2) {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_100};
   }
 `;
 
@@ -79,12 +77,11 @@ export const LoadBidAndViewBox = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_50};
+    color: ${(props) => props.theme.text.main_50};
   }
   > p:nth-child(2) {
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_100};
   }
 `;

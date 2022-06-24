@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const DistinationWrapper = styled.div`
   display: flex;
@@ -9,7 +8,6 @@ export const DistinationWrapper = styled.div`
   margin-bottom: 56px;
   > p {
     letter-spacing: 0ch.15px;
-    color: ${colors.dark_80};
   }
 `;
 

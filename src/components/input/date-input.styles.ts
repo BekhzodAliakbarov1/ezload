@@ -16,5 +16,5 @@ export const StyledTextFiled = styled(TextField)`
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
 `;

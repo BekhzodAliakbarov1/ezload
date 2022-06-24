@@ -46,7 +46,7 @@ const CreateAddress = () => {
 
   return (
     <CreateAddressWrapper>
-      <Text>My addresses</Text>
+      <Text color="main_100">My addresses</Text>
       <CreateAddressInputsBox>
         <div>
           <Input placeholder="Addressline 1" value={address_1} />

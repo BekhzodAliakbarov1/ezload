@@ -13,7 +13,6 @@ export const ProfileAddressTopPartContainer = styled.div`
   align-items: center;
   margin-bottom: 54px;
   > p {
-    color: ${colors.dark_100};
     font-size: 24px;
     line-height: 24px;
   }

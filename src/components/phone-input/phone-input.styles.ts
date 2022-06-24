@@ -44,7 +44,7 @@ export const StyledSelect = styled(Select)`
   && {
     width: 176px;
     border: none;
-    border: 1px solid ${colors.dark_20};
+    border: 1px solid ${(props) => props.theme.text.main_20};
   }
 `;
 

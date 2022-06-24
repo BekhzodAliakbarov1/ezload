@@ -57,7 +57,7 @@ export const MakeBidModalWrapper = styled.form`
     line-height: 18px;
     text-align: center;
     letter-spacing: 0.25px;
-    color: ${colors.dark_60};
+    color: ${(props) => props.theme.text.main_60};
   }
 `;
 

@@ -37,10 +37,10 @@ export const BolderText = styled(Text)`
   font-size: 28px;
   line-height: 24px;
   margin-bottom: 16px;
-  color: ${colors.dark_5};
+  color: ${(props) => props.theme.text.main_5};
 `;
 export const Description = styled(Text)`
   font-size: 14px;
   line-height: 18px;
-  color: ${colors.dark_30};
+  color: ${(props) => props.theme.text.main_30};
 `;

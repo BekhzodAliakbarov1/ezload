@@ -24,7 +24,7 @@ export const ReviewCardWrapper = styled.div`
     font-weight: 700;
     font-size: 14px;
     line-height: 27px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     margin-bottom: 4px;
   }
   h4 {
@@ -32,6 +32,6 @@ export const ReviewCardWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_60};
+    color: ${(props) => props.theme.text.main_60};
   }
 `;

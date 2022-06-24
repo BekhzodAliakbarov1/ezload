@@ -11,7 +11,7 @@ export const SearchLoadsFilterWrapper = styled.div`
     line-height: 29px;
     margin-bottom: 40px;
   }
-  border-right: 1px solid ${colors.dark_5};
+  border-right: 1px solid ${(props) => props.theme.text.main_5};
 `;
 
 export const SearchLoadsFilterInputsForm = styled.form`
@@ -31,7 +31,6 @@ export const SearchLoadsFiltersBox = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_90};
     margin-bottom: 16px;
   }
   > div {
@@ -46,14 +45,14 @@ export const StyledTextFiled = styled(TextField)`
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
 `;
 
 export const StyledSelect = styled(Select)`
   width: 100%;
   max-width: 96px;
   height: 47px;
-  border: 1.5px solid ${colors.dark_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
   text-align: left;
   > div {
     padding: 0px;

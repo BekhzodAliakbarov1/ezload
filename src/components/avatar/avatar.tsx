@@ -19,7 +19,7 @@ const StyledAvatar = styled(MuiAvatar)<Props>`
   height: 100%;
   background-color: ${(props) => props.theme.bg.main};
   svg {
-    color: ${(props) => props.theme.text.main};
+    color: ${(props) => props.theme.text.main_100};
   }
   img {
     width: 100%;

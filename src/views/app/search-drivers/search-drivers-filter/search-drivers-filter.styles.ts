@@ -10,7 +10,7 @@ export const SearchDriversFilterWrapper = styled.div`
     line-height: 29px;
     margin-bottom: 40px;
   }
-  border-right: 1px solid ${colors.dark_5};
+  border-right: 1px solid ${(props) => props.theme.text.main_5};
 `;
 
 export const SearchDriversFilterForm = styled.form`

@@ -54,7 +54,7 @@ const ProfileAddress = () => {
   return (
     <ProfileAddressWrapper>
       <ProfileAddressTopPartContainer>
-        <Text>My addresses</Text>
+        <Text color="main_100">My addresses</Text>
         <Button
           startIcon={<PlusIcon />}
           buttonType="dark"

@@ -19,7 +19,6 @@ export const TextBox = styled.div<{ align?: string }>`
 `;
 
 export const BoldText = styled(Text)`
-  color: ${colors.dark_100};
   font-size: 28px;
   line-height: 24px;
 `;
@@ -28,7 +27,7 @@ export const StyledText = styled(Text)`
   font-size: 14px;
   line-height: 18px;
   letter-spacing: 0.25px;
-  color: ${colors.dark_70};
+  color: ${(props) => props.theme.text.main_70};
 `;
 
 export const Image = styled.img`

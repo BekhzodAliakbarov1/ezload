@@ -62,7 +62,9 @@ const DriverMainInfos = () => {
           <RatingComponent value={5} iconSize="20" />
         </AvatarWrapper>
         <DriversMainInfoDataWrapper>
-          <Text className="name">Antonio Fred.</Text>
+          <Text color="main_90" className="name">
+            Antonio Fred.
+          </Text>
           <Text className="weight_loads">Man (500 Ton)</Text>
           <Text className="number_loads" weight="700">
             1K+ Loads
@@ -73,17 +75,17 @@ const DriverMainInfos = () => {
           </Text>
         </DriversMainInfoDataWrapper>
         <DriversMainInfoLocationsWrapper>
-          <Text>Locations</Text>
+          <Text color="main_70">Locations</Text>
           <div>
             {locations.map((location) => (
-              <Text key={location.id} weight="700">
+              <Text color="main_80" key={location.id} weight="700">
                 {location.name}
               </Text>
             ))}
           </div>
         </DriversMainInfoLocationsWrapper>
         <DriverMainInfoContactWrapper>
-          <Text>Driver сontact</Text>
+          <Text color="main_70">Driver сontact</Text>
           <h2>+998 99 223 33 12</h2>
         </DriverMainInfoContactWrapper>
         {biddedDriver && (

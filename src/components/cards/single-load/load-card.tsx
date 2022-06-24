@@ -113,7 +113,9 @@ const LoadCard: React.FC<SingleLoadInterface> = ({
       </LoadCardWrapper>
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
-          <Text>Are you sure to delete? Actions cannot be undone</Text>
+          <Text color="main_100">
+            Are you sure to delete? Actions cannot be undone
+          </Text>
           <ModalButtonsBox>
             <Button onClick={handleDelete}>Yes, delete</Button>
             <Button onClick={close}>Cancel</Button>

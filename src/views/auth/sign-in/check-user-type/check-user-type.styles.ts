@@ -26,10 +26,9 @@ export const CheckUserTypeBox = styled.div`
 export const LoginStyledButton = styled(MuiButton)`
   && {
     background: #f5fbfa;
-
-    border: 1px solid ${colors.dark_40};
+    border: 1px solid ${(props) => props.theme.text.main_40};
     border-radius: 2px;
-    color: ${colors.dark_100};
+    color: ${(props) => props.theme.text.main_100};
     margin-bottom: 32px;
     height: 46px;
     font-weight: 700;

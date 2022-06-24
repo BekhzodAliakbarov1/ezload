@@ -5,7 +5,6 @@ export const CreateAddressWrapper = styled.div`
   width: 100%;
   padding: 0px 100px 43px 48px;
   > p {
-    color: ${colors.dark_100};
     font-size: 24px;
     line-height: 24px;
     margin-bottom: 64px;

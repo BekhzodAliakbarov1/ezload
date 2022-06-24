@@ -43,13 +43,13 @@ const StyledInput = styled.input<InputProps>`
   width: 100%;
   /* background-color: ${(props) => props.theme.colors.primary}; */
   outline: none;
-  border: 2px solid ${colors.dark_20};
+  border: 2px solid ${(props) => props.theme.text.main_20};
   border-radius: 2px;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   padding: 12px 13px;
-  color: ${(props) => props.theme.text.dark};
+  color: ${(props) => props.theme.text.main_100};
 
   &:placeholder-shown ~ span {
     display: none;
@@ -57,7 +57,7 @@ const StyledInput = styled.input<InputProps>`
   ::placeholder {
     font-size: 16px;
     line-height: 20px;
-    color: ${colors.dark_40};
+    color: ${(props) => props.theme.text.main_40};
   }
   ${(props) => (props.startIcon ? hasStartIconStyles : '')}
 

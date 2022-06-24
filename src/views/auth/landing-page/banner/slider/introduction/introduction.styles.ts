@@ -33,7 +33,6 @@ export const BoldText = styled(Text)`
   font-size: 36px;
   line-height: 56px;
   font-weight: 800;
-  color: ${colors.dark_100};
   margin-bottom: 16px;
   @media (max-width: 768px) {
     font-size: 32px;
@@ -51,7 +50,7 @@ export const Paragraph = styled(Text)`
   font-weight: 500;
   font-size: 19px;
   line-height: 20px;
-  color: ${colors.dark_70};
+  color: ${(props) => props.theme.text.main_70};
   @media (max-width: 768px) {
     font-size: 16px;
     line-height: 20px;

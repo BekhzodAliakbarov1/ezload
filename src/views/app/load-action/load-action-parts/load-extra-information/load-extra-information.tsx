@@ -33,7 +33,9 @@ const LoadExtraInformation = () => {
 
   return (
     <LoadExtraInformationWrapper>
-      <Text weight="700">Extra information</Text>
+      <Text color="main_80" weight="700">
+        Extra information
+      </Text>
       <LoadExtraInformationInputsWrapper>
         <LoadExtraInformationLeftSideInputsBox>
           <Input

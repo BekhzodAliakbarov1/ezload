@@ -22,15 +22,19 @@ const darkTheme: CustomTheme = {
     main: bg_dark,
   },
   text: {
-    main: colors.dark_100,
-    white: colors.white,
+    main_10: colors.dark_10,
+    main_100: colors.dark_100,
+    main_20: colors.dark_20,
+    main_30: colors.dark_30,
+    main_40: colors.dark_40,
+    main_5: colors.dark_5,
+    main_50: colors.dark_50,
+    main_60: colors.dark_60,
+    main_70: colors.dark_70,
+    main_80: colors.dark_80,
+    main_90: colors.dark_90,
 
     light: colors.white,
-    dark: colors.dark_70,
-  },
-  gray: {
-    main: gray_dark,
-    dark: dark_gray_dark,
   },
   button: {
     contained: colors.green_100,
@@ -58,10 +62,19 @@ const lightTheme: CustomTheme = {
     main: bg_light,
   },
   text: {
-    main: colors.dark_100,
-    white: colors.white,
-    light: colors.dark_90,
-    dark: colors.dark_70,
+    main_10: colors.dark_10,
+    main_100: colors.dark_100,
+    main_20: colors.dark_20,
+    main_30: colors.dark_30,
+    main_40: colors.dark_40,
+    main_5: colors.dark_5,
+    main_50: colors.dark_50,
+    main_60: colors.dark_60,
+    main_70: colors.dark_70,
+    main_80: colors.dark_80,
+    main_90: colors.dark_90,
+
+    light: colors.white,
   },
   button: {
     contained: colors.green_100,
@@ -72,10 +85,6 @@ const lightTheme: CustomTheme = {
     contained_hover: colors.green_80,
     dark_hover: colors.dark_50,
     warning_hover: colors.red_80,
-  },
-  gray: {
-    main: gray_ligth,
-    dark: dark_gray_light,
   },
   colors: {
     disabled,

@@ -35,6 +35,6 @@ export const EmptyReviewWrapper = styled.div`
   > p {
     font-size: 24px;
     line-height: 24px;
-    color: ${colors.dark_30};
+    color: ${(props) => props.theme.text.main_30};
   }
 `;

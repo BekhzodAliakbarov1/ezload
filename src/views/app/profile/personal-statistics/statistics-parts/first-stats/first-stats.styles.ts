@@ -20,7 +20,7 @@ export const FirstStatsWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     margin-bottom: 32px;
   }
 `;

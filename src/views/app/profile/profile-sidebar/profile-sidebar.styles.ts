@@ -6,7 +6,7 @@ export const ProfileSidebarWrapper = styled.div`
   width: 100%;
   min-height: 450px;
   max-width: 282px;
-  border-right: 2px solid ${colors.dark_5};
+  border-right: 2px solid ${(props) => props.theme.text.main_5};
   display: flex;
   flex-direction: column;
   gap: 32px;

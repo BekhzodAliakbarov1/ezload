@@ -6,7 +6,9 @@ import { DistanceSizeBox, DistinationWrapper } from './load-distination.styles';
 const LoadDistination = () => {
   return (
     <DistinationWrapper>
-      <Text weight="700">Distance to the Destination </Text>
+      <Text color="main_80" weight="700">
+        Distance to the Destination{' '}
+      </Text>
       <DistanceSizeBox>
         <DistanceIcon />
         <Text weight="500">894 km</Text>

@@ -11,7 +11,9 @@ const Coverage = () => {
   return (
     <CoverageWrappper>
       <TextBox>
-        <BoldText weight="700">Ezload coverage</BoldText>
+        <BoldText color="main_100" weight="700">
+          Ezload coverage
+        </BoldText>
         <StyledText weight="500">We are growing fast</StyledText>
       </TextBox>
       <Image src={CoverageMapImg} alt="map" />

@@ -62,14 +62,14 @@ export const LoadCardLocationInfoWrapper = styled.div`
     font-size: 13px;
     line-height: 16px;
     letter-spacing: 0.5px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     margin-bottom: 4px;
   }
   p:nth-child(5) {
     font-weight: 500;
     font-size: 14px;
     line-height: 18px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
 `;
 
@@ -111,7 +111,7 @@ export const LoadBidCountWrapper = styled.div`
     font-size: 14px;
     line-height: 18px;
     letter-spacing: 0.25px;
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
   }
 `;
 
@@ -120,7 +120,7 @@ export const LoadCardButtonWrapper = styled.div`
   max-width: 221px;
   display: flex;
   justify-content: space-between;
-  background-color: ${colors.dark_60};
+  background-color: ${(props) => props.theme.text.main_60};
   padding: 8px 16px;
   border-radius: 2px;
   p {
@@ -151,7 +151,6 @@ export const ModalWrapper = styled.div`
     font-size: 20px;
     line-height: 24px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_100};
     margin-bottom: 48px;
   }
 `;
@@ -168,9 +167,9 @@ export const ModalButtonsBox = styled.div`
   }
   button:nth-child(2) {
     background-color: ${colors.white};
-    color: ${colors.dark_70};
+    color: ${(props) => props.theme.text.main_70};
     :hover {
-      background-color: ${colors.dark_5};
+      background-color: ${(props) => props.theme.text.main_5};
     }
   }
 `;
