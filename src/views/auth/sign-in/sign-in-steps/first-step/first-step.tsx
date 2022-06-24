@@ -36,15 +36,18 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
   } = useForm<Inputs>();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    mutate(
-      { phone_number: `${countryCode}${data.phone_num}` },
-      {
-        onSuccess() {
-          setPhoneNumber(`${countryCode}${data.phone_num}`);
-          nextStep();
-        },
-      }
-    );
+    nextStep();
+    // AFTER CONNECT API UNCOMMENT MUTATTIONS AND DELETE ABOVE TOP LINE
+
+    // mutate(
+    //   { phone_number: `${countryCode}${data.phone_num}` },
+    //   {
+    //     onSuccess() {
+    //       setPhoneNumber(`${countryCode}${data.phone_num}`);
+    //       nextStep();
+    //     },
+    //   }
+    // );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

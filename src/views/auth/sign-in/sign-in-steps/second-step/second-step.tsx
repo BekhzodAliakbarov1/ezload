@@ -28,22 +28,25 @@ const SecondStep: React.FC<{
     // sendCode to api
   };
   const onSubmit = () => {
-    mutate(
-      {
-        code: verificationCode,
-        is_broker: userType === 'customer',
-        is_driver: userType === 'driver',
-        phone_number,
-      },
-      {
-        onSuccess(res) {
-          console.log(res);
-        },
-        onError(err) {
-          console.log(err);
-        },
-      }
-    );
+    nextStep();
+    // AFTER CONNECT API UNCOMMENT MUTATTIONS AND DELETE ABOVE TOP LINE
+
+    // mutate(
+    //   {
+    //     code: verificationCode,
+    //     is_broker: userType === 'customer',
+    //     is_driver: userType === 'driver',
+    //     phone_number,
+    //   },
+    //   {
+    //     onSuccess(res) {
+    //       console.log(res);
+    //     },
+    //     onError(err) {
+    //       console.log(err);
+    //     },
+    //   }
+    // );
   };
 
   return (
