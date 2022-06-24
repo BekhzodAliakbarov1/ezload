@@ -46,7 +46,7 @@ const StyledMenu = styled((props: MenuProps) => (
   '& .MuiPaper-root': {
     borderRadius: 4,
     marginTop: theme.spacing(1),
-    minWidth: 154,
+    minWidth: 174,
     minHeight: 160,
     marginLeft: -100,
     paddingBottom: 44,
@@ -56,7 +56,7 @@ const StyledMenu = styled((props: MenuProps) => (
 const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   const account = useMenu();
   const language = useMenu();
-  const { userType, login } = useAuth();
+  const { userType, login, logout } = useAuth();
   const { isDriver } = useDriver();
 
   const accountProfile = isDriver ? profileDrivers : profileCustomer;
@@ -150,9 +150,9 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
                       <StyledtText>{item.name}</StyledtText>
                     </Link>
                   ))}
-                  <Link to="/">
+                  <a onClick={logout}>
                     <StyledtText>Log out</StyledtText>
-                  </Link>
+                  </a>
                 </StyledMenu>
               </RightContentItemWrapper>
             ) : (

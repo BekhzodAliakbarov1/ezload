@@ -3,10 +3,12 @@ import { colors } from 'styles/variables';
 import { IconButton } from '@mui/material';
 
 export const NabarBox = styled.div<{ isLoggedIn: boolean }>`
-  width: 100%;
+  width: 100vw;
+  top: 0;
+  left: 0;
   position: fixed;
   display: flex;
-  justify-content: ${(props) => (props.isLoggedIn ? '' : 'center')};
+  justify-content: ${(props) => (props.isLoggedIn ? 'center' : 'center')};
   z-index: 1000;
   background-color: ${colors.green_5};
   transition: all 0.5s ease;
@@ -19,6 +21,7 @@ export const NavbarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1290px;
+  padding: 0px 10px;
   /* margin: auto; */
 `;
 
