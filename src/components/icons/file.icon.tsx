@@ -3,8 +3,8 @@ import { IconType } from 'types/icon.types';
 
 const FileIcon: IconType = (props) => (
   <svg
-    width="193"
-    height="215"
+    width={props.size ?? '193'}
+    height={props.size ?? '215'}
     viewBox="0 0 193 215"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

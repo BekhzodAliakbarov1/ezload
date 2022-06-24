@@ -18,7 +18,7 @@ const SecondStep = () => {
   const [isLoading, setisLoading] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const { handleSubmit } = useForm();
-  const { nextStep, setStep } = useSteps();
+  const { nextStep } = useSteps();
 
   const sendCodeAgain = () => {
     // sendCode to api

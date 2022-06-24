@@ -1,6 +1,4 @@
-import { TextField } from '@mui/material';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const LoadBidsWrapper = styled.div`
   width: 100%;

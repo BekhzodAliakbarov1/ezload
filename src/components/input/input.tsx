@@ -69,7 +69,7 @@ const StyledInput = styled.input<InputProps>`
 `;
 // eslint-disable-next-line react/display-name
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const [hidden, setHidden] = useState(true);
+  const [hidden] = useState(true);
   return (
     <InputWrapper {...props.ContainerProps}>
       {props.label ? <Label>{props.label ?? ''}</Label> : null}
