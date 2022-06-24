@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import image from 'assets/img/login-bg-image.jpg';
 import logo from 'assets/img/logo-white.svg';
 import styled from 'styled-components';
-import CustomerSignIn from 'views/auth/sign-in/customer/customer-sign-in';
+import SignIn from 'views/auth/sign-in';
 import { colors } from 'styles/variables';
 import CheckUserType from 'views/auth/sign-in/check-user-type';
-import DriverSignIn from 'views/auth/sign-in/driver/driver-sign-in';
 
 export const SignInLayoutWrapper = styled.div`
   width: 100%;
@@ -40,9 +39,11 @@ const SignInLayout = () => {
       <SignInImageWrapper style={{ backgroundImage: `url(${image})` }}>
         <img src={logo} alt="Logo" />
       </SignInImageWrapper>
-      {type === '' && <CheckUserType onChange={handleChangeUserType} />}
-      {type === 'customer' && <CustomerSignIn />}
-      {type === 'driver' && <DriverSignIn />}
+      {type === '' ? (
+        <CheckUserType onChange={handleChangeUserType} />
+      ) : (
+        <SignIn userType={type} />
+      )}
     </SignInLayoutWrapper>
   );
 };

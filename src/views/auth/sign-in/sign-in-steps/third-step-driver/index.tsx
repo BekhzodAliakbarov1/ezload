@@ -18,7 +18,7 @@ import {
   TruckInputsWrapper,
 } from './third-step.styles';
 
-const ThirdStep = () => {
+const ThirdStepDriver = () => {
   const [hasError, setHasError] = useState(false);
   const { nextStep } = useSteps();
 
@@ -73,4 +73,4 @@ const ThirdStep = () => {
   );
 };
 
-export default ThirdStep;
+export default ThirdStepDriver;

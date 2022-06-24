@@ -12,26 +12,38 @@ import {
 import { useForm } from 'react-hook-form';
 import { useSteps } from 'global-state/step/step-context';
 import ReactCodeInputComponent from 'components/code-input/react-code-input';
+import { useLogin } from 'server-state/mutations/use-login';
 
-const SecondStep = () => {
+const SecondStep: React.FC<{
+  phone_number: string;
+  userType: 'customer' | 'driver';
+}> = ({ phone_number, userType }) => {
   const [hasError, setHasError] = useState(false);
-  const [isLoading, setisLoading] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const { handleSubmit } = useForm();
   const { nextStep } = useSteps();
+  const { mutate, isLoading } = useLogin();
 
   const sendCodeAgain = () => {
     // sendCode to api
   };
   const onSubmit = () => {
-    console.log(verificationCode);
-    // 1. Check verification code is correct or no
-
-    // 2. If it is first time to this user move to step 3
-    nextStep();
-
-    // 3. If it is not first time move to step4 uncomment next line
-    // setStep(4)
+    mutate(
+      {
+        code: verificationCode,
+        is_broker: userType === 'customer',
+        is_driver: userType === 'driver',
+        phone_number,
+      },
+      {
+        onSuccess(res) {
+          console.log(res);
+        },
+        onError(err) {
+          console.log(err);
+        },
+      }
+    );
   };
 
   return (
