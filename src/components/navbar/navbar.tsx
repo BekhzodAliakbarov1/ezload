@@ -157,7 +157,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
               </RightContentItemWrapper>
             ) : (
               <>
-                <Link to="/auth/creator/login">Login</Link>
+                <Link to="/auth/login">Login</Link>
               </>
             )}
             <RightContentItemWrapper>

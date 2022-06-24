@@ -1,7 +1,5 @@
-import { LeftBox, RightBox } from 'assets/svg';
 import Text from 'components/typography/text';
 import {
-  BackgrounImageWrapper,
   FeedStatisticsCard,
   FeedStatisticsWrapper,
 } from 'views/app/feed/feed.styles';

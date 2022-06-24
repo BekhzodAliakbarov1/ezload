@@ -1,6 +1,5 @@
-import { LeftBox, RightBox } from 'assets/svg';
 import Availibility from '../availibility';
-import { BackgrounImageWrapper, BannerWrapper } from './banner.styles';
+import { BannerWrapper } from './banner.styles';
 import Slider from './slider';
 
 const Banner = () => {

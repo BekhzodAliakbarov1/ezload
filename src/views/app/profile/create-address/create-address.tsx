@@ -41,6 +41,7 @@ const CreateAddress = () => {
         zip_code: state.data?.zip_code ?? '',
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
