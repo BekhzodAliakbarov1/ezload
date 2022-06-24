@@ -10,7 +10,7 @@ export const IntroductionWrapper = styled.div`
   right: 0;
   top: 350px;
   transform: translate(16.5%, 0%);
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   z-index: 10;
   padding: 51px 0;
   border-radius: 50%;

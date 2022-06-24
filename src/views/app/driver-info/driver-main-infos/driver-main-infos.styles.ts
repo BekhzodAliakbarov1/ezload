@@ -8,7 +8,7 @@ export const DriverMainInfosWrapper = styled.div`
   padding: 32px 40px;
   display: flex;
   flex-direction: column;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   box-shadow: 0px 1px 3px rgba(60, 181, 149, 0.12);
   border-radius: 4px;
   /* align-items: center; */

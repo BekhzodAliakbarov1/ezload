@@ -3,7 +3,7 @@ import { colors } from 'styles/variables';
 
 export const DriverReviewsWrapper = styled.div`
   width: 100%;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   padding: 56px 64px;
   > p {
     margin-bottom: 56px;

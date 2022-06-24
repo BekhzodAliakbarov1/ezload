@@ -14,7 +14,7 @@ export interface Props extends AvatarProps {
 
 const StyledAvatar = styled(MuiAvatar)<Props>`
   ${(props) => props.avatarstyles}
-  border: 3px solid ${colors.white};
+  border: 3px solid ${(props) => props.theme.bg.secondary};
   width: 100%;
   height: 100%;
   background-color: ${(props) => props.theme.bg.main};

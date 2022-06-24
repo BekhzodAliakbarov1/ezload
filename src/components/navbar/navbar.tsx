@@ -21,13 +21,16 @@ import {
   NavbarPositionEffectEraiser,
   NabarBox,
   JustFunComponent,
+  JustFunComponentTwo,
 } from './navbar.styles';
-import logo from 'assets/img/logo-light.svg';
+import logoLight from 'assets/img/logo-light.svg';
+import logoDark from 'assets/img/logo-white.svg';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
 import { useAuth } from 'global-state/auth/auth.state';
 import { Switch } from '@mui/material';
 import { useDriver } from 'hooks/use-driver';
+import { useTheme } from 'global-state/theme/theme.state';
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -58,6 +61,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   const language = useMenu();
   const { userType, login, logout } = useAuth();
   const { isDriver } = useDriver();
+  const { toggleTheme, theme } = useTheme();
 
   const accountProfile = isDriver ? profileDrivers : profileCustomer;
   const accountLinks = isDriver ? driverLinks : customerLinks;
@@ -112,7 +116,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
           </NavbarLinksWrapper>
           <NavbarLogoWrapper isDriver={isDriver}>
             <Link to="/">
-              <img src={logo} alt="logo" />
+              <img src={theme === 'dark' ? logoDark : logoLight} alt="logo" />
             </Link>
           </NavbarLogoWrapper>
           <ProfileAndLanguageWrapper>
@@ -184,11 +188,16 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
           </ProfileAndLanguageWrapper>
         </NavbarWrapper>
       </NabarBox>
+
       <NavbarPositionEffectEraiser />
       <JustFunComponent>
         <Text>{userType}</Text>
         <Switch onClick={clickHandler} />
       </JustFunComponent>
+      <JustFunComponentTwo>
+        <Text>{theme}</Text>
+        <Switch onClick={toggleTheme} />
+      </JustFunComponentTwo>
     </>
   );
 };

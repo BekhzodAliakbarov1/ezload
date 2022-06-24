@@ -13,7 +13,7 @@ export const MessageBox = styled.div`
   text-align: left;
   width: 100%;
   border-radius: 8px;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   margin-bottom: 27px;
   ::after {
     content: '';
@@ -25,7 +25,7 @@ export const MessageBox = styled.div`
     border-radius: 8px;
     border-left: 13px solid transparent;
     border-right: 13px solid transparent;
-    border-top: 20px solid ${colors.green_5};
+    border-top: 20px solid ${(props) => props.theme.bg.main};
     clear: both;
   }
 `;

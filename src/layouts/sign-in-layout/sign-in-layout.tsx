@@ -10,7 +10,7 @@ export const SignInLayoutWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
 `;
 
 export const SignInImageWrapper = styled.div`

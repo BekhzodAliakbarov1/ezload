@@ -4,7 +4,7 @@ import { colors } from 'styles/variables';
 export const LoadInfoCradWrapper = styled.div`
   width: fit-content;
   padding: 24px 32px;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   width: 100%;
   > p {
     font-size: 16px;

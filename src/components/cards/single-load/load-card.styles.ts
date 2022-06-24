@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
 export const LoadCardWrapper = styled.div<{ clickable: boolean }>`
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   border-radius: 8px;
   width: 100%;
   max-width: 370px;

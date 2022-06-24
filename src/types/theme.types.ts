@@ -1,6 +1,7 @@
 export interface CustomTheme {
   bg: {
     main: string;
+    secondary: string;
   };
   text: {
     main_100: string;

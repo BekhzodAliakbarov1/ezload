@@ -21,5 +21,6 @@ export const StyledLink = styled(Text)<{ active: boolean }>`
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.15px;
-  color: ${(props) => (props.active ? colors.dark_80 : colors.dark_30)};
+  color: ${(props) =>
+    props.active ? props.theme.text.main_80 : props.theme.text.main_30};
 `;

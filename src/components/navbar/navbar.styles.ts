@@ -10,7 +10,7 @@ export const NabarBox = styled.div<{ isLoggedIn: boolean }>`
   display: flex;
   justify-content: ${(props) => (props.isLoggedIn ? 'center' : 'center')};
   z-index: 1000;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   transition: all 0.5s ease;
 `;
 
@@ -103,7 +103,7 @@ export const StyledtText = styled.p`
 export const NavbarPositionEffectEraiser = styled.div`
   width: 100vw;
   height: 92px;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
   z-index: 10;
 `;
 
@@ -111,6 +111,14 @@ export const JustFunComponent = styled.div`
   position: fixed;
   bottom: 50px;
   right: 50px;
+  background-color: red;
+  z-index: 10000;
+`;
+
+export const JustFunComponentTwo = styled.div`
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
   background-color: red;
   z-index: 10000;
 `;

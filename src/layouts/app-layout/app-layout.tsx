@@ -10,7 +10,7 @@ const Main = styled.main`
   width: 100%;
   height: 100%;
   flex: 1 1 auto;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
 `;
 
 const AppLayout: React.FC = () => (
