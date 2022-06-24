@@ -2,26 +2,29 @@ import { useMutation } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
 
-interface IVerificationRequest {
+interface ILoginRequest {
   phone_number: string;
+  code: string;
+  is_broker: boolean;
+  is_driver: boolean;
 }
 
-interface IVerificationResponse {
+interface ILoginResponse {
   message: string;
   status_code: number;
 }
 
-export const useVerification = () => {
+export const useLogin = () => {
   const { enqueueSnackbar } = useSnackbar();
   return useMutation(
-    (data: IVerificationRequest) =>
+    (data: ILoginRequest) =>
       request
-        .post<IVerificationResponse>('/sms/send_code/', data)
+        .post<ILoginResponse>('/account/login/', data)
         .then((res) => res.data),
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Verification code sent successfully!', {
+        enqueueSnackbar('Phone registered succesffuly!', {
           variant: 'success',
         });
       },

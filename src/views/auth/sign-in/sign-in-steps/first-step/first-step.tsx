@@ -1,7 +1,7 @@
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import {
-  DriverSignInFirstStepWrapper,
+  CreatorSignInFirstStepWrapper,
   ErrorMessageData,
   ErrorMessageWrapper,
   FirstStepDataWrapper,
@@ -14,6 +14,7 @@ import InfoIcon from 'components/icons/info.icon';
 import { useSteps } from 'global-state/step/step-context';
 import PhoneInput from 'components/phone-input/phone-input';
 import Input from 'components/input/input';
+import { useVerification } from 'server-state/mutations/use-verification';
 
 const PHONE_NUMBER_REGEX =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -22,26 +23,28 @@ type Inputs = {
   phone_num: string;
 };
 
-const FirstStep = () => {
-  const [isLoading, setisLoading] = useState(false);
+const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
+  setPhoneNumber,
+}) => {
   const [countryCode, setCountryCode] = useState('+998');
   const { nextStep } = useSteps();
+  const { mutate, isLoading } = useVerification();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  console.log(errors);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data.phone_num);
-    console.log(countryCode);
-
-    setisLoading(true);
-    setTimeout(() => {
-      setisLoading(false);
-      nextStep();
-    }, 1500);
+    mutate(
+      { phone_number: `${countryCode}${data.phone_num}` },
+      {
+        onSuccess() {
+          setPhoneNumber(`${countryCode}${data.phone_num}`);
+          nextStep();
+        },
+      }
+    );
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -49,7 +52,7 @@ const FirstStep = () => {
   };
 
   return (
-    <DriverSignInFirstStepWrapper>
+    <CreatorSignInFirstStepWrapper>
       {errors.phone_num && (
         <ErrorMessageWrapper>
           <ErrorMessageData>
@@ -87,7 +90,7 @@ const FirstStep = () => {
           </Text>
         </form>
       </FirstStepDataWrapper>
-    </DriverSignInFirstStepWrapper>
+    </CreatorSignInFirstStepWrapper>
   );
 };
 
