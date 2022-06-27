@@ -10,4 +10,5 @@ export interface SingleLoadInterface {
   view_count: string | number;
   id: string | number;
   clickable?: boolean;
+  loadType?: 'new' | 'on_the_way' | 'delivered';
 }

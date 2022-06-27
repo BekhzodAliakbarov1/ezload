@@ -125,9 +125,16 @@ const ProfileLoads = () => {
           <Text weight="700">Delivered</Text>
         </SingleController>
       </SectionControllerWrapper>
-      {sectionType === 'NEW' && <LoadsContainer loads={newLoadsData} />}
-      {sectionType === 'PENDING' && <LoadsContainer loads={pendingLoadsData} />}
-      {sectionType === 'DONE' && <LoadsContainer loads={doneLoadsData} />}
+      {sectionType === 'NEW' && (
+        <LoadsContainer loads={newLoadsData} loadType="new" />
+      )}
+      {sectionType === 'PENDING' && (
+        <LoadsContainer loads={pendingLoadsData} loadType="on_the_way" />
+      )}
+      loadType
+      {sectionType === 'DONE' && (
+        <LoadsContainer loads={doneLoadsData} loadType="delivered" />
+      )}
     </ProfileLoadsWrapper>
   );
 };

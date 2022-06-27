@@ -31,9 +31,8 @@ const fetchLoads = async ({
 
 export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
   const status = type === 'new' ? 1 : type === 'on_the_way' ? 2 : 3;
-  console.log({ status });
 
-  return useInfiniteQuery(['loads', type], () => fetchLoads({ status }), {
+  return useInfiniteQuery(['loads'], () => fetchLoads({ status }), {
     getNextPageParam(lastPage) {
       if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
       return undefined;

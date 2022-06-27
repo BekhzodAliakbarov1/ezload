@@ -22,6 +22,7 @@ interface DeleteAddressRequest {
   id: string;
 }
 
+// CREATE
 export const useCreateAddress = () =>
   useMutation(
     (data: CreateAddressRequest) =>
@@ -33,6 +34,7 @@ export const useCreateAddress = () =>
     }
   );
 
+// EDIT
 export const useEditAddress = () =>
   useMutation(
     (data: EditAddressRequest) =>
@@ -44,6 +46,7 @@ export const useEditAddress = () =>
     }
   );
 
+// DELETE
 export const useDeleteAddress = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { invalidateQueries } = useQueryClient();

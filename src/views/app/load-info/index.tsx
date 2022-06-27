@@ -8,6 +8,8 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React, { useState } from 'react';
+import { useLocation, useParams } from 'react-router-dom';
+import { useSingleLoad } from 'server-state/queries/use-single-load';
 import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
 import {
@@ -33,11 +35,16 @@ const data = {
   view_count: 2332,
 };
 const LoadInfoView = () => {
+  const { id, type } = useParams<{
+    id: string;
+    type: 'new' | 'on_the_way' | 'delivered';
+  }>();
   const [loadType, setLoadType] = useState<'NEW' | 'BIDDED' | 'ON_THE_WAY'>(
     'ON_THE_WAY'
   );
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
+  const singleLoadRequest = useSingleLoad({ id, type });
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -73,7 +80,7 @@ const LoadInfoView = () => {
           )}
         </LoadInfowViewHeader>
         <LoadInfoDataWrapperBox>
-          <LoadCard {...data} />
+          <LoadCard {...data} loadType="new" />
           <LoadInfoCard loadType={loadType} />
         </LoadInfoDataWrapperBox>
         {isDriver ? (
