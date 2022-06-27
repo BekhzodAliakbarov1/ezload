@@ -5,6 +5,7 @@ import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDeleteAddress } from 'server-state/mutations/use-address';
 import { AddressInterface } from 'types/address.types';
 import {
   AddressCardButtonsWrapper,
@@ -26,10 +27,10 @@ const AddressCard: React.FC<AddressInterface> = ({
 }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
+  const deleteAddressrequest = useDeleteAddress();
 
   const handleDelete = () => {
-    // Delete api will connect here
-    console.log(id);
+    deleteAddressrequest.mutate({ id: String(id) });
   };
 
   const handleClick = () => {

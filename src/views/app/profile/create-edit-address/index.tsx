@@ -11,12 +11,16 @@ import image from 'assets/img/default-image.png';
 import Button from 'components/button/button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AddressInterface } from 'types/address.types';
+import {
+  useCreateAddress,
+  useEditAddress,
+} from 'server-state/mutations/use-address';
 
 interface StateType {
   state: { type?: 'EDIT'; data?: AddressInterface };
 }
 
-const CreateAddress = () => {
+const CreateEditAddress = () => {
   const [
     { address_1, address_2, country, region, street, zip_code },
     setAddress,
@@ -30,6 +34,9 @@ const CreateAddress = () => {
   });
   const { state } = useLocation() as StateType;
   const navigate = useNavigate();
+  const createAddressRequest = useCreateAddress();
+  const editAddressRequest = useEditAddress();
+
   useEffect(() => {
     if (state?.type === 'EDIT') {
       setAddress({
@@ -43,6 +50,11 @@ const CreateAddress = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const submitHandler = () => {
+    // use createAddressRequest or editAddressRequest
+    console.log('smth');
+  };
 
   return (
     <CreateAddressWrapper>
@@ -61,7 +73,14 @@ const CreateAddress = () => {
       </CreateAddressInputsBox>
       <CreateAddressMapWrapper style={{ backgroundImage: `url(${image})` }} />
       <CreateAddressButtonsWrapper>
-        <Button>
+        <Button
+          onClick={submitHandler}
+          loading={
+            state?.type === 'EDIT'
+              ? editAddressRequest.isLoading
+              : createAddressRequest.isLoading
+          }
+        >
           {state?.type === 'EDIT' ? 'Edit address' : 'Add address'}
         </Button>
         <Button buttonType="secondary_dark" onClick={() => navigate(-1)}>
@@ -72,4 +91,4 @@ const CreateAddress = () => {
   );
 };
 
-export default CreateAddress;
+export default CreateEditAddress;

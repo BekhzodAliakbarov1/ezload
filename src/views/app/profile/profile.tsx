@@ -5,7 +5,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import PersonalInformation from './personal-information/personal-information';
 import ProfileLoads from './profile-loads/profile-loads';
 import ProfileAddress from './profile-address/profile-address';
-import CreateAddress from './create-address/create-address';
+import CreateEditAddress from './create-edit-address';
 import { useDriver } from 'hooks/use-driver';
 import PersonalStatistics from './personal-statistics';
 import ProfileRoutes from './profile-routes';
@@ -16,8 +16,8 @@ const CustomerProfileView = () => (
     <Route path="/" element={<PersonalInformation />} />
     <Route path="/my-loads" element={<ProfileLoads />} />
     <Route path="/my-addresses" element={<ProfileAddress />} />
-    <Route path="/create-address" element={<CreateAddress />} />
-    <Route path="/edit-address" element={<CreateAddress />} />
+    <Route path="/create-address" element={<CreateEditAddress />} />
+    <Route path="/edit-address" element={<CreateEditAddress />} />
 
     {/* Navigator */}
     <Route path="*" element={<Navigate to="/" replace />} />

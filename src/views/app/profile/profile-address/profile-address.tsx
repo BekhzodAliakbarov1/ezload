@@ -4,6 +4,7 @@ import PlusIcon from 'components/icons/plus.icon';
 import Text from 'components/typography/text';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAddress } from 'server-state/queries/use-address';
 import {
   ProfileAddressesWrapper,
   ProfileAddressTopPartContainer,
@@ -51,6 +52,7 @@ const addresses = [
 
 const ProfileAddress = () => {
   const navigate = useNavigate();
+  const addressRequest = useAddress();
   return (
     <ProfileAddressWrapper>
       <ProfileAddressTopPartContainer>

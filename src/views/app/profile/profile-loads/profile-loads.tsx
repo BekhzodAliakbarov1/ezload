@@ -1,6 +1,7 @@
 import LoadsContainer from 'components/loads-container/loads-container';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useLoads } from 'server-state/queries/use-load';
 import {
   ProfileLoadsWrapper,
   SectionControllerWrapper,
@@ -94,6 +95,9 @@ const ProfileLoads = () => {
   const [sectionType, setSectionType] = useState<'NEW' | 'PENDING' | 'DONE'>(
     'NEW'
   );
+  const newLoadsRequest = useLoads('new');
+  const onTheWayLoadsRequest = useLoads('on_the_way');
+  const deliveredLoadsRequest = useLoads('delivered');
 
   const onClickHandler = (type: 'NEW' | 'PENDING' | 'DONE') => {
     setSectionType(type);
