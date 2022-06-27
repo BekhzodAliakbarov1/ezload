@@ -2,7 +2,6 @@ import React from 'react';
 import styled, { CSSProp } from 'styled-components';
 import MuiAvatar, { AvatarProps } from '@mui/material/Avatar';
 import LazyImage from 'components/lazy-image/lazy-image';
-import { colors } from 'styles/variables';
 import ProfileIcon from '../icons/profile.icon';
 
 export interface Props extends AvatarProps {

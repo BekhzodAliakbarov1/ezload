@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const LoadInfoCradWrapper = styled.div`
   width: fit-content;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import { IconButton } from '@mui/material';
+import { IconButton, Menu, MenuProps } from '@mui/material';
 
 export const NabarBox = styled.div<{ isLoggedIn: boolean }>`
   width: 100vw;
@@ -122,3 +122,27 @@ export const JustFunComponentTwo = styled.div`
   background-color: red;
   z-index: 10000;
 `;
+
+export const StyledMenu = styled((props: MenuProps) => (
+  <Menu
+    elevation={0}
+    anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'right',
+    }}
+    transformOrigin={{
+      vertical: 'top',
+      horizontal: 'right',
+    }}
+    {...props}
+  />
+))(({ theme }) => ({
+  '& .MuiPaper-root': {
+    borderRadius: 4,
+    marginTop: theme.spacing(1),
+    minWidth: 174,
+    minHeight: 160,
+    marginLeft: -100,
+    paddingBottom: 44,
+  },
+}));

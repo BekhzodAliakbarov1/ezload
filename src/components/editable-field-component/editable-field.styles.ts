@@ -1,6 +1,5 @@
 import { IconButton } from '@mui/material';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 export const FieldsWrapper = styled.div`
   display: flex;
   flex-direction: column;

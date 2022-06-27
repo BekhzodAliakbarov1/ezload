@@ -12,6 +12,8 @@ interface ILoginRequest {
 interface ILoginResponse {
   message: string;
   status_code: number;
+  is_new_user: boolean;
+  token: string;
 }
 
 export const useLogin = () => {
@@ -23,10 +25,12 @@ export const useLogin = () => {
         .then((res) => res.data),
     {
       retry: false,
-      onSuccess() {
-        enqueueSnackbar('Phone registered succesffuly!', {
-          variant: 'success',
-        });
+      onSuccess(res) {
+        if (res.status_code === 201 || res.status_code === 200) {
+          enqueueSnackbar('Phone registered succesffuly!', {
+            variant: 'success',
+          });
+        }
       },
       onError() {
         enqueueSnackbar('Something went wrong!', { variant: 'error' });
