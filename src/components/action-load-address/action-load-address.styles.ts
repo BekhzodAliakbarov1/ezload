@@ -74,6 +74,11 @@ export const ActionLoadMapContentWrapper = styled.div`
 export const ActionLoadMapWrapper = styled.div`
   width: 100%;
   height: 286px;
+  position: relative;
+  svg {
+    transform: translate(-50%, -50%);
+    z-index: 20;
+  }
 `;
 
 export const SaveAddressWrapper = styled.div`

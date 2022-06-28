@@ -26,10 +26,10 @@ const LoadAddress = () => {
         </VerticalLineWrapper>
         <AllLocationInputsWrapper>
           <ActionLoadAddress type="pickup" title="Select pickup location" />
-          <ActionLoadAddress
+          {/* <ActionLoadAddress
             type="delivery"
             title="Select destination location"
-          />
+          /> */}
         </AllLocationInputsWrapper>
       </LoadAddressFlexWrapper>
     </LoadAddressWrapper>

@@ -18,6 +18,7 @@ interface StateType {
 const ActionLoad = () => {
   const { setValues, data } = useData();
   const { state } = useLocation() as StateType;
+  //  if load is editing run next row
   useEffect(() => {
     if (state?.type === 'EDIT') {
       // will set edited data of load

@@ -17,10 +17,11 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Input from 'components/input/input';
 import CloseIcon from 'components/icons/close.icon';
-import image from 'assets/img/default-image.png';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+
+import MapComponent from 'components/map-component';
 
 const ActionLoadAddress: React.FC<{
   title: string;
@@ -103,7 +104,9 @@ const ActionLoadAddress: React.FC<{
           />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>
-          <ActionLoadMapWrapper style={{ backgroundImage: `url(${image})` }} />
+          <ActionLoadMapWrapper>
+            <MapComponent />
+          </ActionLoadMapWrapper>
           <SaveAddressWrapper>
             <StyledIconButton onClick={() => setChecked(!checked)}>
               {checked ? <TickIcon /> : <TickIcon fill={colors.dark_50} />}
