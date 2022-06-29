@@ -2,10 +2,11 @@ import { useMutation } from 'react-query';
 import { useState } from 'react';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
+import { useAuth } from 'global-state/auth/auth.state';
 
 interface UploadRequest {
   file?: Blob | File;
-  token: string;
+  token?: string;
 }
 
 interface UploadResponse {
@@ -18,14 +19,18 @@ interface UploadResponse {
 export const useUpload = () => {
   const [progress, setProgress] = useState<number>(0);
   const { enqueueSnackbar } = useSnackbar();
+  const {
+    tokens: { access },
+  } = useAuth();
   const mutationObject = useMutation(
     (data: UploadRequest) => {
       const fd = new FormData();
       fd.append('file', data.file ?? '');
+      const token = access ?? data.token;
       return request
         .post<UploadResponse>('/media/create/', fd, {
           headers: {
-            Authorization: `Token ${data.token}`,
+            Authorization: `Token ${token}`,
           },
           onUploadProgress: (progressEvent) => {
             const progressAmount = Math.floor(

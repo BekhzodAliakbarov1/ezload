@@ -4,6 +4,8 @@ import { request } from '../api';
 
 interface ProfileResponse {
   first_name: string;
+  phone_number: string;
+  profile_picture: { file: string };
 }
 
 export const useProfile = () => {

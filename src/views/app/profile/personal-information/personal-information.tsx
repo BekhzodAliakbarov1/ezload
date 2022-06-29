@@ -4,29 +4,38 @@ import {
   PersonalInformationTopPartWrapper,
   PersonalInformationWrapper,
 } from './personal-information.styles';
-import Avatar from 'components/avatar';
-import img from 'assets/img/profile.png';
 import EditableFiled from 'components/editable-field-component/editable-field';
 import TruckInfo from './truck-part';
 import { useDriver } from 'hooks/use-driver';
 import { useProfile } from 'server-state/queries/use-profile';
 import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
-
+import ProfileImagePart from './profile-image-part';
+import { useUpload } from 'server-state/mutations/use-upload';
 const PersonalInformation = () => {
   const { data } = useProfile();
   const updateProfileRequest = useUpdateProfile();
-  const [name, setName] = useState<string>('');
-  const [phone, setPhone] = useState('998996026611');
+  const uploadImageRequest = useUpload();
+  const [profileInfo, setProfileInfo] = useState<{
+    name: string;
+    phone: string;
+    profile_picture: string;
+  }>({ name: '', phone: '', profile_picture: '' });
   const { isDriver } = useDriver();
 
   useEffect(() => {
-    if (data?.first_name) {
-      setName(data?.first_name);
+    if (data?.first_name && data.phone_number) {
+      setProfileInfo({
+        name: data.first_name,
+        phone: data.phone_number,
+        profile_picture: data.profile_picture.file,
+      });
     }
   }, [data]);
 
   const handleNameSubmit = (value: string) => {
-    setName(value);
+    setProfileInfo((info) => {
+      return { ...info, name: value };
+    });
     updateProfileRequest.mutate(
       { first_name: value },
       {
@@ -36,35 +45,60 @@ const PersonalInformation = () => {
       }
     );
   };
+
   const handlePhoneSubmit = (value: string) => {
-    setPhone(value);
+    setProfileInfo((info) => {
+      return { ...info, phone: value };
+    });
+  };
+
+  const handleImageUpload = (val: Blob | File) => {
+    if (val) {
+      uploadImageRequest.mutate(
+        { file: val },
+        {
+          onSuccess(res) {
+            setProfileInfo((info) => {
+              return { ...info, profile_picture: res.file };
+            });
+            updateProfileRequest.mutate({ profile_picture: res.id });
+          },
+        }
+      );
+    }
   };
 
   return (
     <PersonalInformationWrapper>
       <PersonalInformationTopPartWrapper>
-        <Avatar sizes="141px" src={img} />
+        <ProfileImagePart
+          img={profileInfo.profile_picture}
+          onSubmit={handleImageUpload}
+          isLoading={uploadImageRequest.isLoading}
+        />
         <NamePhoneNumberWrapper>
-          {name && (
+          {profileInfo.name && (
             <EditableFiled
               inputType="text"
               label="Your name"
-              value={name}
+              value={profileInfo.name}
               placeholder="Enter name"
               onSubmit={handleNameSubmit}
               // it will correct when connect to api
               isLoading={false}
             />
           )}
-          <EditableFiled
-            inputType="number"
-            label="Your phone number"
-            value={phone}
-            placeholder="Enter phone number"
-            onSubmit={handlePhoneSubmit}
-            // it will correct when connect to api
-            isLoading={false}
-          />
+          {profileInfo.phone && (
+            <EditableFiled
+              inputType="number"
+              label="Your phone number"
+              value={profileInfo.phone}
+              placeholder="Enter phone number"
+              onSubmit={handlePhoneSubmit}
+              // it will correct when connect to api
+              isLoading={false}
+            />
+          )}
         </NamePhoneNumberWrapper>
       </PersonalInformationTopPartWrapper>
       {isDriver && (

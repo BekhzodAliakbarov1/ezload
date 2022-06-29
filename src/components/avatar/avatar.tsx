@@ -22,7 +22,6 @@ const StyledAvatar = styled(MuiAvatar)<Props>`
   }
   img {
     width: 100%;
-    height: 100%;
   }
 `;
 
