@@ -14,6 +14,7 @@ interface ILoginResponse {
   status_code: number;
   is_new_user: boolean;
   token: string;
+  id: string;
 }
 
 export const useLogin = () => {

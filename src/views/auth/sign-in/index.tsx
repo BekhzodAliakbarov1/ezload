@@ -5,6 +5,7 @@ import SecondStep from './sign-in-steps/second-step/second-step';
 import ThirdStep from './sign-in-steps/third-step/third-step';
 import ThirdStepDriver from './sign-in-steps/third-step-driver';
 import FourthStep from './sign-in-steps/fourth-step';
+import { useAuth } from 'global-state/auth/auth.state';
 
 const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
   userType,
@@ -12,16 +13,27 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
   const [data, setData] = useState<{
     phone_number: string;
     token: string;
+    user_id: string;
   }>({
     phone_number: '',
     token: '',
+    user_id: '',
   });
+  const { login } = useAuth();
 
   const handlePhoneNumber = (phone_number: string) => {
     setData({ ...data, phone_number });
   };
-  const handleToken = (accessToken: string) => {
-    setData({ ...data, token: accessToken });
+  const handleTokenAnUserId = (accessToken: string, user_id: string) => {
+    setData({ ...data, token: accessToken, user_id });
+  };
+
+  const handleLogin = () => {
+    login({
+      tokens: { access: data.token, refresh: '' },
+      userId: data.user_id,
+      userType,
+    });
   };
 
   return (
@@ -33,12 +45,16 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
         <SecondStep
           phone_number={data.phone_number}
           userType={userType}
-          saveToken={handleToken}
+          saveTokenAndId={handleTokenAnUserId}
         />
       </Step>
       <Step step={3}>
         {userType === 'customer' ? (
-          <ThirdStep token={data.token} />
+          <ThirdStep
+            handleLogin={handleLogin}
+            token={data.token}
+            user_id={data.user_id}
+          />
         ) : (
           <ThirdStepDriver />
         )}

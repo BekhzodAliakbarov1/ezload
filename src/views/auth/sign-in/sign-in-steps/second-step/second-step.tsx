@@ -19,8 +19,8 @@ import { useVerification } from 'server-state/mutations/use-verification';
 const SecondStep: React.FC<{
   phone_number: string;
   userType: 'customer' | 'driver';
-  saveToken: (accessToken: string) => void;
-}> = ({ phone_number, userType, saveToken }) => {
+  saveTokenAndId: (accessToken: string, user_id: string) => void;
+}> = ({ phone_number, userType, saveTokenAndId }) => {
   const [hasError, setHasError] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const { handleSubmit } = useForm();
@@ -44,12 +44,12 @@ const SecondStep: React.FC<{
       {
         onSuccess(res) {
           if (res.is_new_user) {
-            saveToken(res.token);
+            saveTokenAndId(res.token, res.id);
             nextStep();
           } else {
             login({
               tokens: { access: res.token, refresh: '12' },
-              userId: phone_number,
+              userId: res.id,
               userType,
             });
           }

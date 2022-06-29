@@ -6,6 +6,7 @@ import FileInput from 'components/input/file-input';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
 import { useUpload } from 'server-state/mutations/use-upload';
 import {
   CreatorSignInThirdStepWrapper,
@@ -17,25 +18,57 @@ import {
   ThirdStepDataWrapper,
 } from './third-step.styles';
 
-const ThirdStep: React.FC<{ token: string }> = ({ token }) => {
+const ThirdStep: React.FC<{
+  token: string;
+  user_id: string;
+  handleLogin: () => void;
+}> = ({ token, user_id, handleLogin }) => {
   const [hasError, setHasError] = useState(false);
   const [data, setData] = useState<{
-    file?: Blob | File;
     picture_url?: string;
+    picture_id?: number;
     first_name: string;
   }>({
     first_name: '',
   });
-  const { mutate, progress, isLoading } = useUpload();
+  const uploadImageRequest = useUpload();
+  const updateProfileRequest = useUpdateProfile();
 
   const clickHandler = () => {
-    if (data.file) {
-      mutate({ file: data.file, first_name: data.first_name, token });
+    if (data.first_name) {
+      updateProfileRequest.mutate(
+        {
+          first_name: data.first_name,
+          profile_picture: data.picture_id ?? '',
+          user_id,
+          token,
+        },
+        {
+          onSuccess() {
+            handleLogin();
+          },
+        }
+      );
     }
   };
 
   const uploadFileHandler = (val: Blob | File) => {
-    setData({ ...data, file: val, picture_url: URL.createObjectURL(val) });
+    if (val) {
+      uploadImageRequest.mutate(
+        { token, file: val },
+        {
+          onSuccess(res) {
+            setData((initialValue) => {
+              return {
+                ...initialValue,
+                picture_id: res.id,
+                picture_url: res.file,
+              };
+            });
+          },
+        }
+      );
+    }
   };
 
   const onChangeHandler = (first_name: string) => {
@@ -89,11 +122,13 @@ const ThirdStep: React.FC<{ token: string }> = ({ token }) => {
         <Button
           disabled={!Boolean(data.first_name)}
           fullWidth
-          loading={isLoading}
+          loading={uploadImageRequest.isLoading}
           onClick={clickHandler}
           buttonType={!Boolean(data.first_name) ? 'disabled' : 'contained'}
         >
-          {isLoading ? `${progress}%` : 'Save'}
+          {uploadImageRequest.isLoading
+            ? `${uploadImageRequest.progress}%`
+            : 'Save'}
         </Button>
       </ThirdStepDataWrapper>
     </CreatorSignInThirdStepWrapper>

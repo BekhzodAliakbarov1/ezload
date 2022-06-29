@@ -1,22 +1,29 @@
 import { useMutation } from 'react-query';
 import { useState } from 'react';
 import { request } from '../api';
+import { useSnackbar } from 'notistack';
 
 interface UploadRequest {
   file?: Blob | File;
-  first_name?: string;
   token: string;
+}
+
+interface UploadResponse {
+  file: string;
+  format: string;
+  id: number;
+  title: string;
 }
 
 export const useUpload = () => {
   const [progress, setProgress] = useState<number>(0);
+  const { enqueueSnackbar } = useSnackbar();
   const mutationObject = useMutation(
     (data: UploadRequest) => {
       const fd = new FormData();
-      fd.append('profile_picture', data.file ?? '');
-      fd.append('first_name', data.first_name ?? '');
+      fd.append('file', data.file ?? '');
       return request
-        .put<{ result: { file_name: string } }>('/account/5/update/', fd, {
+        .post<UploadResponse>('/media/create/', fd, {
           headers: {
             Authorization: `Token ${data.token}`,
           },
@@ -31,6 +38,13 @@ export const useUpload = () => {
     },
     {
       retry: false,
+      onSuccess() {
+        enqueueSnackbar('Media uploaded succesfully!', { variant: 'success' });
+      },
+      onError(err) {
+        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        console.log('ERROR', err);
+      },
     }
   );
   return { progress, ...mutationObject };
