@@ -1,13 +1,12 @@
-// this file is for getting only data with pagination
 import { useInfiniteQuery } from 'react-query';
+import { SingleLoadResponse } from 'types/load.types';
 import { request } from '../api';
 
-// This is interface for commeing date it shoould be in types  folder for the best case
 interface LoadsResponse {
   count: number;
   next: null | number;
   previous: null | number;
-  results: [];
+  results: SingleLoadResponse[];
 }
 
 const fetchLoads = async ({
@@ -25,14 +24,23 @@ const fetchLoads = async ({
   return {
     results: data.results,
     nextPage: pageParam + 1,
-    totalPages: Math.ceil(Number(data?.count) / 10),
+    totalPages: Math.ceil(Number(data?.count) / 6),
+    count: data.count,
   };
 };
 
 export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
-  const status = type === 'new' ? 1 : type === 'on_the_way' ? 2 : 3;
+  let status: 1 | 2 | 3;
+  if (type === 'new') {
+    status = 1;
+  } else if (type === 'on_the_way') {
+    status = 2;
+  } else {
+    status = 3;
+  }
 
-  return useInfiniteQuery(['loads'], () => fetchLoads({ status }), {
+  return useInfiniteQuery(['loads', type], () => fetchLoads({ status }), {
+    enabled: false,
     getNextPageParam(lastPage) {
       if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
       return undefined;

@@ -8,11 +8,12 @@ import LoadDateTime from './load-action-parts/load-date-time/load-date-time';
 import LoadExtraInformation from './load-action-parts/load-extra-information/load-extra-information';
 import LoadButtons from './load-action-parts/load-buttons/load-buttons';
 import { useLocation } from 'react-router-dom';
-import { SingleLoadInterface } from 'types/load.types';
+import { SingleLoadResponse } from 'types/load.types';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+import { stat } from 'fs';
 
 interface StateType {
-  state: { type?: 'EDIT'; data?: SingleLoadInterface };
+  state: { type?: 'EDIT'; data?: SingleLoadResponse };
 }
 
 const ActionLoad = () => {
@@ -26,29 +27,29 @@ const ActionLoad = () => {
         ...data,
         load_title: '',
         pickup: {
-          addresline_1: state.data?.pickup_address,
+          addresline_1: '',
           addresline_2: '',
-          street: '',
-          region: '',
-          country: state.data?.pickup_country,
+          street: state.data?.pickup_point.district,
+          region: state.data?.pickup_point.region,
+          country: state.data?.pickup_point.country,
           zipcode: '',
         },
         delivery: {
-          addresline_1: state.data?.deliver_address,
+          addresline_1: '',
           addresline_2: '',
-          street: '',
-          region: '',
-          country: state.data?.deliver_country,
+          street: state.data?.destination.district,
+          region: state.data?.destination.region,
+          country: state.data?.destination.country,
           zipcode: '',
         },
         dates: {
           pickup: {
-            start: state.data?.pickup_date,
-            end: state.data?.pickup_date,
+            start: new Date(`${state.data?.earliest_pick_up}`),
+            end: new Date(`${state.data?.latest_pick_up}`),
           },
           delivery: {
-            start: state.data?.deliver_date,
-            end: state.data?.deliver_date,
+            start: new Date(`${state.data?.earliest_delivery}`),
+            end: new Date(`${state.data?.latest_delivery}`),
           },
         },
         lugage_size: '',

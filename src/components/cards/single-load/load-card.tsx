@@ -6,7 +6,8 @@ import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SingleLoadInterface } from 'types/load.types';
+import { SingleLoadResponse } from 'types/load.types';
+import { getDate } from 'utils/getDate';
 import {
   GreenText,
   LoadBidCountWrapper,
@@ -23,43 +24,23 @@ import {
   ModalWrapper,
 } from './load-card.styles';
 
-const LoadCard: React.FC<SingleLoadInterface> = ({
-  bid_count,
-  deliver_address,
-  deliver_country,
-  deliver_date,
-  distance,
-  id,
-  pickup_address,
-  pickup_country,
-  pickup_date,
-  view_count,
-  clickable = false,
-  loadType = 'new',
-}) => {
+const LoadCard: React.FC<{
+  load: SingleLoadResponse;
+  clickable?: boolean;
+  loadType: 'new' | 'on_the_way' | 'delivered';
+}> = ({ load, clickable = false, loadType = 'new' }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
 
   const handleDelete = () => {
     // Delete api will connect here
-    console.log(id);
+    console.log(load.id);
   };
   const handleEdit = () => {
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
-        data: {
-          bid_count,
-          deliver_address,
-          deliver_country,
-          deliver_date,
-          distance,
-          id,
-          pickup_address,
-          pickup_country,
-          pickup_date,
-          view_count,
-        },
+        data: { load },
       },
     });
   };
@@ -68,7 +49,7 @@ const LoadCard: React.FC<SingleLoadInterface> = ({
     <>
       <LoadCardWrapper
         clickable={clickable}
-        onClick={() => navigate(`/load/${loadType}/${id}`)}
+        onClick={() => navigate(`/load/${loadType}/${load.id}`)}
       >
         <LoadCarLocationBox>
           <LoadCardSvgDistanceWrapper>
@@ -83,28 +64,34 @@ const LoadCard: React.FC<SingleLoadInterface> = ({
           <LoadCardPickupDeliverBox>
             <LoadCardLocationInfoWrapper>
               <GreenText>Pickup location</GreenText>
-              <Text weight="600">{pickup_address}</Text>
-              <Text>{pickup_country}</Text>
+              <Text weight="600">
+                {load.pickup_point.district.title} district,{' '}
+                {load.pickup_point.region.title} region
+              </Text>
+              <Text>{load.pickup_point.country.title}</Text>
               <Text>Pickup date & time</Text>
-              <Text>{pickup_date}</Text>
+              <Text>{getDate({ date: load.latest_pick_up })}</Text>
             </LoadCardLocationInfoWrapper>
             <LoadCardLocationInfoWrapper>
               <GreenText>Delivery location</GreenText>
-              <Text weight="600">{deliver_address}</Text>
-              <Text>{deliver_country}</Text>
+              <Text weight="600">
+                {load.destination.district.title} district,{' '}
+                {load.destination.region.title} region
+              </Text>
+              <Text>{load.destination.country.title}</Text>
               <Text>Pickup date & time</Text>
-              <Text>{deliver_date}</Text>
+              <Text>{getDate({ date: load.latest_delivery })}</Text>
             </LoadCardLocationInfoWrapper>
           </LoadCardPickupDeliverBox>
         </LoadCarLocationBox>
         <LoadCardBottomSideWrapper>
           <LoadCardDistanceSizeBox>
             <DistanceIcon size="24" />
-            <Text weight="600">{distance}</Text>
+            <Text weight="600">894 km</Text>
           </LoadCardDistanceSizeBox>
           <LoadBidCountWrapper>
-            <Text>Bid count : {bid_count}</Text>
-            <Text>View count : {view_count}</Text>
+            <Text>Bid count : {load.bids_count}</Text>
+            <Text>View count : {load.visits_count}</Text>
           </LoadBidCountWrapper>
           <LoadCardButtonWrapper>
             <Text onClick={open}>Delete Load</Text>

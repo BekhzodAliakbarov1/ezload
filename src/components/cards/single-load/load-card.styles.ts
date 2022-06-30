@@ -52,6 +52,8 @@ export const LoadCardLocationInfoWrapper = styled.div`
     margin-bottom: 4px;
     line-height: 20px;
     letter-spacing: 0.15px;
+    text-align: left;
+    font-size: 16px;
   }
   p:nth-child(3) {
     margin-bottom: 12px;

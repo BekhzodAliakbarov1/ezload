@@ -84,7 +84,7 @@ const SearchLoadsList = () => {
   return (
     <SearchLoadsListWrapper>
       <Text weight="700">Top drivers</Text>
-      <LoadsContainer loadType="new" clickable loads={data} />
+      {/* <LoadsContainer loadType="new" clickable loads={data} /> */}
     </SearchLoadsListWrapper>
   );
 };

@@ -80,7 +80,7 @@ const LoadInfoView = () => {
           )}
         </LoadInfowViewHeader>
         <LoadInfoDataWrapperBox>
-          <LoadCard {...data} loadType="new" />
+          {/* <LoadCard {...data} loadType="new" /> */}
           <LoadInfoCard loadType={loadType} />
         </LoadInfoDataWrapperBox>
         {isDriver ? (

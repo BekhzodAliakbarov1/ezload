@@ -1,95 +1,12 @@
 import LoadsContainer from 'components/loads-container/loads-container';
 import Text from 'components/typography/text';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLoads } from 'server-state/queries/use-load';
 import {
   ProfileLoadsWrapper,
   SectionControllerWrapper,
   SingleController,
 } from './profile-loads.styles';
-
-const date = new Date();
-
-const newLoadsData = [
-  {
-    id: 1,
-    pickup_address: 'Asaka city, Andijan region',
-    pickup_country: 'Uzbekistan',
-    pickup_date: date.toUTCString(),
-    deliver_address: 'Tashkent city, Andijan region',
-    deliver_country: 'Uzbekistan',
-    deliver_date: date.toUTCString(),
-    distance: '894 km',
-    bid_count: '232',
-    view_count: 2332,
-  },
-  {
-    id: 2,
-    pickup_address: 'Asaka city, Andijan region',
-    pickup_country: 'Uzbekistan',
-    pickup_date: date.toUTCString(),
-    deliver_address: 'Tashkent city, Andijan region',
-    deliver_country: 'Uzbekistan',
-    deliver_date: date.toUTCString(),
-    distance: '894 km',
-    bid_count: '232',
-    view_count: 2332,
-  },
-];
-
-const pendingLoadsData = [
-  {
-    id: 1,
-    pickup_address: 'Asaka city, Andijan region',
-    pickup_country: 'Uzbekistan',
-    pickup_date: date.toUTCString(),
-    deliver_address: 'Tashkent city, Andijan region',
-    deliver_country: 'Uzbekistan',
-    deliver_date: date.toUTCString(),
-    distance: '894 km',
-    bid_count: '232',
-    view_count: 2332,
-  },
-  {
-    id: 2,
-    pickup_address: 'Asaka city, Andijan region',
-    pickup_country: 'Uzbekistan',
-    pickup_date: date.toUTCString(),
-    deliver_address: 'Tashkent city, Andijan region',
-    deliver_country: 'Uzbekistan',
-    deliver_date: date.toUTCString(),
-    distance: '894 km',
-    bid_count: '232',
-    view_count: 2332,
-  },
-  {
-    id: 3,
-    pickup_address: 'Asaka city, Andijan region',
-    pickup_country: 'Uzbekistan',
-    pickup_date: date.toUTCString(),
-    deliver_address: 'Tashkent city, Andijan region',
-    deliver_country: 'Uzbekistan',
-    deliver_date: date.toUTCString(),
-    distance: '894 km',
-    bid_count: '232',
-    view_count: 2332,
-  },
-];
-
-const doneLoadsData = [
-  {
-    id: 1,
-    pickup_address: 'Asaka city, Andijan region',
-    pickup_country: 'Uzbekistan',
-    pickup_date: date.toLocaleDateString(),
-    deliver_address: 'Tashkent city, Andijan region',
-    deliver_country: 'Uzbekistan',
-    deliver_date: date.toLocaleDateString(),
-    distance: '894 km',
-    bid_count: '232',
-    view_count: 2332,
-  },
-];
 
 const ProfileLoads = () => {
   const [sectionType, setSectionType] = useState<'NEW' | 'PENDING' | 'DONE'>(
@@ -99,6 +16,23 @@ const ProfileLoads = () => {
   const onTheWayLoadsRequest = useLoads('on_the_way');
   const deliveredLoadsRequest = useLoads('delivered');
 
+  useEffect(() => {
+    switch (sectionType) {
+      case 'NEW':
+        newLoadsRequest.refetch();
+        break;
+      case 'PENDING':
+        onTheWayLoadsRequest.refetch();
+        break;
+      case 'DONE':
+        deliveredLoadsRequest.refetch();
+        break;
+      default:
+        console.log('ERROR');
+        break;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sectionType]);
   const onClickHandler = (type: 'NEW' | 'PENDING' | 'DONE') => {
     setSectionType(type);
   };
@@ -125,16 +59,36 @@ const ProfileLoads = () => {
           <Text weight="700">Delivered</Text>
         </SingleController>
       </SectionControllerWrapper>
-      {sectionType === 'NEW' && (
-        <LoadsContainer loads={newLoadsData} loadType="new" />
-      )}
-      {sectionType === 'PENDING' && (
-        <LoadsContainer loads={pendingLoadsData} loadType="on_the_way" />
-      )}
-      loadType
-      {sectionType === 'DONE' && (
-        <LoadsContainer loads={doneLoadsData} loadType="delivered" />
-      )}
+      {sectionType === 'NEW' &&
+        newLoadsRequest.data?.pages &&
+        newLoadsRequest.data.pages.map((page, index) => (
+          <LoadsContainer
+            hasNextPage={newLoadsRequest.hasNextPage}
+            key={index}
+            loads={page.results}
+            loadType="new"
+          />
+        ))}
+      {sectionType === 'PENDING' &&
+        onTheWayLoadsRequest.data?.pages &&
+        onTheWayLoadsRequest.data.pages.map((page, index) => (
+          <LoadsContainer
+            hasNextPage={onTheWayLoadsRequest.hasNextPage}
+            key={index}
+            loads={page.results}
+            loadType="on_the_way"
+          />
+        ))}
+      {sectionType === 'DONE' &&
+        deliveredLoadsRequest.data?.pages &&
+        deliveredLoadsRequest.data.pages.map((page, index) => (
+          <LoadsContainer
+            hasNextPage={deliveredLoadsRequest.hasNextPage}
+            key={index}
+            loads={page.results}
+            loadType="delivered"
+          />
+        ))}
     </ProfileLoadsWrapper>
   );
 };
