@@ -27,20 +27,20 @@ const MapComponent: React.FC<{
     zoom: 13.5,
   });
 
-  // debouncer for helping api call amount decrease
+  // // debouncer for helping api call amount decrease
   const debouncedSearch = debounce(() => {
     searchLocationWithAddress({ address });
   }, 1000);
 
-  // calling api
+  // // calling api
   useEffect(() => {
     debouncedSearch();
     return () => {
       debouncedSearch.cancel();
     };
-  }, [address, debouncedSearch]);
+  }, [address]);
 
-  // if location change from input animate map handler
+  // // if location change from input animate map handler
   useEffect(() => {
     if (latLngFromName) {
       setData((val) => {
@@ -50,18 +50,19 @@ const MapComponent: React.FC<{
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [latLngFromName?.lat, latLngFromName?.lng]);
 
-  // map click handler
-  const clickHandler = (location: GoogleMapReact.ClickEventValue) => {
-    const { lat, lng } = location;
-    setData((val) => {
-      return { ...val, center: { lat, lng } };
-    });
-    searchLocationWithLatLong({ lat, lng });
-  };
+  // // map click handler
+  // const clickHandler = (location: GoogleMapReact.ClickEventValue) => {
+  //   const { lat, lng } = location;
+  //   setData((val) => {
+  //     return { ...val, center: { lat, lng } };
+  //   });
+  //   searchLocationWithLatLong({ lat, lng });
+  // };
 
   const handleMapLoads = ({ maps }: { maps: any }) => {
     assignMap(maps);
   };
+  console.log(data.center);
 
   return (
     <>
@@ -77,7 +78,7 @@ const MapComponent: React.FC<{
         }}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={handleMapLoads}
-        onClick={clickHandler}
+        // onClick={clickHandler}
         center={data.center}
         options={{ maxZoom: 20, minZoom: 5 }}
         zoom={data.zoom}

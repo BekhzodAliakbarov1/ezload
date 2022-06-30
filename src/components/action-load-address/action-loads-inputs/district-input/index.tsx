@@ -76,18 +76,16 @@ const DistrictInput: React.FC<{
         </List>
       }
     >
-      <Tooltip title="Please select country and region">
-        <SearchInput
-          {...bindToggle(popperState)}
-          placeholder={`District ${!region ? '(Region need)' : ''}`}
-          onChange={(e) => {
-            setDistrict(e.target.value);
-            handleSearch();
-          }}
-          value={district}
-          disabled={!region}
-        />
-      </Tooltip>
+      <SearchInput
+        {...bindToggle(popperState)}
+        placeholder={`District ${!region ? '(Region need)' : ''}`}
+        onChange={(e) => {
+          setDistrict(e.target.value);
+          handleSearch();
+        }}
+        value={district}
+        disabled={!region}
+      />
     </Popper>
   );
 };

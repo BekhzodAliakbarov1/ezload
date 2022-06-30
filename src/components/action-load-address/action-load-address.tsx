@@ -48,7 +48,6 @@ const ActionLoadAddress: React.FC<{
       },
     });
   };
-
   return (
     <ActionLoaddAddressWrapper>
       <Text size="md" weight="600">
@@ -105,9 +104,9 @@ const ActionLoadAddress: React.FC<{
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>
           <ActionLoadMapWrapper>
-            {/* <MapComponent
+            <MapComponent
               address={`${data[type].country},${data[type].region},${data[type].district}`}
-            /> */}
+            />
           </ActionLoadMapWrapper>
           <SaveAddressWrapper>
             <StyledIconButton onClick={() => setChecked(!checked)}>
