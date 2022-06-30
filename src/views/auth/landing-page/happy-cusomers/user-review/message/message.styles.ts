@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const MessageWrapper = styled.div`
   max-width: 569px;

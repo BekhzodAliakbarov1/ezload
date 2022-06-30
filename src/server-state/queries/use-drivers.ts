@@ -1,0 +1,44 @@
+// this file is for getting only data with pagination
+import { useInfiniteQuery } from 'react-query';
+import { request } from '../api';
+
+interface SingleDriverResponse {
+  id: number;
+  first_name: string;
+  last_name: string;
+  rates_avg: any;
+  vehicle: any;
+}
+
+interface DriversResponse {
+  count: number;
+  next: null | number;
+  previous: null | number;
+  results: SingleDriverResponse[];
+}
+
+const fetchDrivers = async ({
+  pageParam = 1,
+  type,
+}: {
+  pageParam?: number;
+  type: 'worked_before' | 'top' | 'other';
+}) => {
+  const data = await request
+    .get<DriversResponse>(`/driver/${type}/list/?page=${pageParam}&limit=6`)
+    .then((res) => res.data);
+  return {
+    results: data.results,
+    nextPage: pageParam + 1,
+    totalPages: Math.ceil(Number(data?.count) / 10),
+  };
+};
+
+export const useDrivers = (type: 'worked_before' | 'top' | 'other') => {
+  return useInfiniteQuery(['loads'], () => fetchDrivers({ type }), {
+    getNextPageParam(lastPage) {
+      if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
+      return undefined;
+    },
+  });
+};

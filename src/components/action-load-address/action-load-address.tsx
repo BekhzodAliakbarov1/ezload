@@ -20,8 +20,10 @@ import CloseIcon from 'components/icons/close.icon';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
-
 import MapComponent from 'components/map-component';
+import CountryInput from './action-loads-inputs/country-input';
+import RegionInput from './action-loads-inputs/region-input';
+import DistrictInput from './action-loads-inputs/district-input';
 
 const ActionLoadAddress: React.FC<{
   title: string;
@@ -30,22 +32,23 @@ const ActionLoadAddress: React.FC<{
   const [location, setLocation] = useState<string>('Samarkand');
   const [checked, setChecked] = useState(false);
   const { data, setValues } = useData();
-  const { addresline_1, addresline_2, country, region, street, zipcode } =
+  const { addresline_1, addresline_2, country, region, district, zipcode } =
     data[type];
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
     setLocation(event.target.value as string);
   };
 
-  const handleInputChange = (value: string, filed_name: string) => {
+  const handleInputChange = (value: string, field_name: string) => {
     setValues({
       ...data,
       [type]: {
         ...data[type],
-        [filed_name]: value,
+        [field_name]: value,
       },
     });
   };
+
   return (
     <ActionLoaddAddressWrapper>
       <Text size="md" weight="600">
@@ -82,21 +85,18 @@ const ActionLoadAddress: React.FC<{
             placeholder="Addressline 2"
             value={addresline_2}
           />
-          <Input
-            onChange={(e) => handleInputChange(e.target.value, 'street')}
-            placeholder="Street"
-            value={street}
+          <DistrictInput
+            country={country}
+            onChange={handleInputChange}
+            region={region}
+            value={district}
           />
-          <Input
-            onChange={(e) => handleInputChange(e.target.value, 'region')}
-            placeholder="Region"
+          <RegionInput
             value={region}
+            country={country}
+            onChange={handleInputChange}
           />
-          <Input
-            onChange={(e) => handleInputChange(e.target.value, 'country')}
-            placeholder="Country"
-            value={country}
-          />
+          <CountryInput value={country} onChange={handleInputChange} />
           <Input
             onChange={(e) => handleInputChange(e.target.value, 'zipcode')}
             placeholder="Zip Code"
@@ -105,7 +105,9 @@ const ActionLoadAddress: React.FC<{
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>
           <ActionLoadMapWrapper>
-            <MapComponent />
+            {/* <MapComponent
+              address={`${data[type].country},${data[type].region},${data[type].district}`}
+            /> */}
           </ActionLoadMapWrapper>
           <SaveAddressWrapper>
             <StyledIconButton onClick={() => setChecked(!checked)}>

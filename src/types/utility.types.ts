@@ -8,6 +8,6 @@ export interface IListFilters {
   page?: number;
   search?: string;
   limit?: number;
-  category_name?: string;
-  group_id?: string;
+  country?: string;
+  region?: string;
 }

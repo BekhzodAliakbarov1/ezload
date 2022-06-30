@@ -2,6 +2,10 @@ import { useState } from 'react';
 
 export const useLocationName = () => {
   const [map, setMap] = useState<any>();
+  const [latLngFromName, setLatLngFromName] = useState<{
+    lat: number;
+    lng: number;
+  }>();
 
   const assignMap = (data: any) => {
     setMap(data);
@@ -24,14 +28,32 @@ export const useLocationName = () => {
             const country = value.at(-1);
             const region = value.at(-2);
             const street = value.at(-3);
-            console.log({ country, region, street });
+            console.log({ street, region, country });
           }
         }
       }
     );
   };
 
-  const handleClick = () => console.log(map);
+  const searchLocationWithAddress = ({ address }: { address: string }) => {
+    if (address.length > 2) {
+      const geocoder = new map.Geocoder();
 
-  return { assignMap, handleClick, searchLocationWithLatLong };
+      geocoder.geocode({ address: address }, (results: any) => {
+        const lat = results[0].geometry.location.lat();
+        const lng = results[0].geometry.location.lng();
+        setLatLngFromName({
+          lat,
+          lng,
+        });
+      });
+    }
+  };
+
+  return {
+    assignMap,
+    latLngFromName,
+    searchLocationWithLatLong,
+    searchLocationWithAddress,
+  };
 };

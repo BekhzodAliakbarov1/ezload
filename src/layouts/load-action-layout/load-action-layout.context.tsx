@@ -8,7 +8,7 @@ interface LoadContextInterface {
     pickup: {
       addresline_1: string;
       addresline_2: string;
-      street: string;
+      district: string;
       region: string;
       country: string;
       zipcode: string;
@@ -16,7 +16,7 @@ interface LoadContextInterface {
     delivery: {
       addresline_1: string;
       addresline_2: string;
-      street: string;
+      district: string;
       region: string;
       country: string;
       zipcode: string;
@@ -47,7 +47,7 @@ const defaultdata = {
   pickup: {
     addresline_1: '',
     addresline_2: '',
-    street: '',
+    district: '',
     region: '',
     country: '',
     zipcode: '',
@@ -55,7 +55,7 @@ const defaultdata = {
   delivery: {
     addresline_1: '',
     addresline_2: '',
-    street: '',
+    district: '',
     region: '',
     country: '',
     zipcode: '',

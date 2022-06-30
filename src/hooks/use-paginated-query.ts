@@ -8,15 +8,10 @@ interface IDetails extends Omit<IListFilters, 'page'> {
   path: string;
 }
 
-interface IEnabled {
-  isEnabled: boolean | undefined;
-}
-
 // I stands for Item in a list and O for additional data
 const usePaginatedQuery = <I, O = unknown>(
   queryKey: QueryKey,
-  details: IDetails,
-  isEnabled?: IEnabled
+  details: IDetails
 ) =>
   useInfiniteQuery(
     queryKey,
@@ -26,11 +21,11 @@ const usePaginatedQuery = <I, O = unknown>(
           details.path +
             qs.stringify(
               {
+                country: details.country,
+                region: details.region,
                 page: pageParam,
                 limit: details.limit ?? 10,
                 search: details.search,
-                group_id: details.group_id,
-                category_name: details.category_name,
               },
               { addQueryPrefix: true }
             )
@@ -47,7 +42,7 @@ const usePaginatedQuery = <I, O = unknown>(
         if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
         return undefined;
       },
-      enabled: isEnabled?.isEnabled !== false,
+      enabled: false,
     }
   );
 

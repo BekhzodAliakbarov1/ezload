@@ -1,12 +1,18 @@
 import React, { useState, useEffect, memo } from 'react';
 import GoogleMapReact from 'google-map-react';
 import MapLocationIcon from 'components/icons/map-location.icon';
-import { useCurrentLocation } from 'hooks/use-current-location';
 import { useLocationName } from 'hooks/use-location-name';
+import { debounce } from 'lodash';
 
-const MapComponent = memo(() => {
-  const { latLong } = useCurrentLocation();
-  const { assignMap, searchLocationWithLatLong } = useLocationName();
+const MapComponent: React.FC<{
+  address: string;
+}> = memo(({ address }) => {
+  const {
+    assignMap,
+    searchLocationWithLatLong,
+    searchLocationWithAddress,
+    latLngFromName,
+  } = useLocationName();
   const [data, setData] = useState<{
     center: {
       lat: number;
@@ -18,15 +24,33 @@ const MapComponent = memo(() => {
       lat: 41.313708873016694,
       lng: 69.2353541726438,
     },
-    zoom: 10,
+    zoom: 13.5,
   });
 
-  useEffect(() => {
-    setData((val) => {
-      return { ...val, center: latLong };
-    });
-  }, [latLong]);
+  // debouncer for helping api call amount decrease
+  const debouncedSearch = debounce(() => {
+    searchLocationWithAddress({ address });
+  }, 1000);
 
+  // calling api
+  useEffect(() => {
+    debouncedSearch();
+    return () => {
+      debouncedSearch.cancel();
+    };
+  }, [address, debouncedSearch]);
+
+  // if location change from input animate map handler
+  useEffect(() => {
+    if (latLngFromName) {
+      setData((val) => {
+        return { ...val, center: latLngFromName };
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [latLngFromName?.lat, latLngFromName?.lng]);
+
+  // map click handler
   const clickHandler = (location: GoogleMapReact.ClickEventValue) => {
     const { lat, lng } = location;
     setData((val) => {

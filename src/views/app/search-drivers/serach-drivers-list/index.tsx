@@ -7,6 +7,7 @@ import {
 } from './search-drivers-list.styles';
 import image from 'assets/img/profile.png';
 import { Link } from 'react-router-dom';
+import { useDrivers } from 'server-state/queries/use-drivers';
 const data = [
   {
     id: 1,
@@ -65,6 +66,9 @@ const data = [
 ];
 
 const SearchDriversList = () => {
+  const topDriversResponse = useDrivers('top');
+  const workedBeforeDriversResponse = useDrivers('worked_before');
+
   return (
     <SearchDriversListWrapper>
       <Text weight="700">Top drivers</Text>
