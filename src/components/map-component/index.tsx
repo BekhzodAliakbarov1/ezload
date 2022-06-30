@@ -38,6 +38,7 @@ const MapComponent: React.FC<{
     return () => {
       debouncedSearch.cancel();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [address]);
 
   // // if location change from input animate map handler

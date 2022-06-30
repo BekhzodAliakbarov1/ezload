@@ -39,12 +39,16 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
               <DriverCard
                 styles={{ marginBottom: '40px' }}
                 key={value}
-                car_type="Isuzu"
                 image={ProfileImg}
-                load_number={'500'}
-                load_weight={'500'}
-                name="Antonio Fred."
-                rating={2}
+                first_name="Antonio Fred."
+                id={3}
+                last_name=""
+                rates_avg={3}
+                vehicle={{
+                  capacity: '30',
+                  licence_plate: '01A777AB',
+                  title: 'MAN',
+                }}
                 sizes="104px"
                 shadow
               />
@@ -59,12 +63,16 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
               <DriverCard
                 styles={{ marginBottom: '40px' }}
                 key={value}
-                car_type="Isuzu"
                 image={ProfileImg}
-                load_number={'500'}
-                load_weight={'500'}
-                name="Antonio Fred."
-                rating={2}
+                first_name="Antonio Fred."
+                id={3}
+                last_name=""
+                rates_avg={3}
+                vehicle={{
+                  capacity: '30',
+                  licence_plate: '01A777AB',
+                  title: 'MAN',
+                }}
                 sizes="104px"
                 shadow
               />

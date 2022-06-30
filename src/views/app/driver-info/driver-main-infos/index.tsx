@@ -9,43 +9,20 @@ import {
   DriversMainInfoLocationsWrapper,
   ModalButtonsWrapper,
 } from './driver-main-infos.styles';
-import image from 'assets/img/profile.png';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Button from 'components/button/button';
 import { useModal } from 'hooks/use-modal';
 import { Modal } from '@mui/material';
+import { SingleDriverResponse } from 'server-state/queries/use-driver';
 
-const locations = [
-  {
-    id: 1,
-    name: 'Asaka, Andijan, Uzbekistan',
-  },
-  {
-    id: 2,
-    name: 'Almata, Kazakstan',
-  },
-  {
-    id: 3,
-    name: 'Ekaterinbur, Russia',
-  },
-  {
-    id: 4,
-    name: 'Moscow, Russia',
-  },
-  {
-    id: 5,
-    name: 'Kaliningrad, Russia',
-  },
-];
-
-const DriverMainInfos = () => {
+const DriverMainInfos: React.FC<{
+  data?: SingleDriverResponse;
+}> = ({ data }) => {
   const { pathname } = useLocation();
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
-
-  // user is comming from search driver list or from bidded list
   const biddedDriver = pathname.includes('load');
 
   const handleClick = () => {
@@ -58,28 +35,31 @@ const DriverMainInfos = () => {
     <>
       <DriverMainInfosWrapper>
         <AvatarWrapper>
-          <Avatar sizes="196px" src={image} />
-          <RatingComponent value={5} iconSize="20" />
+          <Avatar sizes="196px" src={data?.profile_picture?.file} />
+          <RatingComponent value={data?.average_rate ?? 1} iconSize="20" />
         </AvatarWrapper>
         <DriversMainInfoDataWrapper>
           <Text color="main_90" className="name">
-            Antonio Fred.
+            {data?.first_name}
           </Text>
-          <Text className="weight_loads">Man (500 Ton)</Text>
+          <Text className="weight_loads">
+            {data?.vehicle?.title.toLocaleUpperCase()} (
+            {data?.vehicle?.capacity} Ton)
+          </Text>
           <Text className="number_loads" weight="700">
             1K+ Loads
           </Text>
           <Text className="label_number">Plate number</Text>
           <Text className="car_number" weight="700">
-            UZB 01 W 345 WE
+            {data?.vehicle?.licence_plate}
           </Text>
         </DriversMainInfoDataWrapper>
         <DriversMainInfoLocationsWrapper>
           <Text color="main_70">Locations</Text>
           <div>
-            {locations.map((location) => (
-              <Text color="main_80" key={location.id} weight="700">
-                {location.name}
+            {data?.routes?.map((location, index) => (
+              <Text color="main_80" key={index} weight="700">
+                {location.country.title}, {location.region.title}
               </Text>
             ))}
           </div>

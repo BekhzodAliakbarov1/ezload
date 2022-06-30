@@ -2,19 +2,21 @@
 import { useInfiniteQuery } from 'react-query';
 import { request } from '../api';
 
-interface SingleDriverResponse {
-  id: number;
-  first_name: string;
-  last_name: string;
-  rates_avg: any;
-  vehicle: any;
-}
-
 interface DriversResponse {
   count: number;
   next: null | number;
   previous: null | number;
-  results: SingleDriverResponse[];
+  results: {
+    id: number;
+    first_name: string;
+    last_name: string;
+    rates_avg: number;
+    vehicle: {
+      title: string;
+      licence_plate: string;
+      capacity: string;
+    };
+  }[];
 }
 
 const fetchDrivers = async ({
@@ -35,7 +37,7 @@ const fetchDrivers = async ({
 };
 
 export const useDrivers = (type: 'worked_before' | 'top' | 'other') => {
-  return useInfiniteQuery(['loads'], () => fetchDrivers({ type }), {
+  return useInfiniteQuery(['drivers', type], () => fetchDrivers({ type }), {
     getNextPageParam(lastPage) {
       if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
       return undefined;

@@ -17,64 +17,15 @@ import LoadBidsModals from './load-bids-modals';
 
 const data = [
   {
-    id: 1,
-    load_weight: '20 Ton',
-    car_type: 'Isuzu ',
-    image: image,
-    name: 'Igor Tsoy',
-    rating: 4,
-    load_number: '100+',
-    bid_cost: '3 000 000 sum',
-  },
-  {
-    id: 2,
-    load_weight: '1000 Ton',
-    car_type: 'Volvo',
-    image: image,
-    name: 'Farid Ahmedov',
-    rating: 3,
-    load_number: '400+',
-    bid_cost: '3 000 000 sum',
-  },
-  {
+    first_name: 'Antonio Fred.',
     id: 3,
-    load_weight: '20 Ton',
-    car_type: 'Isuzu ',
-    image: image,
-    name: 'Igor Tsoy',
-    rating: 3,
-    load_number: '100+',
-    bid_cost: '3 000 000 sum',
-  },
-  {
-    id: 4,
-    load_weight: '20 Ton',
-    car_type: 'Isuzu ',
-    image: image,
-    name: 'Igor Tsoy',
-    rating: 3,
-    load_number: '100+',
-    bid_cost: '3 000 000 sum',
-  },
-  {
-    id: 5,
-    load_weight: '20 Ton',
-    car_type: 'Isuzu ',
-    image: image,
-    name: 'Igor Tsoy',
-    rating: 3,
-    load_number: '100+',
-    bid_cost: '3 000 000 sum',
-  },
-  {
-    id: 6,
-    load_weight: '20 Ton',
-    car_type: 'Isuzu ',
-    image: image,
-    name: 'Igor Tsoy',
-    rating: 3,
-    load_number: '100+',
-    bid_cost: '3 000 000 sum',
+    last_name: '',
+    rates_avg: 3.5,
+    vehicle: {
+      capacity: '20',
+      licence_plate: '01245QWE',
+      title: 'isuzu',
+    },
   },
 ];
 
@@ -113,7 +64,10 @@ const LoadBids: React.FC<{ loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY' }> = ({
                 </Link>
                 <LoadBidDriverCostWrapper>
                   <DollarIcon />
-                  <Text weight="600">{driver.bid_cost}</Text>
+                  <Text weight="600">
+                    {/* {driver.bid_cost} */}
+                    200
+                  </Text>
                 </LoadBidDriverCostWrapper>
               </LoadBidDriverCard>
             ))}
@@ -121,7 +75,7 @@ const LoadBids: React.FC<{ loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY' }> = ({
         ) : (
           <LoadBidsDataBox>
             <DriverCard
-              {...singleData}
+              {...data[0]}
               shadow
               sizes="104px"
               clickable

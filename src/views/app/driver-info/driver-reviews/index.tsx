@@ -3,40 +3,36 @@ import FileIcon from 'components/icons/file.icon';
 import Text from 'components/typography/text';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { SingleDriverResponse } from 'server-state/queries/use-driver';
 import {
   DriverReviewsDataBox,
   DriverReviewsWrapper,
   EmptyReviewWrapper,
 } from './driver-reviews.styles';
 
-export const DriverReviews = () => {
+export const DriverReviews: React.FC<{
+  data?: SingleDriverResponse;
+}> = ({ data }) => {
   const { id } = useParams<{ id: string }>();
   const [isEmpty, setisEmpty] = useState(false);
-  useEffect(() => {
-    if (Number(id) % 2 === 0) {
-      setisEmpty(true);
-    }
-  }, [id]);
+  console.log(Boolean(data?.reviews));
+  console.log(data?.reviews);
 
   return (
     <DriverReviewsWrapper>
       <Text>Driver reviews</Text>
-      <DriverReviewsDataBox isEmpty={isEmpty}>
-        {isEmpty ? (
+      <DriverReviewsDataBox isEmpty={!data?.reviews[0]}>
+        {data?.reviews[0] ? (
+          <>
+            {data.reviews.map((review, index) => (
+              <ReviewCard key={index} {...review} />
+            ))}
+          </>
+        ) : (
           <EmptyReviewWrapper>
             <FileIcon />
             <Text>No reviews yet</Text>
           </EmptyReviewWrapper>
-        ) : (
-          <>
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-          </>
         )}
       </DriverReviewsDataBox>
     </DriverReviewsWrapper>

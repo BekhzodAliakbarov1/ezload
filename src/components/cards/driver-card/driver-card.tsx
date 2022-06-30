@@ -6,26 +6,28 @@ import RatingComponent from 'components/rating/rating';
 import { CSSProperties } from 'styled-components';
 
 const DriverCard: React.FC<{
-  image: string;
-  name: string;
-  car_type: string;
-  load_weight: string;
-  load_number: string;
-  rating: number;
+  id: number;
+  image?: string;
+  first_name: string;
+  last_name: string;
+  vehicle?: {
+    capacity: string;
+    title: string;
+    licence_plate: string;
+  };
+  rates_avg: number;
   sizes?: string;
   shadow?: boolean;
   styles?: CSSProperties;
   clickable?: boolean;
   bg_color?: string;
 }> = ({
-  load_weight,
-  car_type,
   image,
-  name,
-  rating,
+  first_name,
+  rates_avg,
   sizes,
   styles,
-  load_number,
+  vehicle,
   shadow = false,
   clickable = false,
   bg_color = '',
@@ -40,15 +42,16 @@ const DriverCard: React.FC<{
       <Avatar sizes={sizes} src={image} />
       <DriverCardInfoWrapper>
         <Text color="main_100" size="lg" weight="700">
-          {name}
+          {first_name}
         </Text>
         <Text size="sm" color="main_100" weight="400">
-          {car_type} ({load_weight})
+          {vehicle?.title} ({vehicle?.capacity} Ton)
         </Text>
         <Text size="md" weight="600">
-          {load_number}+ LOADS
+          {/* {load_number}+ LOADS */}
+          100+ LOADS
         </Text>
-        <RatingComponent value={rating} />
+        <RatingComponent value={rates_avg} />
       </DriverCardInfoWrapper>
     </DriverCardWrapper>
   );

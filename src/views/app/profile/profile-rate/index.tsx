@@ -73,13 +73,13 @@ const ProfileRate = () => {
           </EmptyReviewWrapper>
         ) : (
           <>
+            {/* <ReviewCard />
             <ReviewCard />
             <ReviewCard />
             <ReviewCard />
             <ReviewCard />
             <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
+            <ReviewCard /> */}
           </>
         )}
       </ProfileRateReviewsDataBox>

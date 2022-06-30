@@ -1,16 +1,21 @@
 import Text from 'components/typography/text';
 import React from 'react';
+import { useParams } from 'react-router';
+import { useSingleDriver } from 'server-state/queries/use-driver';
 import { DriverInfoBox, DriverInfoWrapper } from './driver-info.styles';
 import DriverMainInfos from './driver-main-infos';
 import { DriverReviews } from './driver-reviews';
 
 const DriverInfo = () => {
+  const { id = '0' } = useParams<{ id: string }>();
+  const { data } = useSingleDriver(id);
+
   return (
     <DriverInfoWrapper>
       <Text weight="700">Driver details</Text>
       <DriverInfoBox>
-        <DriverMainInfos />
-        <DriverReviews />
+        <DriverMainInfos data={data} />
+        <DriverReviews data={data} />
       </DriverInfoBox>
     </DriverInfoWrapper>
   );
