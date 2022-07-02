@@ -38,8 +38,6 @@ const LoadCard: React.FC<{
     console.log(load.id);
   };
   const handleEdit = () => {
-    console.log('1221212121');
-
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
@@ -98,7 +96,7 @@ const LoadCard: React.FC<{
           </LoadBidCountWrapper>
           {withButtons && (
             <LoadCardButtonWrapper>
-              {/* <Text onClick={open}>Delete Load</Text> */}
+              <Text onClick={open}>Delete Load</Text>
               <Text onClick={handleEdit}>Change details</Text>
             </LoadCardButtonWrapper>
           )}

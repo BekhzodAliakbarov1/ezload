@@ -57,19 +57,19 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
     if (isDriver) {
       login({
         tokens: {
-          access: 'cdc7773d4f96ec8e39fd0cc2b2fe036dc5b50270',
+          access: 'd9b452c2e3e55c10280c10da8afdda551fd6399e	',
           refresh: '1221',
         },
-        userId: '998996026611',
+        userId: '12',
         userType: 'customer',
       });
     } else {
       login({
         tokens: {
-          access: 'cdc7773d4f96ec8e39fd0cc2b2fe036dc5b50270',
+          access: 'ff6144cab95f5c5854290e4dc81796ab747d81dc	',
           refresh: '1221',
         },
-        userId: '998996026611',
+        userId: '3',
         userType: 'driver',
       });
     }

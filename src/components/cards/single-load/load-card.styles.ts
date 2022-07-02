@@ -118,18 +118,17 @@ export const LoadBidCountWrapper = styled.div`
 `;
 
 export const LoadCardButtonWrapper = styled.div`
-  /* width: 100%; */
-  /* max-width: 221px; */
-  width: fit-content;
+  width: 100%;
+  max-width: 221px;
   display: flex;
   justify-content: space-between;
   background-color: ${(props) => props.theme.text.main_60};
   padding: 8px 16px;
   border-radius: 2px;
   p {
-    color: ${colors.white};
     font-size: 13px;
     line-height: 16px;
+    color: ${colors.white};
     cursor: pointer;
   }
 `;
