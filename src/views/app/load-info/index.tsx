@@ -8,7 +8,7 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React, { useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useLoad } from 'server-state/queries/use-load';
 import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
@@ -29,12 +29,10 @@ const LoadInfoView = () => {
   const [loadType, setLoadType] = useState<'NEW' | 'BIDDED' | 'ON_THE_WAY'>(
     'NEW'
   );
-  console.log(id);
 
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ id: '2' });
-  console.log(singleLoadRequest.data);
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -75,6 +73,7 @@ const LoadInfoView = () => {
               clickable={false}
               load={singleLoadRequest.data}
               loadType={type ?? 'new'}
+              withButtons
             />
           )}
           {singleLoadRequest.data && (

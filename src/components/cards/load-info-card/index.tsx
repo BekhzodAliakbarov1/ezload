@@ -15,6 +15,8 @@ const LoadInfoCard: React.FC<{
   loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
   data: SingleLoadDetailsResponse;
 }> = ({ loadType, data }) => {
+  console.log(loadType);
+
   return (
     <LoadInfoCradWrapper>
       <Text weight="600">Information about load</Text>

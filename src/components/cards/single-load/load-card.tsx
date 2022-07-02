@@ -28,7 +28,8 @@ const LoadCard: React.FC<{
   load: SingleLoadResponse;
   clickable?: boolean;
   loadType: 'new' | 'on_the_way' | 'delivered';
-}> = ({ load, clickable = true, loadType = 'new' }) => {
+  withButtons?: boolean;
+}> = ({ load, clickable = true, loadType = 'new', withButtons = false }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
 
@@ -37,6 +38,8 @@ const LoadCard: React.FC<{
     console.log(load.id);
   };
   const handleEdit = () => {
+    console.log('1221212121');
+
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
@@ -93,10 +96,12 @@ const LoadCard: React.FC<{
             <Text>Bid count : {load.bids_count}</Text>
             <Text>View count : {load.visits_count}</Text>
           </LoadBidCountWrapper>
-          <LoadCardButtonWrapper>
-            <Text onClick={open}>Delete Load</Text>
-            <Text onClick={handleEdit}>Change details</Text>
-          </LoadCardButtonWrapper>
+          {withButtons && (
+            <LoadCardButtonWrapper>
+              {/* <Text onClick={open}>Delete Load</Text> */}
+              <Text onClick={handleEdit}>Change details</Text>
+            </LoadCardButtonWrapper>
+          )}
         </LoadCardBottomSideWrapper>
       </LoadCardWrapper>
       <Modal open={isOpen} onClose={close}>
