@@ -3,16 +3,13 @@ import GoogleMapReact from 'google-map-react';
 import MapLocationIcon from 'components/icons/map-location.icon';
 import { useLocationName } from 'hooks/use-location-name';
 import { debounce } from 'lodash';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
 const MapComponent: React.FC<{
-  address: string;
-}> = memo(({ address }) => {
-  const {
-    assignMap,
-    searchLocationWithLatLong,
-    searchLocationWithAddress,
-    latLngFromName,
-  } = useLocationName();
+  type: 'pickup' | 'delivery';
+}> = memo(({ type }) => {
+  const { assignMap, searchLocationWithAddress, latLngFromName } =
+    useLocationName();
   const [data, setData] = useState<{
     center: {
       lat: number;
@@ -27,9 +24,16 @@ const MapComponent: React.FC<{
     zoom: 13.5,
   });
 
+  const { data: loadInfo } = useData();
+  const { country, district, region } = loadInfo[type];
+
   // // debouncer for helping api call amount decrease
   const debouncedSearch = debounce(() => {
-    searchLocationWithAddress({ address });
+    console.log('called');
+
+    searchLocationWithAddress({
+      address: `${country}, ${region}, ${district}`,
+    });
   }, 1000);
 
   // // calling api
@@ -39,7 +43,7 @@ const MapComponent: React.FC<{
       debouncedSearch.cancel();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [address]);
+  }, [`${country}, ${region}, ${district}`]);
 
   // // if location change from input animate map handler
   useEffect(() => {
@@ -63,7 +67,6 @@ const MapComponent: React.FC<{
   const handleMapLoads = ({ maps }: { maps: any }) => {
     assignMap(maps);
   };
-  console.log(data.center);
 
   return (
     <>

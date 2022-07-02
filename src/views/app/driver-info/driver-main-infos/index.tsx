@@ -11,24 +11,27 @@ import {
 } from './driver-main-infos.styles';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Button from 'components/button/button';
 import { useModal } from 'hooks/use-modal';
 import { Modal } from '@mui/material';
 import { SingleDriverResponse } from 'server-state/queries/use-driver';
+import { useAcceptBid } from 'server-state/queries/use-bid';
 
 const DriverMainInfos: React.FC<{
   data?: SingleDriverResponse;
 }> = ({ data }) => {
-  const { pathname } = useLocation();
+  const { bidId, id } = useParams<{ bidId?: string; id: string }>();
+  const acceptBidRequest = useAcceptBid({ bid_id: bidId });
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
-  const biddedDriver = pathname.includes('load');
+  const biddedDriver = Boolean(bidId);
 
   const handleClick = () => {
-    // accept bid
-    navigate(-1);
-    close();
+    acceptBidRequest.refetch().then(() => {
+      navigate(-1);
+      close();
+    });
   };
 
   return (
@@ -77,8 +80,8 @@ const DriverMainInfos: React.FC<{
       <Modal open={isOpen} onClose={close}>
         <AcceptBidModalWrapper>
           <Text>
-            Are you sure you want to accept this bid from “Driver name” with the
-            amount of “4,700,000”?
+            Are you sure you want to accept this bid from {data?.first_name}{' '}
+            with the amount of ?
           </Text>
           <ModalButtonsWrapper>
             <Button onClick={handleClick}>Accept</Button>

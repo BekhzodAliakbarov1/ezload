@@ -36,7 +36,7 @@ export const useLocationName = () => {
   };
 
   const searchLocationWithAddress = ({ address }: { address: string }) => {
-    if (address.length > 2) {
+    if (address.length > 2 && map) {
       const geocoder = new map.Geocoder();
 
       geocoder.geocode({ address: address }, (results: any) => {

@@ -7,7 +7,7 @@ import {
   DateFromToWrapper,
 } from './load-date-time.styles';
 
-const LoadDateTime = () => {
+const LoadDateTime: React.FC<{ isEditing: boolean }> = ({ isEditing }) => {
   return (
     <LoadDateTimeWrapper>
       <Text color="main_80" weight="700">
@@ -18,7 +18,7 @@ const LoadDateTime = () => {
           Pickup date
         </Text>
         <DateFromToWrapper>
-          <DateRangePickerInput type="pickup" />
+          <DateRangePickerInput isEditing={isEditing} type="pickup" />
         </DateFromToWrapper>
       </DateSelectBox>
       <DateSelectBox>
@@ -26,7 +26,7 @@ const LoadDateTime = () => {
           Delivery date
         </Text>
         <DateFromToWrapper>
-          <DateRangePickerInput type="delivery" />
+          <DateRangePickerInput isEditing={isEditing} type="delivery" />
         </DateFromToWrapper>
       </DateSelectBox>
     </LoadDateTimeWrapper>

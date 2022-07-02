@@ -105,7 +105,8 @@ const ActionLoadAddress: React.FC<{
         <ActionLoadMapContentWrapper>
           <ActionLoadMapWrapper>
             <MapComponent
-              address={`${data[type].country},${data[type].region},${data[type].district}`}
+              type={type}
+              // address={`${data[type].country},${data[type].region},${data[type].district}`}
             />
           </ActionLoadMapWrapper>
           <SaveAddressWrapper>

@@ -6,7 +6,7 @@ import Popper from 'components/popper/popper';
 import Text from 'components/typography/text';
 import { bindPopper, bindToggle, usePopper } from 'hooks/use-popper';
 import { debounce } from 'lodash';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDistrict } from 'server-state/queries/use-district';
 import { Div, List, popperStyles, Rows } from '../action-loads-input.styles';
 
@@ -27,6 +27,10 @@ const DistrictInput: React.FC<{
     data,
   } = useDistrict({ search: district, country, region });
 
+  useEffect(() => {
+    setDistrict(value);
+  }, [value]);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(debounce(refetch, 1000), [value.length]);
 
@@ -34,7 +38,6 @@ const DistrictInput: React.FC<{
     setDistrict(title);
     onChange(title, 'district');
   };
-
   return (
     <Popper
       {...bindPopper(popperState)}
@@ -53,7 +56,7 @@ const DistrictInput: React.FC<{
           >
             <Spinner loading={isLoading} height="100%">
               {data?.pages.map((page) =>
-                page?.results.length
+                page?.results?.length > 0
                   ? page.results.map((item) => (
                       <Rows
                         key={item.id}

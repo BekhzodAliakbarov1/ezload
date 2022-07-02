@@ -13,11 +13,6 @@ import {
 export const DriverReviews: React.FC<{
   data?: SingleDriverResponse;
 }> = ({ data }) => {
-  const { id } = useParams<{ id: string }>();
-  const [isEmpty, setisEmpty] = useState(false);
-  console.log(Boolean(data?.reviews));
-  console.log(data?.reviews);
-
   return (
     <DriverReviewsWrapper>
       <Text>Driver reviews</Text>

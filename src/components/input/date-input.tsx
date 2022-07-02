@@ -9,7 +9,8 @@ import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
 export const DateRangePickerInput: React.FC<{
   type: 'pickup' | 'delivery';
-}> = ({ type }) => {
+  isEditing: boolean;
+}> = ({ type, isEditing }) => {
   const { data, setValues } = useData();
 
   const handleStartDateChange = (newValue: Date | null) => {
@@ -45,7 +46,7 @@ export const DateRangePickerInput: React.FC<{
         renderInput={(params) => <StyledTextFiled {...params} />}
         disableMaskedInput
         inputFormat="d-MMMM , HH:mm "
-        disablePast
+        disablePast={!isEditing}
       />
       <Text weight="500">To</Text>
       <DateTimePicker
@@ -54,7 +55,7 @@ export const DateRangePickerInput: React.FC<{
         renderInput={(params) => <StyledTextFiled {...params} />}
         disableMaskedInput
         inputFormat="d-MMMM , HH:mm "
-        disablePast
+        disablePast={!isEditing}
         minDate={data.dates[type].start}
       />
     </DateInputComponentWrapper>

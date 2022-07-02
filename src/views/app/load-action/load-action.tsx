@@ -8,12 +8,11 @@ import LoadDateTime from './load-action-parts/load-date-time/load-date-time';
 import LoadExtraInformation from './load-action-parts/load-extra-information/load-extra-information';
 import LoadButtons from './load-action-parts/load-buttons/load-buttons';
 import { useLocation } from 'react-router-dom';
-import { SingleLoadResponse } from 'types/load.types';
+import { SingleLoadDetailsResponse } from 'types/load.types';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
-import { stat } from 'fs';
 
 interface StateType {
-  state: { type?: 'EDIT'; data?: SingleLoadResponse };
+  state: { type?: 'EDIT'; data?: SingleLoadDetailsResponse };
 }
 
 const ActionLoad = () => {
@@ -25,21 +24,21 @@ const ActionLoad = () => {
       // will set edited data of load
       setValues({
         ...data,
-        load_title: '',
+        load_title: state.data?.title,
         pickup: {
           addresline_1: '',
           addresline_2: '',
-          street: state.data?.pickup_point.district,
-          region: state.data?.pickup_point.region,
-          country: state.data?.pickup_point.country,
+          district: state.data?.pickup_point.district.title,
+          region: state.data?.pickup_point.region.title,
+          country: state.data?.pickup_point.country.title,
           zipcode: '',
         },
         delivery: {
           addresline_1: '',
           addresline_2: '',
-          street: state.data?.destination.district,
-          region: state.data?.destination.region,
-          country: state.data?.destination.country,
+          district: state.data?.destination.district.title,
+          region: state.data?.destination.region.title,
+          country: state.data?.destination.country.title,
           zipcode: '',
         },
         dates: {
@@ -52,14 +51,14 @@ const ActionLoad = () => {
             end: new Date(`${state.data?.latest_delivery}`),
           },
         },
-        lugage_size: '',
-        cost: '',
-        currency_type: '',
-        description: '',
+        lugage_size: state.data?.weight,
+        cost: state.data?.price,
+        currency_type: 'USD',
+        description: state.data?.description,
         id: state.data?.id,
       });
     }
-  }, []);
+  }, [state.data?.id]);
 
   return (
     <ActionLoadWrapper>
@@ -69,7 +68,7 @@ const ActionLoad = () => {
       <LoadTitle />
       <LoadAddress />
       <LoadDistination />
-      <LoadDateTime />
+      <LoadDateTime isEditing={state?.type === 'EDIT'} />
       <LoadExtraInformation />
       <LoadButtons isEditing={state?.type === 'EDIT'} />
     </ActionLoadWrapper>

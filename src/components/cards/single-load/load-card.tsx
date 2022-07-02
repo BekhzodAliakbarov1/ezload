@@ -40,7 +40,7 @@ const LoadCard: React.FC<{
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
-        data: { load },
+        data: { ...load },
       },
     });
   };

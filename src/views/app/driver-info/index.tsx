@@ -7,8 +7,9 @@ import DriverMainInfos from './driver-main-infos';
 import { DriverReviews } from './driver-reviews';
 
 const DriverInfo = () => {
-  const { id = '0' } = useParams<{ id: string }>();
+  const { id = '0', bidId } = useParams<{ id: string; bidId?: string }>();
   const { data } = useSingleDriver(id);
+  console.log(bidId);
 
   return (
     <DriverInfoWrapper>

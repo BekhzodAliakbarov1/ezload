@@ -28,15 +28,14 @@ const LoadBids: React.FC<{
         <Text weight="700">{loadType === 'NEW' ? 'Bids' : 'Driver'}</Text>
         {loadType === 'NEW' ? (
           <LoadBidsDataBox>
-            {data?.bids?.map((driver) => (
-              <LoadBidDriverCard key={driver.id}>
-                <Link to={`/load-bidded-driver/3`}>
-                  {/* <Link to={`/load-bidded-driver/${driver.id}`}>  */}
+            {data?.bids?.map((bid) => (
+              <LoadBidDriverCard key={bid.id}>
+                <Link to={`/load-bidded-driver/3/bid/${bid.id}`}>
                   <DriverCard
-                    first_name={driver.owner.first_name}
+                    first_name={bid.owner.first_name}
                     id={3} //add correct id when backend send true
-                    rates_avg={driver.average_rate}
-                    image={driver.owner.profile_picture?.file}
+                    rates_avg={bid.average_rate}
+                    image={bid.owner.profile_picture?.file}
                     shadow
                     sizes="104px"
                     clickable
@@ -45,7 +44,7 @@ const LoadBids: React.FC<{
                 </Link>
                 <LoadBidDriverCostWrapper>
                   <DollarIcon />
-                  <Text weight="600">{driver.price} USD</Text>
+                  <Text weight="600">{bid.price} USD</Text>
                 </LoadBidDriverCostWrapper>
               </LoadBidDriverCard>
             ))}
