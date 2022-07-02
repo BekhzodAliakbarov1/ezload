@@ -42,7 +42,6 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
                 image={ProfileImg}
                 first_name="Antonio Fred."
                 id={3}
-                last_name=""
                 rates_avg={3}
                 vehicle={{
                   capacity: '30',
@@ -66,7 +65,6 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
                 image={ProfileImg}
                 first_name="Antonio Fred."
                 id={3}
-                last_name=""
                 rates_avg={3}
                 vehicle={{
                   capacity: '30',

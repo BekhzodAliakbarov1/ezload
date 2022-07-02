@@ -7,9 +7,6 @@ const ReviewCard: React.FC<{
   rate: number;
   feedback: string;
   reviewer: {
-    profile_picture: {
-      file: string;
-    };
     first_name: string;
   };
 }> = ({ feedback, rate, reviewer }) => {

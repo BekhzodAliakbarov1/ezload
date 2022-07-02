@@ -46,7 +46,7 @@ interface CreateLoadRequest {
 //   orientation?: string;
 // }
 interface DeleteLoadRequest {
-  id: string;
+  id: number;
 }
 
 // CREATE

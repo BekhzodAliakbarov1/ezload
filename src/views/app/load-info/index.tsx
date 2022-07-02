@@ -9,7 +9,7 @@ import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React, { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { useSingleLoad } from 'server-state/queries/use-single-load';
+import { useLoad } from 'server-state/queries/use-load';
 import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
 import {
@@ -20,31 +20,21 @@ import {
   ModalButtonsWrapper,
 } from './load-info.styles';
 
-const date = new Date();
-
-const data = {
-  id: 1,
-  pickup_address: 'Asaka city, Andijan region',
-  pickup_country: 'Uzbekistan',
-  pickup_date: date.toUTCString(),
-  deliver_address: 'Tashkent city, Andijan region',
-  deliver_country: 'Uzbekistan',
-  deliver_date: date.toUTCString(),
-  distance: '894 km',
-  bid_count: '232',
-  view_count: 2332,
-};
 const LoadInfoView = () => {
+  // after backend add id use below id inside api call
   const { id, type } = useParams<{
     id: string;
     type: 'new' | 'on_the_way' | 'delivered';
   }>();
   const [loadType, setLoadType] = useState<'NEW' | 'BIDDED' | 'ON_THE_WAY'>(
-    'ON_THE_WAY'
+    'NEW'
   );
+  console.log(id);
+
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
-  const singleLoadRequest = useSingleLoad({ id, type });
+  const singleLoadRequest = useLoad({ id: '2' });
+  console.log(singleLoadRequest.data);
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -80,13 +70,21 @@ const LoadInfoView = () => {
           )}
         </LoadInfowViewHeader>
         <LoadInfoDataWrapperBox>
-          {/* <LoadCard {...data} loadType="new" /> */}
-          <LoadInfoCard loadType={loadType} />
+          {singleLoadRequest.data && (
+            <LoadCard
+              clickable={false}
+              load={singleLoadRequest.data}
+              loadType={type ?? 'new'}
+            />
+          )}
+          {singleLoadRequest.data && (
+            <LoadInfoCard data={singleLoadRequest.data} loadType={loadType} />
+          )}
         </LoadInfoDataWrapperBox>
         {isDriver ? (
           <LoadCreator loadType={loadType} />
         ) : (
-          <LoadBids loadType={loadType} />
+          <LoadBids data={singleLoadRequest.data} loadType={loadType} />
         )}
       </LoadInfoViewWrapper>
       {/* Bid Modal */}

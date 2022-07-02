@@ -17,7 +17,7 @@ interface LocationPoint {
   };
 }
 
-export interface SingleLoadResponse {
+interface LoadMainPart {
   pickup_point: LocationPoint;
   destination: LocationPoint;
   order_number: string;
@@ -27,12 +27,34 @@ export interface SingleLoadResponse {
   latest_delivery: string;
   bids_count: number;
   visits_count: number;
-  driver: {
+  id: number;
+}
+
+export interface SingleLoadResponse extends LoadMainPart {
+  driver?: {
     profile_picture?: {
       file: string;
     };
     first_name: string;
     phone_number: string;
   };
-  id: number;
+}
+
+export interface SingleLoadDetailsResponse extends LoadMainPart {
+  title: string;
+  description: string;
+  price: number;
+  weight: number;
+  bids?: {
+    id: number;
+    owner: {
+      profile_picture?: {
+        file: string;
+      };
+      first_name: string;
+      phone_number: string;
+    };
+    price: number;
+    average_rate: number;
+  }[];
 }

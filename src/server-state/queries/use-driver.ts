@@ -27,7 +27,7 @@ export interface SingleDriverResponse {
     rate: number;
     feedback: string;
     reviewer: {
-      profile_picture: {
+      profile_picture?: {
         file: string;
       };
       first_name: string;

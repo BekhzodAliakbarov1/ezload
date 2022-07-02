@@ -2,7 +2,7 @@ import Spinner from 'components/loaders/spinner/spinner';
 import LoadsContainer from 'components/loads-container/loads-container';
 import Text from 'components/typography/text';
 import React, { useState, useEffect } from 'react';
-import { useLoads } from 'server-state/queries/use-load';
+import { useLoads } from 'server-state/queries/use-loads';
 import {
   LoadingComponentWrapper,
   ProfileLoadsWrapper,

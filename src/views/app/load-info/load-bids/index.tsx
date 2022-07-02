@@ -14,35 +14,12 @@ import { colors } from 'styles/variables';
 import { Link } from 'react-router-dom';
 import { useModal } from 'hooks/use-modal';
 import LoadBidsModals from './load-bids-modals';
+import { SingleLoadDetailsResponse } from 'types/load.types';
 
-const data = [
-  {
-    first_name: 'Antonio Fred.',
-    id: 3,
-    last_name: '',
-    rates_avg: 3.5,
-    vehicle: {
-      capacity: '20',
-      licence_plate: '01245QWE',
-      title: 'isuzu',
-    },
-  },
-];
-
-const singleData = {
-  id: 1,
-  load_weight: '20 Ton',
-  car_type: 'Isuzu ',
-  image: image,
-  name: 'Igor Tsoy',
-  rating: 4,
-  load_number: '100+',
-  bid_cost: '3 000 000 sum',
-};
-
-const LoadBids: React.FC<{ loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY' }> = ({
-  loadType,
-}) => {
+const LoadBids: React.FC<{
+  loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
+  data?: SingleLoadDetailsResponse;
+}> = ({ loadType, data }) => {
   const { close, isOpen, open } = useModal();
 
   return (
@@ -51,11 +28,15 @@ const LoadBids: React.FC<{ loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY' }> = ({
         <Text weight="700">{loadType === 'NEW' ? 'Bids' : 'Driver'}</Text>
         {loadType === 'NEW' ? (
           <LoadBidsDataBox>
-            {data.map((driver) => (
+            {data?.bids?.map((driver) => (
               <LoadBidDriverCard key={driver.id}>
-                <Link to={`/load-bidded-driver/${driver.id}`}>
+                <Link to={`/load-bidded-driver/3`}>
+                  {/* <Link to={`/load-bidded-driver/${driver.id}`}>  */}
                   <DriverCard
-                    {...driver}
+                    first_name={driver.owner.first_name}
+                    id={3} //add correct id when backend send true
+                    rates_avg={driver.average_rate}
+                    image={driver.owner.profile_picture?.file}
                     shadow
                     sizes="104px"
                     clickable
@@ -64,23 +45,20 @@ const LoadBids: React.FC<{ loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY' }> = ({
                 </Link>
                 <LoadBidDriverCostWrapper>
                   <DollarIcon />
-                  <Text weight="600">
-                    {/* {driver.bid_cost} */}
-                    200
-                  </Text>
+                  <Text weight="600">{driver.price} USD</Text>
                 </LoadBidDriverCostWrapper>
               </LoadBidDriverCard>
             ))}
           </LoadBidsDataBox>
         ) : (
           <LoadBidsDataBox>
-            <DriverCard
+            {/* <DriverCard
               {...data[0]}
               shadow
               sizes="104px"
               clickable
               bg_color={colors.green_5}
-            />
+            /> */}
           </LoadBidsDataBox>
         )}
         <Button fullWidth onClick={open}>
@@ -89,7 +67,14 @@ const LoadBids: React.FC<{ loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY' }> = ({
             : loadType === 'ON_THE_WAY' && 'Cancel the driver'}
         </Button>
       </LoadBidsWrapper>
-      <LoadBidsModals close={close} isOpen={isOpen} loadType={loadType} />
+      {data?.id && (
+        <LoadBidsModals
+          id={data.id}
+          close={close}
+          isOpen={isOpen}
+          loadType={loadType}
+        />
+      )}
     </>
   );
 };

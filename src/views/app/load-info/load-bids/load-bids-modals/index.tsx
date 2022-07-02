@@ -4,6 +4,7 @@ import FilledStarIcon from 'components/icons/filled-star.icon';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useDeleteLoad } from 'server-state/mutations/use-load';
 import {
   LoadBidRatingWrapper,
   LoadBidsSimpleModalWrapper,
@@ -16,9 +17,11 @@ const LoadBidsModals: React.FC<{
   loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
   close: () => void;
   isOpen: boolean;
-}> = ({ loadType, close, isOpen }) => {
+  id: number;
+}> = ({ loadType, close, isOpen, id }) => {
   const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2 | 3>(1);
   const [rating, setRating] = useState(1);
+  const deleteLoadRequest = useDeleteLoad();
 
   const handleSubmit = () => {
     // last submit handler
@@ -27,6 +30,8 @@ const LoadBidsModals: React.FC<{
     setCancelDriverSteps(1);
     close();
   };
+
+  const deleteLoad = () => deleteLoadRequest.mutate({ id });
 
   return (
     <>
@@ -100,7 +105,9 @@ const LoadBidsModals: React.FC<{
         <LoadBidsSimpleModalWrapper type="small">
           <Text>Are you sure to delete? Actions cannot be undone</Text>
           <LoadBitsModalButtonsWrapper>
-            <Button buttonType="warning">Yes, delete</Button>
+            <Button buttonType="warning" onClick={deleteLoad}>
+              Yes, delete
+            </Button>
             <Button buttonType="white" onClick={close}>
               Cancel
             </Button>

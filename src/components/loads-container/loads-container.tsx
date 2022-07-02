@@ -15,8 +15,6 @@ const LoadsContainer: React.FC<{
   clickable?: boolean;
   loadType: 'new' | 'on_the_way' | 'delivered';
 }> = ({ loads, clickable, loadType, hasNextPage }) => {
-  console.log(loads);
-
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (

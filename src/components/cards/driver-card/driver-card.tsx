@@ -9,7 +9,6 @@ const DriverCard: React.FC<{
   id: number;
   image?: string;
   first_name: string;
-  last_name: string;
   vehicle?: {
     capacity: string;
     title: string;

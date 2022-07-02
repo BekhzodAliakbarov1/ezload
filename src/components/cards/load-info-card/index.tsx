@@ -1,6 +1,7 @@
 import Button from 'components/button/button';
 import Text from 'components/typography/text';
 import React from 'react';
+import { SingleLoadDetailsResponse } from 'types/load.types';
 import {
   LoadBidAndViewBox,
   LoadBidAndViewCountWrapper,
@@ -12,7 +13,8 @@ import {
 
 const LoadInfoCard: React.FC<{
   loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
-}> = ({ loadType }) => {
+  data: SingleLoadDetailsResponse;
+}> = ({ loadType, data }) => {
   return (
     <LoadInfoCradWrapper>
       <Text weight="600">Information about load</Text>
@@ -28,28 +30,25 @@ const LoadInfoCard: React.FC<{
         </LoadInfoCardDataSingleBox>
         <LoadInfoCardDataSingleBox>
           <Text>Load Weight</Text>
-          <Text color="main_100">21 tonnes</Text>
+          <Text color="main_100">{data.weight} tonnes</Text>
         </LoadInfoCardDataSingleBox>
         <LoadInfoCardDataSingleBox>
           <Text>Payment</Text>
-          <Text color="main_100">3 000 000 sum</Text>
+          <Text color="main_100">{data.price} USD</Text>
         </LoadInfoCardDataSingleBox>
       </LoadInfoCardDataBox>
       <LoadDescriptionWrapper>
         <Text>Description</Text>
-        <Text color="main_100">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.
-        </Text>
+        <Text color="main_100">{data.description}</Text>
       </LoadDescriptionWrapper>
       <LoadBidAndViewCountWrapper>
         <LoadBidAndViewBox>
           <Text>Bid Count</Text>
-          <Text color="main_100">213</Text>
+          <Text color="main_100">{data.bids_count}</Text>
         </LoadBidAndViewBox>
         <LoadBidAndViewBox>
           <Text>Seen Count</Text>
-          <Text color="main_100">431</Text>
+          <Text color="main_100">{data.visits_count}</Text>
         </LoadBidAndViewBox>
       </LoadBidAndViewCountWrapper>
     </LoadInfoCradWrapper>

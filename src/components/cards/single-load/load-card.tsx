@@ -28,7 +28,7 @@ const LoadCard: React.FC<{
   load: SingleLoadResponse;
   clickable?: boolean;
   loadType: 'new' | 'on_the_way' | 'delivered';
-}> = ({ load, clickable = false, loadType = 'new' }) => {
+}> = ({ load, clickable = true, loadType = 'new' }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
 
@@ -49,7 +49,7 @@ const LoadCard: React.FC<{
     <>
       <LoadCardWrapper
         clickable={clickable}
-        onClick={() => navigate(`/load/${loadType}/${load.id}`)}
+        onClick={() => clickable && navigate(`/load/${loadType}/${load.id}`)}
       >
         <LoadCarLocationBox>
           <LoadCardSvgDistanceWrapper>
