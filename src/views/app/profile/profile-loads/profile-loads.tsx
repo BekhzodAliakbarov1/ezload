@@ -1,8 +1,10 @@
+import Spinner from 'components/loaders/spinner/spinner';
 import LoadsContainer from 'components/loads-container/loads-container';
 import Text from 'components/typography/text';
 import React, { useState, useEffect } from 'react';
 import { useLoads } from 'server-state/queries/use-load';
 import {
+  LoadingComponentWrapper,
   ProfileLoadsWrapper,
   SectionControllerWrapper,
   SingleController,
@@ -37,6 +39,11 @@ const ProfileLoads = () => {
     setSectionType(type);
   };
 
+  const isLoading =
+    newLoadsRequest.isLoading ||
+    onTheWayLoadsRequest.isLoading ||
+    deliveredLoadsRequest.isLoading;
+
   return (
     <ProfileLoadsWrapper>
       <SectionControllerWrapper>
@@ -59,6 +66,14 @@ const ProfileLoads = () => {
           <Text weight="700">Delivered</Text>
         </SingleController>
       </SectionControllerWrapper>
+      <LoadingComponentWrapper>
+        <Spinner
+          loading={isLoading}
+          loaderSize="40px"
+          width="300px"
+          height="300px"
+        />
+      </LoadingComponentWrapper>
       {sectionType === 'NEW' &&
         newLoadsRequest.data?.pages &&
         newLoadsRequest.data.pages.map((page, index) => (

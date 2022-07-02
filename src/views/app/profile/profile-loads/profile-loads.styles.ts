@@ -26,3 +26,11 @@ export const SingleController = styled.div<{ active: boolean }>`
     color: ${(props) => (props.active ? colors.red_100 : colors.dark_60)};
   }
 `;
+
+export const LoadingComponentWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
