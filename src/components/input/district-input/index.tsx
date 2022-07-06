@@ -11,7 +11,7 @@ import { useDistrict } from 'server-state/queries/use-district';
 
 const DistrictInput: React.FC<{
   value: string;
-  selectHanlder: ({ id, title }: { title: string; id: number }) => void;
+  selectHanlder: ({ id, title }: { title: string; id: string }) => void;
   country: string;
   region: string;
 }> = ({ value, selectHanlder, country, region }) => {
@@ -34,7 +34,7 @@ const DistrictInput: React.FC<{
     [district.length]
   );
 
-  const handleSelect = ({ id, title }: { title: string; id: number }) => {
+  const handleSelect = ({ id, title }: { title: string; id: string }) => {
     setdistrict(title);
     selectHanlder({ id, title });
   };
@@ -62,7 +62,10 @@ const DistrictInput: React.FC<{
                     <Rows
                       key={item.id}
                       onClick={() => {
-                        handleSelect({ id: item.id, title: item.title });
+                        handleSelect({
+                          id: String(item.id),
+                          title: item.title,
+                        });
                         popperState.close();
                       }}
                     >
@@ -81,6 +84,7 @@ const DistrictInput: React.FC<{
       }
     >
       <SearchInput
+        required
         {...bindToggle(popperState)}
         placeholder="District"
         onChange={(e) => {

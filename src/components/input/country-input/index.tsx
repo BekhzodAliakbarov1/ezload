@@ -11,7 +11,7 @@ import { Div, List, popperStyles, Rows } from '../input.styles';
 
 const CountryInput: React.FC<{
   value: string;
-  selectHanlder: ({ id, title }: { title: string; id: number }) => void;
+  selectHanlder: ({ id, title }: { title: string; id: string }) => void;
 }> = ({ value, selectHanlder }) => {
   const popperState = usePopper();
   const [country, setCountry] = useState(value);
@@ -32,7 +32,7 @@ const CountryInput: React.FC<{
     [country.length]
   );
 
-  const handleSelect = ({ id, title }: { title: string; id: number }) => {
+  const handleSelect = ({ id, title }: { title: string; id: string }) => {
     setCountry(title);
     selectHanlder({ id, title });
   };
@@ -60,7 +60,10 @@ const CountryInput: React.FC<{
                     <Rows
                       key={item.id}
                       onClick={() => {
-                        handleSelect({ id: item.id, title: item.title });
+                        handleSelect({
+                          id: String(item.id),
+                          title: item.title,
+                        });
                         popperState.close();
                       }}
                     >
@@ -79,6 +82,7 @@ const CountryInput: React.FC<{
       }
     >
       <SearchInput
+        required
         {...bindToggle(popperState)}
         placeholder="Country"
         onChange={(e) => {

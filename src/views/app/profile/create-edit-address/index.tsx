@@ -1,13 +1,12 @@
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   CreateAddressButtonsWrapper,
   CreateAddressInputsBox,
   CreateAddressMapWrapper,
   CreateAddressWrapper,
 } from './create-address.styles';
-import image from 'assets/img/default-image.png';
 import Button from 'components/button/button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AddressInterface } from 'types/address.types';
@@ -18,6 +17,7 @@ import {
 import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
 import DistrictInput from 'components/input/district-input';
+import Map from 'components/map';
 
 interface StateType {
   state: { type?: 'EDIT'; data?: AddressInterface };
@@ -26,14 +26,18 @@ interface StateType {
 const CreateEditAddress = () => {
   const { state } = useLocation() as StateType;
   const [
-    { address_1, address_2, country, region, district, zip_code },
+    { address_1, address_2, country, region, district, zip_code, latLong },
     setAddress,
   ] = useState({
     address_1: '',
     address_2: '',
-    country: state?.data?.address.country.title ?? '',
-    region: state?.data?.address.region.title ?? '',
-    district: state?.data?.address.district.title ?? '',
+    country: { title: state?.data?.address.country.title ?? '', id: 0 },
+    region: { title: state?.data?.address.region.title ?? '', id: 0 },
+    district: { title: state?.data?.address.district.title ?? '', id: 0 },
+    latLong: {
+      lat: state?.data?.address.location.latitude ?? 0,
+      lng: state?.data?.address.location.longitude ?? 0,
+    },
     zip_code: state?.data?.address.postal_code ?? '',
   });
 
@@ -41,49 +45,135 @@ const CreateEditAddress = () => {
   const createAddressRequest = useCreateAddress();
   const editAddressRequest = useEditAddress();
 
-  const submitHandler = () => {
+  const submitHandler = (e: React.FormEvent) => {
     // use createAddressRequest or editAddressRequest
-    console.log('smth');
+    e.preventDefault();
+    createAddressRequest.mutate(
+      {
+        country: Number(country.id),
+        district: Number(district.id),
+        location: { latitude: latLong.lat, longitude: latLong.lng },
+        orientation: address_1 ?? '',
+        postal_code: zip_code,
+        region: Number(region.id),
+      },
+      {
+        onSuccess() {
+          navigate(-1);
+        },
+      }
+    );
   };
-  console.log(country);
+
+  const searchInputSelectHandler = ({
+    fieldName,
+    val,
+  }: {
+    val: { id: string; title: string };
+    fieldName: 'region' | 'district' | 'country';
+  }) => {
+    setAddress((value) => {
+      return { ...value, [fieldName]: val };
+    });
+  };
+
+  const simpleInputSelectionHandler = ({
+    fieldName,
+    val,
+  }: {
+    fieldName: 'zip_code' | 'address_1' | 'address_2';
+    val: string;
+  }) => {
+    setAddress((value) => {
+      return { ...value, [fieldName]: val };
+    });
+  };
+
+  const getLatLong = ({ lat, lng }: { lat: number; lng: number }) => {
+    setAddress((val) => {
+      return { ...val, latLong: { lat, lng } };
+    });
+  };
 
   return (
-    <CreateAddressWrapper>
+    <CreateAddressWrapper onSubmit={submitHandler}>
       <Text color="main_100">My addresses</Text>
       <CreateAddressInputsBox>
         <div>
-          <Input placeholder="Addressline 1" value={address_1} />
-          <Input placeholder="Addressline 2" value={address_2} />
+          <Input
+            placeholder="Addressline 1"
+            value={address_1}
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'address_1',
+                val: e.target.value,
+              });
+            }}
+          />
+          <Input
+            placeholder="Addressline 2"
+            value={address_2}
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'address_2',
+                val: e.target.value,
+              });
+            }}
+          />
           <DistrictInput
-            country={country}
-            region={region}
-            value={district}
+            country={country.title}
+            region={region.title}
+            value={district.title}
             selectHanlder={({ id, title }) => {
-              console.log({ id, title });
+              searchInputSelectHandler({
+                fieldName: 'district',
+                val: { id, title },
+              });
             }}
           />
         </div>
         <div>
           <RegionInput
-            country={country}
+            country={country.title}
             selectHanlder={({ id, title }) => {
-              console.log({ id, title });
+              searchInputSelectHandler({
+                fieldName: 'region',
+                val: { id, title },
+              });
             }}
-            value={region}
+            value={region.title}
           />
           <CountryInput
-            value={country}
+            value={country.title}
             selectHanlder={({ id, title }) => {
-              console.log({ id, title });
+              searchInputSelectHandler({
+                fieldName: 'country',
+                val: { id, title },
+              });
             }}
           />
-          <Input placeholder="Zip Code" value={zip_code} />
+          <Input
+            placeholder="Zip Code"
+            value={zip_code}
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'zip_code',
+                val: e.target.value,
+              });
+            }}
+          />
         </div>
       </CreateAddressInputsBox>
-      <CreateAddressMapWrapper style={{ backgroundImage: `url(${image})` }} />
+      <CreateAddressMapWrapper>
+        <Map
+          address={`${country.title}, ${region.title}, ${district.title}`}
+          getAddressLine={simpleInputSelectionHandler}
+          getLatLong={getLatLong}
+        />
+      </CreateAddressMapWrapper>
       <CreateAddressButtonsWrapper>
         <Button
-          onClick={submitHandler}
+          type="submit"
           loading={
             state?.type === 'EDIT'
               ? editAddressRequest.isLoading

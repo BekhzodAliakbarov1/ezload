@@ -11,7 +11,7 @@ import { useRegion } from 'server-state/queries/use-region';
 
 const RegionInput: React.FC<{
   value: string;
-  selectHanlder: ({ id, title }: { title: string; id: number }) => void;
+  selectHanlder: ({ id, title }: { title: string; id: string }) => void;
   country: string;
 }> = ({ value, selectHanlder, country }) => {
   const popperState = usePopper();
@@ -33,11 +33,10 @@ const RegionInput: React.FC<{
     [region.length]
   );
 
-  const handleSelect = ({ id, title }: { title: string; id: number }) => {
+  const handleSelect = ({ id, title }: { title: string; id: string }) => {
     setRegion(title);
     selectHanlder({ id, title });
   };
-  console.log(data?.pages);
 
   return (
     <Popper
@@ -62,7 +61,10 @@ const RegionInput: React.FC<{
                     <Rows
                       key={item.id}
                       onClick={() => {
-                        handleSelect({ id: item.id, title: item.title });
+                        handleSelect({
+                          id: String(item.id),
+                          title: item.title,
+                        });
                         popperState.close();
                       }}
                     >
@@ -81,6 +83,7 @@ const RegionInput: React.FC<{
       }
     >
       <SearchInput
+        required
         {...bindToggle(popperState)}
         placeholder="Region"
         onChange={(e) => {

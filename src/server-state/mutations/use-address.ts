@@ -10,7 +10,7 @@ interface CreateAddressRequest {
     latitude: number;
     longitude: number;
   };
-  orientation: '';
+  orientation: string;
   postal_code: string;
 }
 interface EditAddressRequest {

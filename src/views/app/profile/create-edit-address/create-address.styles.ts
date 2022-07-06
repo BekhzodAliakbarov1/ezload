@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const CreateAddressWrapper = styled.div`
+export const CreateAddressWrapper = styled.form`
   width: 100%;
   padding: 0px 100px 43px 48px;
   > p {
@@ -27,8 +27,6 @@ export const CreateAddressInputsBox = styled.div`
 export const CreateAddressMapWrapper = styled.div`
   width: 100%;
   height: 372px;
-  background-position: center;
-  background-size: cover;
   margin-bottom: 48px;
 `;
 
