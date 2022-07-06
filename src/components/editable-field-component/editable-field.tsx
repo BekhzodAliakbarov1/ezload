@@ -13,6 +13,9 @@ import {
   VerificationCodeWrapper,
 } from './editable-field.styles';
 import ReactCodeInputComponent from 'components/code-input/react-code-input';
+import { useVerification } from 'server-state/mutations/use-verification';
+import { useUpdatePhoneNumber } from 'server-state/mutations/use-phone-number';
+import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
 
 const EditableField: React.FC<{
   label: string;
@@ -20,13 +23,15 @@ const EditableField: React.FC<{
   onSubmit: (value: string) => void;
   inputType: 'text' | 'number';
   placeholder: string;
-  isLoading: boolean;
-}> = ({ label, value, onSubmit, inputType, placeholder, isLoading }) => {
+}> = ({ label, value, onSubmit, inputType, placeholder }) => {
   const [editClicked, setEditClicked] = useState<boolean>(false);
   const [isPhoneSubmitclicked, setIsPhoneSubmitclicked] = useState(false);
   const [inputValue, setInputValue] = useState(value);
   const [errorMessage, setErrorMessage] = useState('');
   const [verificationCode, setVerificationCode] = useState('');
+  const verificationRequest = useVerification();
+  const updatePhoneNumberRequest = useUpdatePhoneNumber();
+  const updateProfileRequest = useUpdateProfile();
 
   useEffect(() => {
     setEditClicked(false);
@@ -36,23 +41,49 @@ const EditableField: React.FC<{
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (inputType === 'text') {
-      setEditClicked(false);
-      onSubmit(inputValue);
+      updateProfileRequest.mutate(
+        { first_name: inputValue },
+        {
+          onSuccess() {
+            onSubmit(inputValue);
+            setEditClicked(false);
+          },
+        }
+      );
     } else {
       if (inputValue === value) {
         setErrorMessage('Current phone is entered!');
       } else {
         setErrorMessage('');
-        // SendGrid Connected here
+        verificationRequest.mutate({ phone_number: inputValue });
         setIsPhoneSubmitclicked(true);
       }
     }
   };
 
+  const handleChangePhoneNumber = () => {
+    updatePhoneNumberRequest.mutate(
+      {
+        code: verificationCode,
+        phone_number: inputValue,
+      },
+      {
+        onSuccess() {
+          onSubmit(inputValue);
+          setEditClicked(false);
+        },
+      }
+    );
+  };
+
+  const resendButtonClick = () => {
+    verificationRequest.mutate({ phone_number: inputValue });
+  };
+
   return (
     <FieldsWrapper>
       <Text weight="500">{label}</Text>
-      {!editClicked && (
+      {!editClicked ? (
         <EditableFieldWrapper>
           <Text color="main_100" weight="600" size="md">
             {inputType === 'number' && '+'}
@@ -65,8 +96,7 @@ const EditableField: React.FC<{
             <Text>Edit</Text>
           </PersonalInformationSvgWrapper>
         </EditableFieldWrapper>
-      )}
-      {editClicked && (
+      ) : (
         <EditFiedlForm onSubmit={handleSubmit}>
           <Input
             error={errorMessage}
@@ -79,7 +109,9 @@ const EditableField: React.FC<{
           <Button
             disabled={isPhoneSubmitclicked}
             type="submit"
-            loading={isLoading}
+            loading={
+              verificationRequest.isLoading || updateProfileRequest.isLoading
+            }
           >
             Save changes
           </Button>
@@ -98,8 +130,16 @@ const EditableField: React.FC<{
           <Text>We just sent a code to your phone {inputValue}</Text>
           <ConfirmVerificationCodeWrapper>
             <ReactCodeInputComponent size="md" setCode={setVerificationCode} />
-            <Button fullWidth>Confirm code</Button>
-            <Text weight="600">Resend sms code</Text>
+            <Button
+              loading={updatePhoneNumberRequest.isLoading}
+              fullWidth
+              onClick={handleChangePhoneNumber}
+            >
+              Confirm code
+            </Button>
+            <Text onClick={resendButtonClick} weight="600">
+              Resend sms code
+            </Text>
           </ConfirmVerificationCodeWrapper>
         </VerificationCodeWrapper>
       )}

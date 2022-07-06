@@ -36,14 +36,6 @@ const PersonalInformation = () => {
     setProfileInfo((info) => {
       return { ...info, name: value };
     });
-    updateProfileRequest.mutate(
-      { first_name: value },
-      {
-        onSuccess(res) {
-          console.log(res);
-        },
-      }
-    );
   };
 
   const handlePhoneSubmit = (value: string) => {
@@ -84,8 +76,6 @@ const PersonalInformation = () => {
               value={profileInfo.name}
               placeholder="Enter name"
               onSubmit={handleNameSubmit}
-              // it will correct when connect to api
-              isLoading={false}
             />
           )}
           {profileInfo.phone && (
@@ -95,8 +85,6 @@ const PersonalInformation = () => {
               value={profileInfo.phone}
               placeholder="Enter phone number"
               onSubmit={handlePhoneSubmit}
-              // it will correct when connect to api
-              isLoading={false}
             />
           )}
         </NamePhoneNumberWrapper>
