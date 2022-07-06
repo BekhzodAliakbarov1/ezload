@@ -1,22 +1,22 @@
-import { SearchInput } from 'components/input/search-input';
 import InfiniteLoader from 'components/loaders/infinite-loader';
 import Spinner from 'components/loaders/spinner';
 import Popper from 'components/popper/popper';
 import Text from 'components/typography/text';
 import { bindPopper, bindToggle, usePopper } from 'hooks/use-popper';
 import { debounce } from 'lodash';
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
+import { SearchInput } from '../search-input';
+import { Div, List, popperStyles, Rows } from '../input.styles';
 import { useDistrict } from 'server-state/queries/use-district';
-import { Div, List, popperStyles, Rows } from '../action-loads-input.styles';
 
 const DistrictInput: React.FC<{
+  value: string;
+  selectHanlder: ({ id, title }: { title: string; id: number }) => void;
   country: string;
   region: string;
-  value: string;
-  onChange: (value: string, field_name: string) => void;
-}> = ({ value, onChange, country, region }) => {
-  const [district, setDistrict] = useState('');
+}> = ({ value, selectHanlder, country, region }) => {
   const popperState = usePopper();
+  const [district, setdistrict] = useState(value);
   const {
     fetchNextPage,
     hasNextPage,
@@ -26,17 +26,19 @@ const DistrictInput: React.FC<{
     data,
   } = useDistrict({ search: district, country, region });
 
-  useEffect(() => {
-    setDistrict(value);
-  }, [value]);
-
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const handleSearch = useCallback(debounce(refetch, 1000), [value.length]);
+  const handleSearch = useCallback(
+    debounce(() => {
+      if (district.length > 0) refetch();
+    }, 500),
+    [district.length]
+  );
 
   const handleSelect = ({ id, title }: { title: string; id: number }) => {
-    setDistrict(title);
-    onChange(title, 'district');
+    setdistrict(title);
+    selectHanlder({ id, title });
   };
+
   return (
     <Popper
       {...bindPopper(popperState)}
@@ -54,24 +56,24 @@ const DistrictInput: React.FC<{
             loading={isFetchingNextPage}
           >
             <Spinner loading={isLoading} height="100%">
-              {data?.pages.map((page) =>
-                page?.results?.length > 0
-                  ? page.results.map((item) => (
-                      <Rows
-                        key={item.id}
-                        onClick={() => {
-                          handleSelect({ id: item.id, title: item.title });
-                          popperState.close();
-                        }}
-                      >
-                        {item.title}
-                      </Rows>
-                    ))
-                  : !data.pages && (
-                      <Div>
-                        <Text>User not found</Text>
-                      </Div>
-                    )
+              {data?.pages.map((page, index) =>
+                page?.count > 0 ? (
+                  page.results.map((item) => (
+                    <Rows
+                      key={item.id}
+                      onClick={() => {
+                        handleSelect({ id: item.id, title: item.title });
+                        popperState.close();
+                      }}
+                    >
+                      {item.title}
+                    </Rows>
+                  ))
+                ) : (
+                  <Div key={index}>
+                    <Text>District not found</Text>
+                  </Div>
+                )
               )}
             </Spinner>
           </InfiniteLoader>
@@ -80,13 +82,13 @@ const DistrictInput: React.FC<{
     >
       <SearchInput
         {...bindToggle(popperState)}
-        placeholder={`District ${!region ? '(Region need)' : ''}`}
+        placeholder="District"
         onChange={(e) => {
-          setDistrict(e.target.value);
+          setdistrict(e.target.value);
           handleSearch();
         }}
         value={district}
-        disabled={!region}
+        disabled={!Boolean(region)}
       />
     </Popper>
   );

@@ -16,15 +16,7 @@ import {
   ModalWrapper,
 } from './address-card.styles';
 
-const AddressCard: React.FC<AddressInterface> = ({
-  address_1,
-  address_2,
-  country,
-  region,
-  street,
-  zip_code,
-  id,
-}) => {
+const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
   const deleteAddressrequest = useDeleteAddress();
@@ -37,7 +29,7 @@ const AddressCard: React.FC<AddressInterface> = ({
     navigate('/profile/edit-address', {
       state: {
         type: 'EDIT',
-        data: { address_1, address_2, country, region, street, zip_code, id },
+        data: { address, id },
       },
     });
   };
@@ -47,7 +39,9 @@ const AddressCard: React.FC<AddressInterface> = ({
       <AddressCardWrapper>
         <AddressCardDataLine>
           <Text color="main_100">
-            {address_1},{address_2},{country},{region},{street},{zip_code}
+            {address.country.title},{address.region.title},
+            {address.district.title}
+            {address.postal_code}
           </Text>
           <AddressCardButtonsWrapper>
             <Button onClick={handleClick}>Edit</Button>

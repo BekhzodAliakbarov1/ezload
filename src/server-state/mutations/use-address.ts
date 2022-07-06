@@ -3,11 +3,15 @@ import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 
 interface CreateAddressRequest {
+  country: number;
   region: number;
   district: number;
-  latitude: string;
-  longitude: string;
-  orientation: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  orientation: '';
+  postal_code: string;
 }
 interface EditAddressRequest {
   id: string;
@@ -23,16 +27,28 @@ interface DeleteAddressRequest {
 }
 
 // CREATE
-export const useCreateAddress = () =>
-  useMutation(
+export const useCreateAddress = () => {
+  const { enqueueSnackbar } = useSnackbar();
+
+  return useMutation(
     (data: CreateAddressRequest) =>
       request
-        .post<{ success: boolean }>('/region/address/create/', data)
+        .post<{ message: string; status_code: number }>(
+          '/account/address/create/',
+          data
+        )
         .then((res) => res.data),
     {
       retry: false,
+      onSuccess() {
+        enqueueSnackbar('Address created succesfully!', { variant: 'success' });
+      },
+      onError() {
+        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+      },
     }
   );
+};
 
 // EDIT
 export const useEditAddress = () =>

@@ -1,9 +1,20 @@
 export interface AddressInterface {
-  address_1: string;
-  address_2: string;
-  street: string;
-  region: string;
-  country: string;
-  zip_code: string;
   id: number;
+  address: {
+    location: {
+      latitude: number;
+      longitude: number;
+    };
+    postal_code: string;
+    is_user_address: boolean;
+    country: {
+      title: string;
+    };
+    region: {
+      title: string;
+    };
+    district: {
+      title: string;
+    };
+  };
 }
