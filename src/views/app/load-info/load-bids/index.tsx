@@ -7,30 +7,38 @@ import {
   LoadBidsDataBox,
   LoadBidsWrapper,
 } from './load-bids.styles';
-import image from 'assets/img/profile.png';
 import Button from 'components/button/button';
 import DollarIcon from 'components/icons/dollar.icon';
 import { colors } from 'styles/variables';
-import { Link } from 'react-router-dom';
 import { useModal } from 'hooks/use-modal';
 import LoadBidsModals from './load-bids-modals';
 import { SingleLoadDetailsResponse } from 'types/load.types';
+import { useNavigate } from 'react-router-dom';
 
 const LoadBids: React.FC<{
-  loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
   data?: SingleLoadDetailsResponse;
-}> = ({ loadType, data }) => {
+}> = ({ data }) => {
   const { close, isOpen, open } = useModal();
+  const navigate = useNavigate();
 
   return (
     <>
       <LoadBidsWrapper>
-        <Text weight="700">{loadType === 'NEW' ? 'Bids' : 'Driver'}</Text>
-        {loadType === 'NEW' ? (
+        <Text weight="700">{data?.status === 1 ? 'Bids' : 'Driver'}</Text>
+        {data?.status === 1 ? (
           <LoadBidsDataBox>
             {data?.bids?.map((bid) => (
               <LoadBidDriverCard key={bid.id}>
-                <Link to={`/load-bidded-driver/3/bid/${bid.id}`}>
+                <div
+                  onClick={() =>
+                    navigate(`/load-bidded-driver/3`, {
+                      state: {
+                        id: bid.id,
+                        price: bid.price,
+                      },
+                    })
+                  }
+                >
                   <DriverCard
                     first_name={bid.owner.first_name}
                     id={3} //add correct id when backend send true
@@ -41,7 +49,7 @@ const LoadBids: React.FC<{
                     clickable
                     bg_color={colors.green_5}
                   />
-                </Link>
+                </div>
                 <LoadBidDriverCostWrapper>
                   <DollarIcon />
                   <Text weight="600">{bid.price} USD</Text>
@@ -51,6 +59,7 @@ const LoadBids: React.FC<{
           </LoadBidsDataBox>
         ) : (
           <LoadBidsDataBox>
+            {/* here will be user which bid accepted */}
             {/* <DriverCard
               {...data[0]}
               shadow
@@ -61,9 +70,9 @@ const LoadBids: React.FC<{
           </LoadBidsDataBox>
         )}
         <Button fullWidth onClick={open}>
-          {loadType === 'NEW'
+          {data?.status === 1
             ? 'Delete load'
-            : loadType === 'ON_THE_WAY' && 'Cancel the driver'}
+            : data?.status === 2 && 'Cancel the driver'}
         </Button>
       </LoadBidsWrapper>
       {data?.id && (
@@ -71,7 +80,7 @@ const LoadBids: React.FC<{
           id={data.id}
           close={close}
           isOpen={isOpen}
-          loadType={loadType}
+          status={data.status}
         />
       )}
     </>

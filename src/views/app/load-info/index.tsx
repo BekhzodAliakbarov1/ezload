@@ -26,9 +26,6 @@ const LoadInfoView = () => {
     id: string;
     type: 'new' | 'on_the_way' | 'delivered';
   }>();
-  const [loadType, setLoadType] = useState<'NEW' | 'BIDDED' | 'ON_THE_WAY'>(
-    'NEW'
-  );
 
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
@@ -37,7 +34,6 @@ const LoadInfoView = () => {
   const submitHandler = (e: any) => {
     e.preventDefault();
     // just for fun
-    setLoadType('BIDDED');
 
     // last step is close modal
     close();
@@ -50,10 +46,10 @@ const LoadInfoView = () => {
           <Text weight="700">Load Details</Text>
           {isDriver && (
             <>
-              {loadType === 'NEW' ? (
+              {singleLoadRequest.data?.status === 1 ? (
                 <Button onClick={open}>Bid to the load</Button>
               ) : (
-                loadType === 'BIDDED' && (
+                singleLoadRequest.data?.status === 2 && (
                   <Button
                     startIcon={<BidIcon />}
                     variant="outlined"
@@ -77,13 +73,13 @@ const LoadInfoView = () => {
             />
           )}
           {singleLoadRequest.data && (
-            <LoadInfoCard data={singleLoadRequest.data} loadType={loadType} />
+            <LoadInfoCard data={singleLoadRequest.data} />
           )}
         </LoadInfoDataWrapperBox>
         {isDriver ? (
-          <LoadCreator loadType={loadType} />
+          <LoadCreator status={singleLoadRequest.data?.status} />
         ) : (
-          <LoadBids data={singleLoadRequest.data} loadType={loadType} />
+          <LoadBids data={singleLoadRequest.data} />
         )}
       </LoadInfoViewWrapper>
       {/* Bid Modal */}

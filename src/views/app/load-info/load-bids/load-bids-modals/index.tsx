@@ -14,11 +14,11 @@ import {
 } from './load-bids-modal.styles';
 
 const LoadBidsModals: React.FC<{
-  loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
+  status?: 1 | 2 | 3;
   close: () => void;
   isOpen: boolean;
   id: number;
-}> = ({ loadType, close, isOpen, id }) => {
+}> = ({ status, close, isOpen, id }) => {
   const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2 | 3>(1);
   const [rating, setRating] = useState(1);
   const deleteLoadRequest = useDeleteLoad();
@@ -36,7 +36,7 @@ const LoadBidsModals: React.FC<{
   return (
     <>
       {/* cancel driver modal */}
-      <Modal open={loadType === 'ON_THE_WAY' && isOpen} onClose={close}>
+      <Modal open={status === 2 && isOpen} onClose={close}>
         <LoadBidsSimpleModalWrapper
           type={cancelDriverSteps === 1 ? 'small' : 'big'}
         >
@@ -101,7 +101,7 @@ const LoadBidsModals: React.FC<{
         </LoadBidsSimpleModalWrapper>
       </Modal>
       {/* Delete load modal */}
-      <Modal open={loadType === 'NEW' && isOpen} onClose={close}>
+      <Modal open={status === 1 && isOpen} onClose={close}>
         <LoadBidsSimpleModalWrapper type="small">
           <Text>Are you sure to delete? Actions cannot be undone</Text>
           <LoadBitsModalButtonsWrapper>

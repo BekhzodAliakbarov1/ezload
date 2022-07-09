@@ -22,7 +22,6 @@ import Map from 'components/map';
 interface StateType {
   state: { type?: 'EDIT'; data?: AddressInterface };
 }
-
 const CreateEditAddress = () => {
   const { state } = useLocation() as StateType;
   const [
@@ -43,26 +42,31 @@ const CreateEditAddress = () => {
 
   const navigate = useNavigate();
   const createAddressRequest = useCreateAddress();
-  const editAddressRequest = useEditAddress();
+  const editAddressRequest = useEditAddress(state.data?.id);
 
   const submitHandler = (e: React.FormEvent) => {
-    // use createAddressRequest or editAddressRequest
     e.preventDefault();
-    createAddressRequest.mutate(
-      {
-        country: Number(country.id),
-        district: Number(district.id),
-        location: { latitude: latLong.lat, longitude: latLong.lng },
-        orientation: address_1 ?? '',
-        postal_code: zip_code,
-        region: Number(region.id),
-      },
-      {
+    const address = {
+      country: Number(country.id),
+      district: Number(district.id),
+      location: { latitude: latLong.lat, longitude: latLong.lng },
+      orientation: address_1 ?? '',
+      postal_code: zip_code,
+      region: Number(region.id),
+    };
+    if (state.type === 'EDIT') {
+      editAddressRequest.mutate(address, {
         onSuccess() {
           navigate(-1);
         },
-      }
-    );
+      });
+    } else {
+      createAddressRequest.mutate(address, {
+        onSuccess() {
+          navigate(-1);
+        },
+      });
+    }
   };
 
   const searchInputSelectHandler = ({
@@ -189,5 +193,4 @@ const CreateEditAddress = () => {
     </CreateAddressWrapper>
   );
 };
-
 export default CreateEditAddress;

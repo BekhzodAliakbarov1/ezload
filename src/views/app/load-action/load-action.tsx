@@ -58,7 +58,7 @@ const ActionLoad = () => {
         id: state.data?.id,
       });
     }
-  }, [state.data?.id]);
+  }, [state?.data?.id]);
 
   return (
     <ActionLoadWrapper>

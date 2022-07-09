@@ -14,14 +14,17 @@ interface CreateAddressRequest {
   postal_code: string;
 }
 interface EditAddressRequest {
-  id: string;
-
-  region?: number;
-  district?: number;
-  latitude?: string;
-  longitude?: string;
-  orientation?: string;
+  country: number;
+  region: number;
+  district: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  orientation: string;
+  postal_code: string;
 }
+
 interface DeleteAddressRequest {
   id: string;
 }
@@ -51,11 +54,11 @@ export const useCreateAddress = () => {
 };
 
 // EDIT
-export const useEditAddress = () =>
+export const useEditAddress = (id?: number) =>
   useMutation(
     (data: EditAddressRequest) =>
       request
-        .put<{ success: boolean }>(`/region/address/${data.id}/update/`, data)
+        .put<{ success: boolean }>(`/account/address/${id}/update/`, data)
         .then((res) => res.data),
     {
       retry: false,

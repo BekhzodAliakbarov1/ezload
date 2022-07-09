@@ -12,18 +12,13 @@ import {
 } from './load-info-card.styles';
 
 const LoadInfoCard: React.FC<{
-  loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
   data: SingleLoadDetailsResponse;
-}> = ({ loadType, data }) => {
-  console.log(loadType);
-
+}> = ({ data }) => {
   return (
     <LoadInfoCradWrapper>
       <Text weight="600">Information about load</Text>
       <Button buttonType="warning">
-        {loadType === 'NEW' || loadType === 'BIDDED'
-          ? 'NEW'
-          : loadType === 'ON_THE_WAY' && 'ON THE WAY'}
+        {data.status === 1 ? 'NEW' : data.status === 2 && 'ON THE WAY'}
       </Button>
       <LoadInfoCardDataBox>
         <LoadInfoCardDataSingleBox>

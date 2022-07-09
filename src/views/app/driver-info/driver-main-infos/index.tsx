@@ -20,17 +20,19 @@ import { useAcceptBid } from 'server-state/queries/use-bid';
 
 const DriverMainInfos: React.FC<{
   data?: SingleDriverResponse;
-}> = ({ data }) => {
-  const { bidId, id } = useParams<{ bidId?: string; id: string }>();
-  const acceptBidRequest = useAcceptBid({ bid_id: bidId });
+  bid_id?: string;
+  bidded_price?: string;
+}> = ({ data, bid_id, bidded_price }) => {
+  const acceptBidRequest = useAcceptBid({ bid_id });
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
-  const biddedDriver = Boolean(bidId);
+  const biddedDriver = Boolean(bid_id);
 
   const handleClick = () => {
+    close();
+
     acceptBidRequest.refetch().then(() => {
       navigate(-1);
-      close();
     });
   };
 
@@ -81,7 +83,7 @@ const DriverMainInfos: React.FC<{
         <AcceptBidModalWrapper>
           <Text>
             Are you sure you want to accept this bid from {data?.first_name}{' '}
-            with the amount of ?
+            with the amount of ${bidded_price}?
           </Text>
           <ModalButtonsWrapper>
             <Button onClick={handleClick}>Accept</Button>

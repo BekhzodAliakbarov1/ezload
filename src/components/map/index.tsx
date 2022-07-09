@@ -33,6 +33,8 @@ const Map: React.FC<{
   } = useMap();
 
   useEffect(() => {
+    console.log({ address });
+
     searchLatLng({ address });
   }, [address]);
 
@@ -45,8 +47,6 @@ const Map: React.FC<{
   useEffect(() => {
     getLatLong({ ...latLong });
   }, [latLong]);
-  console.log(latLong);
-  console.log(address_line);
 
   const handleMapLoads = ({ maps }: { maps: any }) => {
     assignMap(maps);

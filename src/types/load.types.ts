@@ -45,6 +45,7 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
   description: string;
   price: number;
   weight: number;
+  status: 1 | 2 | 3;
   bids?: {
     id: number;
     owner: {

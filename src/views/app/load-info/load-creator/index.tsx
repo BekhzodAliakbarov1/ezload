@@ -17,8 +17,8 @@ import { Modal } from '@mui/material';
 import Input from 'components/input/input';
 
 const LoadCreator: React.FC<{
-  loadType: 'NEW' | 'BIDDED' | 'ON_THE_WAY';
-}> = ({ loadType }) => {
+  status?: 1 | 2 | 3;
+}> = ({ status }) => {
   const { close, isOpen, open } = useModal();
 
   const handleSubmit = (e: any) => {
@@ -39,7 +39,7 @@ const LoadCreator: React.FC<{
           </Text>
         </LoadCardDataWrapper>
       </LoadCreatorWrapper>
-      {loadType === 'ON_THE_WAY' && (
+      {status === 2 && (
         <LoadCardButtonWrapper>
           <Button>Delivered the load</Button>
           <Button onClick={open} buttonType="warning">
