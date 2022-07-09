@@ -4,7 +4,6 @@ import {
   ActionLoaddAddressWrapper,
   ActionLoadInputAndMapWrapper,
   ActionLoadInputsWrapper,
-  StyledSelectInput,
   StyledText,
   ActionLoadMapContentWrapper,
   ChooseAndCreateTextWrapper,
@@ -13,8 +12,6 @@ import {
   SaveAddressWrapper,
   StyledIconButton,
 } from './action-load-address.styles';
-import { SelectChangeEvent } from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
 import Input from 'components/input/input';
 import CloseIcon from 'components/icons/close.icon';
 import TickIcon from 'components/icons/tick.icon';
@@ -24,20 +21,16 @@ import MapComponent from 'components/map-component';
 import CountryInput from './action-loads-inputs/country-input';
 import RegionInput from './action-loads-inputs/region-input';
 import DistrictInput from './action-loads-inputs/district-input';
+import AddressInput from './action-loads-inputs/address-input';
 
 const ActionLoadAddress: React.FC<{
   title: string;
   type: 'pickup' | 'delivery';
 }> = ({ title, type }) => {
-  const [location, setLocation] = useState<string>('Samarkand');
   const [checked, setChecked] = useState(false);
   const { data, setValues } = useData();
   const { addresline_1, addresline_2, country, region, district, zipcode } =
     data[type];
-
-  const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
-    setLocation(event.target.value as string);
-  };
 
   const handleInputChange = (value: string, field_name: string) => {
     setValues({
@@ -53,16 +46,7 @@ const ActionLoadAddress: React.FC<{
       <Text size="md" weight="600">
         {title}
       </Text>
-      <StyledSelectInput
-        fullWidth
-        id="demo-simple-select"
-        value={location}
-        onChange={handleSelectChange}
-      >
-        <MenuItem value={'Tashkent'}>Tashkent</MenuItem>
-        <MenuItem value={'Samarkand'}>Samarkand</MenuItem>
-        <MenuItem value={'Buxoro'}>Buxoro</MenuItem>
-      </StyledSelectInput>
+      <AddressInput />
       <ChooseAndCreateTextWrapper>
         <StyledText>Or choose manually</StyledText>
         <ClearTextWrapper>
