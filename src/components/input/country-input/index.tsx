@@ -4,7 +4,7 @@ import Popper from 'components/popper/popper';
 import Text from 'components/typography/text';
 import { bindPopper, bindToggle, usePopper } from 'hooks/use-popper';
 import { debounce } from 'lodash';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useCountry } from 'server-state/queries/use-country';
 import { SearchInput } from '../search-input';
 import { Div, List, popperStyles, Rows } from '../input.styles';
@@ -24,10 +24,14 @@ const CountryInput: React.FC<{
     data,
   } = useCountry({ search: country });
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(
     debounce(() => {
-      if (country.length > 0) refetch();
+      refetch();
     }, 500),
     [country.length]
   );

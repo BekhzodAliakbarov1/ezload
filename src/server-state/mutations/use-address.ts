@@ -73,7 +73,7 @@ export const useDeleteAddress = () => {
   return useMutation(
     (data: DeleteAddressRequest) =>
       request
-        .delete<{ success: boolean }>(`/region/address/${data.id}/delete/`)
+        .delete<{ success: boolean }>(`/account/address/${data.id}/delete/`)
         .then((res) => res.data),
     {
       retry: false,

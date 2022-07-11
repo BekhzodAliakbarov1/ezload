@@ -7,7 +7,7 @@ import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useLoad } from 'server-state/queries/use-load';
 import LoadBids from './load-bids';
@@ -22,9 +22,8 @@ import {
 
 const LoadInfoView = () => {
   // after backend add id use below id inside api call
-  const { load_id, type } = useParams<{
+  const { load_id } = useParams<{
     load_id: string;
-    type: 'new' | 'on_the_way' | 'delivered';
   }>();
 
   const { close, isOpen, open } = useModal();
@@ -33,9 +32,6 @@ const LoadInfoView = () => {
 
   const submitHandler = (e: any) => {
     e.preventDefault();
-    // just for fun
-
-    // last step is close modal
     close();
   };
 
@@ -68,7 +64,6 @@ const LoadInfoView = () => {
             <LoadCard
               clickable={false}
               load={singleLoadRequest.data}
-              loadType={type ?? 'new'}
               withButtons
             />
           )}

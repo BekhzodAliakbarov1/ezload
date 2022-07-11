@@ -19,14 +19,7 @@ const LoadsContainer: React.FC<{
     <LoadsContainerBox>
       {loads.length > 0 ? (
         loads.map((load, index) => {
-          return (
-            <LoadCard
-              loadType={loadType}
-              clickable={clickable}
-              key={index}
-              load={load}
-            />
-          );
+          return <LoadCard clickable={clickable} key={index} load={load} />;
         })
       ) : (
         <NoLoadsFindSection>

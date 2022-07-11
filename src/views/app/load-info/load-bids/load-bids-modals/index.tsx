@@ -21,10 +21,10 @@ const LoadBidsModals: React.FC<{
   isOpen: boolean;
   data?: SingleLoadDetailsResponse;
 }> = ({ close, isOpen, data }) => {
-  const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2 | 3>(1);
   const { load_id } = useParams<{
     load_id: string;
   }>();
+  const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2 | 3>(1);
   const [rating, setRating] = useState(1);
   const deleteLoadRequest = useDeleteLoad();
   const cancelBidRequest = useCancelBid({
@@ -42,7 +42,7 @@ const LoadBidsModals: React.FC<{
     close();
   };
 
-  const deleteLoad = () => deleteLoadRequest.mutate({ id: data?.id });
+  const deleteLoad = () => deleteLoadRequest.mutate({ id: load_id });
 
   return (
     <>

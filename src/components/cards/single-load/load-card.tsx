@@ -5,7 +5,7 @@ import LocationIcon from 'components/icons/location.icon';
 import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SingleLoadResponse } from 'types/load.types';
 import { getDate } from 'utils/getDate';
 import {
@@ -27,21 +27,21 @@ import {
 const LoadCard: React.FC<{
   load: SingleLoadResponse;
   clickable?: boolean;
-  loadType: 'new' | 'on_the_way' | 'delivered';
   withButtons?: boolean;
-}> = ({ load, clickable = true, loadType = 'new', withButtons = false }) => {
+}> = ({ load, clickable = true, withButtons = false }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
+  const { load_id } = useParams<{ load_id: string }>();
 
   const handleDelete = () => {
     // Delete api will connect here
-    console.log(load.id);
+    console.log(load_id);
   };
   const handleEdit = () => {
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
-        data: { ...load },
+        data: { ...load, id: load_id },
       },
     });
   };
@@ -50,7 +50,7 @@ const LoadCard: React.FC<{
     <>
       <LoadCardWrapper
         clickable={clickable}
-        onClick={() => clickable && navigate(`/load/${loadType}/${load.id}`)}
+        onClick={() => clickable && navigate(`/load/${load_id}`)}
       >
         <LoadCarLocationBox>
           <LoadCardSvgDistanceWrapper>

@@ -3,76 +3,66 @@ import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 
 interface CreateLoadRequest {
-  pickup_point: {
-    country: number;
-    region: number;
-    district: number;
-    location: {
-      latitude: number;
-      longitude: number;
-    };
-    orientation: string;
-    postal_code: string;
-    is_user_address: boolean;
-  };
-  destination: {
-    country: number;
-    region: number;
-    district: number;
-    location: {
-      latitude: number;
-      longitude: number;
-    };
-    orientation: string;
-    postal_code: string;
-    is_user_address: boolean;
-  };
+  pickup_point: number;
+  destination: number;
   title: string;
   description: string;
-  earliest_pick_up: string | Date;
-  latest_pick_up: string | Date;
-  earliest_delivery: string | Date;
-  latest_delivery: string | Date;
-  price: string;
+  earliest_pick_up?: Date | string;
+  latest_pick_up?: Date | string;
+  earliest_delivery?: Date | string;
+  latest_delivery?: Date | string;
+  price: number;
   weight: number;
+  mobile: boolean;
+  web: boolean;
 }
-// interface EditAddressRequest {
-//   id: string;
-
-//   region?: number;
-//   district?: number;
-//   latitude?: string;
-//   longitude?: string;
-//   orientation?: string;
-// }
+interface EditAddressRequest extends CreateLoadRequest {
+  id: string;
+}
 interface DeleteLoadRequest {
-  id?: number;
+  id?: string;
 }
 
 // CREATE
-export const useCreateLoad = () =>
-  useMutation(
+export const useCreateLoad = () => {
+  const { enqueueSnackbar } = useSnackbar();
+  return useMutation(
     (data: CreateLoadRequest) =>
       request
         .post<{ success: boolean }>('/load/create/', data)
         .then((res) => res.data),
     {
       retry: false,
+      onSuccess() {
+        enqueueSnackbar('Load created successfully!', { variant: 'success' });
+      },
+      onError() {
+        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+      },
     }
   );
+};
 
 // EDIT
-// export const useEditAddress = () =>
-//   useMutation(
-//     (data: EditAddressRequest) =>
-//       request
-//         .put<{ success: boolean }>(`/region/address/${data.id}/update/`, data)
-//         .then((res) => res.data),
-//     {
-//       retry: false,
-//     }
-//   );
+export const useEditLoad = () => {
+  const { enqueueSnackbar } = useSnackbar();
 
+  return useMutation(
+    (data: EditAddressRequest) =>
+      request
+        .put<{ success: boolean }>(`/load/${data.id}/update/`, data)
+        .then((res) => res.data),
+    {
+      retry: false,
+      onSuccess() {
+        enqueueSnackbar('Load edited successfully!', { variant: 'success' });
+      },
+      onError() {
+        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+      },
+    }
+  );
+};
 // DELETE
 export const useDeleteLoad = () => {
   const { enqueueSnackbar } = useSnackbar();

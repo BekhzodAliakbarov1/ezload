@@ -17,11 +17,11 @@ import CloseIcon from 'components/icons/close.icon';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
-import MapComponent from 'components/map-component';
-import CountryInput from './action-loads-inputs/country-input';
-import RegionInput from './action-loads-inputs/region-input';
-import DistrictInput from './action-loads-inputs/district-input';
 import AddressInput from './action-loads-inputs/address-input';
+import CountryInput from 'components/input/country-input';
+import RegionInput from 'components/input/region-input';
+import DistrictInput from 'components/input/district-input';
+import Map from 'components/map';
 
 const ActionLoadAddress: React.FC<{
   title: string;
@@ -29,18 +29,54 @@ const ActionLoadAddress: React.FC<{
 }> = ({ title, type }) => {
   const [checked, setChecked] = useState(false);
   const { data, setValues } = useData();
-  const { addresline_1, addresline_2, country, region, district, zipcode } =
+  const { address_1, address_2, country, region, district, zip_code } =
     data[type];
 
-  const handleInputChange = (value: string, field_name: string) => {
+  const searchInputSelectHandler = ({
+    fieldName,
+    val,
+  }: {
+    val: { id: string; title: string };
+    fieldName: 'region' | 'district' | 'country';
+  }) => {
     setValues({
       ...data,
       [type]: {
         ...data[type],
-        [field_name]: value,
+        [fieldName]: val,
       },
     });
   };
+
+  const simpleInputSelectionHandler = ({
+    fieldName,
+    val,
+  }: {
+    fieldName: 'zip_code' | 'address_1' | 'address_2';
+    val: string;
+  }) => {
+    setValues({
+      ...data,
+      [type]: {
+        ...data[type],
+        [fieldName]: val,
+      },
+    });
+  };
+
+  const getLatLong = ({ lat, lng }: { lat: number; lng: number }) => {
+    setValues({
+      ...data,
+      [type]: {
+        ...data[type],
+        latLong: {
+          lat,
+          lng,
+        },
+      },
+    });
+  };
+
   return (
     <ActionLoaddAddressWrapper>
       <Text size="md" weight="600">
@@ -59,39 +95,73 @@ const ActionLoadAddress: React.FC<{
       <ActionLoadInputAndMapWrapper>
         <ActionLoadInputsWrapper>
           <Input
-            onChange={(e) => handleInputChange(e.target.value, 'addresline_1')}
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'address_1',
+                val: e.target.value,
+              });
+            }}
             placeholder="Addressline 1"
-            value={addresline_1}
+            value={address_1}
           />
           <Input
-            onChange={(e) => handleInputChange(e.target.value, 'addresline_2')}
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'address_2',
+                val: e.target.value,
+              });
+            }}
             placeholder="Addressline 2"
-            value={addresline_2}
+            value={address_2}
           />
           <DistrictInput
-            country={country}
-            onChange={handleInputChange}
-            region={region}
-            value={district}
+            country={country.title}
+            region={region.title}
+            value={district.title}
+            selectHanlder={(value) => {
+              searchInputSelectHandler({
+                fieldName: 'district',
+                val: { id: value.id, title: value.title },
+              });
+            }}
           />
           <RegionInput
-            value={region}
-            country={country}
-            onChange={handleInputChange}
+            country={country.title}
+            selectHanlder={(value) => {
+              searchInputSelectHandler({
+                fieldName: 'region',
+                val: { id: value.id, title: value.title },
+              });
+            }}
+            value={region.title}
           />
-          <CountryInput value={country} onChange={handleInputChange} />
+          <CountryInput
+            value={country.title}
+            selectHanlder={(value) => {
+              searchInputSelectHandler({
+                fieldName: 'country',
+                val: { id: value.id, title: value.title },
+              });
+            }}
+          />
           <Input
-            onChange={(e) => handleInputChange(e.target.value, 'zipcode')}
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'zip_code',
+                val: e.target.value,
+              });
+            }}
             placeholder="Zip Code"
-            value={zipcode}
+            value={zip_code}
           />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>
           <ActionLoadMapWrapper>
-            {/* <MapComponent
-              type={type}
-              // address={`${data[type].country},${data[type].region},${data[type].district}`}
-            /> */}
+            <Map
+              address={`${country.title}, ${region.title}, ${district.title}`}
+              getAddressLine={simpleInputSelectionHandler}
+              getLatLong={getLatLong}
+            />
           </ActionLoadMapWrapper>
           <SaveAddressWrapper>
             <StyledIconButton onClick={() => setChecked(!checked)}>

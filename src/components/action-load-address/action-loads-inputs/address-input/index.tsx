@@ -4,14 +4,16 @@ import { useAddress } from 'server-state/queries/use-address';
 import { StyledSelectInput } from './address-input.styles';
 
 const AddressInput = () => {
-  const [location, setLocation] = useState<string>('2');
+  const [location, setLocation] = useState<number>(5);
   const addressRequest = useAddress();
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
     const selectedAddress = addressRequest.data?.pages[0].results.filter(
       (address) => address.id === event.target.value
     );
-    // setLocation(event.target.value as string);
+    if (selectedAddress) {
+      setLocation(selectedAddress[0].id);
+    }
   };
 
   return (

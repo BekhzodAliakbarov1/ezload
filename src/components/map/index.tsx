@@ -30,18 +30,18 @@ const Map: React.FC<{
     address_line,
     searchAddressLine,
     handleClick,
+    isConnected,
   } = useMap();
 
   useEffect(() => {
-    console.log({ address });
-
     searchLatLng({ address });
-  }, [address]);
+  }, [address, isConnected]);
 
   useEffect(() => {
     if (address) {
       getAddressLine({ fieldName: 'address_1', val: address_line });
     }
+    console.log(address_line);
   }, [address_line]);
 
   useEffect(() => {

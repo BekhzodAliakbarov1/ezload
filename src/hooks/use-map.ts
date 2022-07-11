@@ -86,9 +86,11 @@ export const useMap = () => {
       const geocoder = map && new map.Geocoder();
 
       geocoder?.geocode({ address: address }, (results: any) => {
-        const lat = results[0].geometry.location.lat();
-        const lng = results[0].geometry.location.lng();
-        dispatch({ payload: { lat, lng }, type: ActionKind.SET_LAT_LNG });
+        if (results) {
+          const lat = results[0].geometry.location.lat();
+          const lng = results[0].geometry.location.lng();
+          dispatch({ payload: { lat, lng }, type: ActionKind.SET_LAT_LNG });
+        }
       });
     }
   };
@@ -107,5 +109,6 @@ export const useMap = () => {
     searchAddressLine,
     searchLatLng,
     handleClick,
+    isConnected: Boolean(map),
   };
 };

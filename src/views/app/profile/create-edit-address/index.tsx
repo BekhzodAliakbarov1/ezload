@@ -42,7 +42,7 @@ const CreateEditAddress = () => {
 
   const navigate = useNavigate();
   const createAddressRequest = useCreateAddress();
-  const editAddressRequest = useEditAddress(state.data?.id);
+  const editAddressRequest = useEditAddress(state?.data?.id);
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ const CreateEditAddress = () => {
       postal_code: zip_code,
       region: Number(region.id),
     };
-    if (state.type === 'EDIT') {
+    if (state?.type === 'EDIT') {
       editAddressRequest.mutate(address, {
         onSuccess() {
           navigate(-1);

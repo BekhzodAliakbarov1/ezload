@@ -12,53 +12,11 @@ import { SingleLoadDetailsResponse } from 'types/load.types';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
 interface StateType {
-  state: { type?: 'EDIT'; data?: SingleLoadDetailsResponse };
+  state: { type?: 'EDIT' };
 }
 
 const ActionLoad = () => {
-  const { setValues, data } = useData();
   const { state } = useLocation() as StateType;
-  //  if load is editing run next row
-  useEffect(() => {
-    if (state?.type === 'EDIT') {
-      // will set edited data of load
-      setValues({
-        ...data,
-        load_title: state.data?.title,
-        pickup: {
-          addresline_1: '',
-          addresline_2: '',
-          district: state.data?.pickup_point.district.title,
-          region: state.data?.pickup_point.region.title,
-          country: state.data?.pickup_point.country.title,
-          zipcode: '',
-        },
-        delivery: {
-          addresline_1: '',
-          addresline_2: '',
-          district: state.data?.destination.district.title,
-          region: state.data?.destination.region.title,
-          country: state.data?.destination.country.title,
-          zipcode: '',
-        },
-        dates: {
-          pickup: {
-            start: new Date(`${state.data?.earliest_pick_up}`),
-            end: new Date(`${state.data?.latest_pick_up}`),
-          },
-          delivery: {
-            start: new Date(`${state.data?.earliest_delivery}`),
-            end: new Date(`${state.data?.latest_delivery}`),
-          },
-        },
-        lugage_size: state.data?.weight,
-        cost: state.data?.price,
-        currency_type: 'USD',
-        description: state.data?.description,
-        id: state.data?.id,
-      });
-    }
-  }, [state?.data?.id]);
 
   return (
     <ActionLoadWrapper>

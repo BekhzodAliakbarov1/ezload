@@ -23,6 +23,7 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
 
   const handleDelete = () => {
     deleteAddressrequest.mutate({ id: String(id) });
+    close();
   };
 
   const handleClick = () => {
