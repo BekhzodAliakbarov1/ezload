@@ -27,7 +27,18 @@ const sizes = {
 
 interface TextProps {
   size?: 'sm' | 'md' | 'lg';
-  color?: 'light' | 'main';
+  color?:
+    | 'main_100'
+    | 'main_90'
+    | 'main_80'
+    | 'main_70'
+    | 'main_60'
+    | 'main_50'
+    | 'main_40'
+    | 'main_30'
+    | 'main_20'
+    | 'main_10'
+    | 'main_5';
   className?: string;
   weight?: string;
   onClick?: () => void;
@@ -36,21 +47,27 @@ interface TextProps {
 const StyledText = styled.p<TextProps>`
   height: fit-content;
   width: fit-content;
-  color: ${(props) => props.theme.text[props.color ?? 'main']};
+  color: ${(props) => props.theme.text[props.color ?? 'main_100']};
   ${(props) => sizes[props.size ?? 'lg']};
   font-weight: ${(props) => props.weight};
   letter-spacing: 0.5px;
 `;
 
-const Text: React.FC<TextProps> = ({ children, size, color, ...other }) => (
-  <StyledText color={color} size={size} {...other}>
+const Text: React.FC<TextProps> = ({
+  children,
+  size,
+  weight = '500',
+  color,
+  ...other
+}) => (
+  <StyledText color={color} size={size} weight={weight} {...other}>
     {children}
   </StyledText>
 );
 
 Text.defaultProps = {
   size: 'lg',
-  color: 'light',
+  color: 'main_100',
 };
 
 export default Text;

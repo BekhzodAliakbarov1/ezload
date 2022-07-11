@@ -4,12 +4,13 @@ import styled from 'styled-components';
 import Container from 'wrappers/container/container';
 import Navbar from 'components/navbar/navbar';
 import { colors } from 'styles/variables';
+import Footer from 'components/footer';
 
 const Main = styled.main`
   width: 100%;
   height: 100%;
   flex: 1 1 auto;
-  background-color: ${colors.green_5};
+  background-color: ${(props) => props.theme.bg.main};
 `;
 
 const AppLayout: React.FC = () => (
@@ -19,6 +20,7 @@ const AppLayout: React.FC = () => (
         <Navbar />
         <AppViews />
       </Container>
+      <Footer />
     </Main>
   </>
 );

@@ -4,34 +4,49 @@ import { CircularProgress } from '@mui/material';
 import { ButtonProps } from './button.types';
 import IosSpinner from '../loaders/ios-spinner';
 import isIOS from '../../utils/is-IOS';
+import { colors as globalColors } from 'styles/variables';
 
 const colors = {
   contained: css`
     background-color: ${(props) => props.theme.button.contained};
-    color: ${(props) => props.theme.text.white};
+    color: ${(props) => props.theme.text.light};
     &:hover {
       background-color: ${(props) => props.theme.button.contained_hover};
     }
   `,
   dark: css`
     background-color: ${(props) => props.theme.button.dark};
-    color: ${(props) => props.theme.text.white};
+    color: ${(props) => props.theme.text.light};
     &:hover {
       background-color: ${(props) => props.theme.button.dark_hover};
     }
   `,
   secondary_dark: css`
     background-color: ${(props) => props.theme.button.secondary_dark};
-    color: ${(props) => props.theme.text.dark};
+    color: ${(props) => props.theme.text.main_100};
     &:hover {
       background-color: ${(props) => props.theme.button.secondary_dark_hover};
     }
   `,
   warning: css`
     background-color: ${(props) => props.theme.button.warning};
-    color: ${(props) => props.theme.text.white};
+    color: ${(props) => props.theme.text.light};
     &:hover {
       background-color: ${(props) => props.theme.button.warning_hover};
+    }
+  `,
+  white: css`
+    background-color: ${(props) => props.theme.colors.white};
+    color: ${globalColors.red_100};
+    &:hover {
+      background-color: ${(props) => props.theme.bg.main};
+    }
+  `,
+  disabled: css`
+    background-color: ${globalColors.dark_40};
+    color: ${globalColors.white} !important;
+    &:hover {
+      background-color: ${(props) => props.theme.bg.main};
     }
   `,
 };
@@ -45,7 +60,7 @@ export const StyledProgress = styled(isIOS() ? IosSpinner : CircularProgress)<
   Pick<ButtonProps, 'buttonType'>
 >`
   position: absolute;
-  color: ${(props) => props.theme.text.white};
+  color: ${(props) => props.theme.text.main_100};
 `;
 
 export const StyledButton = styled(MuiButton).withConfig({
@@ -70,19 +85,9 @@ export const StyledButton = styled(MuiButton).withConfig({
     font-weight: 700;
     ${(props) => colors[props.buttonType ?? 'contained']};
     ${(props) => (props.loading ? loadingStyles : '')}
-    /* img {
-      width: 16px;
-      height: 16px;
-      margin-right: 10px;
-    } */
     @media (max-width: ${(props) => props.theme.sizes.sm}) {
       font-size: 14px;
       width: 100%;
-      /* img {
-        width: 14px;
-        height: 14px;
-        margin-right: 8px;
-      } */
     }
   }
 `;

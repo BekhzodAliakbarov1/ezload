@@ -17,6 +17,7 @@ export const StepsProvider: React.FC = ({ children }) => {
   const [currentStep, setCurrentStep] = useState(1);
   const { state } = useLocation() as UserProp;
   const nextStep = () => setCurrentStep((prev) => prev + 1);
+  const previusStep = () => setCurrentStep((prev) => prev - 1);
   const setStep = (step: number) => setCurrentStep(step);
 
   useEffect(() => {
@@ -29,6 +30,7 @@ export const StepsProvider: React.FC = ({ children }) => {
       value={{
         currentStep,
         nextStep,
+        previusStep,
         setStep,
       }}
     >

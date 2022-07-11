@@ -45,7 +45,7 @@ export const FeedLocationCard = styled.div`
   margin-bottom: 48px;
   > p {
     font-size: 11px;
-    color: ${colors.dark_60};
+    color: ${(props) => props.theme.text.main_60};
     margin-bottom: 8px;
   }
 `;
@@ -59,7 +59,7 @@ export const LocationAndSvgWrapper = styled.div`
     font-size: 16px;
     line-height: 20px;
     letter-spacing: 0.15px;
-    color: ${colors.dark_20};
+    color: ${(props) => props.theme.text.main_20};
   }
 `;
 
@@ -70,6 +70,11 @@ export const FeedStatisticsWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 120px;
+  margin-bottom: 100px;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 50px;
+  }
 `;
 
 export const FeedStatisticsCard = styled.div`

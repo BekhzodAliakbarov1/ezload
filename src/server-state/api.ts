@@ -8,9 +8,10 @@ const request = axios.create({
 request.interceptors.request.use(
   (config) => {
     const accessToken = getStorage('accessToken');
+
     if (accessToken) {
       if (config.headers) {
-        config.headers.Authorization = accessToken;
+        config.headers.Authorization = `Token ${accessToken}`;
       }
     }
     return config;

@@ -1,16 +1,22 @@
 export interface CustomTheme {
   bg: {
     main: string;
+    secondary: string;
   };
   text: {
-    main: string;
+    main_100: string;
+    main_90: string;
+    main_80: string;
+    main_70: string;
+    main_60: string;
+    main_50: string;
+    main_40: string;
+    main_30: string;
+    main_20: string;
+    main_10: string;
+    main_5: string;
+
     light: string;
-    dark: string;
-    white: string;
-  };
-  gray: {
-    main: string;
-    dark: string;
   };
   button: {
     contained: string;

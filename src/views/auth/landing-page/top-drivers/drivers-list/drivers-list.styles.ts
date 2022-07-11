@@ -1,0 +1,55 @@
+import Button from 'components/button/button';
+import styled from 'styled-components';
+import { colors, sizes } from 'styles/variables';
+import Container from 'wrappers/container/container';
+
+export const DriverListWrapper = styled.div`
+  width: 100%;
+  background: ${(props) => props.theme.text.main_90};
+`;
+
+export const SliderWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+  flex-wrap: wrap;
+  @media (max-width: ${sizes.breakpoints.lg}) {
+    justify-content: space-around;
+  }
+  margin: 88px auto 72px auto;
+`;
+
+export const StyledContainer = styled(Container)`
+  .timeline-icon {
+    margin: 0 16px;
+    color: transparent;
+    margin: 0 16px;
+    font-size: 2px;
+    padding: 0 4.25px;
+    border-radius: 50%;
+    cursor: pointer;
+    background: ${colors.green_20};
+  }
+
+  .timeline-icon-active {
+    background: ${colors.green_50};
+  }
+`;
+
+export const ViewButton = styled(Button)`
+  margin: 72px auto 100px auto !important;
+  width: 234px;
+  font-size: 14px !important;
+  align-items: center !important;
+  line-height: 18px !important;
+  letter-spacing: 0.25px !important;
+  text-transform: uppercase;
+`;
+
+export const Stick = styled.div`
+  padding: 88px auto;
+  border-bottom: 2px dashed ${colors.green_20};
+`;

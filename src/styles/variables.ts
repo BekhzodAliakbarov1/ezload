@@ -10,6 +10,7 @@ export const colors = {
   stroke_dark: '#1E2547',
   dark_gray_light: '#9A9A9A',
   dark_gray_dark: '#8E9BDF',
+  dark_gray_lighter: '#aeaeae',
   white: '#FFFFFF',
   bg_light: '#FFFFFF',
   bg_dark: '#0A0C1E',
@@ -51,6 +52,18 @@ export const colors = {
   dark_20: '#CDD3D5',
   dark_10: '#E5E8EA',
   dark_5: '#F2F4F4',
+  //
+  light_100: '#F2F4F4',
+  light_90: '#F2F4F4',
+  light_80: '#F2F4F4',
+  light_70: '#F2F4F4',
+  light_60: '#F2F4F4',
+  light_50: '#F2F4F4',
+  light_40: '#F2F4F4',
+  light_30: '#F2F4F4',
+  light_20: '#F2F4F4',
+  light_10: '#F2F4F4',
+  light_5: '#F2F4F4',
 };
 
 export const sizes = {
