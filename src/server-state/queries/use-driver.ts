@@ -6,8 +6,9 @@ export interface SingleDriverResponse {
     file: string;
   };
   first_name: string;
-  last_name: string;
-  average_rate: number;
+  last_name?: string;
+  average_rate?: number;
+  phone_number?: string;
   vehicle?: {
     title: string;
     licence_plate: string;
@@ -35,9 +36,14 @@ export interface SingleDriverResponse {
   }[];
 }
 
-export const useSingleDriver = (driver_id: string) =>
-  useQuery(`driver_${driver_id}`, () =>
-    request
-      .get<SingleDriverResponse>(`/driver/${driver_id}/detail/`)
-      .then((res) => res.data)
+export const useSingleDriver = (driver_id?: string) =>
+  useQuery(
+    `driver_${driver_id}`,
+    () =>
+      request
+        .get<SingleDriverResponse>(`/driver/${driver_id}/detail/`)
+        .then((res) => res.data),
+    {
+      enabled: false,
+    }
   );

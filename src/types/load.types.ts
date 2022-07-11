@@ -41,11 +41,23 @@ export interface SingleLoadResponse extends LoadMainPart {
 }
 
 export interface SingleLoadDetailsResponse extends LoadMainPart {
+  accepted_bid: number;
   title: string;
   description: string;
   price: number;
   weight: number;
   status: 1 | 2 | 3;
+  driver?: {
+    average_rate: number;
+    first_name: string;
+    phone_number: string;
+    profile_picture: {
+      file: string;
+    };
+  };
+  owner: {
+    first_name: string;
+  };
   bids?: {
     id: number;
     owner: {

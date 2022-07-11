@@ -11,7 +11,7 @@ import {
 } from './driver-main-infos.styles';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from 'components/button/button';
 import { useModal } from 'hooks/use-modal';
 import { Modal } from '@mui/material';
@@ -21,7 +21,7 @@ import { useAcceptBid } from 'server-state/queries/use-bid';
 const DriverMainInfos: React.FC<{
   data?: SingleDriverResponse;
   bid_id?: string;
-  bidded_price?: string;
+  bidded_price?: number;
 }> = ({ data, bid_id, bidded_price }) => {
   const acceptBidRequest = useAcceptBid({ bid_id });
   const { close, isOpen, open } = useModal();
@@ -71,7 +71,7 @@ const DriverMainInfos: React.FC<{
         </DriversMainInfoLocationsWrapper>
         <DriverMainInfoContactWrapper>
           <Text color="main_70">Driver сontact</Text>
-          <h2>+998 99 223 33 12</h2>
+          <h2>+{data?.phone_number ?? 'backend donot send number'}</h2>
         </DriverMainInfoContactWrapper>
         {biddedDriver && (
           <Button fullWidth buttonType="warning" onClick={open}>

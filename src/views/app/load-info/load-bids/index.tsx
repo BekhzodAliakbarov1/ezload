@@ -29,16 +29,7 @@ const LoadBids: React.FC<{
           <LoadBidsDataBox>
             {data?.bids?.map((bid) => (
               <LoadBidDriverCard key={bid.id}>
-                <div
-                  onClick={() =>
-                    navigate(`/load-bidded-driver/3`, {
-                      state: {
-                        id: bid.id,
-                        price: bid.price,
-                      },
-                    })
-                  }
-                >
+                <div onClick={() => navigate(`/load-bidded-driver/${bid.id}`)}>
                   <DriverCard
                     first_name={bid.owner.first_name}
                     id={3} //add correct id when backend send true
@@ -59,14 +50,16 @@ const LoadBids: React.FC<{
           </LoadBidsDataBox>
         ) : (
           <LoadBidsDataBox>
-            {/* here will be user which bid accepted */}
-            {/* <DriverCard
-              {...data[0]}
+            <DriverCard
               shadow
-              sizes="104px"
               clickable
+              sizes="104px"
+              first_name={data?.driver?.first_name ?? ''}
+              id={3}
+              rates_avg={data?.driver?.average_rate ?? 3}
+              image={data?.driver?.profile_picture.file}
               bg_color={colors.green_5}
-            /> */}
+            />
           </LoadBidsDataBox>
         )}
         <Button fullWidth onClick={open}>
@@ -75,14 +68,7 @@ const LoadBids: React.FC<{
             : data?.status === 2 && 'Cancel the driver'}
         </Button>
       </LoadBidsWrapper>
-      {data?.id && (
-        <LoadBidsModals
-          id={data.id}
-          close={close}
-          isOpen={isOpen}
-          status={data.status}
-        />
-      )}
+      <LoadBidsModals data={data} close={close} isOpen={isOpen} />
     </>
   );
 };

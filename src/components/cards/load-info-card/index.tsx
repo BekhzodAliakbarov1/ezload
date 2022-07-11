@@ -23,7 +23,7 @@ const LoadInfoCard: React.FC<{
       <LoadInfoCardDataBox>
         <LoadInfoCardDataSingleBox>
           <Text>Load owner</Text>
-          <Text color="main_100">Abdukarim Abdusalomov</Text>
+          <Text color="main_100">{data.owner.first_name}</Text>
         </LoadInfoCardDataSingleBox>
         <LoadInfoCardDataSingleBox>
           <Text>Load Weight</Text>

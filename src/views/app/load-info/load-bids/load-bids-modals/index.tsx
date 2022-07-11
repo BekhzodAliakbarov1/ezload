@@ -5,6 +5,8 @@ import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import { useDeleteLoad } from 'server-state/mutations/use-load';
+import { useCancelBid } from 'server-state/queries/use-bid';
+import { SingleLoadDetailsResponse } from 'types/load.types';
 import {
   LoadBidRatingWrapper,
   LoadBidsSimpleModalWrapper,
@@ -12,39 +14,48 @@ import {
   ModalInputsWrapper,
   ModalStyledTextFiled,
 } from './load-bids-modal.styles';
+import { useParams } from 'react-router-dom';
 
 const LoadBidsModals: React.FC<{
-  status?: 1 | 2 | 3;
   close: () => void;
   isOpen: boolean;
-  id: number;
-}> = ({ status, close, isOpen, id }) => {
+  data?: SingleLoadDetailsResponse;
+}> = ({ close, isOpen, data }) => {
   const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2 | 3>(1);
+  const { load_id } = useParams<{
+    load_id: string;
+  }>();
   const [rating, setRating] = useState(1);
   const deleteLoadRequest = useDeleteLoad();
+  const cancelBidRequest = useCancelBid({
+    bid_id: data?.accepted_bid,
+    load_id,
+  });
 
   const handleSubmit = () => {
-    // last submit handler
+    cancelBidRequest.refetch();
+    setCancelDriverSteps(1);
+    close();
   };
   const cancelHandler = () => {
     setCancelDriverSteps(1);
     close();
   };
 
-  const deleteLoad = () => deleteLoadRequest.mutate({ id });
+  const deleteLoad = () => deleteLoadRequest.mutate({ id: data?.id });
 
   return (
     <>
       {/* cancel driver modal */}
-      <Modal open={status === 2 && isOpen} onClose={close}>
+      <Modal open={data?.status === 2 && isOpen} onClose={close}>
         <LoadBidsSimpleModalWrapper
           type={cancelDriverSteps === 1 ? 'small' : 'big'}
         >
           {cancelDriverSteps === 1 && (
             <>
               <Text>
-                Are you sure you want to cancel “Driver name” assigned to the
-                order ID: 123456789?
+                Are you sure you want to cancel “{data?.driver?.first_name}”
+                assigned to the order ID: {data?.accepted_bid}?
               </Text>
               <LoadBitsModalButtonsWrapper>
                 <Button onClick={() => setCancelDriverSteps(2)}>Submit</Button>
@@ -101,7 +112,7 @@ const LoadBidsModals: React.FC<{
         </LoadBidsSimpleModalWrapper>
       </Modal>
       {/* Delete load modal */}
-      <Modal open={status === 1 && isOpen} onClose={close}>
+      <Modal open={data?.status === 1 && isOpen} onClose={close}>
         <LoadBidsSimpleModalWrapper type="small">
           <Text>Are you sure to delete? Actions cannot be undone</Text>
           <LoadBitsModalButtonsWrapper>

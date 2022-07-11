@@ -19,7 +19,12 @@ const SearchDriversList = () => {
         {topDriversResponse.data?.pages &&
           topDriversResponse.data.pages[0].results.map((driver) => (
             <Link key={driver.id} to={`/drivers/${driver.id}`}>
-              <DriverCard sizes="104px" {...driver} clickable />
+              <DriverCard
+                sizes="104px"
+                {...driver}
+                clickable
+                image={driver.profile_picture.file}
+              />
             </Link>
           ))}
       </SearchDriversListItemsWrapper>
@@ -28,7 +33,12 @@ const SearchDriversList = () => {
         {workedBeforeDriversResponse.data?.pages &&
           workedBeforeDriversResponse.data.pages[0].results.map((driver) => (
             <Link key={driver.id} to={`/drivers/${driver.id}`}>
-              <DriverCard sizes="104px" {...driver} clickable />
+              <DriverCard
+                sizes="104px"
+                {...driver}
+                clickable
+                image={driver.profile_picture.file}
+              />
             </Link>
           ))}
       </SearchDriversListItemsWrapper>

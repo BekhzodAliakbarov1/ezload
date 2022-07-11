@@ -16,8 +16,8 @@ const CustomerView = () => (
     <Route path="/edit-load" element={<ActionLoadLayout />} />
     <Route path="/search-driver" element={<SearchDriverLayout />} />
     <Route path="/drivers/:id" element={<DriverInfoLayout />} />
-    <Route path="/load-bidded-driver/:id" element={<DriverInfoLayout />} />
-    <Route path="/load/:type/:id" element={<LoadInfoLayout />} />
+    <Route path="/load-bidded-driver/:bid_id" element={<DriverInfoLayout />} />
+    <Route path="/load/:type/:load_id" element={<LoadInfoLayout />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );

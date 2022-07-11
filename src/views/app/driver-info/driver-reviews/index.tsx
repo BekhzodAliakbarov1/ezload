@@ -1,8 +1,7 @@
 import ReviewCard from 'components/cards/review-card';
 import FileIcon from 'components/icons/file.icon';
 import Text from 'components/typography/text';
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
 import { SingleDriverResponse } from 'server-state/queries/use-driver';
 import {
   DriverReviewsDataBox,

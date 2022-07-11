@@ -11,6 +11,9 @@ interface DriversResponse {
     first_name: string;
     last_name: string;
     rates_avg: number;
+    profile_picture: {
+      file: string;
+    };
     vehicle: {
       title: string;
       licence_plate: string;

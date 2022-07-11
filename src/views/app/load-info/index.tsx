@@ -22,14 +22,14 @@ import {
 
 const LoadInfoView = () => {
   // after backend add id use below id inside api call
-  const { id, type } = useParams<{
-    id: string;
+  const { load_id, type } = useParams<{
+    load_id: string;
     type: 'new' | 'on_the_way' | 'delivered';
   }>();
 
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
-  const singleLoadRequest = useLoad({ id: '2' });
+  const singleLoadRequest = useLoad({ load_id });
 
   const submitHandler = (e: any) => {
     e.preventDefault();
@@ -77,7 +77,7 @@ const LoadInfoView = () => {
           )}
         </LoadInfoDataWrapperBox>
         {isDriver ? (
-          <LoadCreator status={singleLoadRequest.data?.status} />
+          <LoadCreator data={singleLoadRequest.data} />
         ) : (
           <LoadBids data={singleLoadRequest.data} />
         )}
