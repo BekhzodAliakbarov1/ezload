@@ -11,9 +11,9 @@ import Button from 'components/button/button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AddressInterface } from 'types/address.types';
 import {
-  useCreateAddress,
-  useEditAddress,
-} from 'server-state/mutations/use-address';
+  useCreateProfileAddress,
+  useEditProfileAddress,
+} from 'server-state/mutations/use-profile-address';
 import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
 import DistrictInput from 'components/input/district-input';
@@ -41,8 +41,8 @@ const CreateEditAddress = () => {
   });
 
   const navigate = useNavigate();
-  const createAddressRequest = useCreateAddress();
-  const editAddressRequest = useEditAddress(state?.data?.id);
+  const createAddressRequest = useCreateProfileAddress();
+  const editAddressRequest = useEditProfileAddress(state?.data?.id);
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();

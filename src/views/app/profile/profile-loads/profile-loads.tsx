@@ -81,7 +81,6 @@ const ProfileLoads = () => {
             hasNextPage={newLoadsRequest.hasNextPage}
             key={index}
             loads={page.results}
-            loadType="new"
           />
         ))}
       {sectionType === 'PENDING' &&
@@ -91,7 +90,6 @@ const ProfileLoads = () => {
             hasNextPage={onTheWayLoadsRequest.hasNextPage}
             key={index}
             loads={page.results}
-            loadType="on_the_way"
           />
         ))}
       {sectionType === 'DONE' &&
@@ -101,7 +99,6 @@ const ProfileLoads = () => {
             hasNextPage={deliveredLoadsRequest.hasNextPage}
             key={index}
             loads={page.results}
-            loadType="delivered"
           />
         ))}
     </ProfileLoadsWrapper>

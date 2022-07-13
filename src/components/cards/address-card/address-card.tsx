@@ -5,7 +5,7 @@ import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteAddress } from 'server-state/mutations/use-address';
+import { useDeleteProfileAddress } from 'server-state/mutations/use-profile-address';
 import { AddressInterface } from 'types/address.types';
 import {
   AddressCardButtonsWrapper,
@@ -19,7 +19,7 @@ import {
 const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
-  const deleteAddressrequest = useDeleteAddress();
+  const deleteAddressrequest = useDeleteProfileAddress();
 
   const handleDelete = () => {
     deleteAddressrequest.mutate({ id: String(id) });

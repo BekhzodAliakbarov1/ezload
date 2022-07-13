@@ -13,8 +13,7 @@ const LoadsContainer: React.FC<{
   loads: SingleLoadResponse[];
   hasNextPage?: boolean;
   clickable?: boolean;
-  loadType: 'new' | 'on_the_way' | 'delivered';
-}> = ({ loads, clickable, loadType, hasNextPage }) => {
+}> = ({ loads, clickable, hasNextPage }) => {
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (

@@ -50,7 +50,7 @@ const LoadCard: React.FC<{
     <>
       <LoadCardWrapper
         clickable={clickable}
-        onClick={() => clickable && navigate(`/load/${load_id}`)}
+        onClick={() => clickable && navigate(`/load/${load.id}`)}
       >
         <LoadCarLocationBox>
           <LoadCardSvgDistanceWrapper>

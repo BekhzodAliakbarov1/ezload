@@ -6,6 +6,7 @@ import {
   LoadBidDriverCostWrapper,
   LoadBidsDataBox,
   LoadBidsWrapper,
+  NoLoadBodsWrapper,
 } from './load-bids.styles';
 import Button from 'components/button/button';
 import DollarIcon from 'components/icons/dollar.icon';
@@ -14,12 +15,14 @@ import { useModal } from 'hooks/use-modal';
 import LoadBidsModals from './load-bids-modals';
 import { SingleLoadDetailsResponse } from 'types/load.types';
 import { useNavigate } from 'react-router-dom';
+import FileIcon from 'components/icons/file.icon';
 
 const LoadBids: React.FC<{
   data?: SingleLoadDetailsResponse;
 }> = ({ data }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
+  console.log(data?.bids);
 
   return (
     <>
@@ -27,26 +30,35 @@ const LoadBids: React.FC<{
         <Text weight="700">{data?.status === 1 ? 'Bids' : 'Driver'}</Text>
         {data?.status === 1 ? (
           <LoadBidsDataBox>
-            {data?.bids?.map((bid) => (
-              <LoadBidDriverCard key={bid.id}>
-                <div onClick={() => navigate(`/load-bidded-driver/${bid.id}`)}>
-                  <DriverCard
-                    first_name={bid.owner.first_name}
-                    id={3} //add correct id when backend send true
-                    rates_avg={bid.average_rate}
-                    image={bid.owner.profile_picture?.file}
-                    shadow
-                    sizes="104px"
-                    clickable
-                    bg_color={colors.green_5}
-                  />
-                </div>
-                <LoadBidDriverCostWrapper>
-                  <DollarIcon />
-                  <Text weight="600">{bid.price} USD</Text>
-                </LoadBidDriverCostWrapper>
-              </LoadBidDriverCard>
-            ))}
+            {data?.bids && data.bids.length > 0 ? (
+              data.bids.map((bid) => (
+                <LoadBidDriverCard key={bid.id}>
+                  <div
+                    onClick={() => navigate(`/load-bidded-driver/${bid.id}`)}
+                  >
+                    <DriverCard
+                      first_name={bid.owner.first_name}
+                      id={3} //add correct id when backend send true
+                      rates_avg={bid.average_rate}
+                      image={bid.owner.profile_picture?.file}
+                      shadow
+                      sizes="104px"
+                      clickable
+                      bg_color={colors.green_5}
+                    />
+                  </div>
+                  <LoadBidDriverCostWrapper>
+                    <DollarIcon />
+                    <Text weight="600">{bid.price} USD</Text>
+                  </LoadBidDriverCostWrapper>
+                </LoadBidDriverCard>
+              ))
+            ) : (
+              <NoLoadBodsWrapper>
+                <FileIcon size="100" />
+                <Text>No Bids</Text>
+              </NoLoadBodsWrapper>
+            )}
           </LoadBidsDataBox>
         ) : (
           <LoadBidsDataBox>

@@ -38,3 +38,12 @@ export const LoadBidDriverCard = styled.div`
   flex-direction: column;
   gap: 8px;
 `;
+
+export const NoLoadBodsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+`;

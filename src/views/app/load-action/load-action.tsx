@@ -8,8 +8,6 @@ import LoadDateTime from './load-action-parts/load-date-time/load-date-time';
 import LoadExtraInformation from './load-action-parts/load-extra-information/load-extra-information';
 import LoadButtons from './load-action-parts/load-buttons/load-buttons';
 import { useLocation } from 'react-router-dom';
-import { SingleLoadDetailsResponse } from 'types/load.types';
-import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 
 interface StateType {
   state: { type?: 'EDIT' };
