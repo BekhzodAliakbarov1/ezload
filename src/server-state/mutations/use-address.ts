@@ -1,23 +1,11 @@
 import { useMutation } from 'react-query';
+import { CreateAddressRequestInterface } from 'types/address.types';
 import { request } from '../api';
-
-interface CreateAddressRequest {
-  country: number;
-  region: number;
-  district: number;
-  location: {
-    latitude?: number;
-    longitude?: number;
-  };
-  orientation: string;
-  postal_code: string;
-  is_user_address: boolean;
-}
 
 // CREATE
 export const useCreateAddress = () => {
   return useMutation(
-    (data: CreateAddressRequest) =>
+    (data: CreateAddressRequestInterface) =>
       request
         .post<{ message: string; status_code: number; id: number }>(
           '/address/create/',

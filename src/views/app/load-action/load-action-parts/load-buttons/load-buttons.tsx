@@ -21,14 +21,14 @@ const LoadButtons: React.FC<{ isEditing: boolean }> = ({ isEditing }) => {
     const result = await createAddressRequest.mutateAsync({
       country: Number(data[type].country.id),
       district: Number(data[type].district.id),
-      is_user_address: false, // after checkbox connected fix it
       location: {
-        latitude: data[type].latLong.lat,
-        longitude: data[type].latLong.lng,
+        latitude: data[type].latLong.lat ?? 0,
+        longitude: data[type].latLong.lng ?? 0,
       },
       orientation: `${data[type].address_1}`,
       postal_code: data[type].zip_code,
       region: Number(data[type].region.id),
+      is_user_address: false, // after checkbox connected fix it
     });
     return result.id;
   };

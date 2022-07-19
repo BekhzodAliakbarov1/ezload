@@ -22,7 +22,6 @@ const LoadBids: React.FC<{
 }> = ({ data }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
-  console.log(data?.bids);
 
   return (
     <>

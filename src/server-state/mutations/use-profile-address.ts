@@ -1,18 +1,8 @@
 import { useSnackbar } from 'notistack';
 import { useMutation, useQueryClient } from 'react-query';
+import { CreateProfileAddressRequestInterface } from 'types/address.types';
 import { request } from '../api';
 
-interface CreateAddressRequest {
-  country: number;
-  region: number;
-  district: number;
-  location: {
-    latitude: number;
-    longitude: number;
-  };
-  orientation: string;
-  postal_code: string;
-}
 interface EditAddressRequest {
   country: number;
   region: number;
@@ -33,7 +23,7 @@ export const useCreateProfileAddress = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   return useMutation(
-    (data: CreateAddressRequest) =>
+    (data: CreateProfileAddressRequestInterface) =>
       request
         .post<{ message: string; status_code: number }>(
           '/account/address/create/',

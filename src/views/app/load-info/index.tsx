@@ -9,6 +9,7 @@ import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useCreateBid } from 'server-state/mutations/use-create-bid';
 import { useLoad } from 'server-state/queries/use-load';
 import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
@@ -21,7 +22,6 @@ import {
 } from './load-info.styles';
 
 const LoadInfoView = () => {
-  // after backend add id use below id inside api call
   const { load_id } = useParams<{
     load_id: string;
   }>();
@@ -29,10 +29,26 @@ const LoadInfoView = () => {
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ load_id });
+  const createBidRequest = useCreateBid();
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    close();
+    const target = e.target as typeof e.target & {
+      price: { value: string };
+    };
+    createBidRequest.mutate(
+      {
+        load: load_id,
+        price: target.price.value,
+      },
+      {
+        onSuccess() {
+          close();
+        },
+      }
+    );
+
+    // close();
   };
 
   return (
@@ -81,8 +97,10 @@ const LoadInfoView = () => {
       <Modal open={isOpen} onClose={close}>
         <MakeBidModalWrapper onSubmit={submitHandler}>
           <Text className="header">Make a bid</Text>
-          <Text className="cost">Customer’s suggestion 4 500 000 SUM</Text>
-          <Input placeholder="Your bid" />
+          <Text className="cost">
+            Customer’s suggestion {singleLoadRequest.data?.price} USD
+          </Text>
+          <Input name="price" placeholder="Your bid (USD)" />
           <ModalButtonsWrapper>
             <Button>Submit</Button>
             <Button type="button" onClick={close} buttonType="white">
