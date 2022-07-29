@@ -18,8 +18,8 @@ export const useUpdateProfile = () => {
   const { enqueueSnackbar } = useSnackbar();
   return useMutation(
     (data: UpdateProfileRequestRequest) => {
-      const user_id = userId ?? data.user_id;
-      const token = access ?? data.token;
+      const user_id = data.user_id ?? userId;
+      const token = data.token ?? access;
       return request
         .put<{ success: boolean }>(`/account/${user_id}/update/`, data, {
           headers: {

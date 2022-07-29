@@ -26,7 +26,11 @@ export const useUpload = () => {
     (data: UploadRequest) => {
       const fd = new FormData();
       fd.append('file', data.file ?? '');
-      const token = access ?? data.token;
+      console.log(data);
+      console.log(access);
+
+      const token = data.token ?? access;
+
       return request
         .post<UploadResponse>('/media/create/', fd, {
           headers: {

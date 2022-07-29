@@ -35,6 +35,7 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
       userType,
     });
   };
+  console.log({ data });
 
   return (
     <StepsProvider>
