@@ -14,7 +14,7 @@ export interface UserProp {
 
 export const StepsProvider: React.FC = ({ children }) => {
   // after all give it default 1 value
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(4);
   const { state } = useLocation() as UserProp;
   const nextStep = () => setCurrentStep((prev) => prev + 1);
   const previusStep = () => setCurrentStep((prev) => prev - 1);

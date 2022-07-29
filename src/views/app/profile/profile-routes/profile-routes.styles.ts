@@ -49,9 +49,12 @@ export const ProfileRoutesInputsWrapper = styled.div`
   input {
     width: 100%;
   }
-  div {
+  > div {
     display: flex;
     gap: 17px;
+    > div {
+      width: 100%;
+    }
     > button {
       height: 47px;
       width: 47px;
