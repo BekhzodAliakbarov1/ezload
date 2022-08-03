@@ -67,6 +67,7 @@ const FourthStep: React.FC<{
         { country: country.id, region: region.id },
         {
           onSuccess() {
+            routesRequest.refetch();
             if (clear === 'both') {
               setRegion(initialState);
               setCountry(initialState);
@@ -130,15 +131,19 @@ const FourthStep: React.FC<{
         )}
         <FourthStepInputsWrapper>
           <CountryRouteInput
-            value=""
-            selectHanlder={() => console.log('')}
+            value={country.title}
+            selectHanlder={({ id, title }) => {
+              setCountry({ id, title });
+            }}
             token={token}
           />
           <div>
             <RegionRouteInput
-              value=""
-              country=""
-              selectHanlder={() => console.log('')}
+              value={region.title}
+              country={country.title}
+              selectHanlder={({ id, title }) => {
+                setRegion({ id, title });
+              }}
               token={token}
             />
 

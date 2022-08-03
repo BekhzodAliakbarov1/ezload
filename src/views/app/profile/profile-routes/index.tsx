@@ -45,6 +45,7 @@ const ProfileRoutes = () => {
         { country: country.id, region: region.id },
         {
           onSuccess() {
+            routesRequest.refetch();
             if (clear === 'both') {
               setRegion(initialState);
               setCountry(initialState);
