@@ -18,7 +18,12 @@ const PersonalInformation = () => {
   const [profileInfo, setProfileInfo] = useState<{
     name: string;
     phone: string;
-    profile_picture: string;
+    profile_picture?: string;
+    vehicle?: {
+      title?: string;
+      licence_plate?: string;
+      capacity?: string;
+    };
   }>({ name: '', phone: '', profile_picture: '' });
   const { isDriver } = useDriver();
 
@@ -27,7 +32,12 @@ const PersonalInformation = () => {
       setProfileInfo({
         name: data.first_name,
         phone: data.phone_number,
-        profile_picture: data.profile_picture.file,
+        profile_picture: data.profile_picture?.file,
+        vehicle: {
+          capacity: data.vehicle?.capacity,
+          licence_plate: data.vehicle?.licence_plate,
+          title: data.vehicle?.title,
+        },
       });
     }
   }, [data]);
@@ -59,6 +69,7 @@ const PersonalInformation = () => {
       );
     }
   };
+  console.log(profileInfo);
 
   return (
     <PersonalInformationWrapper>
@@ -91,9 +102,9 @@ const PersonalInformation = () => {
       </PersonalInformationTopPartWrapper>
       {isDriver && (
         <TruckInfo
-          car_capacity="2000 tonnes"
-          car_model="Man"
-          car_number="01  T 533 UU"
+          car_capacity={profileInfo.vehicle?.capacity}
+          car_model={profileInfo.vehicle?.title}
+          car_number={profileInfo.vehicle?.licence_plate}
         />
       )}
     </PersonalInformationWrapper>

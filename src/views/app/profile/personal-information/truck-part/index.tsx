@@ -14,9 +14,9 @@ import {
 } from './truck-part.styles';
 
 const TruckInfo: React.FC<{
-  car_model: string;
-  car_capacity: string;
-  car_number: string;
+  car_model?: string;
+  car_capacity?: string;
+  car_number?: string;
 }> = ({ car_capacity = '', car_model = '', car_number = '' }) => {
   const [isEditing, setisEditing] = useState(false);
   const [model, setModel] = useState(car_model);

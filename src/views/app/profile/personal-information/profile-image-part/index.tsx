@@ -7,7 +7,7 @@ import FileInput from 'components/input/file-input';
 import Spinner from 'components/loaders/spinner';
 
 const ProfileImagePart: React.FC<{
-  img: string;
+  img?: string;
   onSubmit: (val: Blob | File) => void;
   isLoading: boolean;
 }> = ({ img, onSubmit, isLoading }) => {
