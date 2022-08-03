@@ -6,7 +6,6 @@ import {
 } from './personal-information.styles';
 import EditableFiled from 'components/editable-field-component/editable-field';
 import TruckInfo from './truck-part';
-import { useDriver } from 'hooks/use-driver';
 import { useProfile } from 'server-state/queries/use-profile';
 import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 import ProfileImagePart from './profile-image-part';
@@ -25,7 +24,6 @@ const PersonalInformation = () => {
       capacity?: string;
     };
   }>({ name: '', phone: '', profile_picture: '' });
-  const { isDriver } = useDriver();
 
   useEffect(() => {
     if (data?.first_name && data.phone_number) {
@@ -69,7 +67,6 @@ const PersonalInformation = () => {
       );
     }
   };
-  console.log(profileInfo);
 
   return (
     <PersonalInformationWrapper>
@@ -100,7 +97,7 @@ const PersonalInformation = () => {
           )}
         </NamePhoneNumberWrapper>
       </PersonalInformationTopPartWrapper>
-      {isDriver && (
+      {profileInfo.vehicle?.title && (
         <TruckInfo
           car_capacity={profileInfo.vehicle?.capacity}
           car_model={profileInfo.vehicle?.title}

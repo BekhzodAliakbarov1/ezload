@@ -4,6 +4,7 @@ import PenIcon from 'components/icons/pen.icon';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useUpdateVehicle } from 'server-state/mutations/use-update-vehicle';
 import {
   TruckButtonsWrapper,
   TruckEditButtonWrapper,
@@ -22,9 +23,21 @@ const TruckInfo: React.FC<{
   const [model, setModel] = useState(car_model);
   const [capacity, setCapacity] = useState(car_capacity);
   const [carNumber, setcarNumber] = useState(car_number);
+  const updateVehicleRequest = useUpdateVehicle();
 
   const handleSubmit = () => {
-    console.log('submit button');
+    updateVehicleRequest.mutate(
+      {
+        capacity: Number(capacity),
+        licence_plate: carNumber,
+        title: model,
+      },
+      {
+        onSuccess() {
+          setisEditing(false);
+        },
+      }
+    );
   };
   const handleCancel = () => {
     setisEditing(false);
@@ -58,7 +71,7 @@ const TruckInfo: React.FC<{
               onChange={(e) => setCapacity(e.target.value)}
             />
           ) : (
-            <Text weight="600">{capacity}</Text>
+            <Text weight="600">{capacity} kg</Text>
           )}
         </TruckInfoChangeInput>
         <TruckInfoChangeInput>
