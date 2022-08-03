@@ -6,9 +6,11 @@ import XIcon from 'components/icons/x.icon';
 import CountryRouteInput from 'components/input/route-inputs/country-route';
 import RegionRouteInput from 'components/input/route-inputs/region-route';
 import Text from 'components/typography/text';
+import { useAuth } from 'global-state/auth/auth.state';
 import React, { useState } from 'react';
 import { useCreateRoute } from 'server-state/mutations/use-create-route';
 import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
+import { useRoutes } from 'server-state/queries/use-routes';
 import {
   LastButtonWrapper,
   MyRoutesEditButtonWrapper,
@@ -31,13 +33,7 @@ const ProfileRoutes = () => {
   const createRouteRequest = useCreateRoute();
   const deleteRouteRequest = useDeleteRoute();
   const [isEditing, setIsEditing] = useState(false);
-  const [locations, setLocations] = useState<
-    {
-      id: string;
-      country: string;
-      region: string;
-    }[]
-  >([]);
+  const routesRequest = useRoutes();
 
   const createRoute = ({
     clear,
@@ -63,12 +59,19 @@ const ProfileRoutes = () => {
     }
   };
 
-  const deleteLocation = (route_id: string) => {
-    deleteRouteRequest.mutate({ route_id });
+  const deleteLocation = (route_id: number) => {
+    deleteRouteRequest.mutate(
+      { route_id },
+      {
+        onSuccess() {
+          routesRequest.refetch();
+        },
+      }
+    );
   };
-  const submitLocations = () => {
-    console.log({ locations });
-  };
+  // const submitLocations = () => {
+  //   console.log({ locations });
+  // };
 
   return (
     <ProfileRoutesDataWrapper>
@@ -85,14 +88,14 @@ const ProfileRoutes = () => {
           </MyRoutesEditButtonWrapper>
         )}
       </ProfileRoutesHeader>
-      {locations?.length > 0 && (
+      {routesRequest?.data?.routes && routesRequest.data.routes.length > 0 && (
         <ProfileRoutesCreatedLocationsWrapper>
-          {locations?.map((location, index) => (
-            <ProfileRoutesCreatedLocationsSingleRow key={location.id}>
+          {routesRequest.data?.routes?.map((route, index) => (
+            <ProfileRoutesCreatedLocationsSingleRow key={route.id}>
               <Text weight="600">
-                {index + 1}. {location.region}, {location.country}
+                {index + 1}. {route.region.title}, {route.country.title}
               </Text>
-              <IconButton onClick={() => deleteLocation(location.id)}>
+              <IconButton onClick={() => deleteLocation(route.id)}>
                 <XIcon />
               </IconButton>
             </ProfileRoutesCreatedLocationsSingleRow>
@@ -128,9 +131,9 @@ const ProfileRoutes = () => {
           <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
             + Add new country
           </StyledGreenText>
-          <Button buttonType="dark" onClick={submitLocations}>
+          {/* <Button buttonType="dark" onClick={submitLocations}>
             Submit
-          </Button>
+          </Button> */}
           <LastButtonWrapper>
             <Button>Save changes</Button>
             <Button onClick={() => setIsEditing(false)} buttonType="white">

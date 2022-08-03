@@ -14,7 +14,8 @@ const RegionRouteInput: React.FC<{
   value?: string;
   selectHanlder: ({ id, title }: { title: string; id: string }) => void;
   country: string;
-}> = ({ value = '', selectHanlder, country }) => {
+  token?: string;
+}> = ({ value = '', selectHanlder, country, token }) => {
   const popperState = usePopper();
   const [region, setRegion] = useState(value);
   const {
@@ -24,7 +25,7 @@ const RegionRouteInput: React.FC<{
     isLoading,
     refetch,
     data,
-  } = useRegion({ search: region, country });
+  } = useRegion({ search: region, country, token });
 
   useEffect(() => {
     if (country) {

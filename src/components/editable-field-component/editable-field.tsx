@@ -15,7 +15,7 @@ import {
 import ReactCodeInputComponent from 'components/code-input/react-code-input';
 import { useVerification } from 'server-state/mutations/use-verification';
 import { useUpdatePhoneNumber } from 'server-state/mutations/use-phone-number';
-import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
+import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 
 const EditableField: React.FC<{
   label: string;
@@ -31,7 +31,7 @@ const EditableField: React.FC<{
   const [verificationCode, setVerificationCode] = useState('');
   const verificationRequest = useVerification();
   const updatePhoneNumberRequest = useUpdatePhoneNumber();
-  const updateProfileRequest = useUpdateProfile();
+  const updateProfileRequest = useUpdateCustomerProfile();
 
   useEffect(() => {
     setEditClicked(false);

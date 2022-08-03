@@ -10,12 +10,17 @@ interface SearchRegionFilters {
   search?: string;
   limit?: number;
   country: string;
+  token?: string;
 }
 
 export const useRegion = (filters?: SearchRegionFilters) =>
-  usePaginatedQuery<SearchRegionResponse>(['region', filters], {
-    path: 'area/region/list/',
-    limit: 10,
-    search: filters?.search,
-    country: filters?.country,
-  });
+  usePaginatedQuery<SearchRegionResponse>(
+    ['region', filters],
+    {
+      path: 'area/region/list/',
+      limit: 10,
+      search: filters?.search,
+      country: filters?.country,
+    },
+    filters?.token
+  );

@@ -1,5 +1,5 @@
 import { useSnackbar } from 'notistack';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { request } from '../api';
 import { useLoad } from './use-load';
 

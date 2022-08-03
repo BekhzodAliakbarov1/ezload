@@ -6,7 +6,7 @@ import FileInput from 'components/input/file-input';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
-import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
+import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 import { useUpload } from 'server-state/mutations/use-upload';
 import {
   CreatorSignInThirdStepWrapper,
@@ -32,7 +32,7 @@ const ThirdStep: React.FC<{
     first_name: '',
   });
   const uploadImageRequest = useUpload();
-  const updateProfileRequest = useUpdateProfile();
+  const updateProfileRequest = useUpdateCustomerProfile();
 
   const clickHandler = () => {
     if (data.first_name) {

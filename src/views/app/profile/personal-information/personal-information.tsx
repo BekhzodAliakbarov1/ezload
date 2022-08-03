@@ -8,12 +8,12 @@ import EditableFiled from 'components/editable-field-component/editable-field';
 import TruckInfo from './truck-part';
 import { useDriver } from 'hooks/use-driver';
 import { useProfile } from 'server-state/queries/use-profile';
-import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
+import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 import ProfileImagePart from './profile-image-part';
 import { useUpload } from 'server-state/mutations/use-upload';
 const PersonalInformation = () => {
   const { data } = useProfile();
-  const updateProfileRequest = useUpdateProfile();
+  const updateProfileRequest = useUpdateCustomerProfile();
   const uploadImageRequest = useUpload();
   const [profileInfo, setProfileInfo] = useState<{
     name: string;

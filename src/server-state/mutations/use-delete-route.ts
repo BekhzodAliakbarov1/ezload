@@ -1,17 +1,31 @@
+import { useAuth } from 'global-state/auth/auth.state';
 import { useSnackbar } from 'notistack';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 
 interface DeleteRouteRequest {
-  route_id: string;
+  route_id: number;
 }
 
-export const useDeleteRoute = () => {
+export const useDeleteRoute = (token?: string) => {
   const { enqueueSnackbar } = useSnackbar();
+
+  const {
+    tokens: { access },
+  } = useAuth();
+  const accessToken = token ?? access;
+
   return useMutation(
     (data: DeleteRouteRequest) =>
       request
-        .delete<{ success: boolean }>(`/driver/route/${data.route_id}/delete/`)
+        .delete<{ success: boolean }>(
+          `/driver/route/${data.route_id}/delete/`,
+          {
+            headers: {
+              Authorization: `Token ${accessToken}`,
+            },
+          }
+        )
         .then((res) => res.data),
     {
       onSuccess() {

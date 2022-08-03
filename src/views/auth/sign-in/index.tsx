@@ -35,7 +35,6 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
       userType,
     });
   };
-  console.log({ data });
 
   return (
     <StepsProvider>
@@ -57,11 +56,15 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
             user_id={data.user_id}
           />
         ) : (
-          <ThirdStepDriver />
+          <ThirdStepDriver token={data.token} />
         )}
       </Step>
       <Step step={4}>
-        <FourthStep />
+        <FourthStep
+          handleLogin={handleLogin}
+          token={data.token}
+          user_id={data.user_id}
+        />
       </Step>
     </StepsProvider>
   );

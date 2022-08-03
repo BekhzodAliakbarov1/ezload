@@ -3,27 +3,32 @@ import { useSnackbar } from 'notistack';
 import { useMutation } from 'react-query';
 import { request } from '../api';
 
-interface UpdateCustomerProfileRequestRequest {
-  first_name?: string;
-  profile_picture?: number | string;
-  user_id?: string;
-  token?: string;
+interface CreateDriverProfileRequestRequest {
+  user: {
+    first_name: string;
+    last_name: string;
+    profile_picture: number;
+  };
+  vehicle: {
+    title: string;
+    licence_plate: string;
+    capacity: string;
+  };
+  routes?: {
+    country: number;
+    region: number;
+  }[];
+  token: string;
 }
 
-export const useUpdateCustomerProfile = () => {
-  const {
-    userId,
-    tokens: { access },
-  } = useAuth();
+export const useCreateDriverProfile = () => {
   const { enqueueSnackbar } = useSnackbar();
   return useMutation(
-    (data: UpdateCustomerProfileRequestRequest) => {
-      const user_id = data.user_id ?? userId;
-      const token = data.token ?? access;
+    (data: CreateDriverProfileRequestRequest) => {
       return request
-        .put<{ success: boolean }>(`/account/${user_id}/update/`, data, {
+        .post<{ success: boolean }>(`/driver/create/`, data, {
           headers: {
-            Authorization: `Token ${token}`,
+            Authorization: `Token ${data.token}`,
           },
         })
         .then((res) => res.data);
@@ -31,7 +36,7 @@ export const useUpdateCustomerProfile = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Account updated successfully!', {
+        enqueueSnackbar('Account Created successfully!', {
           variant: 'success',
         });
       },

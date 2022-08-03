@@ -3,7 +3,6 @@ import Button from 'components/button/button';
 import BackIcon from 'components/icons/back.icon';
 import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
-import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import { useAuth } from 'global-state/auth/auth.state';
 import { useSteps } from 'global-state/step/step-context';
@@ -21,12 +20,26 @@ import {
   StyledGreenText,
 } from './fourth-step.styles';
 import { useNavigate } from 'react-router-dom';
+import CountryRouteInput from 'components/input/route-inputs/country-route';
+import RegionRouteInput from 'components/input/route-inputs/region-route';
+import { useCreateRoute } from 'server-state/mutations/use-create-route';
+import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
+import { useRoutes } from 'server-state/queries/use-routes';
 
-const FourthStep = () => {
+const FourthStep: React.FC<{
+  token: string;
+  user_id: string;
+  handleLogin: () => void;
+}> = ({ token, user_id, handleLogin }) => {
   const { previusStep } = useSteps();
+  const initialState = { id: '', title: '' };
+  const [country, setCountry] = useState<{ id: string; title: string }>(
+    initialState
+  );
+  const [region, setRegion] = useState<{ id: string; title: string }>(
+    initialState
+  );
   const locationsDiv = useRef<HTMLDivElement>(null);
-  const [country, setCountry] = useState('');
-  const [region, setRegion] = useState('');
   const [locations, setLocations] = useState<
     {
       id: string;
@@ -34,48 +47,53 @@ const FourthStep = () => {
       region: string;
     }[]
   >([]);
-  const { login } = useAuth();
+  const createRouteRequest = useCreateRoute(token);
+  const deleteRouteRequest = useDeleteRoute(token);
+  const routesRequest = useRoutes(token, user_id);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     locationsDiv.current?.scrollTo(0, 100);
   }, [locations]);
 
-  const handleClickWithCurrentCountry = () => {
-    const id = uuid();
-    if (region && country) {
-      setLocations((data) => [...data, { country, region, id }]);
-      setRegion('');
+  const createRoute = ({
+    clear,
+  }: {
+    clear?: 'both' | 'region' | 'country';
+  }) => {
+    if (region.id && country.id) {
+      createRouteRequest.mutate(
+        { country: country.id, region: region.id },
+        {
+          onSuccess() {
+            if (clear === 'both') {
+              setRegion(initialState);
+              setCountry(initialState);
+            } else if (clear === 'country') {
+              setCountry(initialState);
+            } else if (clear === 'region') {
+              setRegion(initialState);
+            }
+          },
+        }
+      );
     }
   };
 
-  const handleClickWithNewCountry = () => {
-    const id = uuid();
-
-    if (region && country) {
-      setLocations((data) => [...data, { country, region, id }]);
-      setRegion('');
-      setCountry('');
-    }
-  };
-
-  const deleteLocation = (id: string) => {
-    setLocations((data) => data.filter((item) => item.id !== id));
-  };
-  const submitLocations = () => {
-    console.log({ locations });
+  const deleteLocation = (route_id: number) => {
+    deleteRouteRequest.mutate(
+      { route_id },
+      {
+        onSuccess() {
+          routesRequest.refetch();
+        },
+      }
+    );
   };
 
   const completeButton = () => {
-    console.log('complete all ');
-    login({
-      tokens: {
-        access: '1221',
-        refresh: '1221',
-      },
-      userId: '1221',
-      userType: 'driver',
-    });
+    handleLogin();
     navigate('/');
   };
 
@@ -96,14 +114,14 @@ const FourthStep = () => {
           </FourthStepNavigateBack>
           <Text color="main_90">Step 2/2</Text>
         </FourthStepInfoWrapper>
-        {locations.length > 0 && (
+        {routesRequest.data?.routes && routesRequest.data.routes.length > 0 && (
           <FourthStepCreatedLocationsWrapper>
-            {locations.map((location, index) => (
-              <FourthStepCreatedLocationsSingleRow key={`location-${index}`}>
+            {routesRequest.data.routes.map((routes, index) => (
+              <FourthStepCreatedLocationsSingleRow key={routes.id}>
                 <Text weight="600">
-                  {index + 1}. {location.region}, {location.country}
+                  {index + 1}. {routes.region.title}, {routes.country.title}
                 </Text>
-                <IconButton onClick={() => deleteLocation(location.id)}>
+                <IconButton onClick={() => deleteLocation(routes.id)}>
                   <XIcon />
                 </IconButton>
               </FourthStepCreatedLocationsSingleRow>
@@ -111,29 +129,30 @@ const FourthStep = () => {
           </FourthStepCreatedLocationsWrapper>
         )}
         <FourthStepInputsWrapper>
-          <Input
-            placeholder="Country"
-            value={country}
-            onChange={(e) => setCountry(e.target.value)}
+          <CountryRouteInput
+            value=""
+            selectHanlder={() => console.log('')}
+            token={token}
           />
           <div>
-            <Input
-              placeholder="Region"
-              value={region}
-              onChange={(e) => setRegion(e.target.value)}
+            <RegionRouteInput
+              value=""
+              country=""
+              selectHanlder={() => console.log('')}
+              token={token}
             />
 
-            <Button onClick={handleClickWithCurrentCountry}>
+            <Button onClick={() => createRoute({ clear: 'region' })}>
               <PlusIcon />
             </Button>
           </div>
         </FourthStepInputsWrapper>
-        <StyledGreenText onClick={handleClickWithNewCountry}>
+        <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
           + Add new country
         </StyledGreenText>
-        <Button buttonType="dark" onClick={submitLocations}>
+        {/* <Button buttonType="dark" onClick={submitLocations}>
           Submit
-        </Button>
+        </Button> */}
         <LastButtonWrapper>
           <Button fullWidth onClick={completeButton}>
             Complete

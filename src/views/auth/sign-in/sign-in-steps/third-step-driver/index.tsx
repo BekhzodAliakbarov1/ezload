@@ -1,3 +1,4 @@
+import Avatar from 'components/avatar';
 import Button from 'components/button/button';
 import GaleryIcon from 'components/icons/galery.icon';
 import InfoIcon from 'components/icons/info.icon';
@@ -6,6 +7,8 @@ import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import { useSteps } from 'global-state/step/step-context';
 import React, { useState } from 'react';
+import { useCreateDriverProfile } from 'server-state/mutations/use-create-profile';
+import { useUpload } from 'server-state/mutations/use-upload';
 import {
   DriverSignInThirdStepWrapper,
   ErrorMessageData,
@@ -18,12 +21,78 @@ import {
   TruckInputsWrapper,
 } from './third-step.styles';
 
-const ThirdStepDriver = () => {
+const ThirdStepDriver: React.FC<{
+  token: string;
+}> = ({ token }) => {
   const [hasError, setHasError] = useState(false);
+  const [data, setData] = useState<{
+    picture_url?: string;
+    picture_id?: number;
+    first_name: string;
+    vehicle_title: string;
+    licence_plate: string;
+    capacity: string;
+  }>({
+    first_name: '',
+    capacity: '',
+    licence_plate: '',
+    vehicle_title: '',
+  });
+  const createProfileRequest = useCreateDriverProfile();
   const { nextStep } = useSteps();
+  const uploadImageRequest = useUpload();
+
+  const uploadFileHandler = (val: Blob | File) => {
+    if (val) {
+      uploadImageRequest.mutate(
+        { token, file: val },
+        {
+          onSuccess(res) {
+            setData((initialValue) => {
+              return {
+                ...initialValue,
+                picture_id: res.id,
+                picture_url: res.file,
+              };
+            });
+          },
+        }
+      );
+    }
+  };
+
+  const submitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+    createProfileRequest.mutate(
+      {
+        token,
+        user: {
+          first_name: data.first_name,
+          last_name: data.first_name,
+          profile_picture: data.picture_id ?? 0,
+        },
+        vehicle: {
+          capacity: data.capacity,
+          licence_plate: data.licence_plate,
+          title: data.vehicle_title,
+        },
+        routes: [
+          {
+            country: 2,
+            region: 2,
+          },
+        ],
+      },
+      {
+        onSuccess() {
+          nextStep();
+        },
+      }
+    );
+  };
 
   return (
-    <DriverSignInThirdStepWrapper>
+    <DriverSignInThirdStepWrapper onSubmit={submitHandler}>
       {hasError && (
         <ErrorMessageWrapper>
           <ErrorMessageData>
@@ -42,30 +111,58 @@ const ThirdStepDriver = () => {
           </Text>
         </SignInStepShowInfoWrapper>
         <PictureAndNameWrapper>
-          <form>
-            <label htmlFor="profile_photo">
-              <ProfilePhotoUploaderWrapper>
+          <label htmlFor="profile_photo">
+            <ProfilePhotoUploaderWrapper>
+              {data.picture_url ? (
+                <Avatar sizes="120px" src={data.picture_url} />
+              ) : (
                 <GaleryIcon />
-                <FileInput
-                  onChange={(e) => console.log(e)}
-                  id="profile_photo"
-                  accept="image/*"
-                />
-              </ProfilePhotoUploaderWrapper>
-            </label>
-          </form>
+              )}
+              <FileInput
+                onChange={(e) =>
+                  e.target.files && uploadFileHandler(e.target.files[0])
+                }
+                id="profile_photo"
+                accept="image/*"
+              />
+            </ProfilePhotoUploaderWrapper>
+          </label>
           <NameInputWrapper>
-            <label htmlFor="name">Display photo and name</label>
-            <Input placeholder="Write your name" id="name" />
+            <label htmlFor="name">Your displayed name</label>
+            <Input
+              value={data.first_name}
+              onChange={(e) => setData({ ...data, first_name: e.target.value })}
+              placeholder="Write your name"
+              id="name"
+            />
           </NameInputWrapper>
         </PictureAndNameWrapper>
         <TruckInputsWrapper>
           <Text>Truck info</Text>
-          <Input placeholder="Truck model" />
-          <Input placeholder="Plate number" />
-          <Input placeholder="Truck capacity (in tonnes)" />
+          <Input
+            value={data.vehicle_title}
+            onChange={(e) =>
+              setData({ ...data, vehicle_title: e.target.value })
+            }
+            placeholder="Truck model"
+            required
+          />
+          <Input
+            value={data.licence_plate}
+            onChange={(e) =>
+              setData({ ...data, licence_plate: e.target.value })
+            }
+            placeholder="Plate number"
+            required
+          />
+          <Input
+            value={data.capacity}
+            onChange={(e) => setData({ ...data, capacity: e.target.value })}
+            placeholder="Truck capacity (in tonnes)"
+            required
+          />
         </TruckInputsWrapper>
-        <Button fullWidth onClick={nextStep}>
+        <Button fullWidth type="submit">
           Next
         </Button>
       </ThirdStepDataWrapper>

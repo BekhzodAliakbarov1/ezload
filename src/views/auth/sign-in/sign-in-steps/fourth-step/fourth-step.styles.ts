@@ -64,6 +64,7 @@ export const FourthStepInputsWrapper = styled.div`
     width: 100%;
   }
   div {
+    width: 100%;
     display: flex;
     gap: 17px;
     > button {

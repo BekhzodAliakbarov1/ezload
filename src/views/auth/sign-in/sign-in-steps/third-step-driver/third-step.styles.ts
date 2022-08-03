@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
-export const DriverSignInThirdStepWrapper = styled.div`
+export const DriverSignInThirdStepWrapper = styled.form`
   width: 50%;
   height: 100vh;
   display: flex;
