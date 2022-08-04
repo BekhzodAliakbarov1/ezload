@@ -41,7 +41,7 @@ const DriverCard: React.FC<{
       <Avatar sizes={sizes} src={image} />
       <DriverCardInfoWrapper>
         <Text color="main_100" size="lg" weight="700">
-          {first_name}
+          {first_name.substring(0, 20)}
         </Text>
         <Text size="sm" color="main_100" weight="400">
           {vehicle?.title} ({vehicle?.capacity} Ton)

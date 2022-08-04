@@ -29,4 +29,8 @@ export const DriverCardInfoWrapper = styled.div`
   align-items: flex-start;
   justify-content: space-around;
   margin: auto;
+  text-align: left;
+  > p:nth-child(1) {
+    font-size: 14px;
+  }
 `;

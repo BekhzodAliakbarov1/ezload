@@ -57,7 +57,7 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
     if (isDriver) {
       login({
         tokens: {
-          access: 'd9b452c2e3e55c10280c10da8afdda551fd6399e	',
+          access: 'd9b452c2e3e55c10280c10da8afdda551fd6399e',
           refresh: '1221',
         },
         userId: '12',
@@ -66,10 +66,10 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
     } else {
       login({
         tokens: {
-          access: 'ff6144cab95f5c5854290e4dc81796ab747d81dc	',
+          access: 'f740af2bdf75d9be2fe56289a7e068dbdae99c05',
           refresh: '1221',
         },
-        userId: '3',
+        userId: '21',
         userType: 'driver',
       });
     }
