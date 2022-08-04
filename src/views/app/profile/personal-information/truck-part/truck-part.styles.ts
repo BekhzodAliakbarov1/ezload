@@ -37,6 +37,9 @@ export const TruckMainInfosWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const TruckInfoChangeInput = styled.div`
@@ -60,4 +63,7 @@ export const TruckInfoChangeInput = styled.div`
 export const TruckButtonsWrapper = styled.div`
   display: flex;
   gap: 8px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
