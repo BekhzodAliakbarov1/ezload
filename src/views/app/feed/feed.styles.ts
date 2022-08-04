@@ -26,12 +26,29 @@ export const FeedDataWrapper = styled.div`
     line-height: 20px;
     margin-bottom: 48px;
   }
+  @media (max-width: 800px) {
+    > p:nth-child(1) {
+      font-size: 24px;
+      line-height: 24px;
+      margin-bottom: 12px;
+    }
+    > p:nth-child(2) {
+      font-size: 15px;
+      line-height: 23px;
+      margin-bottom: 32px;
+    }
+  }
 `;
 
 export const FeedLocationWrapper = styled.div`
   display: flex;
   gap: 30px;
   width: 100%;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
 `;
 
 export const FeedLocationCard = styled.div`
@@ -47,6 +64,9 @@ export const FeedLocationCard = styled.div`
     font-size: 11px;
     color: ${(props) => props.theme.text.main_60};
     margin-bottom: 8px;
+  }
+  @media (max-width: 800px) {
+    margin-bottom: 0px;
   }
 `;
 
@@ -71,9 +91,9 @@ export const FeedStatisticsWrapper = styled.div`
   justify-content: center;
   gap: 120px;
   margin-bottom: 100px;
-  @media (max-width: 768px) {
-    flex-direction: column;
-    gap: 50px;
+  @media (max-width: 800px) {
+    gap: initial;
+    justify-content: space-between;
   }
 `;
 
@@ -88,6 +108,14 @@ export const FeedStatisticsCard = styled.div`
     color: ${colors.red_100};
     margin-bottom: 20px;
   }
+  @media (max-width: 800px) {
+    p:nth-child(1) {
+      font-size: 28px;
+    }
+    p:nth-child(2) {
+      font-size: 13px;
+    }
+  }
 `;
 
 export const BackgrounImageWrapper = styled.img<{ position: 'left' | 'right' }>`
@@ -95,4 +123,7 @@ export const BackgrounImageWrapper = styled.img<{ position: 'left' | 'right' }>`
   left: ${(props) => props.position === 'left' && 0};
   right: ${(props) => props.position === 'right' && 0};
   top: ${(props) => (props.position === 'left' ? '27%' : '43%')};
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;

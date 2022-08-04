@@ -14,6 +14,7 @@ import {
 } from './feed.styles';
 import leftImage from 'assets/img/left-bg-img.svg';
 import rightImage from 'assets/img/right-bg-img.svg';
+import { useDriver } from 'hooks/use-driver';
 
 const feedStats = [
   {
@@ -34,6 +35,7 @@ const feedStats = [
 ];
 
 const Feed = () => {
+  const { isDriver } = useDriver();
   return (
     <FeedWrapper>
       <FeedDataWrapper>
@@ -58,7 +60,9 @@ const Feed = () => {
             </LocationAndSvgWrapper>
           </FeedLocationCard>
         </FeedLocationWrapper>
-        <Button endIcon={<RightShowIcon />}>Create Load</Button>
+        <Button endIcon={<RightShowIcon />}>
+          {isDriver ? 'Search Load' : 'Create Load'}
+        </Button>
       </FeedDataWrapper>
       <FeedStatisticsWrapper>
         {feedStats.map(({ name, number, id }) => (
