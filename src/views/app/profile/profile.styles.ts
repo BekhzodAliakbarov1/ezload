@@ -6,9 +6,15 @@ export const ProfileViewWrapper = styled.div`
   background-color: ${colors.white};
   margin-bottom: 80px;
   padding: 48px;
+  @media (max-width: 800px) {
+    padding: 0px;
+  }
 `;
 
 export const ProfileViewFlexBox = styled.div`
   display: flex;
   align-items: flex-start;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
