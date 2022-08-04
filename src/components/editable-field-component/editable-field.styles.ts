@@ -1,5 +1,6 @@
 import { IconButton } from '@mui/material';
 import styled from 'styled-components';
+
 export const FieldsWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -66,6 +67,13 @@ export const EditFiedlForm = styled.form`
     line-height: 20px;
     font-size: 16px;
     cursor: pointer;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+    flex-direction: column;
+    input {
+      width: 100%;
+    }
   }
 `;
 

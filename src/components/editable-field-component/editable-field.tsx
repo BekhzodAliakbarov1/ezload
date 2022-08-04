@@ -115,14 +115,16 @@ const EditableField: React.FC<{
           >
             Save changes
           </Button>
-          <Text
+          <Button
+            type="button"
+            buttonType="white"
             onClick={() => {
               setEditClicked(false);
               setIsPhoneSubmitclicked(false);
             }}
           >
             Cancel
-          </Text>
+          </Button>
         </EditFiedlForm>
       )}
       {isPhoneSubmitclicked && editClicked && (

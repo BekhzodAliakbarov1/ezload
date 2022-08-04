@@ -10,10 +10,12 @@ import { useProfile } from 'server-state/queries/use-profile';
 import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 import ProfileImagePart from './profile-image-part';
 import { useUpload } from 'server-state/mutations/use-upload';
+import { useDriver } from 'hooks/use-driver';
 const PersonalInformation = () => {
   const { data } = useProfile();
   const updateProfileRequest = useUpdateCustomerProfile();
   const uploadImageRequest = useUpload();
+  const { isDriver } = useDriver();
   const [profileInfo, setProfileInfo] = useState<{
     name: string;
     phone: string;
@@ -70,7 +72,7 @@ const PersonalInformation = () => {
 
   return (
     <PersonalInformationWrapper>
-      <PersonalInformationTopPartWrapper>
+      <PersonalInformationTopPartWrapper isDriver={isDriver}>
         <ProfileImagePart
           img={profileInfo.profile_picture}
           onSubmit={handleImageUpload}
