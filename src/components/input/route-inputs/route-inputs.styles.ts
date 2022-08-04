@@ -18,6 +18,9 @@ export const List = styled.div`
   ::-webkit-scrollbar {
     width: 4px;
   }
+  @media (max-width: 800px) {
+    width: 300px;
+  }
 `;
 
 export const Rows = styled.div`

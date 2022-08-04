@@ -8,6 +8,10 @@ export const DriverSignInThirdStepWrapper = styled.form`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 0px 24px;
+  }
 `;
 
 export const ErrorMessageWrapper = styled.div`
@@ -43,9 +47,11 @@ export const ThirdStepDataWrapper = styled.div`
     font-size: 24px;
     margin-bottom: 32px;
   }
-  form {
-    display: flex;
-    align-items: center;
+  @media (max-width: 800px) {
+    max-height: 80vh;
+    p {
+      margin-bottom: 20px;
+    }
   }
 `;
 
@@ -53,6 +59,14 @@ export const PictureAndNameWrapper = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 40px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    margin-bottom: 20px;
+    align-items: center;
+    > label {
+      margin-bottom: 20px;
+    }
+  }
 `;
 
 export const ProfilePhotoUploaderWrapper = styled.div`
@@ -68,6 +82,9 @@ export const ProfilePhotoUploaderWrapper = styled.div`
   margin-right: 26px;
   :hover {
     background-color: ${colors.green_60};
+  }
+  @media (max-width: 800px) {
+    margin-right: 0px;
   }
 `;
 

@@ -23,11 +23,23 @@ export const NavbarWrapper = styled.div`
   max-width: 1290px;
   padding: 0px 10px;
   /* margin: auto; */
+  @media (max-width: 640px) {
+    height: 88px;
+    padding: 0px 24px;
+  }
 `;
 
 export const NavbarLogoWrapper = styled.div<{ isDriver: boolean }>`
   cursor: pointer;
   margin-left: ${(props) => (props.isDriver ? '10%' : '')};
+  img {
+    height: 60px;
+  }
+  @media (max-width: 640px) {
+    img {
+      height: 40px;
+    }
+  }
 `;
 
 export const NavbarLinksWrapper = styled.div`
@@ -42,6 +54,9 @@ export const NavbarLinksWrapper = styled.div`
   }
   p {
     letter-spacing: 0.15px;
+  }
+  @media (max-width: 640px) {
+    display: none;
   }
 `;
 
@@ -105,6 +120,9 @@ export const NavbarPositionEffectEraiser = styled.div`
   height: 92px;
   background-color: ${(props) => props.theme.bg.main};
   z-index: 10;
+  @media (max-width: 640px) {
+    height: 88px;
+  }
 `;
 
 export const JustFunComponent = styled.div`

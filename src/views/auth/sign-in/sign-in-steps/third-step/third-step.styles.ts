@@ -8,6 +8,10 @@ export const CreatorSignInThirdStepWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 0px 24px;
+  }
 `;
 
 export const ErrorMessageWrapper = styled.div`
@@ -48,12 +52,22 @@ export const ThirdStepDataWrapper = styled.div`
     display: flex;
     align-items: center;
   }
+  @media (max-width: 800px) {
+    max-height: 400px;
+    form {
+      margin-bottom: 40px;
+    }
+  }
 `;
 
 export const PictureAndNameWrapper = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 40px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 export const ProfilePhotoUploaderWrapper = styled.div`
@@ -69,6 +83,9 @@ export const ProfilePhotoUploaderWrapper = styled.div`
   margin-right: 26px;
   :hover {
     background-color: ${colors.green_60};
+  }
+  @media (max-width: 800px) {
+    margin-right: 0px;
   }
 `;
 
