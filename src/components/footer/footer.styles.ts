@@ -11,8 +11,10 @@ export const FooterContentBox = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   margin: auto;
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 export const FooterLeftContent = styled.div`
@@ -32,12 +34,20 @@ export const FooterLeftContent = styled.div`
     letter-spacing: 0.15px;
     color: ${(props) => props.theme.text.main_60};
   }
+  @media (max-width: 1024px) {
+    max-width: 100vw;
+    padding-top: 48px;
+    padding-left: 24px;
+  }
 `;
 export const FooterLeftContentLinksWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 90px;
   margin-bottom: 135px;
+  @media (max-width: 1024px) {
+    margin-bottom: 30px;
+  }
 `;
 export const FooterLeftContentLinksBox = styled.div`
   display: flex;
@@ -86,6 +96,14 @@ export const FooterRightContent = styled.div`
   align-items: flex-start;
   gap: 80px;
   position: relative;
+  @media (max-width: 1024px) {
+    max-width: 100vw;
+    padding-top: 40px;
+    padding-left: 24px;
+    padding-bottom: 72px;
+    flex-direction: column;
+    gap: 32px;
+  }
 `;
 
 export const FooterRightContentItemWrapper = styled.div`
@@ -104,6 +122,14 @@ export const FooterRightContentItemWrapper = styled.div`
     line-height: 32px;
     letter-spacing: 0.15px;
     color: ${(props) => props.theme.text.main_10};
+  }
+  @media (max-width: 1024px) {
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-size: 13px;
+    }
   }
 `;
 
@@ -136,6 +162,10 @@ export const FooterButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 1024px) {
+    right: 40px;
+    bottom: 40px;
+  }
 `;
 
 export const StyledTopButtonIcon = styled(IconButton)`
