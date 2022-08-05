@@ -14,6 +14,9 @@ export const ProfileRoutesDataWrapper = styled.div`
     display: flex;
     align-items: center;
   }
+  @media (max-width: 800px) {
+    padding: 30px 24px;
+  }
 `;
 
 export const ProfileRoutesHeader = styled.div`
@@ -59,6 +62,7 @@ export const ProfileRoutesInputsWrapper = styled.div`
       height: 47px;
       width: 47px;
       min-width: 47px;
+      max-width: 47px;
       padding: 0px !important;
     }
   }
@@ -81,6 +85,9 @@ export const LastButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 8px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const ProfileRoutesCreatedLocationsWrapper = styled.div`
