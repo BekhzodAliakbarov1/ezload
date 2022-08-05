@@ -8,6 +8,7 @@ export const PersonalInformationWrapper = styled.div`
   @media (max-width: 800px) {
     padding-left: 0px;
     margin-top: 44px;
+    padding: 0px 24px;
   }
 `;
 
@@ -34,7 +35,4 @@ export const NamePhoneNumberWrapper = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  @media (max-width: 800px) {
-    padding-left: 10px;
-  }
 `;

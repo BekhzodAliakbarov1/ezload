@@ -14,6 +14,9 @@ export const LoadCardWrapper = styled.div<{ clickable: boolean }>`
   :hover {
     box-shadow: ${(props) => props.clickable && '0px 0px 19px -11px'};
   }
+  @media (max-width: 800px) {
+    min-width: auto;
+  }
 `;
 
 export const LoadCarLocationBox = styled.div`

@@ -18,13 +18,11 @@ export const ProfileSidebarWrapper = styled.div`
     margin-bottom: 16px;
   }
   @media (max-width: 800px) {
-    /* > p {
-      display: none;
-    } */
     border-right: 0px solid;
     max-width: 100%;
     min-height: auto;
     background-color: ${(props) => props.theme.bg.main};
+    padding: 0px 24px;
     div {
       flex-direction: row;
       margin: auto;

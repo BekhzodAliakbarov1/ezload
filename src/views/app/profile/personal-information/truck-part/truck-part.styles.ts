@@ -1,11 +1,13 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const TruckInfoChangeWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 40px;
   flex-direction: column;
+  @media (max-width: 800px) {
+    padding-bottom: 30px;
+  }
 `;
 
 export const TruckLabelWrapper = styled.div`

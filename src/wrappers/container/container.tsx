@@ -18,7 +18,7 @@ const Container = styled.div`
   }
 
   @media (max-width: ${(props) => props.theme.sizes.sm}) {
-    padding: 0 24px;
+    padding: 0 0px;
   }
 `;
 

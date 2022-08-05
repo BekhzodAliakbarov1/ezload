@@ -5,6 +5,11 @@ export const ProfileLoadsWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 0px 48px;
+
+  @media (max-width: 800px) {
+    padding: 0px 24px;
+    padding-bottom: 30px;
+  }
 `;
 
 export const SectionControllerWrapper = styled.div`
@@ -12,6 +17,11 @@ export const SectionControllerWrapper = styled.div`
   display: flex;
   gap: 2px;
   margin-bottom: 52px;
+  @media (max-width: 800px) {
+    width: 100%;
+    margin: 24px 0px;
+    justify-content: space-between;
+  }
 `;
 
 export const SingleController = styled.div<{ active: boolean }>`
@@ -24,6 +34,12 @@ export const SingleController = styled.div<{ active: boolean }>`
     line-height: 20px;
     letter-spacing: 0.15px;
     color: ${(props) => (props.active ? colors.red_100 : colors.dark_60)};
+  }
+  @media (max-width: 800px) {
+    padding: 8px 28px;
+    p {
+      font-size: 12px;
+    }
   }
 `;
 

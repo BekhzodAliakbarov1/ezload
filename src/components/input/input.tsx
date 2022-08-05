@@ -41,7 +41,6 @@ const hasStartIconStyles = css`
 
 const StyledInput = styled.input<InputProps>`
   width: 100%;
-  /* background-color: ${(props) => props.theme.colors.primary}; */
   outline: none;
   border: 2px solid ${(props) => props.theme.text.main_20};
   border-radius: 2px;
