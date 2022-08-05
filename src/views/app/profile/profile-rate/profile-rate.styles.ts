@@ -52,6 +52,9 @@ export const OveralRatingDataWrapper = styled.div`
     display: flex;
     gap: 12px;
   }
+  @media (max-width: 800px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const DifferentRatingsBox = styled.div`

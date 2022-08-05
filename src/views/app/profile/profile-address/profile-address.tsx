@@ -25,7 +25,7 @@ const ProfileAddress = () => {
           buttonType="dark"
           onClick={() => navigate('/profile/create-address')}
         >
-          Add new
+          <p>Add new</p>
         </Button>
       </ProfileAddressTopPartContainer>
       <ProfileAddressesWrapper>

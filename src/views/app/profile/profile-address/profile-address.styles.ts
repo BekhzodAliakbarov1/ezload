@@ -1,9 +1,11 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const ProfileAddressWrapper = styled.div`
   width: 100%;
   padding: 0px 43px 43px 48px;
+  @media (max-width: 800px) {
+    padding: 30px 24px;
+  }
 `;
 
 export const ProfileAddressTopPartContainer = styled.div`
@@ -15,6 +17,12 @@ export const ProfileAddressTopPartContainer = styled.div`
   > p {
     font-size: 24px;
     line-height: 24px;
+  }
+  @media (max-width: 800px) {
+    margin-bottom: 40px;
+    button {
+      display: none !important;
+    }
   }
 `;
 
