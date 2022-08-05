@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const ProfileRatesWrapper = styled.div`
   width: 100%;
@@ -15,6 +14,9 @@ export const ProfileRatesWrapper = styled.div`
     line-height: 20px;
     letter-spacing: 0.15px;
   }
+  @media (max-width: 800px) {
+    padding: 30px 24px;
+  }
 `;
 
 export const ProfileRatesStarsWrapper = styled.div`
@@ -28,6 +30,10 @@ export const ProfileRatesStarsWrapper = styled.div`
     letter-spacing: 0.15px;
     color: ${(props) => props.theme.text.main_70};
     margin-bottom: 38px;
+  }
+  @media (max-width: 800px) {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
   }
 `;
 
@@ -85,6 +91,9 @@ export const ProfileRateReviewsDataBox = styled.div<{ isEmpty: boolean }>`
   ::-webkit-scrollbar {
     display: none;
   }
+  @media (max-width: 800px) {
+    margin-bottom: 0px;
+  }
 `;
 
 export const EmptyReviewWrapper = styled.div`
@@ -96,5 +105,11 @@ export const EmptyReviewWrapper = styled.div`
     font-size: 24px;
     line-height: 24px;
     color: ${(props) => props.theme.text.main_30};
+  }
+  @media (max-width: 800px) {
+    svg {
+      max-width: 100px;
+      max-height: 130px;
+    }
   }
 `;
