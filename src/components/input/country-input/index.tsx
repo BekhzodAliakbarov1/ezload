@@ -58,7 +58,7 @@ const CountryInput: React.FC<{
             loading={isFetchingNextPage}
           >
             <Spinner loading={isLoading} height="100%">
-              {data?.pages.map((page) =>
+              {data?.pages.map((page, index) =>
                 page?.count > 0 ? (
                   page.results.map((item) => (
                     <Rows
@@ -75,7 +75,7 @@ const CountryInput: React.FC<{
                     </Rows>
                   ))
                 ) : (
-                  <Div>
+                  <Div key={index}>
                     <Text>Country not found</Text>
                   </Div>
                 )

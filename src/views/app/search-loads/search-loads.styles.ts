@@ -8,7 +8,7 @@ export const SearchLoadsWrapper = styled.div`
   background-color: ${colors.white};
 `;
 
-export const SearhLoadsBox = styled.div`
+export const SearchLoadsBox = styled.div`
   padding: 48px 0px;
   display: flex;
 `;

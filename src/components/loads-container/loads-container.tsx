@@ -10,10 +10,10 @@ import FileIcon from 'components/icons/file.icon';
 import Text from 'components/typography/text';
 
 const LoadsContainer: React.FC<{
-  loads: SingleLoadResponse[];
+  loads?: SingleLoadResponse[];
   hasNextPage?: boolean;
   clickable?: boolean;
-}> = ({ loads, clickable, hasNextPage }) => {
+}> = ({ loads = [], clickable, hasNextPage }) => {
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (

@@ -1,4 +1,5 @@
-import { useInfiniteQuery } from 'react-query';
+import { useDriver } from 'hooks/use-driver';
+import { useInfiniteQuery, useMutation } from 'react-query';
 import { SingleLoadResponse } from 'types/load.types';
 import { request } from '../api';
 
@@ -12,14 +13,14 @@ interface LoadsResponse {
 const fetchLoads = async ({
   pageParam = 1,
   status = 1,
+  url,
 }: {
   pageParam?: number;
   status: 1 | 2 | 3;
+  url: string;
 }) => {
   const data = await request
-    .get<LoadsResponse>(
-      `/load/list/?status=${status}&page=${pageParam}&limit=6`
-    )
+    .get<LoadsResponse>(`${url}?status=${status}&page=${pageParam}&limit=6`)
     .then((res) => res.data);
   return {
     results: data.results,
@@ -30,6 +31,7 @@ const fetchLoads = async ({
 };
 
 export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
+  const { isDriver } = useDriver();
   let status: 1 | 2 | 3;
   if (type === 'new') {
     status = 1;
@@ -39,11 +41,28 @@ export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
     status = 3;
   }
 
-  return useInfiniteQuery(['loads', type], () => fetchLoads({ status }), {
+  const url = isDriver ? '/driver/load/list/' : '/load/list/';
+
+  return useInfiniteQuery(['loads', type], () => fetchLoads({ status, url }), {
     enabled: false,
     getNextPageParam(lastPage) {
       if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
       return undefined;
     },
   });
+};
+
+export const useSearchLoads = () => {
+  const { isDriver } = useDriver();
+  const url = isDriver ? `/driver/load/list/` : `/load/list/`;
+
+  return useMutation(
+    (data: { query?: string }) =>
+      request
+        .get<LoadsResponse>(`${url}?${data.query}`)
+        .then((res) => res.data),
+    {
+      retry: false,
+    }
+  );
 };

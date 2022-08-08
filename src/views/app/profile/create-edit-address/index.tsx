@@ -32,15 +32,15 @@ const CreateEditAddress = () => {
     address_2: '',
     country: {
       title: state?.data?.address.country.title ?? '',
-      id: state.data?.address.country.id,
+      id: state?.data?.address.country.id,
     },
     region: {
       title: state?.data?.address.region.title ?? '',
-      id: state.data?.address.region.id,
+      id: state?.data?.address.region.id,
     },
     district: {
       title: state?.data?.address.district.title ?? '',
-      id: state.data?.address.district.id,
+      id: state?.data?.address.district.id,
     },
     latLong: {
       lat: state?.data?.address.location.latitude ?? 0,
