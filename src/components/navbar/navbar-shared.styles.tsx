@@ -2,13 +2,13 @@ import styled from 'styled-components';
 import { colors } from 'styles/variables';
 import { IconButton, Menu, MenuProps } from '@mui/material';
 
-export const NabarBox = styled.div<{ isLoggedIn: boolean }>`
+export const NabarBox = styled.div`
   width: 100vw;
   top: 0;
   left: 0;
   position: fixed;
   display: flex;
-  justify-content: ${(props) => (props.isLoggedIn ? 'center' : 'center')};
+  justify-content: 'center';
   z-index: 1000;
   background-color: ${(props) => props.theme.bg.main};
   transition: all 0.5s ease;
@@ -22,7 +22,7 @@ export const NavbarWrapper = styled.div`
   align-items: center;
   max-width: 1290px;
   padding: 0px 10px;
-  /* margin: auto; */
+  margin: auto;
   @media (max-width: 640px) {
     height: 88px;
     padding: 0px 24px;
@@ -31,7 +31,7 @@ export const NavbarWrapper = styled.div`
 
 export const NavbarLogoWrapper = styled.div<{ isDriver: boolean }>`
   cursor: pointer;
-  margin-left: ${(props) => (props.isDriver ? '10%' : '')};
+  margin-left: ${(props) => (props.isDriver ? '10%' : '0%')};
   img {
     height: 60px;
   }

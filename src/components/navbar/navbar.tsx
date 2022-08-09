@@ -22,7 +22,7 @@ import {
   JustFunComponent,
   JustFunComponentTwo,
   StyledMenu,
-} from './navbar.styles';
+} from './navbar-shared.styles';
 import logoLight from 'assets/img/logo-light.svg';
 import logoDark from 'assets/img/logo-white.svg';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
@@ -31,11 +31,14 @@ import { useAuth } from 'global-state/auth/auth.state';
 import { Switch } from '@mui/material';
 import { useDriver } from 'hooks/use-driver';
 import { useTheme } from 'global-state/theme/theme.state';
+import NavbarUnAuth from './nav-types/nav-unauth';
+import NavbarDriver from './nav-types/nav-driver';
+import NavbarCustomer from './nav-types/nav-customer';
 
 const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   const account = useMenu();
   const language = useMenu();
-  const { userType, login, logout } = useAuth();
+  const { userType, login, logout, tokens } = useAuth();
   const { isDriver } = useDriver();
   const { toggleTheme, theme } = useTheme();
   const accountProfile = isDriver ? profileDrivers : profileCustomer;
@@ -76,7 +79,17 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
   };
   return (
     <>
-      <NabarBox ref={headerRef} isLoggedIn={isLoggedIn}>
+      <NabarBox>
+        <NavbarWrapper>
+          {tokens.access ? (
+            <>{isDriver ? <NavbarDriver /> : <NavbarCustomer />}</>
+          ) : (
+            <NavbarUnAuth />
+          )}
+        </NavbarWrapper>
+      </NabarBox>
+
+      {/* <NabarBox ref={headerRef} isLoggedIn={isLoggedIn}>
         <NavbarWrapper>
           <NavbarLinksWrapper>
             {accountLinks.map((link) => {
@@ -156,23 +169,23 @@ const Navbar: React.FC<{ isLoggedIn?: boolean }> = ({ isLoggedIn = true }) => {
                 }}
               >
                 <MenuItem onClick={language.handleClose}>En</MenuItem>
-                {/* <MenuItem onClick={language.handleClose}>Uz</MenuItem> */}
-                {/* <MenuItem onClick={language.handleClose}>Ru</MenuItem> */}
+                <MenuItem onClick={language.handleClose}>Uz</MenuItem>
+                <MenuItem onClick={language.handleClose}>Ru</MenuItem>
               </Menu>
             </RightContentItemWrapper>
           </ProfileAndLanguageWrapper>
         </NavbarWrapper>
-      </NabarBox>
+      </NabarBox> */}
 
       <NavbarPositionEffectEraiser />
-      <JustFunComponent>
+      {/* <JustFunComponent>
         <Text>{userType}</Text>
         <Switch onClick={clickHandler} />
-      </JustFunComponent>
-      <JustFunComponentTwo>
+      </JustFunComponent> */}
+      {/*<JustFunComponentTwo>
         <Text>{theme}</Text>
         <Switch onClick={toggleTheme} />
-      </JustFunComponentTwo>
+      </JustFunComponentTwo> */}
     </>
   );
 };
