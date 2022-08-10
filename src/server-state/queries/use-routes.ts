@@ -16,18 +16,16 @@ interface RoutesResponse {
   }[];
 }
 
-export const useRoutes = (token?: string, user_id?: string) => {
+export const useRoutes = (token?: string) => {
   const {
     tokens: { access },
-    userId,
   } = useAuth();
 
-  const driver_id = user_id ?? userId;
   const accessToken = token ?? access;
 
   return useQuery(`routes`, () =>
     request
-      .get<RoutesResponse>(`/driver/route/${driver_id}/detail/`, {
+      .get<RoutesResponse>(`/driver/route/detail/`, {
         headers: {
           Authorization: `Token ${accessToken}`,
         },

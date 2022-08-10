@@ -59,7 +59,13 @@ const LoadInfoView = () => {
           {isDriver && (
             <>
               {singleLoadRequest.data?.status === 1 ? (
-                <Button onClick={open}>Bid to the load</Button>
+                <>
+                  {!singleLoadRequest.data.is_bidden ? (
+                    <Button disabled>You`ve already bidded</Button>
+                  ) : (
+                    <Button onClick={open}>Bid to the load</Button>
+                  )}
+                </>
               ) : (
                 singleLoadRequest.data?.status === 2 && (
                   <Button

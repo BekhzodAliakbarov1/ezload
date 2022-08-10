@@ -70,4 +70,5 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
     price: number;
     average_rate: number;
   }[];
+  is_bidden?: boolean;
 }

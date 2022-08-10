@@ -4,10 +4,8 @@ import BackIcon from 'components/icons/back.icon';
 import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
 import Text from 'components/typography/text';
-import { useAuth } from 'global-state/auth/auth.state';
 import { useSteps } from 'global-state/step/step-context';
 import React, { useState, useRef, useEffect } from 'react';
-import { v4 as uuid } from 'uuid';
 import {
   DriverSignInFourthStepWrapper,
   FourthStepCreatedLocationsSingleRow,
@@ -28,9 +26,8 @@ import { useRoutes } from 'server-state/queries/use-routes';
 
 const FourthStep: React.FC<{
   token: string;
-  user_id: string;
   handleLogin: () => void;
-}> = ({ token, user_id, handleLogin }) => {
+}> = ({ token, handleLogin }) => {
   const { previusStep } = useSteps();
   const initialState = { id: '', title: '' };
   const [country, setCountry] = useState<{ id: string; title: string }>(
@@ -40,22 +37,16 @@ const FourthStep: React.FC<{
     initialState
   );
   const locationsDiv = useRef<HTMLDivElement>(null);
-  const [locations, setLocations] = useState<
-    {
-      id: string;
-      country: string;
-      region: string;
-    }[]
-  >([]);
+
   const createRouteRequest = useCreateRoute(token);
   const deleteRouteRequest = useDeleteRoute(token);
-  const routesRequest = useRoutes(token, user_id);
+  const routesRequest = useRoutes(token);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     locationsDiv.current?.scrollTo(0, 100);
-  }, [locations]);
+  }, [routesRequest.data?.routes]);
 
   const createRoute = ({
     clear,
