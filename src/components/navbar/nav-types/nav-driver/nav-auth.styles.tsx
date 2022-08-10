@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import { IconButton, Menu, MenuProps, Button } from '@mui/material';
+import { IconButton, Menu, MenuProps } from '@mui/material';
 
 export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   cursor: pointer;

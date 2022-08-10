@@ -1,5 +1,5 @@
 // this file is for getting only data with pagination
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useMutation } from 'react-query';
 import { request } from '../api';
 
 interface DriversResponse {
@@ -46,4 +46,16 @@ export const useDrivers = (type: 'worked_before' | 'top' | 'other') => {
       return undefined;
     },
   });
+};
+
+export const useSearchDrivers = () => {
+  return useMutation(
+    (data: { query?: string }) =>
+      request
+        .get<DriversResponse>(`/driver/list/?${data.query}`)
+        .then((res) => res.data),
+    {
+      retry: false,
+    }
+  );
 };

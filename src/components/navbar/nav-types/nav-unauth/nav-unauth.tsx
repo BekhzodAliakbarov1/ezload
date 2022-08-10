@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import { IconButton, Menu, MenuProps, Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 
 export const NavbarWrapper = styled.div`
   width: 100%;
