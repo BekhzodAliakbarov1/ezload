@@ -10,11 +10,11 @@ const Container = styled.div`
   }
 
   @media (max-width: ${(props) => props.theme.sizes.lg}) {
-    padding: 0 24px;
+    padding: 0 0px;
   }
 
   @media (max-width: ${(props) => props.theme.sizes.md}) {
-    padding: 0 24px;
+    padding: 0 0px;
   }
 
   @media (max-width: ${(props) => props.theme.sizes.sm}) {

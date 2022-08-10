@@ -13,12 +13,12 @@ import TopDrivers from './top-drivers';
 const LandingPage = () => {
   return (
     <LandingPageWrapper>
-      <Navbar isLoggedIn={false} />
+      <Navbar />
       <Container>
         <Banner />
       </Container>
-      <BackgrounImageWrapper src={LeftBox} alt="1212" position="left" />
-      <BackgrounImageWrapper src={RightBox} alt="1212" position="right" />
+      <BackgrounImageWrapper src={LeftBox} alt="left" position="left" />
+      <BackgrounImageWrapper src={RightBox} alt="right" position="right" />
       <TopDrivers />
       <Coverage />
       <HappyCustomers />

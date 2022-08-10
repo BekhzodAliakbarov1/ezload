@@ -11,13 +11,14 @@ export const NabarBox = styled.div`
   justify-content: 'center';
   z-index: 1000;
   background-color: ${(props) => props.theme.bg.main};
-  transition: all 0.5s ease;
+  /* transition: all 0.5s ease; */
 `;
 
 export const NavbarWrapper = styled.div`
   width: 100%;
   height: 92px;
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   max-width: 1290px;
@@ -36,6 +37,7 @@ export const NavbarLogoWrapper = styled.div<{ isDriver: boolean }>`
     height: 60px;
   }
   @media (max-width: 640px) {
+    margin-left: 0%;
     img {
       height: 40px;
     }
@@ -77,6 +79,12 @@ export const ProfileAndLanguageWrapper = styled.div`
     color: #f5fbfa;
     :hover {
       background: ${colors.red_100};
+    }
+  }
+  @media (max-width: 640px) {
+    gap: 0px;
+    .menu {
+      display: none;
     }
   }
 `;
@@ -164,3 +172,36 @@ export const StyledMenu = styled((props: MenuProps) => (
     paddingBottom: 44,
   },
 }));
+
+export const NavbarMobileMenu = styled.div`
+  display: none;
+  @media (max-width: 640px) {
+    cursor: pointer;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+  }
+`;
+
+export const NavbarMobileMenuOpenList = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 240px;
+  background-color: ${(props) => props.theme.bg.secondary};
+  top: 0;
+  right: 0;
+  a {
+    width: 100%;
+  }
+`;
+
+export const CloseIconWrapper = styled.div`
+  width: 100%;
+  height: 88px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+`;
