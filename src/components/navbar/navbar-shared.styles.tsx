@@ -11,7 +11,7 @@ export const NabarBox = styled.div`
   justify-content: 'center';
   z-index: 1000;
   background-color: ${(props) => props.theme.bg.main};
-  /* transition: all 0.5s ease; */
+  transition: all 0.5s ease;
 `;
 
 export const NavbarWrapper = styled.div`
@@ -30,7 +30,7 @@ export const NavbarWrapper = styled.div`
   }
 `;
 
-export const NavbarLogoWrapper = styled.div<{ isDriver: boolean }>`
+export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   cursor: pointer;
   margin-left: ${(props) => (props.isDriver ? '10%' : '0%')};
   img {
