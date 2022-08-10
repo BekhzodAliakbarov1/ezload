@@ -4,18 +4,7 @@ import {
   profileCustomer,
   profileDrivers,
 } from 'components/navbar/nav-links';
-import {
-  NavbarLinksWrapper,
-  NavbarLogoWrapper,
-  NavbarMobileMenu,
-  ProfileAndLanguageWrapper,
-  RightContentItemWrapper,
-  StyledDropdownButton,
-  StyledMenu,
-  StyledtText,
-  NavbarMobileMenuOpenList,
-  CloseIconWrapper,
-} from 'components/navbar/navbar-shared.styles';
+
 import Text from 'components/typography/text';
 import { Link } from 'react-router-dom';
 import { useTheme } from 'global-state/theme/theme.state';
@@ -29,6 +18,18 @@ import { useDriver } from 'hooks/use-driver';
 import MenuCloseIcon from 'components/icons/menu-close.icon';
 import MenuIcon from 'components/icons/menu.icon';
 import { useState } from 'react';
+import {
+  ProfileAndLanguageWrapper,
+  RightContentItemWrapper,
+  StyledDropdownButton,
+  StyledMenu,
+  StyledtText,
+  NavbarMobileMenuOpenList,
+  CloseIconWrapper,
+  NavbarLinksWrapper,
+  NavbarLogoWrapper,
+  NavbarMobileMenu,
+} from './nav-auth.styles';
 
 const NavbarAuth = () => {
   const account = useMenu();
@@ -39,10 +40,9 @@ const NavbarAuth = () => {
   const { theme } = useTheme();
   const { isDriver } = useDriver();
 
-  const toggleDrawer =
-    (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
-      setState(open);
-    };
+  const toggleDrawer = (open: boolean) => () => {
+    setState(open);
+  };
 
   const accountProfile = isDriver ? profileDrivers : profileCustomer;
   const accountLinks = isDriver ? driverLinks : customerLinks;

@@ -2,39 +2,6 @@ import styled from 'styled-components';
 import { colors } from 'styles/variables';
 import { IconButton, Menu, MenuProps, Button } from '@mui/material';
 
-export const NabarBox = styled.div`
-  width: 100vw;
-  top: 0;
-  left: 0;
-  position: fixed;
-  display: flex;
-  justify-content: 'center';
-  z-index: 1000;
-  background-color: ${(props) => props.theme.bg.main};
-  transition: all 0.5s ease;
-  padding: 0px 24px;
-  @media (max-width: 640px) {
-    height: 88px;
-    padding: 0px 0px;
-  }
-`;
-
-export const NavbarWrapper = styled.div`
-  width: 100%;
-  height: 92px;
-  display: flex;
-  position: relative;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1290px;
-  padding: 0px 10px;
-  margin: auto;
-  @media (max-width: 640px) {
-    height: 88px;
-    padding: 0px 24px;
-  }
-`;
-
 export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   cursor: pointer;
   margin-left: ${(props) => (props.isDriver ? '10%' : '0%')};
@@ -126,16 +93,6 @@ export const StyledtText = styled.p`
   }
 `;
 
-export const NavbarPositionEffectEraiser = styled.div`
-  width: 100vw;
-  height: 92px;
-  background-color: ${(props) => props.theme.bg.main};
-  z-index: 10;
-  @media (max-width: 640px) {
-    height: 88px;
-  }
-`;
-
 export const StyledMenu = styled((props: MenuProps) => (
   <Menu
     elevation={0}
@@ -191,16 +148,4 @@ export const CloseIconWrapper = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
-`;
-
-export const LoginButton = styled(Button)`
-  && {
-    background-color: ${(props) => props.theme.button.warning};
-    color: white;
-    padding: 4px 12px;
-    :hover {
-      background-color: ${(props) => props.theme.button.warning};
-      opacity: 0.7;
-    }
-  }
 `;

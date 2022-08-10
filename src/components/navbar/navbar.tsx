@@ -6,7 +6,7 @@ import {
 } from './navbar-shared.styles';
 import { useAuth } from 'global-state/auth/auth.state';
 import NavbarUnAuth from './nav-types/nav-unauth';
-import NavbarAuth from './nav-types/nav-auth';
+import NavbarAuth from './nav-types/nav-driver';
 
 const Navbar = () => {
   const { tokens } = useAuth();
@@ -33,14 +33,6 @@ const Navbar = () => {
       </NabarBox>
 
       <NavbarPositionEffectEraiser />
-      {/* <JustFunComponent>
-        <Text>{userType}</Text>
-        <Switch onClick={clickHandler} />
-      </JustFunComponent> */}
-      {/*<JustFunComponentTwo>
-        <Text>{theme}</Text>
-        <Switch onClick={toggleTheme} />
-      </JustFunComponentTwo> */}
     </>
   );
 };

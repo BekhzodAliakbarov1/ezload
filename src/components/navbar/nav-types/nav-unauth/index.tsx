@@ -1,13 +1,14 @@
 import {
+  EmptySpaceDiv,
   NavbarLogoWrapper,
   ProfileAndLanguageWrapper,
   RightContentItemWrapper,
   StyledDropdownButton,
-} from 'components/navbar/navbar-shared.styles';
+} from './nav-unauth';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from 'global-state/theme/theme.state';
-
+import { LoginButton } from '../../navbar-shared.styles';
 import logoLight from 'assets/img/logo-light.svg';
 import logoDark from 'assets/img/logo-white.svg';
 import Text from 'components/typography/text';
@@ -18,10 +19,12 @@ import { Menu, MenuItem } from '@mui/material';
 const NavbarUnAuth = () => {
   const { theme } = useTheme();
   const language = useMenu();
+  const navigate = useNavigate();
 
   return (
     <>
-      <NavbarLogoWrapper>
+      <EmptySpaceDiv />
+      <NavbarLogoWrapper isDriver>
         <Link to="/">
           <img src={theme === 'dark' ? logoDark : logoLight} alt="logo" />
         </Link>
@@ -48,6 +51,7 @@ const NavbarUnAuth = () => {
             <MenuItem onClick={language.handleClose}>Ru</MenuItem>
           </Menu>
         </RightContentItemWrapper>
+        <LoginButton onClick={() => navigate('/auth/login')}>Login</LoginButton>
       </ProfileAndLanguageWrapper>
     </>
   );
