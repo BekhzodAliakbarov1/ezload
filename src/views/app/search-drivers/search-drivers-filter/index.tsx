@@ -125,7 +125,7 @@ const SearchDriversFilter: React.FC<{
           emptyIcon={<FilledStarIcon size="40" fill="#EBF8F4" />}
         />
         <SearchDriversFilterButtonsWrapper>
-          <Button onClick={onSubmit} fullWidth>
+          <Button type="button" onClick={onSubmit} fullWidth>
             Apply filters
           </Button>
           <Button onClick={clearFilter} fullWidth buttonType="secondary_dark">

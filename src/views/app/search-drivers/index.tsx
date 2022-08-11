@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchDriversFilter from './search-drivers-filter';
 import { SearchDriversWrapper, SearhDriversBox } from './search-drivers.styles';
 import SearchDriversList from './serach-drivers-list';
@@ -43,6 +43,9 @@ const SearchDrivers = () => {
       }
     );
   };
+  useEffect(() => {
+    searchDriversRequest.mutate({ query: '' });
+  }, []);
 
   return (
     <SearchDriversWrapper>

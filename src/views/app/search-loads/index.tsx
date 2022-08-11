@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import SearchLoadsFilter from './search-loads-filter';
 import SearchLoadsList from './search-loads-list';
 import { SearchLoadsWrapper, SearchLoadsBox } from './search-loads.styles';
@@ -50,6 +50,9 @@ const SearchLoads = () => {
       }
     );
   };
+  useEffect(() => {
+    searchLoadsRequest.mutate({ query: '' });
+  }, []);
 
   return (
     <SearchLoadsWrapper>
