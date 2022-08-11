@@ -27,7 +27,7 @@ export const NavbarWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   max-width: 1290px;
-  padding: 0px 10px;
+  /* padding: 0px 10px; */
   margin: auto;
   @media (max-width: 640px) {
     height: 88px;

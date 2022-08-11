@@ -1,3 +1,4 @@
+import { IconButton } from '@mui/material';
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
@@ -11,9 +12,12 @@ export const SearchDriversFilterWrapper = styled.div`
     margin-bottom: 40px;
   }
   border-right: 1px solid ${(props) => props.theme.text.main_5};
+  @media (max-width: 800px) {
+    display: none;
+  }
 `;
 
-export const SearchDriversFilterForm = styled.form`
+export const SearchDriversFilterForm = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -60,4 +64,54 @@ export const SearchDriversFilterButtonsWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 64px;
+`;
+
+export const FilterMobileNavbar = styled.div`
+  display: none;
+  @media (max-width: 800px) {
+    cursor: pointer;
+    width: 100vw;
+    margin-left: -24px;
+    height: min-content;
+    padding: 13px 24px;
+    display: flex;
+    align-items: center;
+    background-color: ${(props) => props.theme.text.main_50};
+    transition: background-color 0.1s ease;
+
+    p {
+      color: ${(props) => props.theme.text.main_20};
+    }
+    button {
+      padding: 0px;
+      margin-right: 17px;
+    }
+    :hover {
+      background-color: ${(props) => props.theme.text.main_70};
+    }
+  }
+`;
+
+export const FilterMobileDrawerContainer = styled.div`
+  width: 100vw;
+  height: 100%;
+  top: 0;
+  padding: 0px 24px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  flex-direction: column;
+  > p {
+    font-size: 24px;
+  }
+`;
+
+export const StyledCloseButton = styled(IconButton)`
+  && {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+  }
 `;

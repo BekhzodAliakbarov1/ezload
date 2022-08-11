@@ -8,6 +8,13 @@ export const SearchDriversListWrapper = styled.div`
     line-height: 29px;
     margin-bottom: 40px;
   }
+  @media (max-width: 800px) {
+    padding: 0px;
+    > p {
+      font-size: 20px;
+      text-align: left;
+    }
+  }
 `;
 export const SearchDriversListItemsWrapper = styled.div`
   width: 100%;

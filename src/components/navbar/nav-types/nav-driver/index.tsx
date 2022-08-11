@@ -139,13 +139,13 @@ const NavbarAuth = () => {
           </CloseIconWrapper>
           {accountLinks.map((link) => {
             return (
-              <Link to={link.to} key={link.id}>
+              <Link onClick={toggleDrawer(false)} to={link.to} key={link.id}>
                 <StyledtText>{link.name}</StyledtText>
               </Link>
             );
           })}
           {accountProfile.map((item) => (
-            <Link key={item.id} to={item.to}>
+            <Link onClick={toggleDrawer(false)} key={item.id} to={item.to}>
               <StyledtText>{item.name}</StyledtText>
             </Link>
           ))}
