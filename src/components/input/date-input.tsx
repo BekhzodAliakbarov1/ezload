@@ -39,25 +39,29 @@ export const DateRangePickerInput: React.FC<{
 
   return (
     <DateInputComponentWrapper>
-      <Text weight="500">From</Text>
-      <DateTimePicker
-        value={data.dates[type].start}
-        onChange={handleStartDateChange}
-        renderInput={(params) => <StyledTextFiled {...params} />}
-        disableMaskedInput
-        inputFormat="d-MMMM , HH:mm "
-        disablePast={!isEditing}
-      />
-      <Text weight="500">To</Text>
-      <DateTimePicker
-        value={data.dates[type].end}
-        onChange={handleEndDateChange}
-        renderInput={(params) => <StyledTextFiled {...params} />}
-        disableMaskedInput
-        inputFormat="d-MMMM , HH:mm "
-        disablePast={!isEditing}
-        minDate={data.dates[type].start}
-      />
+      <div>
+        <Text weight="500">From</Text>
+        <DateTimePicker
+          value={data.dates[type].start}
+          onChange={handleStartDateChange}
+          renderInput={(params) => <StyledTextFiled {...params} />}
+          disableMaskedInput
+          inputFormat="d-MMMM , HH:mm "
+          disablePast={!isEditing}
+        />
+      </div>
+      <div>
+        <Text weight="500">To</Text>
+        <DateTimePicker
+          value={data.dates[type].end}
+          onChange={handleEndDateChange}
+          renderInput={(params) => <StyledTextFiled {...params} />}
+          disableMaskedInput
+          inputFormat="d-MMMM , HH:mm "
+          disablePast={!isEditing}
+          minDate={data.dates[type].start}
+        />
+      </div>
     </DateInputComponentWrapper>
   );
 };

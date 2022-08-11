@@ -1,7 +1,6 @@
 import { TextField } from '@mui/material';
 import Select from '@mui/material/Select';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const LoadExtraInformationWrapper = styled.div`
   width: 100%;
@@ -17,6 +16,9 @@ export const LoadExtraInformationInputsWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 24px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const LoadExtraInformationLeftSideInputsBox = styled.div`
@@ -25,6 +27,11 @@ export const LoadExtraInformationLeftSideInputsBox = styled.div`
   width: 100%;
   max-width: 269px;
   justify-content: space-between;
+  @media (max-width: 800px) {
+    width: 100%;
+    max-width: 100%;
+    gap: 16px;
+  }
 `;
 
 export const LoadExtraInformationPriceInputWrapper = styled.div`

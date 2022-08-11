@@ -9,4 +9,12 @@ export const LoadButtonsWrapper = styled.div`
   button {
     max-width: 240px;
   }
+  @media (max-width: 800px) {
+    margin-top: 40px;
+    margin-bottom: 56px;
+    flex-direction: column;
+  }
+  button {
+    max-width: 100%;
+  }
 `;

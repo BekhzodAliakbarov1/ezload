@@ -4,6 +4,9 @@ import { colors } from 'styles/variables';
 export const FeedWrapper = styled.div`
   width: 100%;
   height: 100%;
+  @media (max-width: 800px) {
+    padding: 0px 24px;
+  }
 `;
 
 export const FeedDataWrapper = styled.div`
@@ -27,6 +30,7 @@ export const FeedDataWrapper = styled.div`
     margin-bottom: 48px;
   }
   @media (max-width: 800px) {
+    margin-top: 56px;
     > p:nth-child(1) {
       font-size: 24px;
       line-height: 24px;

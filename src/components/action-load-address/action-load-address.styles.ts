@@ -16,6 +16,10 @@ export const ChooseAndCreateTextWrapper = styled.div`
   display: flex;
   width: 100%;
   align-items: center;
+  @media (max-width: 800px) {
+    /* flex-direction: column; */
+    display: none;
+  }
 `;
 
 export const StyledText = styled.h3`
@@ -49,6 +53,10 @@ export const ActionLoadInputAndMapWrapper = styled.div`
   width: 100%;
 
   gap: 31px;
+  @media (max-width: 800px) {
+    margin-top: 20px;
+    flex-direction: column;
+  }
 `;
 
 export const ActionLoadInputsWrapper = styled.div`

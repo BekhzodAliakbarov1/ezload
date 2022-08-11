@@ -6,12 +6,18 @@ export const LoadAddressWrapper = styled.div`
   > p {
     margin-bottom: 32px;
   }
+  @media (max-width: 800px) {
+    margin-bottom: 20px;
+  }
 `;
 
 export const LoadAddressFlexWrapper = styled.div`
   display: flex;
   gap: 31px;
   height: 100%;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const VerticalLineWrapper = styled.div`
@@ -27,6 +33,9 @@ export const VerticalLineWrapper = styled.div`
     height: 528px;
 
     /* transform: rotate(90deg); */
+  }
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 
@@ -46,4 +55,8 @@ export const AllLocationInputsWrapper = styled.div`
   gap: 80px;
   width: 100%;
   margin-bottom: 56px;
+  @media (max-width: 800px) {
+    gap: 30px;
+    margin-bottom: 30px;
+  }
 `;

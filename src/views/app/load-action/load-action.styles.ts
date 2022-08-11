@@ -12,4 +12,11 @@ export const ActionLoadWrapper = styled.div`
   > p {
     font-size: 24px;
   }
+  @media (max-width: 800px) {
+    margin-top: 20px;
+    padding: 30px 24px;
+    > {
+      font-size: 18px;
+    }
+  }
 `;
