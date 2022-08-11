@@ -4,7 +4,8 @@ import { colors } from 'styles/variables';
 
 export const AddressCardWrapper = styled.div`
   width: 100%;
-  height: 72px;
+  height: fit-content;
+  padding-bottom: 32px;
   border-bottom: 1px solid ${(props) => props.theme.text.main_10};
   @media (max-width: 800px) {
     height: auto;

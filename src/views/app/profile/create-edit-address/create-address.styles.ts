@@ -8,6 +8,12 @@ export const CreateAddressWrapper = styled.form`
     line-height: 24px;
     margin-bottom: 64px;
   }
+  @media (max-width: 800px) {
+    padding: 30px 24px;
+    > p {
+      margin-bottom: 40px;
+    }
+  }
 `;
 
 export const CreateAddressInputsBox = styled.div`
@@ -21,6 +27,10 @@ export const CreateAddressInputsBox = styled.div`
     flex-direction: column;
     gap: 12px;
     max-width: 353px;
+  }
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 12px;
   }
 `;
 
@@ -36,5 +46,13 @@ export const CreateAddressButtonsWrapper = styled.div`
   gap: 24px;
   button {
     width: 240px;
+  }
+  @media (max-width: 800px) {
+    width: 100%;
+    flex-direction: column;
+    gap: 12px;
+    button {
+      width: 100%;
+    }
   }
 `;

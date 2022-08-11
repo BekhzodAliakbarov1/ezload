@@ -20,8 +20,15 @@ export const ProfileAddressTopPartContainer = styled.div`
   }
   @media (max-width: 800px) {
     margin-bottom: 40px;
+    button p {
+      display: none;
+    }
     button {
-      display: none !important;
+      width: 50px !important;
+      padding: 6px 0px !important;
+      span {
+        margin: 0px;
+      }
     }
   }
 `;
