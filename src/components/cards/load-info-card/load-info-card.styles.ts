@@ -14,6 +14,7 @@ export const LoadInfoCradWrapper = styled.div`
   > button {
     margin-bottom: 40px;
     height: 26px;
+    width: 100px !important;
   }
 `;
 
@@ -22,6 +23,10 @@ export const LoadInfoCardDataBox = styled.div`
   display: flex;
   gap: 80px;
   margin-bottom: 40px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 32px;
+  }
 `;
 
 export const LoadInfoCardDataSingleBox = styled.div`

@@ -10,6 +10,9 @@ export const LoadInfoViewWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 48px;
+  @media (max-width: 800px) {
+    padding: 24px;
+  }
 `;
 
 export const LoadInfowViewHeader = styled.div`
@@ -20,6 +23,15 @@ export const LoadInfowViewHeader = styled.div`
   > p {
     font-size: 24px;
     line-height: 29px;
+    text-align: left;
+  }
+  @media (max-width: 800px) {
+    button {
+      width: fit-content !important;
+    }
+    > p {
+      font-size: 20px;
+    }
   }
 `;
 
@@ -28,6 +40,9 @@ export const LoadInfoDataWrapperBox = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 40px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const MakeBidModalWrapper = styled.form`

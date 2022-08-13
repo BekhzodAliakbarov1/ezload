@@ -3,6 +3,7 @@ import Button from 'components/button/button';
 import DistanceIcon from 'components/icons/distance.icon';
 import LocationIcon from 'components/icons/location.icon';
 import Text from 'components/typography/text';
+import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -32,6 +33,7 @@ const LoadCard: React.FC<{
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
   const { load_id } = useParams<{ load_id: string }>();
+  const { isDriver } = useDriver();
 
   const handleDelete = () => {
     // Delete api will connect here
@@ -94,7 +96,7 @@ const LoadCard: React.FC<{
             <Text>Bid count : {load.bids_count}</Text>
             <Text>View count : {load.visits_count}</Text>
           </LoadBidCountWrapper>
-          {withButtons && (
+          {withButtons && !isDriver && (
             <LoadCardButtonWrapper>
               <Text onClick={open}>Delete Load</Text>
               <Text onClick={handleEdit}>Change details</Text>
