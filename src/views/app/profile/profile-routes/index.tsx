@@ -1,12 +1,12 @@
 import { IconButton } from '@mui/material';
 import Button from 'components/button/button';
+import FileIcon from 'components/icons/file.icon';
 import PenIcon from 'components/icons/pen.icon';
 import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
 import CountryRouteInput from 'components/input/route-inputs/country-route';
 import RegionRouteInput from 'components/input/route-inputs/region-route';
 import Text from 'components/typography/text';
-import { useAuth } from 'global-state/auth/auth.state';
 import React, { useState } from 'react';
 import { useCreateRoute } from 'server-state/mutations/use-create-route';
 import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
@@ -14,6 +14,7 @@ import { useRoutes } from 'server-state/queries/use-routes';
 import {
   LastButtonWrapper,
   MyRoutesEditButtonWrapper,
+  NoRoutesFindSection,
   ProfileRoutesCreatedLocationsSingleRow,
   ProfileRoutesCreatedLocationsWrapper,
   ProfileRoutesDataWrapper,
@@ -89,7 +90,7 @@ const ProfileRoutes = () => {
           </MyRoutesEditButtonWrapper>
         )}
       </ProfileRoutesHeader>
-      {routesRequest?.data?.routes && routesRequest.data.routes.length > 0 && (
+      {routesRequest?.data?.routes && routesRequest.data.routes.length > 0 ? (
         <ProfileRoutesCreatedLocationsWrapper>
           {routesRequest.data?.routes?.map((route, index) => (
             <ProfileRoutesCreatedLocationsSingleRow key={route.id}>
@@ -102,6 +103,11 @@ const ProfileRoutes = () => {
             </ProfileRoutesCreatedLocationsSingleRow>
           ))}
         </ProfileRoutesCreatedLocationsWrapper>
+      ) : (
+        <NoRoutesFindSection>
+          <FileIcon size="150" />
+          <Text>No Routes</Text>
+        </NoRoutesFindSection>
       )}
       {isEditing && (
         <>

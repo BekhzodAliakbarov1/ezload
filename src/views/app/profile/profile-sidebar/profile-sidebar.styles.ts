@@ -15,7 +15,7 @@ export const ProfileSidebarWrapper = styled.div`
   > p {
     font-size: 24px;
     line-height: 29px;
-    margin-bottom: 16px;
+    margin-bottom: 48px;
   }
   @media (max-width: 800px) {
     border-right: 0px solid;
@@ -31,6 +31,9 @@ export const ProfileSidebarWrapper = styled.div`
       ::-webkit-scrollbar {
         display: none;
       }
+    }
+    > p {
+      margin-bottom: 16px;
     }
   }
 `;

@@ -28,7 +28,7 @@ const CreateEditAddress = () => {
     { address_1, address_2, country, region, district, zip_code, latLong },
     setAddress,
   ] = useState({
-    address_1: '',
+    address_1: state?.data?.address.orientation ?? '',
     address_2: '',
     country: {
       title: state?.data?.address.country.title ?? '',
@@ -59,10 +59,11 @@ const CreateEditAddress = () => {
       country: Number(country.id),
       district: Number(district.id),
       location: { latitude: latLong.lat, longitude: latLong.lng },
-      orientation: address_1 ?? '',
+      orientation: address_1 ?? 'street',
       postal_code: zip_code,
       region: Number(region.id),
     };
+
     if (state?.type === 'EDIT') {
       editAddressRequest.mutate(address, {
         onSuccess() {
@@ -166,6 +167,7 @@ const CreateEditAddress = () => {
             }}
           />
           <Input
+            required
             placeholder="Zip Code"
             value={zip_code}
             onChange={(e) => {

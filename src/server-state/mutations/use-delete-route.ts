@@ -1,6 +1,6 @@
 import { useAuth } from 'global-state/auth/auth.state';
 import { useSnackbar } from 'notistack';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { request } from '../api';
 
 interface DeleteRouteRequest {

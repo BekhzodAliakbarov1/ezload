@@ -40,3 +40,19 @@ export const ProfileAddressesWrapper = styled.div`
   gap: 32px;
   align-items: center;
 `;
+
+export const NoAddressesFindSection = styled.div`
+  width: 100%;
+  padding-top: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  > p {
+    font-size: 24px;
+    line-height: 24px;
+    color: ${(props) => props.theme.text.main_30};
+  }
+`;

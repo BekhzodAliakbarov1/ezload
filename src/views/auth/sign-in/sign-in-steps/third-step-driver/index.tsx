@@ -76,12 +76,7 @@ const ThirdStepDriver: React.FC<{
           licence_plate: data.licence_plate,
           title: data.vehicle_title,
         },
-        routes: [
-          {
-            country: 2,
-            region: 2,
-          },
-        ],
+        routes: [],
       },
       {
         onSuccess() {

@@ -41,7 +41,8 @@ export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
     status = 3;
   }
 
-  const url = isDriver ? '/driver/load/list/' : '/load/list/';
+  // const url = isDriver ? '/driver/load/list/' : '/load/list/';
+  const url = '/load/list/';
 
   return useInfiniteQuery(['loads', type], () => fetchLoads({ status, url }), {
     enabled: false,

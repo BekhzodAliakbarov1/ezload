@@ -10,6 +10,7 @@ import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useCreateBid } from 'server-state/mutations/use-create-bid';
+import { useDeleteBid } from 'server-state/mutations/use-delete-bid';
 import { useLoad } from 'server-state/queries/use-load';
 import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
@@ -30,6 +31,7 @@ const LoadInfoView = () => {
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ load_id });
   const createBidRequest = useCreateBid();
+  const deleteBidRequest = useDeleteBid();
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -47,8 +49,13 @@ const LoadInfoView = () => {
         },
       }
     );
+  };
 
-    // close();
+  const deleteBidClickHandler = () => {
+    // AFTER SOLVING BID ID PROBLEM WE WILL CONNECT IT
+    // deleteBidRequest.mutate({
+    //   bid_id: 2
+    // })
   };
 
   return (
@@ -60,8 +67,8 @@ const LoadInfoView = () => {
             <>
               {singleLoadRequest.data?.status === 1 ? (
                 <>
-                  {!singleLoadRequest.data.is_bidden ? (
-                    <Button disabled>You`ve already bidded</Button>
+                  {singleLoadRequest.data.is_bidden ? (
+                    <Button onClick={deleteBidClickHandler}>Delete bid</Button>
                   ) : (
                     <Button onClick={open}>Bid to the load</Button>
                   )}

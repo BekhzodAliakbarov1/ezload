@@ -23,6 +23,7 @@ export const AddressCardDataLine = styled.div`
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0.15px;
+    text-align: left;
   }
   @media (max-width: 800px) {
     p {
