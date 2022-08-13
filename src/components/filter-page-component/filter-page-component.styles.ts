@@ -29,7 +29,7 @@ export const FilterMobileNavbar = styled.div`
 
 export const SearchFilterWrapper = styled.div`
   width: 100%;
-  max-width: 466px;
+  max-width: 400px;
   padding: 0px 65px 0px 48px;
   > p {
     font-size: 24px;
@@ -49,12 +49,16 @@ export const FilterMobileDrawerContainer = styled.div`
   padding: 0px 24px;
   display: flex;
   position: relative;
-  justify-content: center;
-  align-items: flex-start;
+
+  /* justify-content: center; */
+  /* align-items: flex-start; */
   gap: 20px;
   flex-direction: column;
   > p {
     font-size: 24px;
+  }
+  @media (max-width: 800px) {
+    padding: 20px 24px;
   }
 `;
 

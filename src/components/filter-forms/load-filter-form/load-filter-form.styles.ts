@@ -22,7 +22,7 @@ export const SearchLoadsFiltersBox = styled.div`
   }
   > div {
     width: 100%;
-    max-width: 234px;
+    /* max-width: 234px; */
   }
 `;
 
@@ -53,4 +53,7 @@ export const SearchLoadsFilterButtonWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 8px;
+  @media (max-width: 800px) {
+    margin-bottom: 30px;
+  }
 `;
