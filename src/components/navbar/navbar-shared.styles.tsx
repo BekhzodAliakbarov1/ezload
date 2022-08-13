@@ -9,7 +9,7 @@ export const NabarBox = styled.div`
   position: fixed;
   display: flex;
   justify-content: 'center';
-  z-index: 1000;
+  z-index: 4;
   background-color: ${(props) => props.theme.bg.main};
   transition: all 0.5s ease;
   padding: 0px 24px;
