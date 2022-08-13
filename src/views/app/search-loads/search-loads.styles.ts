@@ -6,9 +6,18 @@ export const SearchLoadsWrapper = styled.div`
   margin-top: 40px;
   margin-bottom: 80px;
   background-color: ${colors.white};
+  @media (max-width: 800px) {
+    margin-top: 32px;
+    margin-bottom: 30px;
+  }
 `;
 
 export const SearchLoadsBox = styled.div`
   padding: 48px 0px;
   display: flex;
+  @media (max-width: 800px) {
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 32px;
+  }
 `;

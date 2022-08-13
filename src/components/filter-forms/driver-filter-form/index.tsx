@@ -14,15 +14,7 @@ import {
   SearchDriversFilterToCountryWrapper,
   SearchDriversFilterWeightWrapper,
 } from './driver-filter-form.styles';
-
-const emptyState = {
-  destination_point_country: { id: '', title: '' },
-  destination_point_region: { id: '', title: '' },
-  pickup_point_country: { id: '', title: '' },
-  pickup_point_region: { id: '', title: '' },
-  rating: 1,
-  weight: '',
-};
+import { emptyState } from './driver-filter-state';
 
 const DriverFilterForm: React.FC<{
   submitHandler: (data: SearchDriverFilterType) => void;

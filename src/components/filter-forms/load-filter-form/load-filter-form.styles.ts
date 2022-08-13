@@ -1,20 +1,7 @@
 import { Select, TextField } from '@mui/material';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
-export const SearchLoadsFilterWrapper = styled.div`
-  width: 100%;
-  max-width: 330px;
-  padding: 0px 48px;
-  > p {
-    font-size: 24px;
-    line-height: 29px;
-    margin-bottom: 40px;
-  }
-  border-right: 1px solid ${(props) => props.theme.text.main_5};
-`;
-
-export const SearchLoadsFilterInputsForm = styled.form`
+export const SearchLoadsFilterInputsWrapper = styled.form`
   width: 100%;
   display: flex;
   flex-direction: column;

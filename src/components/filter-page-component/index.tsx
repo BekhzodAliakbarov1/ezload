@@ -2,7 +2,7 @@ import { Drawer, IconButton } from '@mui/material';
 import FilterIcon from 'components/icons/filter.icon';
 import MenuCloseIcon from 'components/icons/menu-close.icon';
 import Text from 'components/typography/text';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   FilterMobileDrawerContainer,
   FilterMobileNavbar,
