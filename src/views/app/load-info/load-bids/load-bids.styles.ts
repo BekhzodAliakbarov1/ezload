@@ -37,6 +37,9 @@ export const LoadBidDriverCard = styled.div`
   display: flex;
   flex-direction: column;
   gap: 8px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const NoLoadBodsWrapper = styled.div`

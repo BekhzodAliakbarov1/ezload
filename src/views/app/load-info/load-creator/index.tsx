@@ -8,6 +8,8 @@ import {
   ModalInputsWrapper,
   ModalStyledTextFiled,
   ModalButtonsWrapper,
+  DeliveredModalWrapper,
+  DeliveredModalButtonsWrapper,
 } from './load-creator.styles';
 import Avatar from 'components/avatar';
 import Text from 'components/typography/text';
@@ -16,16 +18,34 @@ import { useModal } from 'hooks/use-modal';
 import { Modal } from '@mui/material';
 import Input from 'components/input/input';
 import { SingleLoadDetailsResponse } from 'types/load.types';
+import { useDeliverLoad } from 'server-state/mutations/use-deliver-load';
+import { useParams } from 'react-router';
 
 const LoadCreator: React.FC<{
   data?: SingleLoadDetailsResponse;
 }> = ({ data }) => {
-  const { close, isOpen, open } = useModal();
+  const cacelModal = useModal();
+  const deliverModal = useModal();
+  const deliverLoadRequest = useDeliverLoad();
+  const { load_id } = useParams<{ load_id: string }>();
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     // for fun
     close();
+  };
+
+  const deliveredClick = () => {
+    deliverLoadRequest.mutate(
+      {
+        load_id,
+      },
+      {
+        onSuccess() {
+          deliverModal.close();
+        },
+      }
+    );
   };
 
   return (
@@ -42,13 +62,14 @@ const LoadCreator: React.FC<{
       </LoadCreatorWrapper>
       {data?.status === 2 && (
         <LoadCardButtonWrapper>
-          <Button>Delivered the load</Button>
-          <Button onClick={open} buttonType="warning">
+          <Button onClick={deliverModal.open}>Delivered this load</Button>
+          <Button onClick={cacelModal.open} buttonType="warning">
             Cancel this load
           </Button>
         </LoadCardButtonWrapper>
       )}
-      <Modal open={isOpen} onClose={close}>
+      {/* CANCEL THE LOAD */}
+      <Modal open={cacelModal.isOpen} onClose={cacelModal.close}>
         <LoadCancelModalWrapper onSubmit={handleSubmit}>
           <Text className="header">
             Are you sure you want to cancel the load?{' '}
@@ -68,6 +89,24 @@ const LoadCreator: React.FC<{
             </Button>
           </ModalButtonsWrapper>
         </LoadCancelModalWrapper>
+      </Modal>
+      {/* DELIVER THE LOAD */}
+      <Modal open={deliverModal.isOpen} onClose={deliverModal.close}>
+        <DeliveredModalWrapper>
+          <Text>
+            Are you sure you want to complete the load? Make sure to deliver the
+            load to the destination address. Also make sure to update the
+            customer.
+          </Text>
+          <DeliveredModalButtonsWrapper>
+            <Button onClick={deliveredClick} buttonType="contained">
+              Submit
+            </Button>
+            <Button onClick={deliverModal.close} buttonType="white">
+              Cancel
+            </Button>
+          </DeliveredModalButtonsWrapper>
+        </DeliveredModalWrapper>
       </Modal>
     </>
   );
