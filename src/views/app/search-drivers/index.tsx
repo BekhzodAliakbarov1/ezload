@@ -43,7 +43,7 @@ const SearchDrivers = () => {
     <SearchDriversWrapper>
       <SearhDriversBox>
         <SearchDriversFilter handleClick={handleClick} />
-        <SearchDriversList />
+        <SearchDriversList drivers={searchDriversRequest.data?.results} />
       </SearhDriversBox>
     </SearchDriversWrapper>
   );

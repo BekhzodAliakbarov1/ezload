@@ -19,6 +19,9 @@ export const DriverCardWrapper = styled.div<{
     box-shadow: ${(props) =>
       props.clickable && '0px 6px 8px rgba(60, 181, 149, 0.1)'};
   }
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 
 export const DriverCardInfoWrapper = styled.div`

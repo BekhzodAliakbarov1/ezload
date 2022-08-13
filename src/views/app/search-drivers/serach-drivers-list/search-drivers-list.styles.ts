@@ -22,4 +22,9 @@ export const SearchDriversListItemsWrapper = styled.div`
   flex-wrap: wrap;
   padding: 16px 0px;
   margin-bottom: 96px;
+  @media (max-width: 800px) {
+    > a {
+      width: 100%;
+    }
+  }
 `;

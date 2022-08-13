@@ -2,24 +2,26 @@
 import { useInfiniteQuery, useMutation } from 'react-query';
 import { request } from '../api';
 
-interface DriversResponse {
+export interface SingleDriverResponse {
+  id: number;
+  first_name: string;
+  last_name: string;
+  rates_avg: number;
+  profile_picture: {
+    file: string;
+  };
+  vehicle: {
+    title: string;
+    licence_plate: string;
+    capacity: string;
+  };
+}
+
+export interface DriversResponse {
   count: number;
   next: null | number;
   previous: null | number;
-  results: {
-    id: number;
-    first_name: string;
-    last_name: string;
-    rates_avg: number;
-    profile_picture: {
-      file: string;
-    };
-    vehicle: {
-      title: string;
-      licence_plate: string;
-      capacity: string;
-    };
-  }[];
+  results: SingleDriverResponse[];
 }
 
 const fetchDrivers = async ({
