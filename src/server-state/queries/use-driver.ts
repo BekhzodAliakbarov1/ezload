@@ -24,7 +24,7 @@ export interface SingleDriverResponse {
       language: string;
     };
   }[];
-  reviews: {
+  reviews?: {
     rate: number;
     feedback: string;
     reviewer: {

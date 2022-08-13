@@ -11,9 +11,11 @@ export const DriverMainInfosWrapper = styled.div`
   background-color: ${(props) => props.theme.bg.main};
   box-shadow: 0px 1px 3px rgba(60, 181, 149, 0.12);
   border-radius: 4px;
-  /* align-items: center; */
   > button {
     margin-top: 56px;
+  }
+  @media (max-width: 800px) {
+    max-width: 100%;
   }
 `;
 export const AvatarWrapper = styled.div`

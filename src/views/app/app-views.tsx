@@ -33,6 +33,8 @@ const DriverView = () => (
     <Route path="/profile/*" element={<ProfileLayout />} />
     <Route path="/search-load" element={<SearchLoadLayout />} />
     <Route path="/load/:load_id" element={<LoadInfoLayout />} />
+    <Route path="/drivers/:id" element={<DriverInfoLayout />} />
+
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );

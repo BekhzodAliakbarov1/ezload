@@ -15,8 +15,8 @@ export const DriverReviews: React.FC<{
   return (
     <DriverReviewsWrapper>
       <Text>Driver reviews</Text>
-      <DriverReviewsDataBox isEmpty={!data?.reviews[0]}>
-        {data?.reviews[0] ? (
+      <DriverReviewsDataBox isEmpty={!data?.reviews}>
+        {data?.reviews && data.reviews.length > 0 && data?.reviews[0] ? (
           <>
             {data.reviews.map((review, index) => (
               <ReviewCard key={index} {...review} />
