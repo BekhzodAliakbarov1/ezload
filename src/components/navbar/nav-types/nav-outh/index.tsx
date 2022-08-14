@@ -13,7 +13,7 @@ import logoDark from 'assets/img/logo-white.svg';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
 import { useAuth } from 'global-state/auth/auth.state';
-import { Drawer, IconButton, Menu, MenuItem } from '@mui/material';
+import { Drawer, IconButton, Menu } from '@mui/material';
 import { useDriver } from 'hooks/use-driver';
 import MenuCloseIcon from 'components/icons/menu-close.icon';
 import MenuIcon from 'components/icons/menu.icon';

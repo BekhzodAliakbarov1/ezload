@@ -1,4 +1,3 @@
-import { useAuth } from 'global-state/auth/auth.state';
 import { useSnackbar } from 'notistack';
 import { useMutation } from 'react-query';
 import { request } from '../api';

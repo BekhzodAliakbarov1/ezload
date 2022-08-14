@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SearchLoadsFilter from './search-loads-filter';
 import SearchLoadsList from './search-loads-list';
 import { SearchLoadsWrapper, SearchLoadsBox } from './search-loads.styles';
@@ -32,9 +32,6 @@ const SearchLoads = () => {
     setQuery(qs.stringify(queryData));
     searchLoadsRequest.refetch();
   };
-  // useEffect(() => {
-  //   searchLoadsRequest.mutate({ query: '' });
-  // }, []);
 
   return (
     <SearchLoadsWrapper>

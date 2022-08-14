@@ -1,6 +1,5 @@
 import { Select } from '@mui/material';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const PhoneInputWrapper = styled.div`
   width: 100%;

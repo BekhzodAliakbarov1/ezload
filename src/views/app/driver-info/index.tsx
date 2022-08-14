@@ -19,6 +19,7 @@ const DriverInfo = () => {
       biddedDriverRequest.refetch();
     }
     console.log(bid_id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bid_id, id]);
 
   return (

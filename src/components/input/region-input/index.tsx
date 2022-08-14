@@ -29,6 +29,7 @@ const RegionInput: React.FC<{
     if (country) {
       refetch();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [country]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

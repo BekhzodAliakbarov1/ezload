@@ -1,5 +1,5 @@
 import Text from 'components/typography/text';
-import React, { useEffect } from 'react';
+import React from 'react';
 import LoadAddress from './load-action-parts/load-address/load-address';
 import LoadTitle from './load-action-parts/load-title/load-title';
 import { ActionLoadWrapper } from './load-action.styles';

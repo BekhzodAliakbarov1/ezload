@@ -1,8 +1,7 @@
-import ReviewCard from 'components/cards/review-card';
 import FileIcon from 'components/icons/file.icon';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
-import React, { useState } from 'react';
+import React from 'react';
 import { useRates } from 'server-state/queries/use-rates';
 import {
   DifferentRatingsBox,

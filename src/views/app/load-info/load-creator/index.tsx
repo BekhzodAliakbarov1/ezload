@@ -29,7 +29,7 @@ const LoadCreator: React.FC<{
   const deliverLoadRequest = useDeliverLoad();
   const { load_id } = useParams<{ load_id: string }>();
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     // for fun
     close();

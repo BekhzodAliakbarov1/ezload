@@ -1,5 +1,5 @@
 // this file is for getting only data with pagination
-import { useInfiniteQuery, useMutation } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { request } from '../api';
 
 export interface SingleDriverResponse {
@@ -50,9 +50,10 @@ export const useDrivers = (type: 'worked_before' | 'top' | 'other') => {
   });
 };
 
-export const useSearchDrivers = () => {
-  return useMutation(
-    (data: { query?: string }) =>
+export const useSearchDrivers = (data: { query?: string }) => {
+  return useQuery(
+    `drivers ${data.query}`,
+    () =>
       request
         .get<DriversResponse>(`/driver/list/?${data.query}`)
         .then((res) => res.data),

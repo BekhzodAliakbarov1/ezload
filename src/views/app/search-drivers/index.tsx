@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import SearchDriversFilter from './search-drivers-filter';
 import { SearchDriversWrapper, SearhDriversBox } from './search-drivers.styles';
 import SearchDriversList from './serach-drivers-list';
@@ -15,7 +15,8 @@ export interface SearchDriverFilterType {
 }
 
 const SearchDrivers = () => {
-  const searchDriversRequest = useSearchDrivers();
+  const [query, setQuery] = useState('');
+  const searchDriversRequest = useSearchDrivers({ query });
 
   const handleClick = (data: SearchDriverFilterType) => {
     const queryData = {
@@ -25,19 +26,9 @@ const SearchDrivers = () => {
       destination_point_country: data.destination_point_country?.id,
       destination_point_region: data.destination_point_region?.id,
     };
-    const query = qs.stringify(queryData);
-    searchDriversRequest.mutate(
-      { query },
-      {
-        onSuccess(res) {
-          console.log(res);
-        },
-      }
-    );
+    setQuery(qs.stringify(queryData));
+    searchDriversRequest.refetch();
   };
-  useEffect(() => {
-    searchDriversRequest.mutate({ query: '' });
-  }, []);
 
   return (
     <SearchDriversWrapper>

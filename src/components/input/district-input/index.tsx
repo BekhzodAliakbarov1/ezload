@@ -30,6 +30,7 @@ const DistrictInput: React.FC<{
     if (region) {
       refetch();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [region]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
