@@ -88,6 +88,7 @@ export const StyledtText = styled.p`
   text-align: left;
   padding: 12px 0px;
   padding-left: 16px;
+  cursor: pointer;
   :hover {
     background-color: ${colors.green_20};
   }

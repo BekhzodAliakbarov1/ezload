@@ -44,6 +44,12 @@ const NavbarAuth = () => {
     setState(open);
   };
 
+  const languageClickHandler = ({ lng }: { lng: 'uz' | 'ru' | 'en' }) => {
+    console.log({ lng });
+
+    language.handleClose();
+  };
+
   const accountProfile = isDriver ? profileDrivers : profileCustomer;
   const accountLinks = isDriver ? driverLinks : customerLinks;
 
@@ -109,6 +115,11 @@ const NavbarAuth = () => {
             <ChevronDownIcon size="30" />
           </StyledDropdownButton>
           <Menu
+            sx={{
+              '& .MuiPaper-root': {
+                width: '100px',
+              },
+            }}
             id="basic-menu"
             anchorEl={language.element}
             open={language.isMenuOpen}
@@ -117,9 +128,15 @@ const NavbarAuth = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={language.handleClose}>En</MenuItem>
-            <MenuItem onClick={language.handleClose}>Uz</MenuItem>
-            <MenuItem onClick={language.handleClose}>Ru</MenuItem>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'en' })}>
+              En
+            </StyledtText>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'uz' })}>
+              Uz
+            </StyledtText>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'ru' })}>
+              Ru
+            </StyledtText>
           </Menu>
         </RightContentItemWrapper>
         <NavbarMobileMenu onClick={toggleDrawer(true)}>

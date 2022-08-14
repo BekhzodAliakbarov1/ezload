@@ -6,7 +6,7 @@ import {
 } from './navbar-shared.styles';
 import { useAuth } from 'global-state/auth/auth.state';
 import NavbarUnAuth from './nav-types/nav-unauth';
-import NavbarAuth from './nav-types/nav-driver';
+import NavbarAuth from './nav-types/nav-outh';
 
 const Navbar = () => {
   const { tokens } = useAuth();
