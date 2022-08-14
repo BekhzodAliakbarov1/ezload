@@ -96,7 +96,7 @@ const LoadCard: React.FC<{
             <Text>Bid count : {load.bids_count}</Text>
             <Text>View count : {load.visits_count}</Text>
           </LoadBidCountWrapper>
-          {withButtons && !isDriver && (
+          {withButtons && !isDriver && load.status !== 3 && (
             <LoadCardButtonWrapper>
               <Text onClick={open}>Delete Load</Text>
               <Text onClick={handleEdit}>Change details</Text>

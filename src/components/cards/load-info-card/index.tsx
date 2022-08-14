@@ -17,8 +17,12 @@ const LoadInfoCard: React.FC<{
   return (
     <LoadInfoCradWrapper>
       <Text weight="600">Information about load</Text>
-      <Button buttonType="warning">
-        {data.status === 1 ? 'NEW' : data.status === 2 && 'ON THE WAY'}
+      <Button buttonType="warning" size="medium">
+        {data.status === 1
+          ? 'NEW'
+          : data.status === 2
+          ? 'ON THE WAY'
+          : data.status === 3 && 'DELIVERED'}
       </Button>
       <LoadInfoCardDataBox>
         <LoadInfoCardDataSingleBox>

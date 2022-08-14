@@ -52,10 +52,9 @@ const LoadInfoView = () => {
   };
 
   const deleteBidClickHandler = () => {
-    // AFTER SOLVING BID ID PROBLEM WE WILL CONNECT IT
-    // deleteBidRequest.mutate({
-    //   bid_id: 2
-    // })
+    deleteBidRequest.mutate({
+      bid_id: singleLoadRequest.data?.bid_id,
+    });
   };
 
   return (

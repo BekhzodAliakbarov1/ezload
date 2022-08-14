@@ -14,7 +14,11 @@ export const LoadInfoCradWrapper = styled.div`
   > button {
     margin-bottom: 40px;
     height: 26px;
-    width: 100px !important;
+  }
+  @media (max-width: 800px) {
+    button {
+      max-width: fit-content !important;
+    }
   }
 `;
 

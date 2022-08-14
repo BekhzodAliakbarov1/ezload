@@ -6,7 +6,7 @@ export const useDeleteBid = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   return useMutation(
-    (data: { bid_id: number }) =>
+    (data: { bid_id?: number }) =>
       request
         .delete<{ success: boolean }>(`driver/bid/${data.bid_id}/delete/`)
         .then((res) => res.data),

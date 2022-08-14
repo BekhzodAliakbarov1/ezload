@@ -73,11 +73,13 @@ const LoadBids: React.FC<{
             />
           </LoadBidsDataBox>
         )}
-        <Button fullWidth onClick={open}>
-          {data?.status === 1
-            ? 'Delete load'
-            : data?.status === 2 && 'Cancel the driver'}
-        </Button>
+        {data?.status !== 3 && (
+          <Button fullWidth onClick={open}>
+            {data?.status === 1
+              ? 'Delete load'
+              : data?.status === 2 && 'Cancel the driver'}
+          </Button>
+        )}
       </LoadBidsWrapper>
       <LoadBidsModals data={data} close={close} isOpen={isOpen} />
     </>

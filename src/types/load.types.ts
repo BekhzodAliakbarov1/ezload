@@ -28,6 +28,7 @@ interface LoadMainPart {
   bids_count: number;
   visits_count: number;
   id: number;
+  status?: 1 | 2 | 3;
 }
 
 export interface SingleLoadResponse extends LoadMainPart {
@@ -71,4 +72,5 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
     average_rate: number;
   }[];
   is_bidden?: boolean;
+  bid_id?: number;
 }
