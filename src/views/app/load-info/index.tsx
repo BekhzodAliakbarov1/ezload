@@ -30,8 +30,8 @@ const LoadInfoView = () => {
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ load_id });
-  const createBidRequest = useCreateBid();
-  const deleteBidRequest = useDeleteBid();
+  const createBidRequest = useCreateBid({ load_id });
+  const deleteBidRequest = useDeleteBid({ load_id });
 
   const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
