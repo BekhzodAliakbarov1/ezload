@@ -12,8 +12,8 @@ import {
   FeedWrapper,
   LocationAndSvgWrapper,
 } from './feed.styles';
-import leftImage from 'assets/img/left-bg-img.svg';
-import rightImage from 'assets/img/right-bg-img.svg';
+import leftImage from 'assets/img/left-bg-image.png';
+import rightImage from 'assets/img/right-bg-image.png';
 import { useDriver } from 'hooks/use-driver';
 
 const feedStats = [
