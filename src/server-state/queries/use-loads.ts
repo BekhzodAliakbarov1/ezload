@@ -1,5 +1,5 @@
 import { useDriver } from 'hooks/use-driver';
-import { useInfiniteQuery, useMutation } from 'react-query';
+import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
 import { SingleLoadResponse } from 'types/load.types';
 import { request } from '../api';
 
@@ -53,12 +53,13 @@ export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
   });
 };
 
-export const useSearchLoads = () => {
+export const useSearchLoads = (data: { query?: string }) => {
   const { isDriver } = useDriver();
   const url = isDriver ? `/driver/load/list/` : `/load/list/`;
 
-  return useMutation(
-    (data: { query?: string }) =>
+  return useQuery(
+    `loads ${data.query}`,
+    () =>
       request
         .get<LoadsResponse>(`${url}?${data.query}`)
         .then((res) => res.data),

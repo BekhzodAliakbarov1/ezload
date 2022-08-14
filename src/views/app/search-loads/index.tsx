@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import SearchLoadsFilter from './search-loads-filter';
 import SearchLoadsList from './search-loads-list';
 import { SearchLoadsWrapper, SearchLoadsBox } from './search-loads.styles';
@@ -19,7 +19,8 @@ export interface SearchLoadFilterType {
 }
 
 const SearchLoads = () => {
-  const searchLoadsRequest = useSearchLoads();
+  const [query, setQuery] = useState('');
+  const searchLoadsRequest = useSearchLoads({ query });
   const handleClick = (data: SearchLoadFilterType) => {
     const queryData = {
       ...data,
@@ -28,19 +29,12 @@ const SearchLoads = () => {
       destination_point_country: data.destination_point_country?.id,
       destination_point_region: data.destination_point_region?.id,
     };
-    const query = qs.stringify(queryData);
-    searchLoadsRequest.mutate(
-      { query },
-      {
-        onSuccess(res) {
-          console.log(res);
-        },
-      }
-    );
+    setQuery(qs.stringify(queryData));
+    searchLoadsRequest.refetch();
   };
-  useEffect(() => {
-    searchLoadsRequest.mutate({ query: '' });
-  }, []);
+  // useEffect(() => {
+  //   searchLoadsRequest.mutate({ query: '' });
+  // }, []);
 
   return (
     <SearchLoadsWrapper>

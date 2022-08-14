@@ -67,7 +67,11 @@ const LoadFiterForm: React.FC<{
   };
   const handleSubmit = () => {
     submitHandler(filterData);
-    clearFileds();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
   return (
