@@ -79,6 +79,7 @@ const LoadButtons: React.FC<{ isEditing: boolean }> = ({ isEditing }) => {
   return (
     <LoadButtonsWrapper>
       <Button
+        aria-label="edit "
         loading={
           createLoadRequest.isLoading ||
           editLoadRequest.isLoading ||
@@ -89,7 +90,12 @@ const LoadButtons: React.FC<{ isEditing: boolean }> = ({ isEditing }) => {
       >
         {isEditing ? 'Edit load' : 'Post load'}
       </Button>
-      <Button buttonType="secondary_dark" fullWidth onClick={handleCancel}>
+      <Button
+        aria-label="cencel"
+        buttonType="secondary_dark"
+        fullWidth
+        onClick={handleCancel}
+      >
         Cancel
       </Button>
     </LoadButtonsWrapper>

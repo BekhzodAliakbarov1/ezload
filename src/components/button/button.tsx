@@ -8,7 +8,13 @@ const Button: React.FC<ButtonProps> = ({
   type = 'submit',
   ...props
 }) => (
-  <StyledButton type={type} loading={loading} disabled={disabled} {...props}>
+  <StyledButton
+    aria-label="Button"
+    type={type}
+    loading={loading}
+    disabled={disabled}
+    {...props}
+  >
     {props.children}
     {loading ? (
       <StyledProgress buttonType={props.buttonType} size="1.2em" />

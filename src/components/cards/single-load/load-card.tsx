@@ -110,8 +110,12 @@ const LoadCard: React.FC<{
             Are you sure to delete? Actions cannot be undone
           </Text>
           <ModalButtonsBox>
-            <Button onClick={handleDelete}>Yes, delete</Button>
-            <Button onClick={close}>Cancel</Button>
+            <Button aria-label="delete" onClick={handleDelete}>
+              Yes, delete
+            </Button>
+            <Button aria-label="cancel" onClick={close}>
+              Cancel
+            </Button>
           </ModalButtonsBox>
         </ModalWrapper>
       </Modal>

@@ -46,8 +46,10 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
             {address.postal_code && `, ${address.postal_code}`}
           </Text>
           <AddressCardButtonsWrapper>
-            <Button onClick={handleClick}>Edit</Button>
-            <StyledIconButton onClick={open}>
+            <Button aria-label="Edit" onClick={handleClick}>
+              Edit
+            </Button>
+            <StyledIconButton aria-label="delete" onClick={open}>
               <BucketIcon />
             </StyledIconButton>
           </AddressCardButtonsWrapper>
@@ -59,8 +61,12 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
             Are you sure to delete? Actions cannot be undone
           </Text>
           <ModalButtonsBox>
-            <Button onClick={handleDelete}>Yes, delete</Button>
-            <Button onClick={close}>Cancel</Button>
+            <Button aria-label="delete" onClick={handleDelete}>
+              Yes, delete
+            </Button>
+            <Button aria-label="cancel" onClick={close}>
+              Cancel
+            </Button>
           </ModalButtonsBox>
         </ModalWrapper>
       </Modal>

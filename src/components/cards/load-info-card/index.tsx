@@ -17,7 +17,7 @@ const LoadInfoCard: React.FC<{
   return (
     <LoadInfoCradWrapper>
       <Text weight="600">Information about load</Text>
-      <Button buttonType="warning" size="medium">
+      <Button aria-label="status button" buttonType="warning" size="medium">
         {data.status === 1
           ? 'NEW'
           : data.status === 2

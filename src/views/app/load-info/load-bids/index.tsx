@@ -74,7 +74,7 @@ const LoadBids: React.FC<{
           </LoadBidsDataBox>
         )}
         {data?.status !== 3 && (
-          <Button fullWidth onClick={open}>
+          <Button fullWidth onClick={open} aria-label="delete cancel load">
             {data?.status === 1
               ? 'Delete load'
               : data?.status === 2 && 'Cancel the driver'}

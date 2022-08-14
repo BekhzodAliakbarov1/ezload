@@ -122,11 +122,17 @@ const DriverFilterForm: React.FC<{
         emptyIcon={<FilledStarIcon size="40" fill="#EBF8F4" />}
       />
       <SearchDriversFilterButtonsWrapper>
-        <Button type="button" onClick={onSubmit} fullWidth>
+        <Button
+          aria-label="apply filter"
+          type="button"
+          onClick={onSubmit}
+          fullWidth
+        >
           Apply filters
         </Button>
         <Button
           type="button"
+          aria-label="clear filters"
           onClick={clearFilter}
           fullWidth
           buttonType="secondary_dark"

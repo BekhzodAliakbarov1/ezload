@@ -74,7 +74,12 @@ const DriverMainInfos: React.FC<{
           <h2>+{data?.phone_number ?? 'backend donot send number'}</h2>
         </DriverMainInfoContactWrapper>
         {biddedDriver && (
-          <Button fullWidth buttonType="warning" onClick={open}>
+          <Button
+            aria-label="accept bid"
+            fullWidth
+            buttonType="warning"
+            onClick={open}
+          >
             Accept bid
           </Button>
         )}
@@ -86,8 +91,10 @@ const DriverMainInfos: React.FC<{
             with the amount of ${bidded_price}?
           </Text>
           <ModalButtonsWrapper>
-            <Button onClick={handleClick}>Accept</Button>
-            <Button buttonType="white" onClick={close}>
+            <Button aria-label="accept" onClick={handleClick}>
+              Accept
+            </Button>
+            <Button aria-label="cancel" buttonType="white" onClick={close}>
               Cancel
             </Button>
           </ModalButtonsWrapper>

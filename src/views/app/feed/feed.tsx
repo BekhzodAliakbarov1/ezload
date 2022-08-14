@@ -60,7 +60,7 @@ const Feed = () => {
             </LocationAndSvgWrapper>
           </FeedLocationCard>
         </FeedLocationWrapper>
-        <Button endIcon={<RightShowIcon />}>
+        <Button aria-label="serch create load" endIcon={<RightShowIcon />}>
           {isDriver ? 'Search Load' : 'Create Load'}
         </Button>
       </FeedDataWrapper>

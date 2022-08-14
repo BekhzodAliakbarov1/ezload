@@ -58,8 +58,17 @@ const LoadBidsModals: React.FC<{
                 assigned to the order ID: {data?.accepted_bid}?
               </Text>
               <LoadBitsModalButtonsWrapper>
-                <Button onClick={() => setCancelDriverSteps(2)}>Submit</Button>
-                <Button buttonType="white" onClick={cancelHandler}>
+                <Button
+                  aria-label="submit"
+                  onClick={() => setCancelDriverSteps(2)}
+                >
+                  Submit
+                </Button>
+                <Button
+                  aria-label="cancel"
+                  buttonType="white"
+                  onClick={cancelHandler}
+                >
                   Cancel
                 </Button>
               </LoadBitsModalButtonsWrapper>
@@ -77,8 +86,17 @@ const LoadBidsModals: React.FC<{
                 />
               </ModalInputsWrapper>
               <LoadBitsModalButtonsWrapper>
-                <Button onClick={() => setCancelDriverSteps(3)}>Submit</Button>
-                <Button buttonType="white" onClick={cancelHandler}>
+                <Button
+                  aria-label="submit"
+                  onClick={() => setCancelDriverSteps(3)}
+                >
+                  Submit
+                </Button>
+                <Button
+                  aria-label="ccancel"
+                  buttonType="white"
+                  onClick={cancelHandler}
+                >
                   Cancel
                 </Button>
               </LoadBitsModalButtonsWrapper>
@@ -102,8 +120,14 @@ const LoadBidsModals: React.FC<{
                 />
               </ModalInputsWrapper>
               <LoadBitsModalButtonsWrapper>
-                <Button onClick={handleSubmit}>Submit</Button>
-                <Button buttonType="white" onClick={cancelHandler}>
+                <Button aria-label="submit" onClick={handleSubmit}>
+                  Submit
+                </Button>
+                <Button
+                  aria-label="cancel"
+                  buttonType="white"
+                  onClick={cancelHandler}
+                >
                   Cancel
                 </Button>
               </LoadBitsModalButtonsWrapper>
@@ -116,10 +140,14 @@ const LoadBidsModals: React.FC<{
         <LoadBidsSimpleModalWrapper type="small">
           <Text>Are you sure to delete? Actions cannot be undone</Text>
           <LoadBitsModalButtonsWrapper>
-            <Button buttonType="warning" onClick={deleteLoad}>
+            <Button
+              aria-label="delete"
+              buttonType="warning"
+              onClick={deleteLoad}
+            >
               Yes, delete
             </Button>
-            <Button buttonType="white" onClick={close}>
+            <Button aria-label="cancel" buttonType="white" onClick={close}>
               Cancel
             </Button>
           </LoadBitsModalButtonsWrapper>

@@ -27,7 +27,7 @@ const LoadsContainer: React.FC<{
         </NoLoadsFindSection>
       )}
       {hasNextPage && (
-        <Button fullWidth buttonType="secondary_dark">
+        <Button aria-label="more" fullWidth buttonType="secondary_dark">
           Load more
         </Button>
       )}

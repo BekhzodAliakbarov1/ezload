@@ -67,14 +67,19 @@ const LoadInfoView = () => {
               {singleLoadRequest.data?.status === 1 ? (
                 <>
                   {singleLoadRequest.data.is_bidden ? (
-                    <Button onClick={deleteBidClickHandler}>Delete bid</Button>
+                    <Button aria-label="delete" onClick={deleteBidClickHandler}>
+                      Delete bid
+                    </Button>
                   ) : (
-                    <Button onClick={open}>Bid to the load</Button>
+                    <Button aria-label="bid load" onClick={open}>
+                      Bid to the load
+                    </Button>
                   )}
                 </>
               ) : (
                 singleLoadRequest.data?.status === 2 && (
                   <Button
+                    aria-label="bidded"
                     startIcon={<BidIcon />}
                     variant="outlined"
                     disabled
@@ -114,8 +119,13 @@ const LoadInfoView = () => {
           </Text>
           <Input name="price" placeholder="Your bid (USD)" />
           <ModalButtonsWrapper>
-            <Button>Submit</Button>
-            <Button type="button" onClick={close} buttonType="white">
+            <Button aria-label="submit">Submit</Button>
+            <Button
+              aria-label="cencel"
+              type="button"
+              onClick={close}
+              buttonType="white"
+            >
               Cancel
             </Button>
           </ModalButtonsWrapper>

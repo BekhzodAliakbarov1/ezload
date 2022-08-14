@@ -107,6 +107,7 @@ const EditableField: React.FC<{
             onChange={(e) => setInputValue(e.target.value)}
           />
           <Button
+            aria-label="save"
             disabled={isPhoneSubmitclicked}
             type="submit"
             loading={
@@ -116,6 +117,7 @@ const EditableField: React.FC<{
             Save changes
           </Button>
           <Button
+            aria-label="cancel"
             type="button"
             buttonType="white"
             onClick={() => {
@@ -133,6 +135,7 @@ const EditableField: React.FC<{
           <ConfirmVerificationCodeWrapper>
             <ReactCodeInputComponent size="md" setCode={setVerificationCode} />
             <Button
+              aria-label="confirm code"
               loading={updatePhoneNumberRequest.isLoading}
               fullWidth
               onClick={handleChangePhoneNumber}
