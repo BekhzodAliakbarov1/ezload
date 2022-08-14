@@ -15,6 +15,7 @@ import {
 import leftImage from 'assets/img/left-bg-image.png';
 import rightImage from 'assets/img/right-bg-image.png';
 import { useDriver } from 'hooks/use-driver';
+import { useTranslation } from 'react-i18next';
 
 const feedStats = [
   {
@@ -36,10 +37,12 @@ const feedStats = [
 
 const Feed = () => {
   const { isDriver } = useDriver();
+  const { t } = useTranslation();
+
   return (
     <FeedWrapper>
       <FeedDataWrapper>
-        <Text weight="800">Sending cargo is now easy</Text>
+        <Text weight="800">{t('title')}</Text>
         <Text weight="500">
           Internationally or regionally, simple process, simple delivery
         </Text>

@@ -30,11 +30,13 @@ import {
   NavbarLogoWrapper,
   NavbarMobileMenu,
 } from './nav-auth.styles';
+import { useTranslation } from 'react-i18next';
 
 const NavbarAuth = () => {
   const account = useMenu();
   const language = useMenu();
   const [state, setState] = useState(false);
+  const { i18n } = useTranslation();
 
   const { logout } = useAuth();
   const { theme } = useTheme();
@@ -45,7 +47,7 @@ const NavbarAuth = () => {
   };
 
   const languageClickHandler = ({ lng }: { lng: 'uz' | 'ru' | 'en' }) => {
-    console.log({ lng });
+    i18n.changeLanguage(lng);
 
     language.handleClose();
   };
@@ -109,7 +111,7 @@ const NavbarAuth = () => {
 
         <RightContentItemWrapper>
           <Text size="md" weight="600">
-            En
+            {i18n.language}
           </Text>
           <StyledDropdownButton onClick={language.handleClick}>
             <ChevronDownIcon size="30" />

@@ -65,6 +65,7 @@ export const RightContentItemWrapper = styled.div`
   /* margin-right: 20px; */
   p {
     letter-spacing: 0.15px;
+    text-transform: capitalize;
   }
 `;
 

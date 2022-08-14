@@ -1,4 +1,5 @@
 import RightArrow from 'components/icons/right-arrow.icon';
+import { useTranslation } from 'react-i18next';
 import {
   BoldText,
   CreateLoadBtn,
@@ -7,9 +8,10 @@ import {
 } from './introduction.styles';
 
 const Introduction = () => {
+  const { t } = useTranslation();
   return (
     <IntroductionWrapper>
-      <BoldText color="main_100">Sending cargo is now easy</BoldText>
+      <BoldText color="main_100">{t('title')}</BoldText>
       <Paragraph>
         Internationally or regionally, simple process, simple delivery
       </Paragraph>
