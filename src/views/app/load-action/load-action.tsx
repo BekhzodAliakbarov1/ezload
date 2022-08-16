@@ -7,7 +7,10 @@ import LoadDistination from './load-action-parts/load-distination/load-distineti
 import LoadDateTime from './load-action-parts/load-date-time/load-date-time';
 import LoadExtraInformation from './load-action-parts/load-extra-information/load-extra-information';
 import LoadButtons from './load-action-parts/load-buttons/load-buttons';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+import { useCreateLoad, useEditLoad } from 'server-state/mutations/use-load';
+import { useCreateAddress } from 'server-state/mutations/use-address';
 
 interface StateType {
   state: { type?: 'EDIT' };
@@ -15,9 +18,71 @@ interface StateType {
 
 const ActionLoad = () => {
   const { state } = useLocation() as StateType;
+  const { data } = useData();
+  const createLoadRequest = useCreateLoad();
+  const editLoadRequest = useEditLoad();
+  const createAddressRequest = useCreateAddress();
+  const navigate = useNavigate();
+
+  const createAddressFunction = async ({
+    type,
+  }: {
+    type: 'pickup' | 'delivery';
+  }) => {
+    const result = await createAddressRequest.mutateAsync({
+      country: Number(data[type].country.id),
+      district: Number(data[type].district.id),
+      location: {
+        latitude: data[type].latLong.lat ?? 0,
+        longitude: data[type].latLong.lng ?? 0,
+      },
+      orientation: `${data[type].address_1}`,
+      postal_code: data[type].zip_code,
+      region: Number(data[type].region.id),
+      is_user_address: false, // after checkbox connected fix it
+    });
+    return result.id;
+  };
+
+  const submitHandler: React.FormEventHandler<HTMLFormElement> = async (e) => {
+    e.preventDefault();
+    const pickup_point = await createAddressFunction({ type: 'pickup' });
+    const destination = await createAddressFunction({ type: 'delivery' });
+
+    if (destination && pickup_point) {
+      const loadData = {
+        description: data.description,
+        destination: destination,
+        earliest_delivery: data.dates.delivery.start,
+        mobile: false,
+        earliest_pick_up: data.dates.pickup.start,
+        latest_delivery: data.dates.delivery.end,
+        latest_pick_up: data.dates.pickup.end,
+        pickup_point: pickup_point,
+        price: data.cost,
+        title: data.load_title,
+        web: true,
+        weight: Number(data.lugage_size),
+        id: data.id ?? '',
+      };
+      if (data.id) {
+        editLoadRequest.mutate(loadData, {
+          onSuccess() {
+            navigate(-1);
+          },
+        });
+      } else {
+        createLoadRequest.mutate(loadData, {
+          onSuccess() {
+            navigate('/profile/my-loads');
+          },
+        });
+      }
+    }
+  };
 
   return (
-    <ActionLoadWrapper>
+    <ActionLoadWrapper onSubmit={submitHandler}>
       <Text weight="700">
         {state?.type === 'EDIT' ? 'Edit  load' : 'Create new load'}
       </Text>
@@ -26,7 +91,14 @@ const ActionLoad = () => {
       <LoadDistination />
       <LoadDateTime isEditing={state?.type === 'EDIT'} />
       <LoadExtraInformation />
-      <LoadButtons isEditing={state?.type === 'EDIT'} />
+      <LoadButtons
+        isEditing={state?.type === 'EDIT'}
+        isLoading={
+          createLoadRequest.isLoading ||
+          editLoadRequest.isLoading ||
+          createAddressRequest.isLoading
+        }
+      />
     </ActionLoadWrapper>
   );
 };

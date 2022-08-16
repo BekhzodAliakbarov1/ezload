@@ -153,6 +153,7 @@ const ActionLoadAddress: React.FC<{
             }}
             placeholder="Zip Code"
             value={zip_code}
+            required
           />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>

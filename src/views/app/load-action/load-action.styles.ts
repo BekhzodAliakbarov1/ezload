@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
-export const ActionLoadWrapper = styled.div`
+export const ActionLoadWrapper = styled.form`
   width: 100%;
   max-width: 1290px;
   height: 100%;
