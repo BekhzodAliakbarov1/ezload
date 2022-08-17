@@ -23,6 +23,7 @@ const ActionLoad = () => {
   const editLoadRequest = useEditLoad();
   const createAddressRequest = useCreateAddress();
   const navigate = useNavigate();
+  console.log(data);
 
   const createAddressFunction = async ({
     type,
@@ -39,13 +40,15 @@ const ActionLoad = () => {
       orientation: `${data[type].address_1}`,
       postal_code: data[type].zip_code,
       region: Number(data[type].region.id),
-      is_user_address: false, // after checkbox connected fix it
+      is_user_address: data[type].save_my_address,
     });
     return result.id;
   };
 
   const submitHandler: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
+    console.log({ data });
+
     const pickup_point = await createAddressFunction({ type: 'pickup' });
     const destination = await createAddressFunction({ type: 'delivery' });
 

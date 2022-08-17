@@ -27,7 +27,6 @@ const ActionLoadAddress: React.FC<{
   title: string;
   type: 'pickup' | 'delivery';
 }> = ({ title, type }) => {
-  const [checked, setChecked] = useState(false);
   const { data, setValues } = useData();
   const { address_1, address_2, country, region, district, zip_code } =
     data[type];
@@ -165,8 +164,22 @@ const ActionLoadAddress: React.FC<{
             />
           </ActionLoadMapWrapper>
           <SaveAddressWrapper>
-            <StyledIconButton onClick={() => setChecked(!checked)}>
-              {checked ? <TickIcon /> : <TickIcon fill={colors.dark_50} />}
+            <StyledIconButton
+              onClick={() =>
+                setValues({
+                  ...data,
+                  [type]: {
+                    ...data[type],
+                    save_my_address: !data[type].save_my_address,
+                  },
+                })
+              }
+            >
+              {data[type].save_my_address ? (
+                <TickIcon />
+              ) : (
+                <TickIcon fill={colors.dark_50} />
+              )}
             </StyledIconButton>
             <Text weight="500">Save to my addresses</Text>
           </SaveAddressWrapper>

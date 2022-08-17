@@ -48,7 +48,6 @@ const CreateEditAddress = () => {
     },
     zip_code: state?.data?.address.postal_code ?? '',
   });
-
   const navigate = useNavigate();
   const createAddressRequest = useCreateProfileAddress();
   const editAddressRequest = useEditProfileAddress(state?.data?.id);

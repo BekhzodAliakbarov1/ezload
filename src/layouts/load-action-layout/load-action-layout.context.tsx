@@ -15,6 +15,7 @@ interface Locations {
     lat?: number;
     lng?: number;
   };
+  save_my_address: boolean;
 }
 
 interface LoadContextInterface {
@@ -58,6 +59,7 @@ const defaultdata = {
       lat: 0,
       lng: 0,
     },
+    save_my_address: false,
   },
   delivery: {
     address_1: '',
@@ -70,6 +72,7 @@ const defaultdata = {
       lat: 0,
       lng: 0,
     },
+    save_my_address: false,
   },
   dates: {
     pickup: {
@@ -122,6 +125,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
         lat: state?.data?.pickup_point.location.latitude,
         lng: state?.data?.pickup_point.location.longitude,
       },
+      save_my_address: false,
     },
     delivery: {
       address_1: state?.data?.destination.orientation,
@@ -143,6 +147,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
         lat: state?.data?.destination.location.latitude,
         lng: state?.data?.destination.location.longitude,
       },
+      save_my_address: false,
     },
     dates: {
       pickup: {

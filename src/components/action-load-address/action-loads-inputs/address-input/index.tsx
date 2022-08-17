@@ -5,14 +5,14 @@ import { StyledSelectInput } from './address-input.styles';
 
 const AddressInput = () => {
   const addressRequest = useAddress();
-  const [location, setLocation] = useState<number>();
+  const [location, setLocation] = useState<string>('');
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
     const selectedAddress = addressRequest.data?.pages[0].results.filter(
       (address) => address.id === event.target.value
     );
     if (selectedAddress) {
-      setLocation(selectedAddress[0].id);
+      setLocation(String(selectedAddress[0].id));
     }
   };
 
