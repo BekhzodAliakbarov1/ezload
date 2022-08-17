@@ -29,6 +29,7 @@ export const FooterLeftContent = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   > p {
+    text-align: left;
     font-size: 14px;
     line-height: 24px;
     letter-spacing: 0.15px;
