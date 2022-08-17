@@ -36,7 +36,7 @@ const NavbarAuth = () => {
   const account = useMenu();
   const language = useMenu();
   const [state, setState] = useState(false);
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   const { logout } = useAuth();
   const { theme } = useTheme();
@@ -66,7 +66,7 @@ const NavbarAuth = () => {
           return (
             <Link to={link.to} key={link.id}>
               <Text weight="600" size="md">
-                {link.name}
+                {t(link.name)}
               </Text>
             </Link>
           );
@@ -80,7 +80,7 @@ const NavbarAuth = () => {
       <ProfileAndLanguageWrapper>
         <RightContentItemWrapper className="menu">
           <Text size="md" weight="600">
-            My Account
+            {t('My Account')}
           </Text>
           <StyledDropdownButton onClick={account.handleClick}>
             <ChevronDownIcon size="30" />
@@ -104,11 +104,11 @@ const NavbarAuth = () => {
           >
             {accountProfile.map((item) => (
               <Link onClick={account.handleClose} key={item.id} to={item.to}>
-                <StyledtText>{item.name}</StyledtText>
+                <StyledtText>{t(item.name)}</StyledtText>
               </Link>
             ))}
             <a onClick={logout}>
-              <StyledtText>Log out</StyledtText>
+              <StyledtText>{t('Log out')}</StyledtText>
             </a>
           </StyledMenu>
         </RightContentItemWrapper>

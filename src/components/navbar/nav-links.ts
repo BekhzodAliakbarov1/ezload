@@ -36,7 +36,7 @@ export const profileCustomer = [
     id: 2,
   },
   {
-    name: 'My adresses',
+    name: 'My addresses',
     to: '/profile/my-addresses',
     id: 3,
   },
