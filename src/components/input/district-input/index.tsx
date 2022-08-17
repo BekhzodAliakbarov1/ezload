@@ -8,6 +8,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { SearchInput } from '../search-input';
 import { Div, List, popperStyles, Rows } from '../input.styles';
 import { useDistrict } from 'server-state/queries/use-district';
+import { useTranslation } from 'react-i18next';
 
 const DistrictInput: React.FC<{
   value: string;
@@ -15,6 +16,7 @@ const DistrictInput: React.FC<{
   country: string;
   region: string;
 }> = ({ value, selectHanlder, country, region }) => {
+  const { t } = useTranslation();
   const popperState = usePopper();
   const [district, setdistrict] = useState(value);
   const {
@@ -93,7 +95,7 @@ const DistrictInput: React.FC<{
       <SearchInput
         required
         {...bindToggle(popperState)}
-        placeholder="District"
+        placeholder={t('District')}
         onChange={(e) => {
           setdistrict(e.target.value);
           handleSearch();

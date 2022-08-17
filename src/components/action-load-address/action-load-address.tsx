@@ -1,5 +1,5 @@
 import Text from 'components/typography/text';
-import React, { useState } from 'react';
+import React from 'react';
 import {
   ActionLoaddAddressWrapper,
   ActionLoadInputAndMapWrapper,
@@ -22,11 +22,13 @@ import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
 import DistrictInput from 'components/input/district-input';
 import Map from 'components/map';
+import { useTranslation } from 'react-i18next';
 
 const ActionLoadAddress: React.FC<{
   title: string;
   type: 'pickup' | 'delivery';
 }> = ({ title, type }) => {
+  const { t } = useTranslation();
   const { data, setValues } = useData();
   const { address_1, address_2, country, region, district, zip_code } =
     data[type];
@@ -83,12 +85,12 @@ const ActionLoadAddress: React.FC<{
       </Text>
       <AddressInput />
       <ChooseAndCreateTextWrapper>
-        <StyledText>Or choose manually</StyledText>
+        <StyledText>{t('Or choose manually')}</StyledText>
         <ClearTextWrapper>
           <StyledIconButton>
             <CloseIcon />
           </StyledIconButton>
-          <Text weight="500">Clear form</Text>
+          <Text weight="500">{t('Clear form')}</Text>
         </ClearTextWrapper>
       </ChooseAndCreateTextWrapper>
       <ActionLoadInputAndMapWrapper>
@@ -100,7 +102,7 @@ const ActionLoadAddress: React.FC<{
                 val: e.target.value,
               });
             }}
-            placeholder="Addressline 1"
+            placeholder={`${t('addressline')} 1`}
             value={address_1}
           />
           <Input
@@ -110,7 +112,7 @@ const ActionLoadAddress: React.FC<{
                 val: e.target.value,
               });
             }}
-            placeholder="Addressline 2"
+            placeholder={`${t('addressline')} 2`}
             value={address_2}
           />
           <DistrictInput
@@ -181,7 +183,7 @@ const ActionLoadAddress: React.FC<{
                 <TickIcon fill={colors.dark_50} />
               )}
             </StyledIconButton>
-            <Text weight="500">Save to my addresses</Text>
+            <Text weight="500">{t('Save to my addresses')}</Text>
           </SaveAddressWrapper>
         </ActionLoadMapContentWrapper>
       </ActionLoadInputAndMapWrapper>

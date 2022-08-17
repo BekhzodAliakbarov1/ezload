@@ -6,6 +6,7 @@ import Input from 'components/input/input';
 import RegionInput from 'components/input/region-input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SearchDriverFilterType } from 'views/app/search-drivers';
 import {
   SearchDriversFilterButtonsWrapper,
@@ -19,6 +20,7 @@ import { emptyState } from './driver-filter-state';
 const DriverFilterForm: React.FC<{
   submitHandler: (data: SearchDriverFilterType) => void;
 }> = ({ submitHandler }) => {
+  const { t } = useTranslation();
   const [filterData, setFilterData] =
     useState<SearchDriverFilterType>(emptyState);
 
@@ -56,7 +58,7 @@ const DriverFilterForm: React.FC<{
 
   return (
     <SearchDriversFilterForm>
-      <Text weight="600">From</Text>
+      <Text weight="600">{t('From')}</Text>
       <SearchDriversFilterFromCountryWrapper>
         <CountryInput
           value={filterData.pickup_point_country?.title ?? ''}
@@ -80,7 +82,7 @@ const DriverFilterForm: React.FC<{
           }
         />
       </SearchDriversFilterFromCountryWrapper>
-      <Text weight="600">To</Text>
+      <Text weight="600">{t('To')}</Text>
       <SearchDriversFilterToCountryWrapper>
         <CountryInput
           value={filterData.destination_point_country?.title ?? ''}
@@ -104,7 +106,7 @@ const DriverFilterForm: React.FC<{
           }
         />
       </SearchDriversFilterToCountryWrapper>
-      <Text weight="600">Weight (in tonnes)</Text>
+      <Text weight="600">{t('Weight (in tonnes)')}</Text>
       <SearchDriversFilterWeightWrapper>
         <Input
           value={filterData.weight}
@@ -112,7 +114,7 @@ const DriverFilterForm: React.FC<{
           placeholder="e.g 500 "
         />
       </SearchDriversFilterWeightWrapper>
-      <Text>Driver’s rating</Text>
+      <Text>{t('Driver’s rating')}</Text>
       <Rating
         value={filterData.rating}
         onChange={(e, rating) =>
@@ -128,7 +130,7 @@ const DriverFilterForm: React.FC<{
           onClick={onSubmit}
           fullWidth
         >
-          Apply filters
+          {t('Apply filters')}
         </Button>
         <Button
           type="button"
@@ -137,7 +139,7 @@ const DriverFilterForm: React.FC<{
           fullWidth
           buttonType="secondary_dark"
         >
-          Clear filters
+          {t('Clear filters')}
         </Button>
       </SearchDriversFilterButtonsWrapper>
     </SearchDriversFilterForm>

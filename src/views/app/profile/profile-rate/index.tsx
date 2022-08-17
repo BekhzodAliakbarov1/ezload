@@ -2,6 +2,7 @@ import FileIcon from 'components/icons/file.icon';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useRates } from 'server-state/queries/use-rates';
 import {
   DifferentRatingsBox,
@@ -15,12 +16,13 @@ import {
 
 const ProfileRate = () => {
   const { data } = useRates();
+  const { t } = useTranslation();
 
   return (
     <ProfileRatesWrapper>
-      <Text>Rates & Testimonials</Text>
+      <Text>{t('Rates & Testimonials')}</Text>
       <ProfileRatesStarsWrapper>
-        <Text weight="700">Overall rate</Text>
+        <Text weight="700">{t('Overall rate')}</Text>
         <OveralRatingDataWrapper>
           <RatingComponent value={data?.average_rate ?? 0} iconSize="35px" />
           <Text weight="700">{data?.average_rate}</Text>
@@ -49,7 +51,7 @@ const ProfileRate = () => {
         </DifferentRatingsBox>
       </ProfileRatesStarsWrapper>
       <Text className="reviews" weight="700">
-        All user reviews
+        {t('All user reviews')}
       </Text>
       <ProfileRateReviewsDataBox isEmpty={data?.feedbacks.length === 0}>
         {data?.feedbacks.length === 0 ? (

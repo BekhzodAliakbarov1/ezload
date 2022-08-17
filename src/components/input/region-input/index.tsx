@@ -8,12 +8,14 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { SearchInput } from '../search-input';
 import { Div, List, popperStyles, Rows } from '../input.styles';
 import { useRegion } from 'server-state/queries/use-region';
+import { useTranslation } from 'react-i18next';
 
 const RegionInput: React.FC<{
   value: string;
   selectHanlder: ({ id, title }: { title: string; id: string }) => void;
   country: string;
 }> = ({ value, selectHanlder, country }) => {
+  const { t } = useTranslation();
   const popperState = usePopper();
   const [region, setRegion] = useState(value);
   const {
@@ -92,7 +94,7 @@ const RegionInput: React.FC<{
       <SearchInput
         required
         {...bindToggle(popperState)}
-        placeholder="Region"
+        placeholder={t('Region')}
         onChange={(e) => {
           setRegion(e.target.value);
           handleSearch();

@@ -15,10 +15,12 @@ import {
   StyledSelect,
   StyledTextFiled,
 } from './load-filter-form.styles';
+import { useTranslation } from 'react-i18next';
 
 const LoadFiterForm: React.FC<{
   submitHandler: (data: SearchLoadFilterType) => void;
 }> = ({ submitHandler }) => {
+  const { t } = useTranslation();
   const [filterData, setFilterData] =
     useState<SearchLoadFilterType>(emptyState);
 
@@ -77,7 +79,7 @@ const LoadFiterForm: React.FC<{
   return (
     <SearchLoadsFilterInputsWrapper>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">Pickup location</Text>
+        <Text color="main_90">{t('Pickup location')}</Text>
         <CountryInput
           value={filterData.pickup_point_country?.title ?? ''}
           selectHanlder={({ id, title }) =>
@@ -101,7 +103,7 @@ const LoadFiterForm: React.FC<{
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">Delivery location</Text>
+        <Text color="main_90">{t('Delivery location')}</Text>
         <CountryInput
           value={filterData.destination_point_country?.title ?? ''}
           selectHanlder={({ id, title }) =>
@@ -125,7 +127,7 @@ const LoadFiterForm: React.FC<{
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">Pickup date</Text>
+        <Text color="main_90">{t('Pickup date')}</Text>
         <DateTimePicker
           value={
             filterData.pickup_date ? new Date(filterData.pickup_date) : null
@@ -138,7 +140,7 @@ const LoadFiterForm: React.FC<{
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">Delivery date</Text>
+        <Text color="main_90">{t('Delivery date')}</Text>
         <DateTimePicker
           value={
             filterData.deliver_date ? new Date(filterData.deliver_date) : null
@@ -152,7 +154,7 @@ const LoadFiterForm: React.FC<{
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">Weight (in tonnes)</Text>
+        <Text color="main_90">{t('Weight (in tonnes)')}</Text>
         <Input
           value={filterData.weight ?? ''}
           onChange={(e) => handleWeightChange(e.target.value)}
@@ -160,16 +162,16 @@ const LoadFiterForm: React.FC<{
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">Budget (in USD)</Text>
+        <Text color="main_90">{t('Budget (in USD)')}</Text>
         <Input
           onChange={(e) => handlePriceChange(e.target.value, 'price_from')}
           value={filterData.price_from ?? ''}
-          placeholder="From(e.g 500) "
+          placeholder={`${t('From')} (e.g 500)`}
         />
         <Input
           onChange={(e) => handlePriceChange(e.target.value, 'price_to')}
           value={filterData.price_to ?? ''}
-          placeholder="To(e.g 500) "
+          placeholder={`${t('To')} (e.g 500)`}
         />
         <StyledSelect
           value={filterData.currency}
@@ -187,10 +189,10 @@ const LoadFiterForm: React.FC<{
       </SearchLoadsFiltersBox>
       <SearchLoadsFilterButtonWrapper>
         <Button fullWidth type="button" onClick={handleSubmit}>
-          Apply filters
+          {t('Apply filters')}
         </Button>
         <Button onClick={clearFileds} fullWidth buttonType="secondary_dark">
-          Clear filters
+          {t('Clear filters')}
         </Button>
       </SearchLoadsFilterButtonWrapper>
     </SearchLoadsFilterInputsWrapper>

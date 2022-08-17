@@ -9,6 +9,7 @@ import Spinner from 'components/loaders/spinner';
 import Text from 'components/typography/text';
 import { useCountry } from 'server-state/queries/use-country';
 import { debounce } from 'lodash';
+import { useTranslation } from 'react-i18next';
 
 const CountryRouteInput: React.FC<{
   value?: string;
@@ -16,6 +17,7 @@ const CountryRouteInput: React.FC<{
   token?: string;
 }> = ({ selectHanlder, value = '', token }) => {
   const popperState = usePopper();
+  const { t } = useTranslation();
   const [country, setCountry] = useState(value);
   const {
     fetchNextPage,
@@ -94,7 +96,7 @@ const CountryRouteInput: React.FC<{
         <SearchInput
           required
           {...bindToggle(popperState)}
-          placeholder="Country"
+          placeholder={t('Country')}
           onChange={(e) => {
             setCountry(e.target.value);
             handleSearch();

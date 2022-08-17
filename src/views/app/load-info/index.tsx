@@ -8,6 +8,7 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { useCreateBid } from 'server-state/mutations/use-create-bid';
 import { useDeleteBid } from 'server-state/mutations/use-delete-bid';
@@ -26,7 +27,7 @@ const LoadInfoView = () => {
   const { load_id } = useParams<{
     load_id: string;
   }>();
-
+  const { t } = useTranslation();
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ load_id });
@@ -61,7 +62,7 @@ const LoadInfoView = () => {
     <>
       <LoadInfoViewWrapper>
         <LoadInfowViewHeader>
-          <Text weight="700">Load Details</Text>
+          <Text weight="700">{t('Load Details')}</Text>
           {isDriver && (
             <>
               {singleLoadRequest.data?.status === 1 ? (
@@ -72,7 +73,7 @@ const LoadInfoView = () => {
                     </Button>
                   ) : (
                     <Button aria-label="bid load" onClick={open}>
-                      Bid to the load
+                      {t('Bid to the load')}
                     </Button>
                   )}
                 </>
@@ -85,7 +86,7 @@ const LoadInfoView = () => {
                     disabled
                     buttonType="disabled"
                   >
-                    Bid to the load
+                    {t('Bid to the load')}
                   </Button>
                 )
               )}
@@ -115,18 +116,18 @@ const LoadInfoView = () => {
         <MakeBidModalWrapper onSubmit={submitHandler}>
           <Text className="header">Make a bid</Text>
           <Text className="cost">
-            Customer’s suggestion {singleLoadRequest.data?.price} USD
+            {t('Customer’s suggestion')} {singleLoadRequest.data?.price} USD
           </Text>
           <Input name="price" placeholder="Your bid (USD)" />
           <ModalButtonsWrapper>
-            <Button aria-label="submit">Submit</Button>
+            <Button aria-label="submit">{t('Submit')}</Button>
             <Button
               aria-label="cencel"
               type="button"
               onClick={close}
               buttonType="white"
             >
-              Cancel
+              {t('Cancel')}
             </Button>
           </ModalButtonsWrapper>
         </MakeBidModalWrapper>

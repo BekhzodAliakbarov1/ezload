@@ -8,6 +8,7 @@ import CountryRouteInput from 'components/input/route-inputs/country-route';
 import RegionRouteInput from 'components/input/route-inputs/region-route';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useCreateRoute } from 'server-state/mutations/use-create-route';
 import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
 import { useRoutes } from 'server-state/queries/use-routes';
@@ -35,6 +36,7 @@ const ProfileRoutes = () => {
   const deleteRouteRequest = useDeleteRoute();
   const [isEditing, setIsEditing] = useState(false);
   const routesRequest = useRoutes();
+  const { t } = useTranslation();
 
   const createRoute = ({
     clear,
@@ -71,22 +73,19 @@ const ProfileRoutes = () => {
       }
     );
   };
-  // const submitLocations = () => {
-  //   console.log({ locations });
-  // };
 
   return (
     <ProfileRoutesDataWrapper>
       <ProfileRoutesHeader>
         <Text size="lg" weight="800">
-          My routes
+          {t('My routes')}
         </Text>
         {!isEditing && (
           <MyRoutesEditButtonWrapper onClick={() => setIsEditing(true)}>
             <IconButton>
               <PenIcon />
             </IconButton>
-            <Text>Edit</Text>
+            <Text>{t('Edit')}</Text>
           </MyRoutesEditButtonWrapper>
         )}
       </ProfileRoutesHeader>
@@ -136,15 +135,15 @@ const ProfileRoutes = () => {
             </div>
           </ProfileRoutesInputsWrapper>
           <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
-            + Add new country
+            {t('+ Add new country')}
           </StyledGreenText>
           {/* <Button buttonType="dark" onClick={submitLocations}>
             Submit
           </Button> */}
           <LastButtonWrapper>
-            <Button>Save changes</Button>
+            <Button>{t('Save changes')}</Button>
             <Button onClick={() => setIsEditing(false)} buttonType="white">
-              Cancel
+              {t('Cancel')}
             </Button>
           </LastButtonWrapper>
         </>

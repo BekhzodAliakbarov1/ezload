@@ -2,6 +2,7 @@ import ActionLoadAddress from 'components/action-load-address/action-load-addres
 import LocationIcon from 'components/icons/location.icon';
 import Text from 'components/typography/text';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   AllLocationInputsWrapper,
   LoadAddressFlexWrapper,
@@ -11,9 +12,10 @@ import {
 } from './load-address.styles';
 
 const LoadAddress = () => {
+  const { t } = useTranslation();
   return (
     <LoadAddressWrapper>
-      <Text weight="700">Load address</Text>
+      <Text weight="700">{t('Load address')}</Text>
       <LoadAddressFlexWrapper>
         <VerticalLineWrapper>
           <LoccationIconWrapper>
@@ -25,10 +27,13 @@ const LoadAddress = () => {
           </LoccationIconWrapper>
         </VerticalLineWrapper>
         <AllLocationInputsWrapper>
-          <ActionLoadAddress type="pickup" title="Select pickup location" />
+          <ActionLoadAddress
+            type="pickup"
+            title={t('Select pickup location')}
+          />
           <ActionLoadAddress
             type="delivery"
-            title="Select destination location"
+            title={t('Select destination location')}
           />
         </AllLocationInputsWrapper>
       </LoadAddressFlexWrapper>

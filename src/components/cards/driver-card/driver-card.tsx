@@ -4,6 +4,7 @@ import { DriverCardInfoWrapper, DriverCardWrapper } from './driver-card.styles';
 import Text from 'components/typography/text';
 import RatingComponent from 'components/rating/rating';
 import { CSSProperties } from 'styled-components';
+import { useTranslation } from 'react-i18next';
 
 const DriverCard: React.FC<{
   id: number;
@@ -31,6 +32,7 @@ const DriverCard: React.FC<{
   clickable = false,
   bg_color = '',
 }) => {
+  const { t } = useTranslation();
   return (
     <DriverCardWrapper
       bg_color={bg_color}
@@ -48,7 +50,7 @@ const DriverCard: React.FC<{
         </Text>
         <Text size="md" weight="600">
           {/* {load_number}+ LOADS */}
-          100+ LOADS
+          100+ {t('LOADS')}
         </Text>
         <RatingComponent value={rates_avg} />
       </DriverCardInfoWrapper>

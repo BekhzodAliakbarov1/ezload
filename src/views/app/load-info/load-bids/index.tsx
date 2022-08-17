@@ -16,17 +16,19 @@ import LoadBidsModals from './load-bids-modals';
 import { SingleLoadDetailsResponse } from 'types/load.types';
 import { useNavigate } from 'react-router-dom';
 import FileIcon from 'components/icons/file.icon';
+import { useTranslation } from 'react-i18next';
 
 const LoadBids: React.FC<{
   data?: SingleLoadDetailsResponse;
 }> = ({ data }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <>
       <LoadBidsWrapper>
-        <Text weight="700">{data?.status === 1 ? 'Bids' : 'Driver'}</Text>
+        <Text weight="700">{data?.status === 1 ? t('Bids') : t('Driver')}</Text>
         {data?.status === 1 ? (
           <LoadBidsDataBox>
             {data?.bids && data.bids.length > 0 ? (
@@ -76,8 +78,8 @@ const LoadBids: React.FC<{
         {data?.status !== 3 && (
           <Button fullWidth onClick={open} aria-label="delete cancel load">
             {data?.status === 1
-              ? 'Delete load'
-              : data?.status === 2 && 'Cancel the driver'}
+              ? t('Delete load')
+              : data?.status === 2 && t('Cancel the driver')}
           </Button>
         )}
       </LoadBidsWrapper>

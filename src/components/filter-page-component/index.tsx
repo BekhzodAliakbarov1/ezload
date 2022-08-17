@@ -3,6 +3,7 @@ import FilterIcon from 'components/icons/filter.icon';
 import MenuCloseIcon from 'components/icons/menu-close.icon';
 import Text from 'components/typography/text';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import {
   FilterMobileDrawerContainer,
   FilterMobileNavbar,
@@ -15,16 +16,17 @@ const FilterPageComponent: React.FC<{
   openDrawer: () => void;
   isOpen: boolean;
 }> = ({ children, closeDrawer, isOpen, openDrawer }) => {
+  const { t } = useTranslation();
   return (
     <>
       <FilterMobileNavbar onClick={openDrawer}>
         <IconButton>
           <FilterIcon />
         </IconButton>
-        <Text>Filter</Text>
+        <Text>{t('Filters')}</Text>
       </FilterMobileNavbar>
       <SearchFilterWrapper>
-        <Text weight="700">Filters</Text>
+        <Text weight="700">{t('Filters')}</Text>
         {children}
       </SearchFilterWrapper>
       <Drawer
@@ -44,7 +46,7 @@ const FilterPageComponent: React.FC<{
           <StyledCloseButton onClick={closeDrawer}>
             <MenuCloseIcon />
           </StyledCloseButton>
-          <Text weight="700">Filters</Text>
+          <Text weight="700">{t('Filters')}</Text>
           {children}
         </FilterMobileDrawerContainer>
       </Drawer>

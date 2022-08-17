@@ -18,12 +18,12 @@ import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
 import DistrictInput from 'components/input/district-input';
 import Map from 'components/map';
+import { useTranslation } from 'react-i18next';
 
-interface StateType {
-  state: { type?: 'EDIT'; data?: AddressInterface };
-}
 const CreateEditAddress = () => {
-  const { state } = useLocation() as StateType;
+  const { state } = useLocation() as {
+    state: { type?: 'EDIT'; data?: AddressInterface };
+  };
   const [
     { address_1, address_2, country, region, district, zip_code, latLong },
     setAddress,
@@ -48,6 +48,7 @@ const CreateEditAddress = () => {
     },
     zip_code: state?.data?.address.postal_code ?? '',
   });
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const createAddressRequest = useCreateProfileAddress();
   const editAddressRequest = useEditProfileAddress(state?.data?.id);
@@ -77,7 +78,6 @@ const CreateEditAddress = () => {
       });
     }
   };
-
   const searchInputSelectHandler = ({
     fieldName,
     val,
@@ -110,11 +110,11 @@ const CreateEditAddress = () => {
 
   return (
     <CreateAddressWrapper onSubmit={submitHandler}>
-      <Text color="main_100">My addresses</Text>
+      <Text color="main_100">{t('My addresses')}</Text>
       <CreateAddressInputsBox>
         <div>
           <Input
-            placeholder="Addressline 1"
+            placeholder={`${'Addressline'} 1`}
             value={address_1}
             onChange={(e) => {
               simpleInputSelectionHandler({
@@ -124,7 +124,7 @@ const CreateEditAddress = () => {
             }}
           />
           <Input
-            placeholder="Addressline 2"
+            placeholder={`${'Addressline'} 2`}
             value={address_2}
             onChange={(e) => {
               simpleInputSelectionHandler({
@@ -194,10 +194,10 @@ const CreateEditAddress = () => {
               : createAddressRequest.isLoading
           }
         >
-          {state?.type === 'EDIT' ? 'Edit address' : 'Add address'}
+          {state?.type === 'EDIT' ? t('Edit address') : t('Add address')}
         </Button>
         <Button buttonType="secondary_dark" onClick={() => navigate(-1)}>
-          Cancel
+          {t('Cancel')}
         </Button>
       </CreateAddressButtonsWrapper>
     </CreateAddressWrapper>

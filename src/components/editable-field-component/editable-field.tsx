@@ -16,6 +16,7 @@ import ReactCodeInputComponent from 'components/code-input/react-code-input';
 import { useVerification } from 'server-state/mutations/use-verification';
 import { useUpdatePhoneNumber } from 'server-state/mutations/use-phone-number';
 import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
+import { useTranslation } from 'react-i18next';
 
 const EditableField: React.FC<{
   label: string;
@@ -32,6 +33,7 @@ const EditableField: React.FC<{
   const verificationRequest = useVerification();
   const updatePhoneNumberRequest = useUpdatePhoneNumber();
   const updateProfileRequest = useUpdateCustomerProfile();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setEditClicked(false);
@@ -93,7 +95,7 @@ const EditableField: React.FC<{
             <StyledIconButton>
               <PenIcon />
             </StyledIconButton>
-            <Text>Edit</Text>
+            <Text>{t('Edit')}</Text>
           </PersonalInformationSvgWrapper>
         </EditableFieldWrapper>
       ) : (
@@ -114,7 +116,7 @@ const EditableField: React.FC<{
               verificationRequest.isLoading || updateProfileRequest.isLoading
             }
           >
-            Save changes
+            {t('Save changes')}
           </Button>
           <Button
             aria-label="cancel"
@@ -125,13 +127,15 @@ const EditableField: React.FC<{
               setIsPhoneSubmitclicked(false);
             }}
           >
-            Cancel
+            {t('Cancel')}
           </Button>
         </EditFiedlForm>
       )}
       {isPhoneSubmitclicked && editClicked && (
         <VerificationCodeWrapper>
-          <Text>We just sent a code to your phone {inputValue}</Text>
+          <Text>
+            {t('We just sent a code to your phone')} {inputValue}
+          </Text>
           <ConfirmVerificationCodeWrapper>
             <ReactCodeInputComponent size="md" setCode={setVerificationCode} />
             <Button
@@ -140,10 +144,10 @@ const EditableField: React.FC<{
               fullWidth
               onClick={handleChangePhoneNumber}
             >
-              Confirm code
+              {t('Confirm code')}
             </Button>
             <Text onClick={resendButtonClick} weight="600">
-              Resend sms code
+              {t('Send another code')}
             </Text>
           </ConfirmVerificationCodeWrapper>
         </VerificationCodeWrapper>

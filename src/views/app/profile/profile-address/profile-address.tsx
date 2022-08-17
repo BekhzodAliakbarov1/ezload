@@ -5,6 +5,7 @@ import PlusIcon from 'components/icons/plus.icon';
 import Spinner from 'components/loaders/spinner';
 import Text from 'components/typography/text';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAddress } from 'server-state/queries/use-address';
 import {
@@ -17,17 +18,18 @@ import {
 const ProfileAddress = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useAddress();
+  const { t } = useTranslation();
 
   return (
     <ProfileAddressWrapper>
       <ProfileAddressTopPartContainer>
-        <Text color="main_100">My addresses</Text>
+        <Text color="main_100">{t('My addresses')}</Text>
         <Button
           startIcon={<PlusIcon />}
           buttonType="dark"
           onClick={() => navigate('/profile/create-address')}
         >
-          <p>Add new</p>
+          <p>{t('Add new')}</p>
         </Button>
       </ProfileAddressTopPartContainer>
       <ProfileAddressesWrapper>

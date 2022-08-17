@@ -8,12 +8,14 @@ import { SingleLoadResponse } from 'types/load.types';
 import Button from 'components/button/button';
 import FileIcon from 'components/icons/file.icon';
 import Text from 'components/typography/text';
+import { useTranslation } from 'react-i18next';
 
 const LoadsContainer: React.FC<{
   loads?: SingleLoadResponse[];
   hasNextPage?: boolean;
   clickable?: boolean;
 }> = ({ loads = [], clickable, hasNextPage }) => {
+  const { t } = useTranslation();
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (
@@ -28,7 +30,7 @@ const LoadsContainer: React.FC<{
       )}
       {hasNextPage && (
         <Button aria-label="more" fullWidth buttonType="secondary_dark">
-          Load more
+          {t('Load more')}
         </Button>
       )}
     </LoadsContainerBox>

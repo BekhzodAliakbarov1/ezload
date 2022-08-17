@@ -2,6 +2,7 @@ import Spinner from 'components/loaders/spinner/spinner';
 import LoadsContainer from 'components/loads-container/loads-container';
 import Text from 'components/typography/text';
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLoads } from 'server-state/queries/use-loads';
 import {
   LoadingComponentWrapper,
@@ -14,6 +15,7 @@ const ProfileLoads = () => {
   const [sectionType, setSectionType] = useState<'NEW' | 'PENDING' | 'DONE'>(
     'NEW'
   );
+  const { t } = useTranslation();
   const newLoadsRequest = useLoads('new');
   const onTheWayLoadsRequest = useLoads('on_the_way');
   const deliveredLoadsRequest = useLoads('delivered');
@@ -51,19 +53,19 @@ const ProfileLoads = () => {
           onClick={() => onClickHandler('NEW')}
           active={sectionType === 'NEW'}
         >
-          <Text weight="700">New</Text>
+          <Text weight="700">{t('New')}</Text>
         </SingleController>
         <SingleController
           onClick={() => onClickHandler('PENDING')}
           active={sectionType === 'PENDING'}
         >
-          <Text weight="700">On the way</Text>
+          <Text weight="700">{t(' On the way')}</Text>
         </SingleController>
         <SingleController
           onClick={() => onClickHandler('DONE')}
           active={sectionType === 'DONE'}
         >
-          <Text weight="700">Delivered</Text>
+          <Text weight="700">{t('Delivered')}</Text>
         </SingleController>
       </SectionControllerWrapper>
       <LoadingComponentWrapper>

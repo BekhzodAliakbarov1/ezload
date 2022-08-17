@@ -6,6 +6,7 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SingleLoadResponse } from 'types/load.types';
 import { getDate } from 'utils/getDate';
@@ -30,6 +31,7 @@ const LoadCard: React.FC<{
   clickable?: boolean;
   withButtons?: boolean;
 }> = ({ load, clickable = true, withButtons = false }) => {
+  const { t } = useTranslation();
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
   const { load_id } = useParams<{ load_id: string }>();
@@ -66,23 +68,23 @@ const LoadCard: React.FC<{
           </LoadCardSvgDistanceWrapper>
           <LoadCardPickupDeliverBox>
             <LoadCardLocationInfoWrapper>
-              <GreenText>Pickup location</GreenText>
+              <GreenText>{t('Pickup location')}</GreenText>
               <Text weight="600">
-                {load.pickup_point.district.title} district,{' '}
-                {load.pickup_point.region.title} region
+                {load.pickup_point.district.title} {t('District')},{' '}
+                {load.pickup_point.region.title} {t('Region')}
               </Text>
               <Text>{load.pickup_point.country.title}</Text>
-              <Text>Pickup date & time</Text>
+              <Text>{t('Pickup date & time')}</Text>
               <Text>{getDate({ date: load.latest_pick_up })}</Text>
             </LoadCardLocationInfoWrapper>
             <LoadCardLocationInfoWrapper>
-              <GreenText>Delivery location</GreenText>
+              <GreenText>{t('Delivery location')}</GreenText>
               <Text weight="600">
-                {load.destination.district.title} district,{' '}
-                {load.destination.region.title} region
+                {load.destination.district.title} {t('District')},{' '}
+                {load.destination.region.title} {t('Region')}
               </Text>
               <Text>{load.destination.country.title}</Text>
-              <Text>Pickup date & time</Text>
+              <Text>{t('Delivery date & time')}</Text>
               <Text>{getDate({ date: load.latest_delivery })}</Text>
             </LoadCardLocationInfoWrapper>
           </LoadCardPickupDeliverBox>
@@ -93,12 +95,17 @@ const LoadCard: React.FC<{
             <Text weight="600">894 km</Text>
           </LoadCardDistanceSizeBox>
           <LoadBidCountWrapper>
-            <Text>Bid count : {load.bids_count}</Text>
-            <Text>View count : {load.visits_count}</Text>
+            <Text>
+              {t('Bid count:')}
+              {load.bids_count}
+            </Text>
+            <Text>
+              {t('View count:')} {load.visits_count}
+            </Text>
           </LoadBidCountWrapper>
           {withButtons && !isDriver && load.status !== 3 && (
             <LoadCardButtonWrapper>
-              <Text onClick={open}>Delete Load</Text>
+              <Text onClick={open}>{t('Delete Load')}</Text>
               <Text onClick={handleEdit}>Change details</Text>
             </LoadCardButtonWrapper>
           )}
@@ -107,14 +114,14 @@ const LoadCard: React.FC<{
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
           <Text color="main_100">
-            Are you sure to delete? Actions cannot be undone
+            {t('Are you sure to delete? Actions cannot be undone')}
           </Text>
           <ModalButtonsBox>
             <Button aria-label="delete" onClick={handleDelete}>
-              Yes, delete
+              {t('Yes, delete')}
             </Button>
             <Button aria-label="cancel" onClick={close}>
-              Cancel
+              {t('Cancel')}
             </Button>
           </ModalButtonsBox>
         </ModalWrapper>
