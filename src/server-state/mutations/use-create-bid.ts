@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 interface CreateBidRequest {
   load?: string;
@@ -10,6 +11,7 @@ interface CreateBidRequest {
 export const useCreateBid = ({ load_id }: { load_id?: string }) => {
   const { enqueueSnackbar } = useSnackbar();
   const qc = useQueryClient();
+  const { t } = useTranslation();
 
   return useMutation(
     (data: CreateBidRequest) =>
@@ -19,11 +21,11 @@ export const useCreateBid = ({ load_id }: { load_id?: string }) => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Bidded successfully!', { variant: 'success' });
+        enqueueSnackbar(t('Bidded successfully!'), { variant: 'success' });
         qc.invalidateQueries([`load_${load_id}`]);
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );

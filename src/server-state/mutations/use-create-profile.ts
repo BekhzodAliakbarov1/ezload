@@ -1,4 +1,5 @@
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { request } from '../api';
 
@@ -22,6 +23,7 @@ interface CreateDriverProfileRequestRequest {
 
 export const useCreateDriverProfile = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return useMutation(
     (data: CreateDriverProfileRequestRequest) => {
       return request
@@ -35,12 +37,12 @@ export const useCreateDriverProfile = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Account Created successfully!', {
+        enqueueSnackbar(t('Account Created successfully!'), {
           variant: 'success',
         });
       },
       onError(err) {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
         console.log('ERROR', err);
       },
     }

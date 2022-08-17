@@ -2,6 +2,7 @@ import { useMutation } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
 import { useAuth } from 'global-state/auth/auth.state';
+import { useTranslation } from 'react-i18next';
 
 interface CreateRouteRequest {
   country: string;
@@ -14,6 +15,7 @@ export const useCreateRoute = (token?: string) => {
     tokens: { access },
   } = useAuth();
   const accessToken = token ?? access;
+  const { t } = useTranslation();
   return useMutation(
     (data: CreateRouteRequest) =>
       request
@@ -26,10 +28,12 @@ export const useCreateRoute = (token?: string) => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Route created successfully!', { variant: 'success' });
+        enqueueSnackbar(t('Route created successfully!'), {
+          variant: 'success',
+        });
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );

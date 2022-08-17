@@ -1,4 +1,5 @@
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from 'react-query';
 import { CreateProfileAddressRequestInterface } from 'types/address.types';
 import { request } from '../api';
@@ -21,6 +22,7 @@ interface DeleteAddressRequest {
 // CREATE
 export const useCreateProfileAddress = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   return useMutation(
     (data: CreateProfileAddressRequestInterface) =>
@@ -33,10 +35,12 @@ export const useCreateProfileAddress = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Address created succesfully!', { variant: 'success' });
+        enqueueSnackbar(t('Address created successfully!'), {
+          variant: 'success',
+        });
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );
@@ -58,6 +62,7 @@ export const useEditProfileAddress = (id?: number) =>
 export const useDeleteProfileAddress = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { invalidateQueries } = useQueryClient();
+  const { t } = useTranslation();
 
   return useMutation(
     (data: DeleteAddressRequest) =>
@@ -67,13 +72,13 @@ export const useDeleteProfileAddress = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Address deleted succesffuly!', {
+        enqueueSnackbar(t('Address deleted successfully!'), {
           variant: 'success',
         });
         invalidateQueries(['address']);
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', {
+        enqueueSnackbar(t('Something went wrong!'), {
           variant: 'error',
         });
       },

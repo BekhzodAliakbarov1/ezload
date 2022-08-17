@@ -1,6 +1,7 @@
 import { useMutation } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 interface CreateReviewRequest {
   rate: string;
@@ -11,6 +12,7 @@ interface CreateReviewRequest {
 
 export const useCreateReview = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return useMutation(
     (data: CreateReviewRequest) =>
       request
@@ -19,10 +21,12 @@ export const useCreateReview = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Review sended successfully!', { variant: 'success' });
+        enqueueSnackbar(t('Review sended successfully!'), {
+          variant: 'success',
+        });
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );

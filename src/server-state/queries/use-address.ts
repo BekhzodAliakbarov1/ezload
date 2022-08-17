@@ -13,8 +13,8 @@ interface AddressResponse {
 
 const fetchAddress = async ({ pageParam = 1 }) => {
   const data = await request
-    .get<AddressResponse>(`/account/address/list/`)
-    // .get<AddressResponse>(`/account/address/list/&page=${pageParam}&limit=10`)
+    // .get<AddressResponse>(`/account/address/list/`)
+    .get<AddressResponse>(`/account/address/list/&page=${pageParam}&limit=10`)
     .then((res) => res.data);
   return {
     results: data.results,

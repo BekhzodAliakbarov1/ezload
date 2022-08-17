@@ -1,5 +1,6 @@
 import { useAuth } from 'global-state/auth/auth.state';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { request } from '../api';
 
@@ -11,6 +12,7 @@ interface UpdateCustomerProfileRequestRequest {
 }
 
 export const useUpdateCustomerProfile = () => {
+  const { t } = useTranslation();
   const {
     userId,
     tokens: { access },
@@ -31,12 +33,12 @@ export const useUpdateCustomerProfile = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Account updated successfully!', {
+        enqueueSnackbar(t('Account updated successfully!'), {
           variant: 'success',
         });
       },
       onError(err) {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
         console.log('ERROR', err);
       },
     }

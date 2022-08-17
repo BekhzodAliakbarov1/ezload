@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useDriver } from 'hooks/use-driver';
-import { useInfiniteQuery, useMutation, useQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { SingleLoadResponse } from 'types/load.types';
 import { request } from '../api';
 
