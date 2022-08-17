@@ -22,7 +22,7 @@ const NavbarUnAuth = () => {
   const { theme } = useTheme();
   const language = useMenu();
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
   const languageClickHandler = ({
     lng,
@@ -78,7 +78,9 @@ const NavbarUnAuth = () => {
             </StyledtText>
           </Menu>
         </RightContentItemWrapper>
-        <LoginButton onClick={() => navigate('/auth/login')}>Login</LoginButton>
+        <LoginButton onClick={() => navigate('/auth/login')}>
+          {t('Login')}
+        </LoginButton>
       </ProfileAndLanguageWrapper>
     </>
   );

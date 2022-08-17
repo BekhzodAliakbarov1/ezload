@@ -166,17 +166,17 @@ const NavbarAuth = () => {
           {accountLinks.map((link) => {
             return (
               <Link onClick={toggleDrawer(false)} to={link.to} key={link.id}>
-                <StyledtText>{link.name}</StyledtText>
+                <StyledtText>{t(link.name)}</StyledtText>
               </Link>
             );
           })}
           {accountProfile.map((item) => (
             <Link onClick={toggleDrawer(false)} key={item.id} to={item.to}>
-              <StyledtText>{item.name}</StyledtText>
+              <StyledtText>{t(item.name)}</StyledtText>
             </Link>
           ))}
           <a onClick={logout}>
-            <StyledtText>Log out</StyledtText>
+            <StyledtText>{t('Log out')}</StyledtText>
           </a>
         </NavbarMobileMenuOpenList>
       </Drawer>
