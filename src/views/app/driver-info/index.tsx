@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Text from 'components/typography/text';
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router';
 import { useBidDetail } from 'server-state/queries/use-bid';
 import { useSingleDriver } from 'server-state/queries/use-driver';
@@ -11,6 +13,7 @@ const DriverInfo = () => {
   const { id, bid_id } = useParams<{ id?: string; bid_id?: string }>();
   const driverRequest = useSingleDriver(id);
   const biddedDriverRequest = useBidDetail(bid_id);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
@@ -18,13 +21,11 @@ const DriverInfo = () => {
     } else if (bid_id) {
       biddedDriverRequest.refetch();
     }
-    console.log(bid_id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bid_id, id]);
 
   return (
     <DriverInfoWrapper>
-      <Text weight="700">Driver details</Text>
+      <Text weight="700">{t('Driver details')}</Text>
       <DriverInfoBox>
         {id && (
           <>

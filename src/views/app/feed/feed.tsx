@@ -48,14 +48,14 @@ const Feed = () => {
         </Text>
         <FeedLocationWrapper>
           <FeedLocationCard>
-            <Text weight="600">Pick up location</Text>
+            <Text weight="600">{t('Pickup location')}</Text>
             <LocationAndSvgWrapper>
               <LocationIcon />
               <Text weight="500">Tashkent, Uzbekistan</Text>
             </LocationAndSvgWrapper>
           </FeedLocationCard>
           <FeedLocationCard>
-            <Text weight="600">Delivery location</Text>
+            <Text weight="600">{t('Delivery location')}</Text>
             <LocationAndSvgWrapper>
               <LocationIcon />
 
@@ -64,14 +64,14 @@ const Feed = () => {
           </FeedLocationCard>
         </FeedLocationWrapper>
         <Button aria-label="serch create load" endIcon={<RightShowIcon />}>
-          {isDriver ? 'Search Load' : 'Create Load'}
+          {isDriver ? t('Search loads') : t('Create Load')}
         </Button>
       </FeedDataWrapper>
       <FeedStatisticsWrapper>
         {feedStats.map(({ name, number, id }) => (
           <FeedStatisticsCard key={id}>
             <Text weight="700">{number}</Text>
-            <Text weight="600">{name}</Text>
+            <Text weight="600">{t(name)}</Text>
           </FeedStatisticsCard>
         ))}
       </FeedStatisticsWrapper>

@@ -11,6 +11,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 import { useCreateLoad, useEditLoad } from 'server-state/mutations/use-load';
 import { useCreateAddress } from 'server-state/mutations/use-address';
+import { useTranslation } from 'react-i18next';
 
 interface StateType {
   state: { type?: 'EDIT' };
@@ -23,7 +24,7 @@ const ActionLoad = () => {
   const editLoadRequest = useEditLoad();
   const createAddressRequest = useCreateAddress();
   const navigate = useNavigate();
-  console.log(data);
+  const { t } = useTranslation();
 
   const createAddressFunction = async ({
     type,
@@ -47,7 +48,6 @@ const ActionLoad = () => {
 
   const submitHandler: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
-    console.log({ data });
 
     const pickup_point = await createAddressFunction({ type: 'pickup' });
     const destination = await createAddressFunction({ type: 'delivery' });
@@ -87,7 +87,7 @@ const ActionLoad = () => {
   return (
     <ActionLoadWrapper onSubmit={submitHandler}>
       <Text weight="700">
-        {state?.type === 'EDIT' ? 'Edit  load' : 'Create new load'}
+        {state?.type === 'EDIT' ? t('Edit load') : t('Create new load')}
       </Text>
       <LoadTitle />
       <LoadAddress />

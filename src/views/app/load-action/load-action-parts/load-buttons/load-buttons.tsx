@@ -1,5 +1,6 @@
 import Button from 'components/button/button';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { LoadButtonsWrapper } from './load-buttons.styles';
 
@@ -8,6 +9,7 @@ const LoadButtons: React.FC<{ isEditing: boolean; isLoading: boolean }> = ({
   isLoading,
 }) => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleCancel = () => {
     if (isEditing) {
@@ -19,7 +21,7 @@ const LoadButtons: React.FC<{ isEditing: boolean; isLoading: boolean }> = ({
   return (
     <LoadButtonsWrapper>
       <Button type="submit" aria-label="edit " loading={isLoading} fullWidth>
-        {isEditing ? 'Edit load' : 'Post load'}
+        {isEditing ? t('Edit load') : t('Post load')}
       </Button>
       <Button
         aria-label="cencel"
@@ -27,7 +29,7 @@ const LoadButtons: React.FC<{ isEditing: boolean; isLoading: boolean }> = ({
         fullWidth
         onClick={handleCancel}
       >
-        Cancel
+        {t('Cancel')}
       </Button>
     </LoadButtonsWrapper>
   );

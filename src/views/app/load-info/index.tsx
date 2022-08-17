@@ -69,7 +69,7 @@ const LoadInfoView = () => {
                 <>
                   {singleLoadRequest.data.is_bidden ? (
                     <Button aria-label="delete" onClick={deleteBidClickHandler}>
-                      Delete bid
+                      {t('Delete bid')}
                     </Button>
                   ) : (
                     <Button aria-label="bid load" onClick={open}>
@@ -114,11 +114,11 @@ const LoadInfoView = () => {
       {/* Bid Modal */}
       <Modal open={isOpen} onClose={close}>
         <MakeBidModalWrapper onSubmit={submitHandler}>
-          <Text className="header">Make a bid</Text>
+          <Text className="header">{t('Make a bid')}</Text>
           <Text className="cost">
             {t('Customer’s suggestion')} {singleLoadRequest.data?.price} USD
           </Text>
-          <Input name="price" placeholder="Your bid (USD)" />
+          <Input name="price" placeholder={t('Your bid')} />
           <ModalButtonsWrapper>
             <Button aria-label="submit">{t('Submit')}</Button>
             <Button

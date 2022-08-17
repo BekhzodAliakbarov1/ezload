@@ -6,12 +6,14 @@ import {
   StyledTextFiled,
 } from './date-input.styles';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+import { useTranslation } from 'react-i18next';
 
 export const DateRangePickerInput: React.FC<{
   type: 'pickup' | 'delivery';
   isEditing: boolean;
 }> = ({ type, isEditing }) => {
   const { data, setValues } = useData();
+  const { t } = useTranslation();
 
   const handleStartDateChange = (newValue: Date | null) => {
     if (newValue) {
@@ -40,7 +42,7 @@ export const DateRangePickerInput: React.FC<{
   return (
     <DateInputComponentWrapper>
       <div>
-        <Text weight="500">From</Text>
+        <Text weight="500">{t('From')}</Text>
         <DateTimePicker
           value={data.dates[type].start}
           onChange={handleStartDateChange}
@@ -51,7 +53,7 @@ export const DateRangePickerInput: React.FC<{
         />
       </div>
       <div>
-        <Text weight="500">To</Text>
+        <Text weight="500">{t('To')}</Text>
         <DateTimePicker
           value={data.dates[type].end}
           onChange={handleEndDateChange}

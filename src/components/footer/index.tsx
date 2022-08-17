@@ -5,6 +5,7 @@ import TelegramIcon from 'components/icons/telegram.icon';
 import TopIcon from 'components/icons/top.icon';
 import Text from 'components/typography/text';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import {
   FooterContentBox,
@@ -55,7 +56,7 @@ const rightLinks = [
   },
   {
     id: 3,
-    name: 'My adresses',
+    name: 'My addresses',
     to: '/',
   },
 ];
@@ -68,6 +69,7 @@ const Footer = () => {
       behavior: 'smooth',
     });
   };
+  const { t } = useTranslation();
 
   return (
     <FooterWrapper>
@@ -75,35 +77,35 @@ const Footer = () => {
         <FooterLeftContent>
           <FooterLeftContentLinksWrapper>
             <FooterLeftContentLinksBox>
-              <Text weight="600">About Us</Text>
+              <Text weight="600">{t('About Us')}</Text>
               <LinksWrapper>
                 {leftLinks.map((link) => (
                   <Link key={link.id} to={link.to}>
-                    {link.name}
+                    {t(link.name)}
                   </Link>
                 ))}
               </LinksWrapper>
             </FooterLeftContentLinksBox>
             <FooterLeftContentLinksBox>
-              <Text weight="600">My account</Text>
+              <Text weight="600">{t('My account')}</Text>
               <LinksWrapper>
                 {rightLinks.map((link) => (
                   <Link key={link.id} to={link.to}>
-                    {link.name}
+                    {t(link.name)}
                   </Link>
                 ))}
               </LinksWrapper>
             </FooterLeftContentLinksBox>
           </FooterLeftContentLinksWrapper>
-          <Text weight="400">© All rights reserved. Ezload 2022</Text>
+          <Text weight="400">{t('All rights reserved')}</Text>
         </FooterLeftContent>
         <FooterRightContent>
           <FooterRightContentItemWrapper>
-            <Text weight="400">Customer Support on Telegram:</Text>
+            <Text weight="400">{t('Customer Support on Telegram:')}</Text>
             <h1>@ezloadsupportobot</h1>
           </FooterRightContentItemWrapper>
           <FooterRightContentItemWrapper>
-            <Text weight="400">Follow us on social media</Text>
+            <Text weight="400">{t('Follow us on social media')}</Text>
             <FooterSocialLinksWrapper>
               <StyledIconButton>
                 <TelegramIcon />
