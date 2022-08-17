@@ -42,9 +42,9 @@ const Feed = () => {
   return (
     <FeedWrapper>
       <FeedDataWrapper>
-        <Text weight="800">{t('title')}</Text>
+        <Text weight="800">{t('Sending cargo is now easy')}</Text>
         <Text weight="500">
-          Internationally or regionally, simple process, simple delivery
+          {t('Internationally or regionally, simple process, simple delivery')}
         </Text>
         <FeedLocationWrapper>
           <FeedLocationCard>

@@ -46,7 +46,11 @@ const NavbarAuth = () => {
     setState(open);
   };
 
-  const languageClickHandler = ({ lng }: { lng: 'uz' | 'ru' | 'en' }) => {
+  const languageClickHandler = ({
+    lng,
+  }: {
+    lng: 'uz' | 'ru' | 'en' | 'tr';
+  }) => {
     i18n.changeLanguage(lng);
 
     language.handleClose();
@@ -138,6 +142,9 @@ const NavbarAuth = () => {
             </StyledtText>
             <StyledtText onClick={() => languageClickHandler({ lng: 'ru' })}>
               Ru
+            </StyledtText>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'tr' })}>
+              Tr
             </StyledtText>
           </Menu>
         </RightContentItemWrapper>

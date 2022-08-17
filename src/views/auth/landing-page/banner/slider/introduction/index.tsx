@@ -11,9 +11,9 @@ const Introduction = () => {
   const { t } = useTranslation();
   return (
     <IntroductionWrapper>
-      <BoldText color="main_100">{t('title')}</BoldText>
+      <BoldText color="main_100">{t('Sending cargo is now easy')}</BoldText>
       <Paragraph>
-        Internationally or regionally, simple process, simple delivery
+        {t('Internationally or regionally, simple process, simple delivery')}
       </Paragraph>
       <CreateLoadBtn endIcon={<RightArrow />}>Create Load</CreateLoadBtn>
     </IntroductionWrapper>

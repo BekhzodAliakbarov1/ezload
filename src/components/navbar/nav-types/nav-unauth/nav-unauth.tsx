@@ -84,3 +84,19 @@ export const EmptySpaceDiv = styled.div`
     display: none;
   }
 `;
+
+export const StyledtText = styled.p`
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.5px;
+
+  color: ${(props) => props.theme.text.main_70};
+  text-align: left;
+  padding: 12px 0px;
+  padding-left: 16px;
+  cursor: pointer;
+  :hover {
+    background-color: ${colors.green_20};
+  }
+`;

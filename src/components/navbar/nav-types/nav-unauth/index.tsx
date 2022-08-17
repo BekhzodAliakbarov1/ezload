@@ -4,6 +4,7 @@ import {
   ProfileAndLanguageWrapper,
   RightContentItemWrapper,
   StyledDropdownButton,
+  StyledtText,
 } from './nav-unauth';
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -14,12 +15,24 @@ import logoDark from 'assets/img/logo-white.svg';
 import Text from 'components/typography/text';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
-import { Menu, MenuItem } from '@mui/material';
+import { Menu } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const NavbarUnAuth = () => {
   const { theme } = useTheme();
   const language = useMenu();
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+
+  const languageClickHandler = ({
+    lng,
+  }: {
+    lng: 'uz' | 'ru' | 'en' | 'tr';
+  }) => {
+    i18n.changeLanguage(lng);
+
+    language.handleClose();
+  };
 
   return (
     <>
@@ -38,6 +51,11 @@ const NavbarUnAuth = () => {
             <ChevronDownIcon size="30" />
           </StyledDropdownButton>
           <Menu
+            sx={{
+              '& .MuiPaper-root': {
+                width: '100px',
+              },
+            }}
             id="basic-menu"
             anchorEl={language.element}
             open={language.isMenuOpen}
@@ -46,9 +64,18 @@ const NavbarUnAuth = () => {
               'aria-labelledby': 'basic-button',
             }}
           >
-            <MenuItem onClick={language.handleClose}>En</MenuItem>
-            <MenuItem onClick={language.handleClose}>Uz</MenuItem>
-            <MenuItem onClick={language.handleClose}>Ru</MenuItem>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'en' })}>
+              En
+            </StyledtText>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'uz' })}>
+              Uz
+            </StyledtText>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'ru' })}>
+              Ru
+            </StyledtText>
+            <StyledtText onClick={() => languageClickHandler({ lng: 'tr' })}>
+              Tr
+            </StyledtText>
           </Menu>
         </RightContentItemWrapper>
         <LoginButton onClick={() => navigate('/auth/login')}>Login</LoginButton>
