@@ -15,6 +15,7 @@ import { useSteps } from 'global-state/step/step-context';
 import PhoneInput from 'components/phone-input/phone-input';
 import Input from 'components/input/input';
 import { useVerification } from 'server-state/mutations/use-verification';
+import { useTranslation } from 'react-i18next';
 
 const PHONE_NUMBER_REGEX =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -34,6 +35,7 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const { t } = useTranslation();
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(
@@ -67,12 +69,12 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
       <FirstStepDataWrapper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Text size="lg" weight="800">
-            Login
+            {t('Login')}
           </Text>
           <PhoneNumberWrapper>
             <PhoneInput value={countryCode} setValue={handleChange}>
               <Input
-                placeholder="Enter your phone number"
+                placeholder={t('Enter your phone number')}
                 {...register('phone_num', {
                   required: true,
                   pattern: PHONE_NUMBER_REGEX,
@@ -81,12 +83,12 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
             </PhoneInput>
           </PhoneNumberWrapper>
           <Button loading={isLoading} type="submit" fullWidth>
-            Sign in
+            {t('Sign in')}
           </Button>
           <LineDiv />
           <Text size="md" weight="500">
-            By clicking on the button I agree the{' '}
-            <span>Terms & Conditions</span>.
+            {t('By clicking on the button I agree the')}{' '}
+            <span>{t('Terms & Conditions')}</span>.
           </Text>
         </form>
       </FirstStepDataWrapper>

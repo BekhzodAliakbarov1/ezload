@@ -4,6 +4,7 @@ import BucketIcon from 'components/icons/bucket';
 import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useDeleteProfileAddress } from 'server-state/mutations/use-profile-address';
 import { AddressInterface } from 'types/address.types';
@@ -20,6 +21,7 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
   const deleteAddressrequest = useDeleteProfileAddress();
+  const { t } = useTranslation();
 
   const handleDelete = () => {
     deleteAddressrequest.mutate({ id: String(id) });
@@ -47,7 +49,7 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
           </Text>
           <AddressCardButtonsWrapper>
             <Button aria-label="Edit" onClick={handleClick}>
-              Edit
+              {t('Edit')}
             </Button>
             <StyledIconButton aria-label="delete" onClick={open}>
               <BucketIcon />
@@ -58,14 +60,14 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
           <Text color="main_100">
-            Are you sure to delete? Actions cannot be undone
+            {t('Are you sure to delete? Actions cannot be undone')}
           </Text>
           <ModalButtonsBox>
             <Button aria-label="delete" onClick={handleDelete}>
-              Yes, delete
+              {t('Yes, delete')}
             </Button>
             <Button aria-label="cancel" onClick={close}>
-              Cancel
+              {t('Cancel')}
             </Button>
           </ModalButtonsBox>
         </ModalWrapper>

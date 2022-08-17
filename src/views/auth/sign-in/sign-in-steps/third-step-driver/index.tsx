@@ -7,6 +7,7 @@ import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import { useSteps } from 'global-state/step/step-context';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useCreateDriverProfile } from 'server-state/mutations/use-create-profile';
 import { useUpload } from 'server-state/mutations/use-upload';
 import {
@@ -24,6 +25,7 @@ import {
 const ThirdStepDriver: React.FC<{
   token: string;
 }> = ({ token }) => {
+  const { t } = useTranslation();
   const [hasError, setHasError] = useState(false);
   const [data, setData] = useState<{
     picture_url?: string;
@@ -98,11 +100,11 @@ const ThirdStepDriver: React.FC<{
       )}
       <ThirdStepDataWrapper>
         <Text size="lg" weight="800">
-          Personal and truck info
+          {t('Personal and truck info')}
         </Text>
         <SignInStepShowInfoWrapper>
           <Text color="main_90" size="lg" weight="800">
-            Step 1/2
+            {t('Step')} 1/2
           </Text>
         </SignInStepShowInfoWrapper>
         <PictureAndNameWrapper>
@@ -123,23 +125,23 @@ const ThirdStepDriver: React.FC<{
             </ProfilePhotoUploaderWrapper>
           </label>
           <NameInputWrapper>
-            <label htmlFor="name">Your displayed name</label>
+            <label htmlFor="name">{t('Your displayed name')}</label>
             <Input
               value={data.first_name}
               onChange={(e) => setData({ ...data, first_name: e.target.value })}
-              placeholder="Write your name"
+              placeholder={t('Write your name')}
               id="name"
             />
           </NameInputWrapper>
         </PictureAndNameWrapper>
         <TruckInputsWrapper>
-          <Text>Truck info</Text>
+          <Text>{t('Truck info')}</Text>
           <Input
             value={data.vehicle_title}
             onChange={(e) =>
               setData({ ...data, vehicle_title: e.target.value })
             }
-            placeholder="Truck model"
+            placeholder={t('Truck model')}
             required
           />
           <Input
@@ -147,18 +149,18 @@ const ThirdStepDriver: React.FC<{
             onChange={(e) =>
               setData({ ...data, licence_plate: e.target.value })
             }
-            placeholder="Plate number"
+            placeholder={t('Plate number')}
             required
           />
           <Input
             value={data.capacity}
             onChange={(e) => setData({ ...data, capacity: e.target.value })}
-            placeholder="Truck capacity (in tonnes)"
+            placeholder={t('Truck capacity (in tonnes)')}
             required
           />
         </TruckInputsWrapper>
         <Button fullWidth type="submit">
-          Next
+          {t('Next')}
         </Button>
       </ThirdStepDataWrapper>
     </DriverSignInThirdStepWrapper>

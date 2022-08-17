@@ -23,11 +23,13 @@ import RegionRouteInput from 'components/input/route-inputs/region-route';
 import { useCreateRoute } from 'server-state/mutations/use-create-route';
 import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
 import { useRoutes } from 'server-state/queries/use-routes';
+import { useTranslation } from 'react-i18next';
 
 const FourthStep: React.FC<{
   token: string;
   handleLogin: () => void;
 }> = ({ token, handleLogin }) => {
+  const { t } = useTranslation();
   const { previusStep } = useSteps();
   const initialState = { id: '', title: '' };
   const [country, setCountry] = useState<{ id: string; title: string }>(
@@ -93,7 +95,7 @@ const FourthStep: React.FC<{
     <DriverSignInFourthStepWrapper>
       <FourthStepDataWrapper>
         <Text size="lg" weight="800">
-          My routes
+          {t('My routes')}
         </Text>
         <FourthStepInfoWrapper>
           <FourthStepNavigateBack>
@@ -101,10 +103,10 @@ const FourthStep: React.FC<{
               <BackIcon />
             </IconButton>
             <Text onClick={previusStep} weight="600">
-              Personal and truck info
+              {t('Personal and truck info')}
             </Text>
           </FourthStepNavigateBack>
-          <Text color="main_90">Step 2/2</Text>
+          <Text color="main_90">{t('Step')} 2/2</Text>
         </FourthStepInfoWrapper>
         {routesRequest.data?.routes && routesRequest.data.routes.length > 0 && (
           <FourthStepCreatedLocationsWrapper>
@@ -144,14 +146,14 @@ const FourthStep: React.FC<{
           </div>
         </FourthStepInputsWrapper>
         <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
-          + Add new country
+          {t('+ Add new country')}
         </StyledGreenText>
         {/* <Button buttonType="dark" onClick={submitLocations}>
           Submit
         </Button> */}
         <LastButtonWrapper>
           <Button fullWidth onClick={completeButton}>
-            Complete
+            {t('Complete')}
           </Button>
         </LastButtonWrapper>
       </FourthStepDataWrapper>
