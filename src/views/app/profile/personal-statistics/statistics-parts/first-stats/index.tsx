@@ -2,13 +2,15 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { FirstStatsWrapper } from './first-stats.styles';
 import Text from 'components/typography/text';
+import { useTranslation } from 'react-i18next';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const FirstStats = () => {
+  const { t } = useTranslation();
   return (
     <FirstStatsWrapper>
-      <Text weight="700">Load numbers by status</Text>
+      <Text weight="700">{t('Load numbers by status')}</Text>
       {/* <Doughnut
         width={100}
         height={100}

@@ -1,4 +1,5 @@
 import { AppStoreImg, GooglePlayImg, PhoneImg, QrCodeImg } from 'assets/svg';
+import { useTranslation } from 'react-i18next';
 import Container from 'wrappers/container/container';
 import { BoldText, StyledText } from '../courage/courage.styles';
 import {
@@ -11,6 +12,7 @@ import {
 } from './download-app.styles';
 
 const DownloadApp = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Container style={{ position: 'relative' }}>
@@ -21,8 +23,10 @@ const DownloadApp = () => {
         <FlexWrap>
           <Column style={{ gap: '40px' }}>
             <Column>
-              <BoldText weight="700">Download and try app</BoldText>
-              <StyledText weight="500">Type Ezload Cargo on search </StyledText>
+              <BoldText weight="700">{t('Download and try app')}</BoldText>
+              <StyledText weight="500">
+                {t('Type Ezload Cargo on search')}{' '}
+              </StyledText>
             </Column>
             <Row>
               <img src={QrCodeImg} height={93} alt="qr-code" />

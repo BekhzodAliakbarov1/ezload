@@ -25,7 +25,7 @@ const LoadsContainer: React.FC<{
       ) : (
         <NoLoadsFindSection>
           <FileIcon size="150" />
-          <Text>No Loads</Text>
+          <Text>{t('No loads yet')}</Text>
         </NoLoadsFindSection>
       )}
       {hasNextPage && (

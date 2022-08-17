@@ -75,8 +75,12 @@ const Feed = () => {
           </FeedStatisticsCard>
         ))}
       </FeedStatisticsWrapper>
-      <BackgrounImageWrapper src={leftImage} alt="1212" position="left" />
-      <BackgrounImageWrapper src={rightImage} alt="1212" position="right" />
+      <BackgrounImageWrapper src={leftImage} alt="left image" position="left" />
+      <BackgrounImageWrapper
+        src={rightImage}
+        alt="right image"
+        position="right"
+      />
     </FeedWrapper>
   );
 };

@@ -81,11 +81,13 @@ const LoadBidsModals: React.FC<{
             <>
               <Text>Provide reason</Text>
               <ModalInputsWrapper>
-                <Input placeholder="Other" />
+                <Input placeholder={t('Other')} />
                 <ModalStyledTextFiled
                   multiline
                   fullWidth
-                  placeholder="Please, provide reason and explain of cancelling the load"
+                  placeholder={t(
+                    'Please, provide reason and explain of cancelling the load'
+                  )}
                 />
               </ModalInputsWrapper>
               <LoadBitsModalButtonsWrapper>
@@ -119,7 +121,7 @@ const LoadBidsModals: React.FC<{
               <ModalInputsWrapper>
                 <ModalStyledTextFiled
                   multiline
-                  placeholder="Please be honest to leave your feedback"
+                  placeholder={t('Please be honest to leave your feedback')}
                 />
               </ModalInputsWrapper>
               <LoadBitsModalButtonsWrapper>

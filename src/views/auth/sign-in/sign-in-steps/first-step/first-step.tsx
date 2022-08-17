@@ -60,8 +60,8 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
           <ErrorMessageData>
             <InfoIcon />
             <p>
-              {errors.phone_num.type === 'pattern' && 'Invalid Phone Number'}
-              {errors.phone_num.type === 'required' && 'Please enter Number'}
+              {errors.phone_num.type === 'pattern' && t('Invalid Phone Number')}
+              {errors.phone_num.type === 'required' && t('Please enter Number')}
             </p>
           </ErrorMessageData>
         </ErrorMessageWrapper>

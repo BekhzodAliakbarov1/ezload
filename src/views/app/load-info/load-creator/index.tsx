@@ -81,7 +81,9 @@ const LoadCreator: React.FC<{
             <ModalStyledTextFiled
               multiline
               fullWidth
-              placeholder="Please, provide reason and explain of cancelling the load"
+              placeholder={t(
+                'Please, provide reason and explain of cancelling the load'
+              )}
             />
           </ModalInputsWrapper>
           <ModalButtonsWrapper>

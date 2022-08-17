@@ -94,7 +94,7 @@ const ThirdStepDriver: React.FC<{
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p>Sorry, this mobile not registered</p>
+            <p>{t('Sorry, this mobile not registered')}</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}

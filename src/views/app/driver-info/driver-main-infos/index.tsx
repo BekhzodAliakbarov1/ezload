@@ -72,7 +72,7 @@ const DriverMainInfos: React.FC<{
           </div>
         </DriversMainInfoLocationsWrapper>
         <DriverMainInfoContactWrapper>
-          <Text color="main_70">Driver сontact</Text>
+          <Text color="main_70">{t('Driver сontact')}</Text>
           <h2>+{data?.phone_number ?? 'backend donot send number'}</h2>
         </DriverMainInfoContactWrapper>
         {biddedDriver && (

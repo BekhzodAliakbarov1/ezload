@@ -105,7 +105,7 @@ const ProfileRoutes = () => {
       ) : (
         <NoRoutesFindSection>
           <FileIcon size="150" />
-          <Text>No Routes</Text>
+          <Text>{t('No routes yet')}</Text>
         </NoRoutesFindSection>
       )}
       {isEditing && (

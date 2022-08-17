@@ -57,7 +57,7 @@ const ProfileRate = () => {
         {data?.feedbacks.length === 0 ? (
           <EmptyReviewWrapper>
             <FileIcon />
-            <Text>No reviews yet</Text>
+            <Text>{t('No reviews yet')}</Text>
           </EmptyReviewWrapper>
         ) : (
           <>

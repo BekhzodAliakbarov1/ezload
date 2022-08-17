@@ -106,7 +106,7 @@ const LoadCard: React.FC<{
           {withButtons && !isDriver && load.status !== 3 && (
             <LoadCardButtonWrapper>
               <Text onClick={open}>{t('Delete Load')}</Text>
-              <Text onClick={handleEdit}>Change details</Text>
+              <Text onClick={handleEdit}>{t('Change details')}</Text>
             </LoadCardButtonWrapper>
           )}
         </LoadCardBottomSideWrapper>

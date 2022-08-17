@@ -57,7 +57,7 @@ const LoadBids: React.FC<{
             ) : (
               <NoLoadBodsWrapper>
                 <FileIcon size="100" />
-                <Text>No Bids</Text>
+                <Text>{t('No bids yet')}</Text>
               </NoLoadBodsWrapper>
             )}
           </LoadBidsDataBox>

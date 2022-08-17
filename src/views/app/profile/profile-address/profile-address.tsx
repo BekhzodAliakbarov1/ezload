@@ -48,7 +48,7 @@ const ProfileAddress = () => {
             ) : (
               <NoAddressesFindSection key={index}>
                 <FileIcon size="150" />
-                <Text>No Addresses</Text>
+                <Text>{t('You have not create address yet')}</Text>
               </NoAddressesFindSection>
             )
           )}

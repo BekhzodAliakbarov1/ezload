@@ -149,7 +149,7 @@ const FourthStep: React.FC<{
           {t('+ Add new country')}
         </StyledGreenText>
         {/* <Button buttonType="dark" onClick={submitLocations}>
-          Submit
+          {t('Submit')}
         </Button> */}
         <LastButtonWrapper>
           <Button fullWidth onClick={completeButton}>

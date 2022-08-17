@@ -15,7 +15,7 @@ const Introduction = () => {
       <Paragraph>
         {t('Internationally or regionally, simple process, simple delivery')}
       </Paragraph>
-      <CreateLoadBtn endIcon={<RightArrow />}>Create Load</CreateLoadBtn>
+      <CreateLoadBtn endIcon={<RightArrow />}>{t('Create Load')}</CreateLoadBtn>
     </IntroductionWrapper>
   );
 };

@@ -87,7 +87,7 @@ const PersonalInformation = () => {
               inputType="text"
               label={t('Your name')}
               value={profileInfo.name}
-              placeholder="Enter name"
+              placeholder={t('Enter name')}
               onSubmit={handleNameSubmit}
             />
           )}
