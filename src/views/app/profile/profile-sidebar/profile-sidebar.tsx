@@ -4,10 +4,12 @@ import { ProfileSidebarWrapper, StyledLink } from './profile-sidebar.styles';
 import { useLocation } from 'react-router-dom';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
+import { useTranslation } from 'react-i18next';
 
 const ProfileSidebar = () => {
   const { pathname } = useLocation();
   const { isDriver } = useDriver();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -18,7 +20,7 @@ const ProfileSidebar = () => {
           <div>
             <Link to="/profile">
               <StyledLink active={pathname === '/profile'} weight="700">
-                Account details
+                {t('Account details')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-loads">
@@ -26,7 +28,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-loads'}
                 weight="700"
               >
-                My loads
+                {t('My loads')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-statistics">
@@ -34,7 +36,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-statistics'}
                 weight="700"
               >
-                My statistics
+                {t('My statistics')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-routes">
@@ -42,7 +44,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-routes'}
                 weight="700"
               >
-                My routes
+                {t('My routes')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-rates">
@@ -50,7 +52,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-rates'}
                 weight="700"
               >
-                Rates & Testimonials
+                {t('Rates & Testimonials')}
               </StyledLink>
             </Link>
           </div>
@@ -59,7 +61,7 @@ const ProfileSidebar = () => {
           <div>
             <Link to="/profile">
               <StyledLink active={pathname === '/profile'} weight="700">
-                Personal information
+                {t('Personal information')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-loads">
@@ -67,12 +69,12 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-loads'}
                 weight="700"
               >
-                My loads
+                {t('My loads')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-addresses">
               <StyledLink active={pathname.includes('address')} weight="700">
-                My addresses
+                {t('My addresses')}
               </StyledLink>
             </Link>
           </div>

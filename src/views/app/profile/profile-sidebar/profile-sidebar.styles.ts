@@ -42,6 +42,7 @@ export const StyledLink = styled(Text)<{ active: boolean }>`
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.15px;
+  text-transform: capitalize;
   color: ${(props) =>
     props.active ? props.theme.text.main_80 : props.theme.text.main_30};
   @media (max-width: 800px) {
