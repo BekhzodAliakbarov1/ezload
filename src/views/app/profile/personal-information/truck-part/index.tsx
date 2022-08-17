@@ -4,6 +4,7 @@ import PenIcon from 'components/icons/pen.icon';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useUpdateVehicle } from 'server-state/mutations/use-update-vehicle';
 import {
   TruckButtonsWrapper,
@@ -19,6 +20,7 @@ const TruckInfo: React.FC<{
   car_capacity?: string;
   car_number?: string;
 }> = ({ car_capacity = '', car_model = '', car_number = '' }) => {
+  const { t } = useTranslation();
   const [isEditing, setisEditing] = useState(false);
   const [model, setModel] = useState(car_model);
   const [capacity, setCapacity] = useState(car_capacity);
@@ -46,17 +48,17 @@ const TruckInfo: React.FC<{
   return (
     <TruckInfoChangeWrapper>
       <TruckLabelWrapper onClick={() => setisEditing((val) => !val)}>
-        <Text color="main_90">Truck info</Text>
+        <Text color="main_90">{t('Truck info')}</Text>
         <TruckEditButtonWrapper>
           <IconButton>
             <PenIcon />
           </IconButton>
-          <Text>Edit</Text>
+          <Text>{t('Edit')}</Text>
         </TruckEditButtonWrapper>
       </TruckLabelWrapper>
       <TruckMainInfosWrapper>
         <TruckInfoChangeInput>
-          <Text>Truck model</Text>
+          <Text>{t('Truck model')}</Text>
           {isEditing ? (
             <Input value={model} onChange={(e) => setModel(e.target.value)} />
           ) : (
@@ -64,7 +66,7 @@ const TruckInfo: React.FC<{
           )}
         </TruckInfoChangeInput>
         <TruckInfoChangeInput>
-          <Text>Truck Capacity (in tonnes)</Text>
+          <Text>{t('Truck Capacity (in tonnes)')}</Text>
           {isEditing ? (
             <Input
               value={capacity}
@@ -75,7 +77,7 @@ const TruckInfo: React.FC<{
           )}
         </TruckInfoChangeInput>
         <TruckInfoChangeInput>
-          <Text>Truck plate number</Text>
+          <Text>{t('Truck plate number')}</Text>
           {isEditing ? (
             <Input
               value={carNumber}
@@ -90,9 +92,9 @@ const TruckInfo: React.FC<{
       </TruckMainInfosWrapper>
       {isEditing && (
         <TruckButtonsWrapper>
-          <Button onClick={handleSubmit}>Save changes</Button>
+          <Button onClick={handleSubmit}>{t('Save changes')}</Button>
           <Button onClick={handleCancel} buttonType="white">
-            Cancel
+            {t('Cancel')}
           </Button>
         </TruckButtonsWrapper>
       )}

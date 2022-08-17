@@ -11,7 +11,10 @@ import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-prof
 import ProfileImagePart from './profile-image-part';
 import { useUpload } from 'server-state/mutations/use-upload';
 import { useDriver } from 'hooks/use-driver';
+import { useTranslation } from 'react-i18next';
+
 const PersonalInformation = () => {
+  const { t } = useTranslation();
   const { data } = useProfile();
   const updateProfileRequest = useUpdateCustomerProfile();
   const uploadImageRequest = useUpload();
@@ -82,7 +85,7 @@ const PersonalInformation = () => {
           {profileInfo.name && (
             <EditableFiled
               inputType="text"
-              label="Your name"
+              label={t('Your name')}
               value={profileInfo.name}
               placeholder="Enter name"
               onSubmit={handleNameSubmit}
@@ -91,9 +94,9 @@ const PersonalInformation = () => {
           {profileInfo.phone && (
             <EditableFiled
               inputType="number"
-              label="Your phone number"
+              label={t('Your phone number')}
               value={profileInfo.phone}
-              placeholder="Enter phone number"
+              placeholder={t('Enter your phone number')}
               onSubmit={handlePhoneSubmit}
             />
           )}
