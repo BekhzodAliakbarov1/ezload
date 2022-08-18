@@ -17,6 +17,7 @@ export const ProfileAddressTopPartContainer = styled.div`
   > p {
     font-size: 24px;
     line-height: 24px;
+    color: ${(props) => props.theme.text.main_100};
   }
   @media (max-width: 800px) {
     margin-bottom: 40px;

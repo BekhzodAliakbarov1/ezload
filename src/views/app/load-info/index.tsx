@@ -98,7 +98,7 @@ const LoadInfoView = () => {
             <LoadCard
               clickable={false}
               load={singleLoadRequest.data}
-              withButtons
+              // withButtons
             />
           )}
           {singleLoadRequest.data && (

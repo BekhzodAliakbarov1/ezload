@@ -4,7 +4,7 @@ import { colors } from 'styles/variables';
 export const LoadInfoViewWrapper = styled.div`
   width: 100%;
   margin-top: 40px;
-  background-color: ${colors.white};
+  background-color: ${(props) => props.theme.bg.secondary};
   padding: 48px;
   margin-bottom: 80px;
   display: flex;

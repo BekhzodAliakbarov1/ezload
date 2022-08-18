@@ -87,7 +87,7 @@ const EditableField: React.FC<{
       <Text weight="500">{label}</Text>
       {!editClicked ? (
         <EditableFieldWrapper>
-          <Text color="main_100" weight="600" size="md">
+          <Text weight="600" size="md">
             {inputType === 'number' && '+'}
             {value}
           </Text>

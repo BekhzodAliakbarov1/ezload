@@ -6,7 +6,7 @@ export const AddressCardWrapper = styled.div`
   width: 100%;
   height: fit-content;
   padding-bottom: 32px;
-  border-bottom: 1px solid ${(props) => props.theme.text.main_10};
+  border-bottom: 2px solid ${(props) => props.theme.text.main_5};
   @media (max-width: 800px) {
     height: auto;
   }
@@ -24,6 +24,7 @@ export const AddressCardDataLine = styled.div`
     line-height: 24px;
     letter-spacing: 0.15px;
     text-align: left;
+    color: ${(props) => props.theme.text.main_100};
   }
   @media (max-width: 800px) {
     p {

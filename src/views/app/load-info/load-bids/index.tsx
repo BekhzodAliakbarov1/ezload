@@ -45,7 +45,7 @@ const LoadBids: React.FC<{
                       shadow
                       sizes="104px"
                       clickable
-                      bg_color={colors.green_5}
+                      // bg_color={colors.green_5}
                     />
                   </div>
                   <LoadBidDriverCostWrapper>
@@ -71,7 +71,7 @@ const LoadBids: React.FC<{
               id={3}
               rates_avg={data?.driver?.average_rate ?? 3}
               image={data?.driver?.profile_picture.file}
-              bg_color={colors.green_5}
+              // bg_color={colors.green_5}
             />
           </LoadBidsDataBox>
         )}

@@ -35,7 +35,7 @@ export const AvatarWrapper = styled.div`
 export const DriversMainInfoDataWrapper = styled.div`
   width: 100%;
   padding-bottom: 33px;
-  border-bottom: 1px solid ${colors.green_30};
+  border-bottom: 3px solid ${(props) => props.theme.text.main_5};
   margin-bottom: 32px;
   .name {
     font-size: 24px;
@@ -81,6 +81,9 @@ export const DriversMainInfoLocationsWrapper = styled.div`
       line-height: 32px;
     }
   }
+  .label {
+    color: ${(props) => props.theme.text.main_70};
+  }
 `;
 
 export const DriverMainInfoContactWrapper = styled.div`
@@ -99,6 +102,12 @@ export const DriverMainInfoContactWrapper = styled.div`
     font-size: 24px;
     line-height: 24px;
     color: ${(props) => props.theme.text.main_100};
+  }
+  .number {
+    color: ${(props) => props.theme.text_active.active};
+  }
+  .label {
+    color: ${(props) => props.theme.text.main_70};
   }
 `;
 

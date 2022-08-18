@@ -42,9 +42,11 @@ interface LoadContextInterface {
   setValues: (values?: { [key: string]: any }) => void;
 }
 
-const today = new Date();
 const tommorrow = new Date();
-tommorrow.setDate(tommorrow.getDate() + 2);
+const theDayAfterTommorrow = new Date();
+tommorrow.setDate(tommorrow.getDate() + 1);
+theDayAfterTommorrow.setDate(theDayAfterTommorrow.getDate() + 2);
+console.log(tommorrow);
 
 const defaultdata = {
   load_title: '',
@@ -76,12 +78,12 @@ const defaultdata = {
   },
   dates: {
     pickup: {
-      start: today,
-      end: tommorrow,
+      start: tommorrow,
+      end: theDayAfterTommorrow,
     },
     delivery: {
-      start: today,
-      end: tommorrow,
+      start: tommorrow,
+      end: theDayAfterTommorrow,
     },
   },
   lugage_size: '',
@@ -151,12 +153,28 @@ export const LoadContextProvider: React.FC = ({ children }) => {
     },
     dates: {
       pickup: {
-        start: new Date(`${state?.data?.earliest_pick_up}`),
-        end: new Date(`${state?.data?.latest_pick_up}`),
+        start: new Date(
+          state?.data?.earliest_pick_up
+            ? `${state?.data?.earliest_pick_up}`
+            : tommorrow
+        ),
+        end: new Date(
+          state?.data?.latest_pick_up
+            ? `${state?.data?.latest_pick_up}`
+            : theDayAfterTommorrow
+        ),
       },
       delivery: {
-        start: new Date(`${state?.data?.earliest_delivery}`),
-        end: new Date(`${state?.data?.latest_delivery}`),
+        start: new Date(
+          state?.data?.earliest_delivery
+            ? `${state?.data?.earliest_delivery}`
+            : tommorrow
+        ),
+        end: new Date(
+          state?.data?.latest_delivery
+            ? `${state?.data?.latest_delivery}`
+            : theDayAfterTommorrow
+        ),
       },
     },
     lugage_size: state?.data?.weight ? String(state?.data?.weight) : '',

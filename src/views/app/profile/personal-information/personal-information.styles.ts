@@ -20,7 +20,8 @@ export const PersonalInformationTopPartWrapper = styled.div<{
   gap: 47px;
   align-items: flex-start;
   padding-bottom: ${(props) => (props.isDriver ? '64px' : '0px')};
-  border-bottom: ${(props) => (props.isDriver ? '1px solid #dbdbdb' : '')};
+  border-bottom: ${(props) =>
+    props.isDriver ? `2px solid ${props.theme.text.main_5}` : ''};
   margin-bottom: 64px;
   @media (max-width: 800px) {
     flex-direction: column;

@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const ProfileViewWrapper = styled.div`
   margin-top: 40px;
-  background-color: ${colors.white};
+  background-color: ${(props) => props.theme.bg.secondary};
   margin-bottom: 80px;
   padding: 48px;
   @media (max-width: 800px) {

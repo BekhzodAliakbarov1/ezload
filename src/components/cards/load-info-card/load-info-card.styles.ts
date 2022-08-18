@@ -5,6 +5,7 @@ export const LoadInfoCradWrapper = styled.div`
   padding: 24px 32px;
   background-color: ${(props) => props.theme.bg.main};
   width: 100%;
+  border-radius: 8px;
   > p {
     font-size: 16px;
     line-height: 20px;

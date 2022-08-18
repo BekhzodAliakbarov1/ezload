@@ -46,9 +46,7 @@ const DriverMainInfos: React.FC<{
           <RatingComponent value={data?.average_rate ?? 1} iconSize="20" />
         </AvatarWrapper>
         <DriversMainInfoDataWrapper>
-          <Text color="main_90" className="name">
-            {data?.first_name}
-          </Text>
+          <Text className="name">{data?.first_name}</Text>
           <Text className="weight_loads">
             {data?.vehicle?.title.toLocaleUpperCase()} (
             {data?.vehicle?.capacity} Ton)
@@ -62,18 +60,20 @@ const DriverMainInfos: React.FC<{
           </Text>
         </DriversMainInfoDataWrapper>
         <DriversMainInfoLocationsWrapper>
-          <Text color="main_70">{t('Locations')}</Text>
+          <Text className="label">{t('Locations')}</Text>
           <div>
             {data?.routes?.map((location, index) => (
-              <Text color="main_80" key={index} weight="700">
+              <Text key={index} weight="700">
                 {location.country.title}, {location.region.title}
               </Text>
             ))}
           </div>
         </DriversMainInfoLocationsWrapper>
         <DriverMainInfoContactWrapper>
-          <Text color="main_70">{t('Driver сontact')}</Text>
-          <h2>+{data?.phone_number ?? 'backend donot send number'}</h2>
+          <Text className="label">{t('Driver сontact')}</Text>
+          <h2 className="number">
+            +{data?.phone_number ?? 'backend donot send number'}
+          </h2>
         </DriverMainInfoContactWrapper>
         {biddedDriver && (
           <Button

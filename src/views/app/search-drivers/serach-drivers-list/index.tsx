@@ -27,7 +27,6 @@ const SearchDriversList: React.FC<{ drivers?: SingleDriverResponse[] }> = ({
               {...driver}
               clickable
               image={driver.profile_picture.file}
-              bg_color={colors.green_5}
             />
           </Link>
         ))}

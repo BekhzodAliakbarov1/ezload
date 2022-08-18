@@ -47,7 +47,7 @@ interface TextProps {
 const StyledText = styled.p<TextProps>`
   height: fit-content;
   width: fit-content;
-  color: ${(props) => props.theme.text[props.color ?? 'main_100']};
+  color: ${(props) => props.theme.text[props.color ?? 'main_80']};
   ${(props) => sizes[props.size ?? 'lg']};
   font-weight: ${(props) => props.weight};
   letter-spacing: 0.5px;

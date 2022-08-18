@@ -7,33 +7,38 @@ const { disabled, primary, primary_variant, secondary, tertiary, white } =
 
 const darkTheme: CustomTheme = {
   bg: {
-    main: colors.dark_30,
-    secondary: colors.dark_100,
+    main: colors.dark_100, // done
+    secondary: colors.dark_90, // done
   },
   text: {
     main_10: colors.light_10,
-    main_100: colors.light_100,
-    main_20: colors.light_20,
-    main_30: colors.light_30,
-    main_40: colors.light_40,
-    main_5: colors.light_5,
+    main_100: colors.dark_20, //done
+    main_20: colors.dark_80, // done
+    main_30: colors.dark_30, //deon
+    main_40: colors.dark_40, //done
+    main_5: colors.dark_80, //done
     main_50: colors.light_50,
-    main_60: colors.light_60,
-    main_70: colors.light_70,
-    main_80: colors.light_80,
+    main_60: colors.dark_60, // done
+    main_70: colors.dark_50, // done
+    main_80: colors.dark_50, // done
     main_90: colors.light_90,
 
     light: colors.white,
+  },
+  text_active: {
+    active: colors.green_100, //done
+    red_active: colors.white, //deon
   },
   button: {
     contained: colors.green_100,
     dark: colors.dark_70,
     warning: colors.red_100,
-    secondary_dark: colors.dark_10,
+    secondary_dark: colors.dark_40, //done
     secondary_dark_hover: colors.dark_5,
     contained_hover: colors.green_50,
     dark_hover: colors.dark_50,
     warning_hover: colors.red_50,
+    red_active: colors.red_100,
   },
   colors: {
     disabled,
@@ -66,6 +71,10 @@ const lightTheme: CustomTheme = {
 
     light: colors.white,
   },
+  text_active: {
+    active: colors.dark_80,
+    red_active: colors.red_100,
+  },
   button: {
     contained: colors.green_100,
     dark: colors.dark_70,
@@ -75,6 +84,7 @@ const lightTheme: CustomTheme = {
     contained_hover: colors.green_80,
     dark_hover: colors.dark_50,
     warning_hover: colors.red_80,
+    red_active: colors.red_20,
   },
   colors: {
     disabled,

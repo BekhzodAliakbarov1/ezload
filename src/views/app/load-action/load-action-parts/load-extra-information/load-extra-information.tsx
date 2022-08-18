@@ -63,6 +63,9 @@ const LoadExtraInformation = () => {
           </LoadExtraInformationPriceInputWrapper>
         </LoadExtraInformationLeftSideInputsBox>
         <StyledTextFiled
+          sx={{
+            border: 'none',
+          }}
           multiline
           fullWidth
           placeholder={t('Extra information')}

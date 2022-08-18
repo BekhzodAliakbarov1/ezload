@@ -1,4 +1,4 @@
-import { TextField } from '@mui/material';
+import { MenuItem, TextField } from '@mui/material';
 import Select from '@mui/material/Select';
 import styled from 'styled-components';
 
@@ -44,20 +44,32 @@ export const StyledSelect = styled(Select)`
   max-width: 96px;
   height: 47px;
   border: 1.5px solid ${(props) => props.theme.text.main_20};
+  color: ${(props) => props.theme.text.main_100} !important;
+
+  svg {
+    color: ${(props) => props.theme.text.main_100};
+  }
   > div {
     padding: 0px;
   }
 `;
 
 export const StyledTextFiled = styled(TextField)`
-  max-width: 506px;
-  height: 118px;
-  border: 1.5px solid ${(props) => props.theme.text.main_20};
-  padding: 16px;
-  > div {
-    height: 100%;
-    > textarea {
-      height: 100% !important;
+  && {
+    max-width: 506px;
+    height: 118px;
+    border: 1.5px solid ${(props) => props.theme.text.main_20};
+
+    :focus-visible {
+      border: none;
+    }
+    > div {
+      height: 100%;
+      border: none !important;
+      > textarea {
+        color: ${(props) => props.theme.text.main_100};
+        height: 100% !important;
+      }
     }
   }
 `;

@@ -28,7 +28,7 @@ const Navbar = () => {
     <>
       <NabarBox ref={headerRef}>
         <NavbarWrapper>
-          {tokens.access ? <NavbarAuth /> : <NavbarUnAuth />}
+          {!tokens.access ? <NavbarAuth /> : <NavbarUnAuth />}
         </NavbarWrapper>
       </NabarBox>
 

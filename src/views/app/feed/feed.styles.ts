@@ -28,6 +28,7 @@ export const FeedDataWrapper = styled.div`
     font-size: 19px;
     line-height: 20px;
     margin-bottom: 48px;
+    color: ${(props) => props.theme.text.main_70};
   }
   @media (max-width: 800px) {
     margin-top: 56px;
@@ -58,7 +59,7 @@ export const FeedLocationWrapper = styled.div`
 export const FeedLocationCard = styled.div`
   width: 100%;
   background-color: ${(props) => props.theme.bg.main};
-  border: 1px solid ${colors.green_30};
+  border: 1px solid ${colors.green_40};
   border-radius: 8px;
   display: flex;
   flex-direction: column;
@@ -111,6 +112,9 @@ export const FeedStatisticsCard = styled.div`
     line-height: 24px;
     color: ${colors.red_100};
     margin-bottom: 20px;
+  }
+  p:nth-child(2) {
+    color: ${(props) => props.theme.text.main_80};
   }
   @media (max-width: 800px) {
     p:nth-child(1) {

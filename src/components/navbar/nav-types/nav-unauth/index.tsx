@@ -11,12 +11,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from 'global-state/theme/theme.state';
 import { LoginButton } from '../../navbar-shared.styles';
 import logoLight from 'assets/img/logo-light.svg';
-import logoDark from 'assets/img/logo-white.svg';
+import logoDark from 'assets/img/logo-dark.png';
 import Text from 'components/typography/text';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
 import { Menu } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { DarkLightModeSwitch } from 'components/right-light-mode-switch';
 
 const NavbarUnAuth = () => {
   const { theme } = useTheme();
@@ -43,6 +44,8 @@ const NavbarUnAuth = () => {
         </Link>
       </NavbarLogoWrapper>
       <ProfileAndLanguageWrapper>
+        <DarkLightModeSwitch />
+
         <RightContentItemWrapper>
           <Text size="md" weight="600">
             En

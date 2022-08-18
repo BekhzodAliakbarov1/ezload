@@ -9,7 +9,7 @@ import Text from 'components/typography/text';
 import { Link } from 'react-router-dom';
 import { useTheme } from 'global-state/theme/theme.state';
 import logoLight from 'assets/img/logo-light.svg';
-import logoDark from 'assets/img/logo-white.svg';
+import logoDark from 'assets/img/logo-dark.png';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
 import { useAuth } from 'global-state/auth/auth.state';
@@ -31,6 +31,7 @@ import {
   NavbarMobileMenu,
 } from './nav-auth.styles';
 import { useTranslation } from 'react-i18next';
+import { DarkLightModeSwitch } from 'components/right-light-mode-switch';
 
 const NavbarAuth = () => {
   const account = useMenu();
@@ -77,7 +78,9 @@ const NavbarAuth = () => {
           <img src={theme === 'dark' ? logoDark : logoLight} alt="logo" />
         </Link>
       </NavbarLogoWrapper>
+
       <ProfileAndLanguageWrapper>
+        <DarkLightModeSwitch />
         <RightContentItemWrapper className="menu">
           <Text size="md" weight="600">
             {t('My Account')}
@@ -148,6 +151,7 @@ const NavbarAuth = () => {
             </StyledtText>
           </Menu>
         </RightContentItemWrapper>
+
         <NavbarMobileMenu onClick={toggleDrawer(true)}>
           <IconButton>
             <MenuIcon />
@@ -155,6 +159,7 @@ const NavbarAuth = () => {
           <Text>Menu</Text>
         </NavbarMobileMenu>
       </ProfileAndLanguageWrapper>
+
       <Drawer anchor="right" open={state} onClose={toggleDrawer(false)}>
         <NavbarMobileMenuOpenList>
           <CloseIconWrapper onClick={toggleDrawer(false)}>

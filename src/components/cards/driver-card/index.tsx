@@ -20,7 +20,7 @@ const DriverCard: React.FC<{
   shadow?: boolean;
   styles?: CSSProperties;
   clickable?: boolean;
-  bg_color?: string;
+  // bg_color?: string;
 }> = ({
   image,
   first_name,
@@ -30,12 +30,12 @@ const DriverCard: React.FC<{
   vehicle,
   shadow = false,
   clickable = false,
-  bg_color = '',
+  // bg_color = '',
 }) => {
   const { t } = useTranslation();
   return (
     <DriverCardWrapper
-      bg_color={bg_color}
+      // bg_color={bg_color}
       style={styles}
       shadow={shadow}
       clickable={clickable}
