@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { SliderWrapper } from '../drivers-list.styles';
+import { MobileDriverCardWrapper, SliderWrapper } from '../drivers-list.styles';
 import SwiperCore from 'swiper';
 import DriverCard from 'components/cards/driver-card';
 import { ProfileImg } from 'assets/svg';
@@ -20,11 +20,8 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
         clickable: true,
         type: 'bullets',
         bulletElement: 'span',
-        bulletClass: 'timeline-icon',
+        // bulletClass: 'timeline-icon',
         bulletActiveClass: 'timeline-icon-active',
-        renderBullet: function (index: number, className: string) {
-          return `<span class="${className}">${'.'}</span>`;
-        },
       }}
       navigation={{
         nextEl: '.button-next',
@@ -32,7 +29,29 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
       }}
       onSlideChange={slideChangeHandle}
     >
-      <SwiperSlide data-hash="slide1">
+      <SwiperSlide className="desktop" data-hash="slide1">
+        <SliderWrapper>
+          {dummyArray.map((value) => {
+            return (
+              <DriverCard
+                key={value}
+                image={ProfileImg}
+                first_name="Antonio Fred."
+                id={3}
+                rates_avg={3}
+                vehicle={{
+                  capacity: '30',
+                  licence_plate: '01A777AB',
+                  title: 'MAN',
+                }}
+                sizes="104px"
+                shadow
+              />
+            );
+          })}
+        </SliderWrapper>
+      </SwiperSlide>
+      <SwiperSlide className="desktop" data-hash="slide2">
         <SliderWrapper>
           {dummyArray.map((value) => {
             return (
@@ -55,29 +74,26 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
           })}
         </SliderWrapper>
       </SwiperSlide>
-      <SwiperSlide data-hash="slide2">
-        <SliderWrapper>
-          {dummyArray.map((value) => {
-            return (
-              <DriverCard
-                styles={{ marginBottom: '40px' }}
-                key={value}
-                image={ProfileImg}
-                first_name="Antonio Fred."
-                id={3}
-                rates_avg={3}
-                vehicle={{
-                  capacity: '30',
-                  licence_plate: '01A777AB',
-                  title: 'MAN',
-                }}
-                sizes="104px"
-                shadow
-              />
-            );
-          })}
-        </SliderWrapper>
-      </SwiperSlide>
+      {dummyArray.map((value) => (
+        <SwiperSlide className="mobile" key={value}>
+          <MobileDriverCardWrapper>
+            <DriverCard
+              key={value}
+              image={ProfileImg}
+              first_name="Antonio Fred."
+              id={3}
+              rates_avg={3}
+              vehicle={{
+                capacity: '30',
+                licence_plate: '01A777AB',
+                title: 'MAN',
+              }}
+              sizes="104px"
+              shadow
+            />
+          </MobileDriverCardWrapper>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

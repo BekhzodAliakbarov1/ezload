@@ -12,8 +12,9 @@ export const MessageBox = styled.div`
   text-align: left;
   width: 100%;
   border-radius: 8px;
-  background-color: ${(props) => props.theme.bg.main};
+  background-color: ${(props) => props.theme.bg.third};
   margin-bottom: 27px;
+  color: ${(props) => props.theme.text.main_80};
   ::after {
     content: '';
     position: absolute;
@@ -26,6 +27,9 @@ export const MessageBox = styled.div`
     border-right: 13px solid transparent;
     border-top: 20px solid ${(props) => props.theme.bg.main};
     clear: both;
+  }
+  @media (max-width: 800px) {
+    padding: 18px 28px;
   }
 `;
 

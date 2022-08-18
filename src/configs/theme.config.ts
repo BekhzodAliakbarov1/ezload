@@ -9,6 +9,7 @@ const darkTheme: CustomTheme = {
   bg: {
     main: colors.dark_100, // done
     secondary: colors.dark_90, // done
+    third: colors.dark_100,
   },
   text: {
     main_10: colors.light_10,
@@ -55,6 +56,7 @@ const lightTheme: CustomTheme = {
   bg: {
     main: colors.green_5,
     secondary: colors.white,
+    third: colors.gray_ligth,
   },
   text: {
     main_10: colors.dark_10,

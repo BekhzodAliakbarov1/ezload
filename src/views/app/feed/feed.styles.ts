@@ -99,6 +99,9 @@ export const FeedStatisticsWrapper = styled.div`
   @media (max-width: 800px) {
     gap: initial;
     justify-content: space-between;
+    margin-top: 56px;
+    width: 100%;
+    margin-bottom: 80px;
   }
 `;
 

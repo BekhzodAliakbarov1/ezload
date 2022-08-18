@@ -19,7 +19,7 @@ export const FooterContentBox = styled.div`
 `;
 
 export const FooterLeftContent = styled.div`
-  background-color: ${colors.dark_100};
+  background-color: ${`${colors.dark_100}`};
   width: 100%;
   max-width: 515px;
   display: flex;
@@ -49,17 +49,24 @@ export const FooterLeftContentLinksWrapper = styled.div`
   margin-bottom: 135px;
   @media (max-width: 1024px) {
     margin-bottom: 30px;
+    gap: 20px;
   }
 `;
 export const FooterLeftContentLinksBox = styled.div`
   display: flex;
   flex-direction: column;
   p {
+    text-align: left;
     font-size: 16px;
     line-height: 20px;
     margin-bottom: 32px;
     letter-spacing: 0.15px;
     color: ${(props) => props.theme.text.main_10};
+  }
+  @media (max-width: 800px) {
+    p {
+      font-size: 14px;
+    }
   }
 `;
 export const LinksWrapper = styled.div`
@@ -72,6 +79,7 @@ export const LinksWrapper = styled.div`
     font-weight: 500;
     font-size: 13px;
     line-height: 16px;
+    text-align: left;
     /* identical to box height */
 
     letter-spacing: 0.5px;
@@ -83,6 +91,11 @@ export const LinksWrapper = styled.div`
       color: ${(props) => props.theme.text.main_20};
     }
   }
+  @media (max-width: 800px) {
+    a {
+      font-size: 12px;
+    }
+  }
 `;
 
 export const FooterRightContent = styled.div`
@@ -90,7 +103,7 @@ export const FooterRightContent = styled.div`
   background-image: ${`url(${img})`};
   background-position: bottom;
   background-repeat: no-repeat;
-  background-color: ${`${colors.dark_90}10`};
+  background-color: ${`${colors.dark_90}`};
   background-size: cover;
   width: 100%;
   height: 100%;

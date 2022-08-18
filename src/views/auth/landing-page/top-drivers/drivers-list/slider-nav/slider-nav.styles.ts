@@ -10,6 +10,10 @@ export const SliderNavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${colors.dark_90};
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
 `;
 const SliderButton = styled(Button)<{ disabled: boolean }>`
   width: 161px;
@@ -23,9 +27,21 @@ const SliderButton = styled(Button)<{ disabled: boolean }>`
     disabled ? colors.dark_80 : colors.red_80} !important;
 `;
 
-export const PrevButton = styled(SliderButton)``;
+export const PrevButton = styled(SliderButton)`
+  && {
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
+`;
 
-export const NextButton = styled(SliderButton)``;
+export const NextButton = styled(SliderButton)`
+  && {
+    @media (max-width: 800px) {
+      display: none;
+    }
+  }
+`;
 
 export const TextWrapper = styled.div`
   display: flex;
@@ -37,7 +53,10 @@ export const BolderText = styled(Text)`
   font-size: 28px;
   line-height: 24px;
   margin-bottom: 16px;
-  color: ${(props) => props.theme.text.main_5};
+  color: ${(props) => props.theme.colors.white};
+  @media (max-width: 800px) {
+    font-size: 24px;
+  }
 `;
 export const Description = styled(Text)`
   font-size: 14px;

@@ -2,6 +2,7 @@ export interface CustomTheme {
   bg: {
     main: string;
     secondary: string;
+    third: string;
   };
   text: {
     main_100: string;
@@ -22,6 +23,7 @@ export interface CustomTheme {
     active: string;
     red_active: string;
   };
+
   button: {
     contained: string;
     dark: string;
