@@ -1,6 +1,6 @@
 import Button from 'components/button/button';
 import Container from 'wrappers/container/container';
-import { BoldText, StyledText, TextBox } from '../courage/courage.styles';
+import { BoldText, StyledText } from '../courage/courage.styles';
 import {
   Center,
   FirstBox,
@@ -8,6 +8,7 @@ import {
   HappyCusmrWrapper,
   Rectangle,
   SecondBox,
+  TextBox,
   ThirdBox,
 } from './happy-customers.styles';
 import UserReview from './user-review';
@@ -19,9 +20,9 @@ const HappyCustomers = () => {
   const { t } = useTranslation();
   return (
     <>
-      <HappyCusmrWrapper>
-        <Container>
-          <Rectangle />
+      <Container>
+        <HappyCusmrWrapper>
+          {/* <Rectangle /> */}
           <TextBox>
             <BoldText weight="700">{t('Happy Customers')}</BoldText>
             <StyledText weight="500">
@@ -72,11 +73,11 @@ const HappyCustomers = () => {
               />
             </ThirdBox>
           </FlexBox>
-          <Center style={{ marginBottom: '300px' }}>
-            <Button>{t('READ ALL REVIEWS')}</Button>
+          <Center>
+            <Button fullWidth={false}>{t('READ ALL REVIEWS')}</Button>
           </Center>
-        </Container>
-      </HappyCusmrWrapper>
+        </HappyCusmrWrapper>
+      </Container>
     </>
   );
 };

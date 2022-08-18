@@ -7,15 +7,16 @@ export const FilterMobileNavbar = styled.div`
     cursor: pointer;
     width: 100vw;
     margin-left: -24px;
+    margin-top: -20px;
     height: min-content;
     padding: 13px 24px;
     display: flex;
     align-items: center;
-    background-color: ${(props) => props.theme.text.main_50};
+    background-color: ${(props) => props.theme.bg.filter};
     transition: background-color 0.1s ease;
 
     p {
-      color: ${(props) => props.theme.text.main_20};
+      color: ${(props) => props.theme.colors.white};
     }
     button {
       padding: 0px;
@@ -49,6 +50,7 @@ export const FilterMobileDrawerContainer = styled.div`
   padding: 0px 24px;
   display: flex;
   position: relative;
+  background-color: ${(props) => props.theme.bg.secondary};
 
   /* justify-content: center; */
   /* align-items: flex-start; */

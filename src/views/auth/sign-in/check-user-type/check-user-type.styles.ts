@@ -23,6 +23,9 @@ export const CheckUserTypeBox = styled.div`
     line-height: 29px;
     margin-bottom: 40px;
   }
+  button {
+    text-transform: uppercase !important;
+  }
   @media (max-width: 1140px) {
     max-width: 400px;
   }
@@ -33,12 +36,13 @@ export const CheckUserTypeBox = styled.div`
 
 export const LoginStyledButton = styled(MuiButton)`
   && {
-    background: #f5fbfa;
+    background: ${(props) => props.theme.bg.secondary};
     border: 1px solid ${(props) => props.theme.text.main_40};
     border-radius: 2px;
     color: ${(props) => props.theme.text.main_100};
     margin-bottom: 32px;
     height: 46px;
     font-weight: 700;
+    text-transform: uppercase;
   }
 `;

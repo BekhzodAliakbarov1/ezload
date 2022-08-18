@@ -9,27 +9,37 @@ const SliderButton = styled(IconButton)<{ disabled?: boolean }>`
   padding: 0 !important;
   cursor: pointer;
   opacity: ${({ disabled }) => (disabled ? '0.7' : '1')};
+  @media (max-width: 800px) {
+    bottom: 56px;
+  }
 `;
 
 export const NextButton = styled(SliderButton)`
-  right: -45%;
-  transform: translate(0%, 0%);
-  @media (max-width: 900px) {
-    right: -40%;
-  }
-  @media (max-width: 576px) {
-    right: -32.5%;
+  && {
+    right: -45%;
+    transform: translate(0%, 0%);
+    @media (max-width: 900px) {
+      right: -40%;
+      width: 24px;
+    }
+    @media (max-width: 576px) {
+      right: -38.5%;
+    }
   }
 `;
 
 export const PrevButton = styled(SliderButton)`
-  transform: rotate(180deg);
-  right: 45%;
-  @media (max-width: 900px) {
-    right: 40%;
-  }
-  @media (max-width: 576px) {
-    right: 32.5%;
+  && {
+    transform: rotate(180deg);
+    right: 45%;
+
+    @media (max-width: 900px) {
+      right: 40%;
+      width: 24px;
+    }
+    @media (max-width: 576px) {
+      right: 38.5%;
+    }
   }
 `;
 

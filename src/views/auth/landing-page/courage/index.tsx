@@ -6,7 +6,9 @@ import {
   StyledText,
   TextBox,
   Image,
+  ImageWrapper,
 } from './courage.styles';
+// import rectangle from 'assets/img/rectangle.png';
 
 const Coverage = () => {
   const { t } = useTranslation();
@@ -18,7 +20,8 @@ const Coverage = () => {
         </BoldText>
         <StyledText weight="500">{t('We are growing fast')}</StyledText>
       </TextBox>
-      <Image src={CoverageMapImg} alt="map" />
+      <Image />
+      {/* <ImageWrapper src={rectangle} /> */}
     </CoverageWrappper>
   );
 };

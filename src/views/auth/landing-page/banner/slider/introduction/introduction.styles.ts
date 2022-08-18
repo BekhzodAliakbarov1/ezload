@@ -1,7 +1,6 @@
 import Button from 'components/button/button';
 import Text from 'components/typography/text';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const IntroductionWrapper = styled.div`
   width: 150%;
@@ -21,11 +20,20 @@ export const IntroductionWrapper = styled.div`
   &::after {
     content: '';
     width: 45%;
-    border-bottom: 2px dashed ${colors.green_20};
+    border-bottom: 2px dashed ${(props) => props.theme.text.main_5};
     height: 2px;
   }
-  @media (max-width: 576px) {
-    padding: 51px 80px;
+  @media (max-width: 800px) {
+    position: relative;
+    border-radius: 0%;
+    top: 0px;
+    left: 0;
+    padding: 0px;
+    width: auto;
+    transform: translate(0%, 0%);
+    &::after {
+      width: 100%;
+    }
   }
 `;
 
@@ -64,6 +72,15 @@ export const Paragraph = styled(Text)`
 `;
 
 export const CreateLoadBtn = styled(Button)`
-  margin: 47px 0 107px 0 !important;
-  width: 230.5px;
+  && {
+    margin: 47px 0 107px 0;
+    /* width: 230.5px; */
+    border-radius: 8px;
+    width: fit-content;
+
+    @media (max-width: 800px) {
+      margin: 24px 0px 56px 0px;
+      /* width: fit-content; */
+    }
+  }
 `;

@@ -28,12 +28,12 @@ export const UserName = styled(Text)`
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.15px;
-  color: ${colors.bg_dark};
+  color: ${(props) => props.theme.text.main_100};
 `;
 
 export const LocationText = styled(Text)`
   font-size: 13px;
   line-height: 16px;
   letter-spacing: 0.5px;
-  color: ${colors.dark_gray_lighter};
+  color: ${(props) => props.theme.text.main_80};
 `;

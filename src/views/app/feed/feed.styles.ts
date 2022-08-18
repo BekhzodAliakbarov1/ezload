@@ -32,6 +32,7 @@ export const FeedDataWrapper = styled.div`
   }
   @media (max-width: 800px) {
     margin-top: 56px;
+    margin-bottom: 136px;
     > p:nth-child(1) {
       font-size: 24px;
       line-height: 24px;
@@ -99,6 +100,9 @@ export const FeedStatisticsWrapper = styled.div`
   @media (max-width: 800px) {
     gap: initial;
     justify-content: space-between;
+    margin-top: 56px;
+    width: 100%;
+    margin-bottom: 80px;
   }
 `;
 

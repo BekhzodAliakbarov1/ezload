@@ -47,7 +47,7 @@ const DriverList = () => {
       <StyledContainer>
         <DriversSlider slideChangeHandle={slideChangeHandle} />
         <ViewButton>{t('SEE ALL DRIVER')}</ViewButton>
-        <Stick></Stick>
+        <Stick />
       </StyledContainer>
     </>
   );
