@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const LoadDateTimeWrapper = styled.div`
   width: 100%;
@@ -22,4 +21,7 @@ export const DateSelectBox = styled.div`
 export const DateFromToWrapper = styled.div`
   display: flex;
   gap: 24px;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;

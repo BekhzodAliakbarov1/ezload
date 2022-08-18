@@ -1,5 +1,6 @@
 import { useSnackbar } from 'notistack';
-import { useQuery, useQueryClient } from 'react-query';
+import { useTranslation } from 'react-i18next';
+import { useQuery } from 'react-query';
 import { request } from '../api';
 import { useLoad } from './use-load';
 
@@ -10,6 +11,7 @@ interface AcceptBidResponse {
 
 export const useAcceptBid = ({ bid_id }: { bid_id?: string }) => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
 
   return useQuery(
     `accept_${bid_id}`,
@@ -20,10 +22,12 @@ export const useAcceptBid = ({ bid_id }: { bid_id?: string }) => {
     {
       enabled: false,
       onSuccess() {
-        enqueueSnackbar('Bid accepted succesfully!', { variant: 'success' });
+        enqueueSnackbar(t('Bid accepted successfully!'), {
+          variant: 'success',
+        });
       },
       onError(err) {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
         console.log('ERROR', err);
       },
     }
@@ -38,7 +42,7 @@ export const useCancelBid = ({
   load_id?: string;
 }) => {
   const { refetch } = useLoad({ load_id });
-
+  const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
 
   return useQuery(
@@ -51,10 +55,10 @@ export const useCancelBid = ({
       enabled: false,
       onSuccess() {
         refetch();
-        enqueueSnackbar('Bid canceled succesfully!', { variant: 'info' });
+        enqueueSnackbar(t('Bid canceled successfully!'), { variant: 'info' });
       },
       onError(err) {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
         console.log('ERROR', err);
       },
     }

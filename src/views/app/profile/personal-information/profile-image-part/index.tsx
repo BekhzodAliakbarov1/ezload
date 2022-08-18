@@ -5,12 +5,14 @@ import Tooltip from '@mui/material/Tooltip';
 import GaleryIcon from 'components/icons/galery.icon';
 import FileInput from 'components/input/file-input';
 import Spinner from 'components/loaders/spinner';
+import { useTranslation } from 'react-i18next';
 
 const ProfileImagePart: React.FC<{
-  img: string;
+  img?: string;
   onSubmit: (val: Blob | File) => void;
   isLoading: boolean;
 }> = ({ img, onSubmit, isLoading }) => {
+  const { t } = useTranslation();
   return (
     <PersonalInformationAvatarWrapper>
       {isLoading ? (
@@ -18,7 +20,7 @@ const ProfileImagePart: React.FC<{
       ) : (
         <>
           <Avatar sizes="141px" src={img} />
-          <Tooltip className="change_photo" title="Change Photo">
+          <Tooltip className="change_photo" title={t('Change Photo')}>
             <label htmlFor="profile_photo">
               <GaleryIcon size="40" />
               <FileInput

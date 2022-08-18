@@ -38,4 +38,11 @@ export const ReactCodeInputWrapper = styled.div<{
       }
     }
   }
+  @media (max-width: 800px) {
+    div > div input {
+      width: ${(props) => (props.size === 'lg' ? '40px' : '31px')} !important;
+      font-size: ${(props) =>
+        props.size === 'lg' ? '40px' : '28px'} !important;
+    }
+  }
 `;

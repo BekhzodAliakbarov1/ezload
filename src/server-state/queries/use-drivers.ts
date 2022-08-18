@@ -1,25 +1,27 @@
 // this file is for getting only data with pagination
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQuery } from 'react-query';
 import { request } from '../api';
 
-interface DriversResponse {
+export interface SingleDriverResponse {
+  id: number;
+  first_name: string;
+  last_name: string;
+  rates_avg: number;
+  profile_picture: {
+    file: string;
+  };
+  vehicle: {
+    title: string;
+    licence_plate: string;
+    capacity: string;
+  };
+}
+
+export interface DriversResponse {
   count: number;
   next: null | number;
   previous: null | number;
-  results: {
-    id: number;
-    first_name: string;
-    last_name: string;
-    rates_avg: number;
-    profile_picture: {
-      file: string;
-    };
-    vehicle: {
-      title: string;
-      licence_plate: string;
-      capacity: string;
-    };
-  }[];
+  results: SingleDriverResponse[];
 }
 
 const fetchDrivers = async ({
@@ -46,4 +48,17 @@ export const useDrivers = (type: 'worked_before' | 'top' | 'other') => {
       return undefined;
     },
   });
+};
+
+export const useSearchDrivers = (data: { query?: string }) => {
+  return useQuery(
+    `drivers ${data.query}`,
+    () =>
+      request
+        .get<DriversResponse>(`/driver/list/?${data.query}`)
+        .then((res) => res.data),
+    {
+      retry: false,
+    }
+  );
 };

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
 import { useAuth } from 'global-state/auth/auth.state';
+import { useTranslation } from 'react-i18next';
 
 interface UploadRequest {
   file?: Blob | File;
@@ -19,6 +20,7 @@ interface UploadResponse {
 export const useUpload = () => {
   const [progress, setProgress] = useState<number>(0);
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   const {
     tokens: { access },
   } = useAuth();
@@ -26,7 +28,11 @@ export const useUpload = () => {
     (data: UploadRequest) => {
       const fd = new FormData();
       fd.append('file', data.file ?? '');
-      const token = access ?? data.token;
+      console.log(data);
+      console.log(access);
+
+      const token = data.token ?? access;
+
       return request
         .post<UploadResponse>('/media/create/', fd, {
           headers: {
@@ -44,10 +50,12 @@ export const useUpload = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Media uploaded succesfully!', { variant: 'success' });
+        enqueueSnackbar(t('Media uploaded successfully!'), {
+          variant: 'success',
+        });
       },
       onError(err) {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
         console.log('ERROR', err);
       },
     }

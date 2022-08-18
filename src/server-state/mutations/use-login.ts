@@ -1,6 +1,7 @@
 import { useMutation } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 interface ILoginRequest {
   phone_number: string;
@@ -19,6 +20,7 @@ interface ILoginResponse {
 
 export const useLogin = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return useMutation(
     (data: ILoginRequest) =>
       request
@@ -28,13 +30,13 @@ export const useLogin = () => {
       retry: false,
       onSuccess(res) {
         if (res.status_code === 201 || res.status_code === 200) {
-          enqueueSnackbar('Phone registered succesffuly!', {
+          enqueueSnackbar(t('Phone registered successfully!'), {
             variant: 'success',
           });
         }
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );

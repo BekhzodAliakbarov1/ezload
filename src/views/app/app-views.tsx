@@ -1,12 +1,17 @@
-import ProfileLayout from 'layouts/profile-layout/profile-layout';
+import { lazy } from 'react';
+const ProfileLayout = lazy(
+  () => import('layouts/profile-layout/profile-layout')
+);
+const ActionLoadLayout = lazy(() => import('layouts/load-action-layout'));
+const SearchDriverLayout = lazy(() => import('layouts/search-driver-layout'));
+const DriverInfoLayout = lazy(
+  () => import('layouts/driver-info-layout/driver-info-layout')
+);
+const SearchLoadLayout = lazy(() => import('layouts/search-load-layout'));
+const LoadInfoLayout = lazy(() => import('layouts/load-info-layout'));
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Feed from './feed/feed';
-import ActionLoadLayout from 'layouts/load-action-layout';
-import SearchDriverLayout from 'layouts/search-driver-layout';
-import DriverInfoLayout from 'layouts/driver-info-layout/driver-info-layout';
-import SearchLoadLayout from 'layouts/search-load-layout';
 import { useDriver } from 'hooks/use-driver';
-import LoadInfoLayout from 'layouts/load-info-layout';
 
 const CustomerView = () => (
   <Routes>
@@ -28,6 +33,8 @@ const DriverView = () => (
     <Route path="/profile/*" element={<ProfileLayout />} />
     <Route path="/search-load" element={<SearchLoadLayout />} />
     <Route path="/load/:load_id" element={<LoadInfoLayout />} />
+    <Route path="/drivers/:id" element={<DriverInfoLayout />} />
+
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );

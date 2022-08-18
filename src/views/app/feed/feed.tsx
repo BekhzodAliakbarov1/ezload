@@ -12,8 +12,10 @@ import {
   FeedWrapper,
   LocationAndSvgWrapper,
 } from './feed.styles';
-import leftImage from 'assets/img/left-bg-img.svg';
-import rightImage from 'assets/img/right-bg-img.svg';
+import leftImage from 'assets/img/left-bg-image.png';
+import rightImage from 'assets/img/right-bg-image.png';
+import { useDriver } from 'hooks/use-driver';
+import { useTranslation } from 'react-i18next';
 
 const feedStats = [
   {
@@ -34,23 +36,26 @@ const feedStats = [
 ];
 
 const Feed = () => {
+  const { isDriver } = useDriver();
+  const { t } = useTranslation();
+
   return (
     <FeedWrapper>
       <FeedDataWrapper>
-        <Text weight="800">Sending cargo is now easy</Text>
+        <Text weight="800">{t('Sending cargo is now easy')}</Text>
         <Text weight="500">
-          Internationally or regionally, simple process, simple delivery
+          {t('Internationally or regionally, simple process, simple delivery')}
         </Text>
         <FeedLocationWrapper>
           <FeedLocationCard>
-            <Text weight="600">Pick up location</Text>
+            <Text weight="600">{t('Pickup location')}</Text>
             <LocationAndSvgWrapper>
               <LocationIcon />
               <Text weight="500">Tashkent, Uzbekistan</Text>
             </LocationAndSvgWrapper>
           </FeedLocationCard>
           <FeedLocationCard>
-            <Text weight="600">Delivery location</Text>
+            <Text weight="600">{t('Delivery location')}</Text>
             <LocationAndSvgWrapper>
               <LocationIcon />
 
@@ -58,18 +63,24 @@ const Feed = () => {
             </LocationAndSvgWrapper>
           </FeedLocationCard>
         </FeedLocationWrapper>
-        <Button endIcon={<RightShowIcon />}>Create Load</Button>
+        <Button aria-label="serch create load" endIcon={<RightShowIcon />}>
+          {isDriver ? t('Search loads') : t('Create Load')}
+        </Button>
       </FeedDataWrapper>
       <FeedStatisticsWrapper>
         {feedStats.map(({ name, number, id }) => (
           <FeedStatisticsCard key={id}>
             <Text weight="700">{number}</Text>
-            <Text weight="600">{name}</Text>
+            <Text weight="600">{t(name)}</Text>
           </FeedStatisticsCard>
         ))}
       </FeedStatisticsWrapper>
-      <BackgrounImageWrapper src={leftImage} alt="1212" position="left" />
-      <BackgrounImageWrapper src={rightImage} alt="1212" position="right" />
+      <BackgrounImageWrapper src={leftImage} alt="left image" position="left" />
+      <BackgrounImageWrapper
+        src={rightImage}
+        alt="right image"
+        position="right"
+      />
     </FeedWrapper>
   );
 };

@@ -12,10 +12,12 @@ import { useState } from 'react';
 import SliderNav from './slider-nav';
 import Container from 'wrappers/container/container';
 import DriversSlider from './slider';
+import { useTranslation } from 'react-i18next';
 
 SwiperCore.use([Pagination, Navigation]);
 
 const DriverList = () => {
+  const { t } = useTranslation();
   const [isDisabled, setIsDisabled] = useState({
     nextDisabled: false,
     prevDisabled: true,
@@ -44,7 +46,7 @@ const DriverList = () => {
       </DriverListWrapper>
       <StyledContainer>
         <DriversSlider slideChangeHandle={slideChangeHandle} />
-        <ViewButton>SEE ALL DRIVER</ViewButton>
+        <ViewButton>{t('SEE ALL DRIVER')}</ViewButton>
         <Stick></Stick>
       </StyledContainer>
     </>

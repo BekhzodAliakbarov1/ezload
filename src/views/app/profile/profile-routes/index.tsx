@@ -1,15 +1,21 @@
 import { IconButton } from '@mui/material';
 import Button from 'components/button/button';
+import FileIcon from 'components/icons/file.icon';
 import PenIcon from 'components/icons/pen.icon';
 import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
-import Input from 'components/input/input';
+import CountryRouteInput from 'components/input/route-inputs/country-route';
+import RegionRouteInput from 'components/input/route-inputs/region-route';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+import { useTranslation } from 'react-i18next';
+import { useCreateRoute } from 'server-state/mutations/use-create-route';
+import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
+import { useRoutes } from 'server-state/queries/use-routes';
 import {
   LastButtonWrapper,
   MyRoutesEditButtonWrapper,
+  NoRoutesFindSection,
   ProfileRoutesCreatedLocationsSingleRow,
   ProfileRoutesCreatedLocationsWrapper,
   ProfileRoutesDataWrapper,
@@ -19,103 +25,126 @@ import {
 } from './profile-routes.styles';
 
 const ProfileRoutes = () => {
-  const [country, setCountry] = useState('');
-  const [region, setRegion] = useState('');
+  const initialState = { id: '', title: '' };
+  const [country, setCountry] = useState<{ id: string; title: string }>(
+    initialState
+  );
+  const [region, setRegion] = useState<{ id: string; title: string }>(
+    initialState
+  );
+  const createRouteRequest = useCreateRoute();
+  const deleteRouteRequest = useDeleteRoute();
   const [isEditing, setIsEditing] = useState(false);
-  const [locations, setLocations] = useState<
-    {
-      id: string;
-      country: string;
-      region: string;
-    }[]
-  >([
-    { country: 'Uzbekistan', id: '12211221', region: 'Tashkent' },
-    { country: 'Uzbekistan', id: '21122112', region: 'Samarqand' },
-  ]);
+  const routesRequest = useRoutes();
+  const { t } = useTranslation();
 
-  const handleClickWithCurrentCountry = () => {
-    const id = uuid();
-    if (region && country) {
-      setLocations((data) => [...data, { country, region, id }]);
-      setRegion('');
+  const createRoute = ({
+    clear,
+  }: {
+    clear?: 'both' | 'region' | 'country';
+  }) => {
+    if (region.id && country.id) {
+      createRouteRequest.mutate(
+        { country: country.id, region: region.id },
+        {
+          onSuccess() {
+            routesRequest.refetch();
+            if (clear === 'both') {
+              setRegion(initialState);
+              setCountry(initialState);
+            } else if (clear === 'country') {
+              setCountry(initialState);
+            } else if (clear === 'region') {
+              setRegion(initialState);
+            }
+          },
+        }
+      );
     }
   };
 
-  const handleClickWithNewCountry = () => {
-    const id = uuid();
-
-    if (region && country) {
-      setLocations((data) => [...data, { country, region, id }]);
-      setRegion('');
-      setCountry('');
-    }
-  };
-
-  const deleteLocation = (id: string) => {
-    setLocations((data) => data.filter((item) => item.id !== id));
-  };
-  const submitLocations = () => {
-    console.log({ locations });
+  const deleteLocation = (route_id: number) => {
+    deleteRouteRequest.mutate(
+      { route_id },
+      {
+        onSuccess() {
+          routesRequest.refetch();
+        },
+      }
+    );
   };
 
   return (
     <ProfileRoutesDataWrapper>
       <ProfileRoutesHeader>
         <Text size="lg" weight="800">
-          My routes
+          {t('My routes')}
         </Text>
         {!isEditing && (
           <MyRoutesEditButtonWrapper onClick={() => setIsEditing(true)}>
             <IconButton>
               <PenIcon />
             </IconButton>
-            <Text>Edit</Text>
+            <Text>{t('Edit')}</Text>
           </MyRoutesEditButtonWrapper>
         )}
       </ProfileRoutesHeader>
-      {locations.length > 0 && (
+      {routesRequest?.data?.routes && routesRequest.data.routes.length > 0 ? (
         <ProfileRoutesCreatedLocationsWrapper>
-          {locations.map((location, index) => (
-            <ProfileRoutesCreatedLocationsSingleRow key={`location-${index}`}>
+          {routesRequest.data?.routes?.map((route, index) => (
+            <ProfileRoutesCreatedLocationsSingleRow key={route.id}>
               <Text weight="600">
-                {index + 1}. {location.region}, {location.country}
+                {index + 1}. {route.region.title}, {route.country.title}
               </Text>
-              <IconButton onClick={() => deleteLocation(location.id)}>
+              <IconButton onClick={() => deleteLocation(route.id)}>
                 <XIcon />
               </IconButton>
             </ProfileRoutesCreatedLocationsSingleRow>
           ))}
         </ProfileRoutesCreatedLocationsWrapper>
+      ) : (
+        <NoRoutesFindSection>
+          <FileIcon size="150" />
+          <Text>{t('No routes yet')}</Text>
+        </NoRoutesFindSection>
       )}
       {isEditing && (
         <>
           <ProfileRoutesInputsWrapper>
-            <Input
-              placeholder="Country"
-              value={country}
-              onChange={(e) => setCountry(e.target.value)}
+            <CountryRouteInput
+              value={country.title}
+              selectHanlder={({ id, title }) => {
+                setCountry({ id, title });
+              }}
             />
             <div>
-              <Input
-                placeholder="Region"
-                value={region}
-                onChange={(e) => setRegion(e.target.value)}
+              <RegionRouteInput
+                value={region.title}
+                country={country?.title}
+                selectHanlder={({ id, title }) => {
+                  setRegion({ id, title });
+                }}
               />
 
-              <Button onClick={handleClickWithCurrentCountry}>
+              <Button
+                disabled={!country.id || !region.id}
+                onClick={() => createRoute({ clear: 'region' })}
+              >
                 <PlusIcon />
               </Button>
             </div>
           </ProfileRoutesInputsWrapper>
-          <StyledGreenText onClick={handleClickWithNewCountry}>
-            + Add new country
+          <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
+            {t('+ Add new country')}
           </StyledGreenText>
-          <Button buttonType="dark" onClick={submitLocations}>
+          {/* <Button buttonType="dark" onClick={submitLocations}>
             Submit
-          </Button>
+          </Button> */}
           <LastButtonWrapper>
-            <Button>Save changes</Button>
-            <Button buttonType="white">Cancel</Button>
+            <Button>{t('Save changes')}</Button>
+            <Button onClick={() => setIsEditing(false)} buttonType="white">
+              {t('Cancel')}
+            </Button>
           </LastButtonWrapper>
         </>
       )}

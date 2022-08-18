@@ -1,4 +1,5 @@
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 import { useMutation } from 'react-query';
 import { request } from '../api';
 
@@ -9,6 +10,7 @@ interface UpdatePhoneNumberRequestRequest {
 
 export const useUpdatePhoneNumber = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return useMutation(
     (data: UpdatePhoneNumberRequestRequest) => {
       return request
@@ -18,12 +20,12 @@ export const useUpdatePhoneNumber = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Phone number updated successfully!', {
+        enqueueSnackbar(t('Phone number updated successfully!'), {
           variant: 'success',
         });
       },
       onError(err) {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
         console.log('ERROR', err);
       },
     }

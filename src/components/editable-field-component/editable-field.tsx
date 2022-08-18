@@ -15,7 +15,8 @@ import {
 import ReactCodeInputComponent from 'components/code-input/react-code-input';
 import { useVerification } from 'server-state/mutations/use-verification';
 import { useUpdatePhoneNumber } from 'server-state/mutations/use-phone-number';
-import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
+import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
+import { useTranslation } from 'react-i18next';
 
 const EditableField: React.FC<{
   label: string;
@@ -31,7 +32,8 @@ const EditableField: React.FC<{
   const [verificationCode, setVerificationCode] = useState('');
   const verificationRequest = useVerification();
   const updatePhoneNumberRequest = useUpdatePhoneNumber();
-  const updateProfileRequest = useUpdateProfile();
+  const updateProfileRequest = useUpdateCustomerProfile();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setEditClicked(false);
@@ -85,7 +87,7 @@ const EditableField: React.FC<{
       <Text weight="500">{label}</Text>
       {!editClicked ? (
         <EditableFieldWrapper>
-          <Text color="main_100" weight="600" size="md">
+          <Text weight="600" size="md">
             {inputType === 'number' && '+'}
             {value}
           </Text>
@@ -93,7 +95,7 @@ const EditableField: React.FC<{
             <StyledIconButton>
               <PenIcon />
             </StyledIconButton>
-            <Text>Edit</Text>
+            <Text>{t('Edit')}</Text>
           </PersonalInformationSvgWrapper>
         </EditableFieldWrapper>
       ) : (
@@ -107,38 +109,45 @@ const EditableField: React.FC<{
             onChange={(e) => setInputValue(e.target.value)}
           />
           <Button
+            aria-label="save"
             disabled={isPhoneSubmitclicked}
             type="submit"
             loading={
               verificationRequest.isLoading || updateProfileRequest.isLoading
             }
           >
-            Save changes
+            {t('Save changes')}
           </Button>
-          <Text
+          <Button
+            aria-label="cancel"
+            type="button"
+            buttonType="white"
             onClick={() => {
               setEditClicked(false);
               setIsPhoneSubmitclicked(false);
             }}
           >
-            Cancel
-          </Text>
+            {t('Cancel')}
+          </Button>
         </EditFiedlForm>
       )}
       {isPhoneSubmitclicked && editClicked && (
         <VerificationCodeWrapper>
-          <Text>We just sent a code to your phone {inputValue}</Text>
+          <Text>
+            {t('We just sent a code to your phone')} {inputValue}
+          </Text>
           <ConfirmVerificationCodeWrapper>
             <ReactCodeInputComponent size="md" setCode={setVerificationCode} />
             <Button
+              aria-label="confirm code"
               loading={updatePhoneNumberRequest.isLoading}
               fullWidth
               onClick={handleChangePhoneNumber}
             >
-              Confirm code
+              {t('Confirm code')}
             </Button>
             <Text onClick={resendButtonClick} weight="600">
-              Resend sms code
+              {t('Send another code')}
             </Text>
           </ConfirmVerificationCodeWrapper>
         </VerificationCodeWrapper>

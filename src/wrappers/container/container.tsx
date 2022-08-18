@@ -6,19 +6,19 @@ const Container = styled.div`
   width: 100%;
 
   @media (max-width: ${(props) => props.theme.sizes.xl}) {
-    padding: 0 15px;
+    padding: 0 24px;
   }
 
   @media (max-width: ${(props) => props.theme.sizes.lg}) {
-    padding: 0 15px;
+    padding: 0 0px;
   }
 
   @media (max-width: ${(props) => props.theme.sizes.md}) {
-    padding: 0 15px;
+    padding: 0 0px;
   }
 
   @media (max-width: ${(props) => props.theme.sizes.sm}) {
-    padding: 0;
+    padding: 0 0px;
   }
 `;
 

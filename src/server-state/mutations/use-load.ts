@@ -1,4 +1,5 @@
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 
@@ -26,6 +27,7 @@ interface DeleteLoadRequest {
 // CREATE
 export const useCreateLoad = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return useMutation(
     (data: CreateLoadRequest) =>
       request
@@ -34,10 +36,12 @@ export const useCreateLoad = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Load created successfully!', { variant: 'success' });
+        enqueueSnackbar(t('Load created successfully!'), {
+          variant: 'success',
+        });
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );

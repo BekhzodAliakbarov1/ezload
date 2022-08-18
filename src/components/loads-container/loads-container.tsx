@@ -8,13 +8,14 @@ import { SingleLoadResponse } from 'types/load.types';
 import Button from 'components/button/button';
 import FileIcon from 'components/icons/file.icon';
 import Text from 'components/typography/text';
+import { useTranslation } from 'react-i18next';
 
 const LoadsContainer: React.FC<{
-  loads: SingleLoadResponse[];
+  loads?: SingleLoadResponse[];
   hasNextPage?: boolean;
   clickable?: boolean;
-  loadType: 'new' | 'on_the_way' | 'delivered';
-}> = ({ loads, clickable, loadType, hasNextPage }) => {
+}> = ({ loads = [], clickable, hasNextPage }) => {
+  const { t } = useTranslation();
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (
@@ -24,12 +25,12 @@ const LoadsContainer: React.FC<{
       ) : (
         <NoLoadsFindSection>
           <FileIcon size="150" />
-          <Text>No Loads</Text>
+          <Text>{t('No loads yet')}</Text>
         </NoLoadsFindSection>
       )}
       {hasNextPage && (
-        <Button fullWidth buttonType="secondary_dark">
-          Load more
+        <Button aria-label="more" fullWidth buttonType="secondary_dark">
+          {t('Load more')}
         </Button>
       )}
     </LoadsContainerBox>

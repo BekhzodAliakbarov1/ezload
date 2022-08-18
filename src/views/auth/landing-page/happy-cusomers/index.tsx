@@ -13,17 +13,19 @@ import {
 import UserReview from './user-review';
 import customerImage from 'assets/img/customer-image.png';
 import profileImage from 'assets/img/profile.png';
+import { useTranslation } from 'react-i18next';
 
 const HappyCustomers = () => {
+  const { t } = useTranslation();
   return (
     <>
       <HappyCusmrWrapper>
         <Container>
           <Rectangle />
           <TextBox>
-            <BoldText weight="700">Happy Customers</BoldText>
+            <BoldText weight="700">{t('Happy Customers')}</BoldText>
             <StyledText weight="500">
-              Our core value is customer satisfaction
+              {t('Our core value is customer satisfaction')}
             </StyledText>
           </TextBox>
           <FlexBox>
@@ -71,7 +73,7 @@ const HappyCustomers = () => {
             </ThirdBox>
           </FlexBox>
           <Center style={{ marginBottom: '300px' }}>
-            <Button>READ ALL REVIEWS</Button>
+            <Button>{t('READ ALL REVIEWS')}</Button>
           </Center>
         </Container>
       </HappyCusmrWrapper>

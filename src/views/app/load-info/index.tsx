@@ -8,7 +8,10 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
+import { useCreateBid } from 'server-state/mutations/use-create-bid';
+import { useDeleteBid } from 'server-state/mutations/use-delete-bid';
 import { useLoad } from 'server-state/queries/use-load';
 import LoadBids from './load-bids';
 import LoadCreator from './load-creator';
@@ -21,38 +24,69 @@ import {
 } from './load-info.styles';
 
 const LoadInfoView = () => {
-  // after backend add id use below id inside api call
   const { load_id } = useParams<{
     load_id: string;
   }>();
-
+  const { t } = useTranslation();
   const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ load_id });
+  const createBidRequest = useCreateBid({ load_id });
+  const deleteBidRequest = useDeleteBid({ load_id });
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    close();
+    const target = e.target as typeof e.target & {
+      price: { value: string };
+    };
+    createBidRequest.mutate(
+      {
+        load: load_id,
+        price: target.price.value,
+      },
+      {
+        onSuccess() {
+          close();
+        },
+      }
+    );
+  };
+
+  const deleteBidClickHandler = () => {
+    deleteBidRequest.mutate({
+      bid_id: singleLoadRequest.data?.bid_id,
+    });
   };
 
   return (
     <>
       <LoadInfoViewWrapper>
         <LoadInfowViewHeader>
-          <Text weight="700">Load Details</Text>
+          <Text weight="700">{t('Load Details')}</Text>
           {isDriver && (
             <>
               {singleLoadRequest.data?.status === 1 ? (
-                <Button onClick={open}>Bid to the load</Button>
+                <>
+                  {singleLoadRequest.data.is_bidden ? (
+                    <Button aria-label="delete" onClick={deleteBidClickHandler}>
+                      {t('Delete bid')}
+                    </Button>
+                  ) : (
+                    <Button aria-label="bid load" onClick={open}>
+                      {t('Bid to the load')}
+                    </Button>
+                  )}
+                </>
               ) : (
                 singleLoadRequest.data?.status === 2 && (
                   <Button
+                    aria-label="bidded"
                     startIcon={<BidIcon />}
                     variant="outlined"
                     disabled
                     buttonType="disabled"
                   >
-                    Bid to the load
+                    {t('Bid to the load')}
                   </Button>
                 )
               )}
@@ -64,7 +98,7 @@ const LoadInfoView = () => {
             <LoadCard
               clickable={false}
               load={singleLoadRequest.data}
-              withButtons
+              // withButtons
             />
           )}
           {singleLoadRequest.data && (
@@ -80,13 +114,20 @@ const LoadInfoView = () => {
       {/* Bid Modal */}
       <Modal open={isOpen} onClose={close}>
         <MakeBidModalWrapper onSubmit={submitHandler}>
-          <Text className="header">Make a bid</Text>
-          <Text className="cost">Customer’s suggestion 4 500 000 SUM</Text>
-          <Input placeholder="Your bid" />
+          <Text className="header">{t('Make a bid')}</Text>
+          <Text className="cost">
+            {t('Customer’s suggestion')} {singleLoadRequest.data?.price} USD
+          </Text>
+          <Input name="price" placeholder={t('Your bid')} />
           <ModalButtonsWrapper>
-            <Button>Submit</Button>
-            <Button type="button" onClick={close} buttonType="white">
-              Cancel
+            <Button aria-label="submit">{t('Submit')}</Button>
+            <Button
+              aria-label="cencel"
+              type="button"
+              onClick={close}
+              buttonType="white"
+            >
+              {t('Cancel')}
             </Button>
           </ModalButtonsWrapper>
         </MakeBidModalWrapper>

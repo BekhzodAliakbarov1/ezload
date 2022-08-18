@@ -4,8 +4,9 @@ import BucketIcon from 'components/icons/bucket';
 import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteAddress } from 'server-state/mutations/use-address';
+import { useDeleteProfileAddress } from 'server-state/mutations/use-profile-address';
 import { AddressInterface } from 'types/address.types';
 import {
   AddressCardButtonsWrapper,
@@ -19,7 +20,8 @@ import {
 const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
   const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
-  const deleteAddressrequest = useDeleteAddress();
+  const deleteAddressrequest = useDeleteProfileAddress();
+  const { t } = useTranslation();
 
   const handleDelete = () => {
     deleteAddressrequest.mutate({ id: String(id) });
@@ -39,15 +41,17 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
     <>
       <AddressCardWrapper>
         <AddressCardDataLine>
-          <Text color="main_100">
+          <Text>
             {address.country.title}
             {address.region.title && `, ${address.region.title}`}
             {address.district.title && `, ${address.district.title}`}
             {address.postal_code && `, ${address.postal_code}`}
           </Text>
           <AddressCardButtonsWrapper>
-            <Button onClick={handleClick}>Edit</Button>
-            <StyledIconButton onClick={open}>
+            <Button aria-label="Edit" onClick={handleClick}>
+              {t('Edit')}
+            </Button>
+            <StyledIconButton aria-label="delete" onClick={open}>
               <BucketIcon />
             </StyledIconButton>
           </AddressCardButtonsWrapper>
@@ -56,11 +60,15 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
           <Text color="main_100">
-            Are you sure to delete? Actions cannot be undone
+            {t('Are you sure to delete? Actions cannot be undone')}
           </Text>
           <ModalButtonsBox>
-            <Button onClick={handleDelete}>Yes, delete</Button>
-            <Button onClick={close}>Cancel</Button>
+            <Button aria-label="delete" onClick={handleDelete}>
+              {t('Yes, delete')}
+            </Button>
+            <Button aria-label="cancel" onClick={close}>
+              {t('Cancel')}
+            </Button>
           </ModalButtonsBox>
         </ModalWrapper>
       </Modal>

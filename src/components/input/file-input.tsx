@@ -7,7 +7,7 @@ const Input = styled.input`
 
 interface Props {
   id?: string;
-  accept?: 'image/*' | 'video/*';
+  accept?: 'image/*';
 }
 
 const FileInput = React.forwardRef<

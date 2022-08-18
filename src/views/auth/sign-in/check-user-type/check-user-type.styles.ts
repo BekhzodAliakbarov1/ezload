@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import MuiButton from '@mui/material/Button';
-import { colors } from 'styles/variables';
 
 export const CheckUserTypeWrapper = styled.div`
   width: 50%;
@@ -9,6 +8,9 @@ export const CheckUserTypeWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 800px) {
+    width: 100%;
+  }
 `;
 export const CheckUserTypeBox = styled.div`
   display: flex;
@@ -20,6 +22,12 @@ export const CheckUserTypeBox = styled.div`
     font-size: 24px;
     line-height: 29px;
     margin-bottom: 40px;
+  }
+  @media (max-width: 1140px) {
+    max-width: 400px;
+  }
+  @media (max-width: 800px) {
+    max-width: 302px;
   }
 `;
 

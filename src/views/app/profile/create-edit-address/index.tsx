@@ -11,38 +11,47 @@ import Button from 'components/button/button';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AddressInterface } from 'types/address.types';
 import {
-  useCreateAddress,
-  useEditAddress,
-} from 'server-state/mutations/use-address';
+  useCreateProfileAddress,
+  useEditProfileAddress,
+} from 'server-state/mutations/use-profile-address';
 import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
 import DistrictInput from 'components/input/district-input';
 import Map from 'components/map';
+import { useTranslation } from 'react-i18next';
 
-interface StateType {
-  state: { type?: 'EDIT'; data?: AddressInterface };
-}
 const CreateEditAddress = () => {
-  const { state } = useLocation() as StateType;
+  const { state } = useLocation() as {
+    state: { type?: 'EDIT'; data?: AddressInterface };
+  };
   const [
     { address_1, address_2, country, region, district, zip_code, latLong },
     setAddress,
   ] = useState({
-    address_1: '',
+    address_1: state?.data?.address.orientation ?? '',
     address_2: '',
-    country: { title: state?.data?.address.country.title ?? '', id: 0 },
-    region: { title: state?.data?.address.region.title ?? '', id: 0 },
-    district: { title: state?.data?.address.district.title ?? '', id: 0 },
+    country: {
+      title: state?.data?.address.country.title ?? '',
+      id: state?.data?.address.country.id,
+    },
+    region: {
+      title: state?.data?.address.region.title ?? '',
+      id: state?.data?.address.region.id,
+    },
+    district: {
+      title: state?.data?.address.district.title ?? '',
+      id: state?.data?.address.district.id,
+    },
     latLong: {
       lat: state?.data?.address.location.latitude ?? 0,
       lng: state?.data?.address.location.longitude ?? 0,
     },
     zip_code: state?.data?.address.postal_code ?? '',
   });
-
+  const { t } = useTranslation();
   const navigate = useNavigate();
-  const createAddressRequest = useCreateAddress();
-  const editAddressRequest = useEditAddress(state?.data?.id);
+  const createAddressRequest = useCreateProfileAddress();
+  const editAddressRequest = useEditProfileAddress(state?.data?.id);
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,10 +59,11 @@ const CreateEditAddress = () => {
       country: Number(country.id),
       district: Number(district.id),
       location: { latitude: latLong.lat, longitude: latLong.lng },
-      orientation: address_1 ?? '',
+      orientation: address_1 ?? 'street',
       postal_code: zip_code,
       region: Number(region.id),
     };
+
     if (state?.type === 'EDIT') {
       editAddressRequest.mutate(address, {
         onSuccess() {
@@ -68,7 +78,6 @@ const CreateEditAddress = () => {
       });
     }
   };
-
   const searchInputSelectHandler = ({
     fieldName,
     val,
@@ -101,11 +110,11 @@ const CreateEditAddress = () => {
 
   return (
     <CreateAddressWrapper onSubmit={submitHandler}>
-      <Text color="main_100">My addresses</Text>
+      <Text color="main_100">{t('My addresses')}</Text>
       <CreateAddressInputsBox>
         <div>
           <Input
-            placeholder="Addressline 1"
+            placeholder={`${'Addressline'} 1`}
             value={address_1}
             onChange={(e) => {
               simpleInputSelectionHandler({
@@ -115,7 +124,7 @@ const CreateEditAddress = () => {
             }}
           />
           <Input
-            placeholder="Addressline 2"
+            placeholder={`${'Addressline'} 2`}
             value={address_2}
             onChange={(e) => {
               simpleInputSelectionHandler({
@@ -157,6 +166,7 @@ const CreateEditAddress = () => {
             }}
           />
           <Input
+            required
             placeholder="Zip Code"
             value={zip_code}
             onChange={(e) => {
@@ -184,10 +194,10 @@ const CreateEditAddress = () => {
               : createAddressRequest.isLoading
           }
         >
-          {state?.type === 'EDIT' ? 'Edit address' : 'Add address'}
+          {state?.type === 'EDIT' ? t('Edit address') : t('Add address')}
         </Button>
         <Button buttonType="secondary_dark" onClick={() => navigate(-1)}>
-          Cancel
+          {t('Cancel')}
         </Button>
       </CreateAddressButtonsWrapper>
     </CreateAddressWrapper>

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import image from 'assets/img/login-bg-image.jpg';
-import logo from 'assets/img/logo-white.svg';
+import logo from 'assets/img/logo-dark.png';
 import styled from 'styled-components';
 import SignIn from 'views/auth/sign-in';
-import { colors } from 'styles/variables';
 import CheckUserType from 'views/auth/sign-in/check-user-type';
 
 export const SignInLayoutWrapper = styled.div`
@@ -25,6 +24,9 @@ export const SignInImageWrapper = styled.div`
   img {
     margin-top: 32px;
     margin-left: 75px;
+  }
+  @media (max-width: 800px) {
+    display: none;
   }
 `;
 

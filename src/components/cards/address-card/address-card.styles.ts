@@ -4,8 +4,12 @@ import { colors } from 'styles/variables';
 
 export const AddressCardWrapper = styled.div`
   width: 100%;
-  height: 72px;
-  border-bottom: 1px solid ${(props) => props.theme.text.main_10};
+  height: fit-content;
+  padding-bottom: 32px;
+  border-bottom: 2px solid ${(props) => props.theme.text.main_5};
+  @media (max-width: 800px) {
+    height: auto;
+  }
 `;
 
 export const AddressCardDataLine = styled.div`
@@ -19,6 +23,18 @@ export const AddressCardDataLine = styled.div`
     font-size: 18px;
     line-height: 24px;
     letter-spacing: 0.15px;
+    text-align: left;
+    color: ${(props) => props.theme.text.main_100};
+  }
+  @media (max-width: 800px) {
+    p {
+      font-size: 16px;
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    height: auto;
+    align-items: flex-start;
+    flex-direction: column;
   }
 `;
 
@@ -59,6 +75,15 @@ export const ModalWrapper = styled.div`
     letter-spacing: 0.15px;
     margin-bottom: 48px;
   }
+  @media (max-width: 800px) {
+    max-width: 90vw;
+    padding: 24px;
+    height: auto;
+    > p {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 export const ModalButtonsBox = styled.div`
@@ -77,5 +102,9 @@ export const ModalButtonsBox = styled.div`
     :hover {
       background-color: ${(props) => props.theme.text.main_5};
     }
+  }
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 12px;
   }
 `;

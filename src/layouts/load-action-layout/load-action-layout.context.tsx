@@ -15,6 +15,7 @@ interface Locations {
     lat?: number;
     lng?: number;
   };
+  save_my_address: boolean;
 }
 
 interface LoadContextInterface {
@@ -41,9 +42,11 @@ interface LoadContextInterface {
   setValues: (values?: { [key: string]: any }) => void;
 }
 
-const today = new Date();
 const tommorrow = new Date();
-tommorrow.setDate(tommorrow.getDate() + 2);
+const theDayAfterTommorrow = new Date();
+tommorrow.setDate(tommorrow.getDate() + 1);
+theDayAfterTommorrow.setDate(theDayAfterTommorrow.getDate() + 2);
+console.log(tommorrow);
 
 const defaultdata = {
   load_title: '',
@@ -58,6 +61,7 @@ const defaultdata = {
       lat: 0,
       lng: 0,
     },
+    save_my_address: false,
   },
   delivery: {
     address_1: '',
@@ -70,15 +74,16 @@ const defaultdata = {
       lat: 0,
       lng: 0,
     },
+    save_my_address: false,
   },
   dates: {
     pickup: {
-      start: today,
-      end: tommorrow,
+      start: tommorrow,
+      end: theDayAfterTommorrow,
     },
     delivery: {
-      start: today,
-      end: tommorrow,
+      start: tommorrow,
+      end: theDayAfterTommorrow,
     },
   },
   lugage_size: '',
@@ -122,6 +127,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
         lat: state?.data?.pickup_point.location.latitude,
         lng: state?.data?.pickup_point.location.longitude,
       },
+      save_my_address: false,
     },
     delivery: {
       address_1: state?.data?.destination.orientation,
@@ -143,15 +149,32 @@ export const LoadContextProvider: React.FC = ({ children }) => {
         lat: state?.data?.destination.location.latitude,
         lng: state?.data?.destination.location.longitude,
       },
+      save_my_address: false,
     },
     dates: {
       pickup: {
-        start: new Date(`${state?.data?.earliest_pick_up}`),
-        end: new Date(`${state?.data?.latest_pick_up}`),
+        start: new Date(
+          state?.data?.earliest_pick_up
+            ? `${state?.data?.earliest_pick_up}`
+            : tommorrow
+        ),
+        end: new Date(
+          state?.data?.latest_pick_up
+            ? `${state?.data?.latest_pick_up}`
+            : theDayAfterTommorrow
+        ),
       },
       delivery: {
-        start: new Date(`${state?.data?.earliest_delivery}`),
-        end: new Date(`${state?.data?.latest_delivery}`),
+        start: new Date(
+          state?.data?.earliest_delivery
+            ? `${state?.data?.earliest_delivery}`
+            : tommorrow
+        ),
+        end: new Date(
+          state?.data?.latest_delivery
+            ? `${state?.data?.latest_delivery}`
+            : theDayAfterTommorrow
+        ),
       },
     },
     lugage_size: state?.data?.weight ? String(state?.data?.weight) : '',

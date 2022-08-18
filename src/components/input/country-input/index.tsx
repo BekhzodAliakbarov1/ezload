@@ -8,11 +8,13 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useCountry } from 'server-state/queries/use-country';
 import { SearchInput } from '../search-input';
 import { Div, List, popperStyles, Rows } from '../input.styles';
+import { useTranslation } from 'react-i18next';
 
 const CountryInput: React.FC<{
   value: string;
   selectHanlder: ({ id, title }: { title: string; id: string }) => void;
 }> = ({ value, selectHanlder }) => {
+  const { t } = useTranslation();
   const popperState = usePopper();
   const [country, setCountry] = useState(value);
   const {
@@ -26,6 +28,7 @@ const CountryInput: React.FC<{
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -58,7 +61,7 @@ const CountryInput: React.FC<{
             loading={isFetchingNextPage}
           >
             <Spinner loading={isLoading} height="100%">
-              {data?.pages.map((page) =>
+              {data?.pages.map((page, index) =>
                 page?.count > 0 ? (
                   page.results.map((item) => (
                     <Rows
@@ -75,7 +78,7 @@ const CountryInput: React.FC<{
                     </Rows>
                   ))
                 ) : (
-                  <Div>
+                  <Div key={index}>
                     <Text>Country not found</Text>
                   </Div>
                 )
@@ -88,7 +91,7 @@ const CountryInput: React.FC<{
       <SearchInput
         required
         {...bindToggle(popperState)}
-        placeholder="Country"
+        placeholder={t('Country')}
         onChange={(e) => {
           setCountry(e.target.value);
           handleSearch();

@@ -14,6 +14,9 @@ export const ProfileRoutesDataWrapper = styled.div`
     display: flex;
     align-items: center;
   }
+  @media (max-width: 800px) {
+    padding: 30px 24px;
+  }
 `;
 
 export const ProfileRoutesHeader = styled.div`
@@ -49,13 +52,17 @@ export const ProfileRoutesInputsWrapper = styled.div`
   input {
     width: 100%;
   }
-  div {
+  > div {
     display: flex;
     gap: 17px;
+    > div {
+      width: 100%;
+    }
     > button {
       height: 47px;
       width: 47px;
       min-width: 47px;
+      max-width: 47px;
       padding: 0px !important;
     }
   }
@@ -78,6 +85,9 @@ export const LastButtonWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 8px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const ProfileRoutesCreatedLocationsWrapper = styled.div`
@@ -102,5 +112,21 @@ export const ProfileRoutesCreatedLocationsSingleRow = styled.div`
     font-size: 18px;
     line-height: 21px;
     letter-spacing: 0.15px;
+  }
+`;
+
+export const NoRoutesFindSection = styled.div`
+  width: 100%;
+  padding-top: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  > p {
+    font-size: 24px;
+    line-height: 24px;
+    color: ${(props) => props.theme.text.main_30};
   }
 `;

@@ -5,6 +5,7 @@ export const LoadInfoCradWrapper = styled.div`
   padding: 24px 32px;
   background-color: ${(props) => props.theme.bg.main};
   width: 100%;
+  border-radius: 8px;
   > p {
     font-size: 16px;
     line-height: 20px;
@@ -15,6 +16,11 @@ export const LoadInfoCradWrapper = styled.div`
     margin-bottom: 40px;
     height: 26px;
   }
+  @media (max-width: 800px) {
+    button {
+      max-width: fit-content !important;
+    }
+  }
 `;
 
 export const LoadInfoCardDataBox = styled.div`
@@ -22,6 +28,10 @@ export const LoadInfoCardDataBox = styled.div`
   display: flex;
   gap: 80px;
   margin-bottom: 40px;
+  @media (max-width: 800px) {
+    flex-direction: column;
+    gap: 32px;
+  }
 `;
 
 export const LoadInfoCardDataSingleBox = styled.div`

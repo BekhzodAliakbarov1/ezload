@@ -41,15 +41,15 @@ const hasStartIconStyles = css`
 
 const StyledInput = styled.input<InputProps>`
   width: 100%;
-  /* background-color: ${(props) => props.theme.colors.primary}; */
   outline: none;
-  border: 2px solid ${(props) => props.theme.text.main_20};
+  border: 1.5px solid ${(props) => props.theme.text.main_20};
   border-radius: 2px;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   padding: 12px 13px;
   color: ${(props) => props.theme.text.main_100};
+  background-color: ${(props) => props.theme.bg.secondary};
 
   &:placeholder-shown ~ span {
     display: none;

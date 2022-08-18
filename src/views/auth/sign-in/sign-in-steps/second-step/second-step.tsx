@@ -15,12 +15,14 @@ import ReactCodeInputComponent from 'components/code-input/react-code-input';
 import { useLogin } from 'server-state/mutations/use-login';
 import { useAuth } from 'global-state/auth/auth.state';
 import { useVerification } from 'server-state/mutations/use-verification';
+import { useTranslation } from 'react-i18next';
 
 const SecondStep: React.FC<{
   phone_number: string;
   userType: 'customer' | 'driver';
   saveTokenAndId: (accessToken: string, user_id: string) => void;
 }> = ({ phone_number, userType, saveTokenAndId }) => {
+  const { t } = useTranslation();
   const [hasError, setHasError] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const { handleSubmit } = useForm();
@@ -67,25 +69,25 @@ const SecondStep: React.FC<{
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p>Sorry, this mobile not registered</p>
+            <p>{t('Sorry, this mobile not registered')}</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
       <SecondStepDataWrapper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Text size="lg" weight="800">
-            Great! Just one step
+            {t('Great! Just one step')}
           </Text>
           <Text size="sm" weight="500">
-            We just sent a code to your phone +{phone_number}
+            {t('We just sent a code to your phone')} +{phone_number}
           </Text>
           <ConfirmCodeWrapper error={hasError}>
             <ReactCodeInputComponent size="lg" setCode={setVerificationCode} />
           </ConfirmCodeWrapper>
           <Button loading={loginRequest.isLoading} type="submit" fullWidth>
-            Confirm code
+            {t('Confirm code')}
           </Button>
-          <h3 onClick={sendCodeAgain}>Send another code</h3>
+          <h3 onClick={sendCodeAgain}>{t('Send another code')}</h3>
         </form>
       </SecondStepDataWrapper>
     </CreatorSignInSecondStepWrapper>

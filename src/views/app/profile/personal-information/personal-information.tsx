@@ -6,28 +6,41 @@ import {
 } from './personal-information.styles';
 import EditableFiled from 'components/editable-field-component/editable-field';
 import TruckInfo from './truck-part';
-import { useDriver } from 'hooks/use-driver';
 import { useProfile } from 'server-state/queries/use-profile';
-import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
+import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 import ProfileImagePart from './profile-image-part';
 import { useUpload } from 'server-state/mutations/use-upload';
+import { useDriver } from 'hooks/use-driver';
+import { useTranslation } from 'react-i18next';
+
 const PersonalInformation = () => {
+  const { t } = useTranslation();
   const { data } = useProfile();
-  const updateProfileRequest = useUpdateProfile();
+  const updateProfileRequest = useUpdateCustomerProfile();
   const uploadImageRequest = useUpload();
+  const { isDriver } = useDriver();
   const [profileInfo, setProfileInfo] = useState<{
     name: string;
     phone: string;
-    profile_picture: string;
+    profile_picture?: string;
+    vehicle?: {
+      title?: string;
+      licence_plate?: string;
+      capacity?: string;
+    };
   }>({ name: '', phone: '', profile_picture: '' });
-  const { isDriver } = useDriver();
 
   useEffect(() => {
     if (data?.first_name && data.phone_number) {
       setProfileInfo({
         name: data.first_name,
         phone: data.phone_number,
-        profile_picture: data.profile_picture.file,
+        profile_picture: data.profile_picture?.file,
+        vehicle: {
+          capacity: data.vehicle?.capacity,
+          licence_plate: data.vehicle?.licence_plate,
+          title: data.vehicle?.title,
+        },
       });
     }
   }, [data]);
@@ -62,7 +75,7 @@ const PersonalInformation = () => {
 
   return (
     <PersonalInformationWrapper>
-      <PersonalInformationTopPartWrapper>
+      <PersonalInformationTopPartWrapper isDriver={isDriver}>
         <ProfileImagePart
           img={profileInfo.profile_picture}
           onSubmit={handleImageUpload}
@@ -72,28 +85,28 @@ const PersonalInformation = () => {
           {profileInfo.name && (
             <EditableFiled
               inputType="text"
-              label="Your name"
+              label={t('Your name')}
               value={profileInfo.name}
-              placeholder="Enter name"
+              placeholder={t('Enter name')}
               onSubmit={handleNameSubmit}
             />
           )}
           {profileInfo.phone && (
             <EditableFiled
               inputType="number"
-              label="Your phone number"
+              label={t('Your phone number')}
               value={profileInfo.phone}
-              placeholder="Enter phone number"
+              placeholder={t('Enter your phone number')}
               onSubmit={handlePhoneSubmit}
             />
           )}
         </NamePhoneNumberWrapper>
       </PersonalInformationTopPartWrapper>
-      {isDriver && (
+      {profileInfo.vehicle?.title && (
         <TruckInfo
-          car_capacity="2000 tonnes"
-          car_model="Man"
-          car_number="01  T 533 UU"
+          car_capacity={profileInfo.vehicle?.capacity}
+          car_model={profileInfo.vehicle?.title}
+          car_number={profileInfo.vehicle?.licence_plate}
         />
       )}
     </PersonalInformationWrapper>

@@ -6,15 +6,32 @@ import {
   SearchDriversListWrapper,
 } from './search-drivers-list.styles';
 import { Link } from 'react-router-dom';
-import { useDrivers } from 'server-state/queries/use-drivers';
+import { SingleDriverResponse } from 'server-state/queries/use-drivers';
+import { colors } from 'styles/variables';
 
-const SearchDriversList = () => {
-  const topDriversResponse = useDrivers('top');
-  const workedBeforeDriversResponse = useDrivers('worked_before');
+const SearchDriversList: React.FC<{ drivers?: SingleDriverResponse[] }> = ({
+  drivers,
+}) => {
+  // DONOT DELETE BELOW COMMENTS
+  // const topDriversResponse = useDrivers('top');
+  // const workedBeforeDriversResponse = useDrivers('worked_before');
 
   return (
     <SearchDriversListWrapper>
       <Text weight="700">Top drivers</Text>
+      <SearchDriversListItemsWrapper>
+        {drivers?.map((driver) => (
+          <Link key={driver.id} to={`/drivers/${driver.id}`}>
+            <DriverCard
+              sizes="104px"
+              {...driver}
+              clickable
+              image={driver.profile_picture.file}
+            />
+          </Link>
+        ))}
+      </SearchDriversListItemsWrapper>
+      {/* <Text weight="700">Top drivers</Text>
       <SearchDriversListItemsWrapper>
         {topDriversResponse.data?.pages &&
           topDriversResponse.data.pages[0].results.map((driver) => (
@@ -41,7 +58,7 @@ const SearchDriversList = () => {
               />
             </Link>
           ))}
-      </SearchDriversListItemsWrapper>
+      </SearchDriversListItemsWrapper> */}
     </SearchDriversListWrapper>
   );
 };

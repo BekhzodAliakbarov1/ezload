@@ -9,6 +9,10 @@ export const DriverSignInFourthStepWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 0px 24px;
+  }
 `;
 
 export const FourthStepDataWrapper = styled.div`
@@ -64,12 +68,14 @@ export const FourthStepInputsWrapper = styled.div`
     width: 100%;
   }
   div {
+    width: 100%;
     display: flex;
     gap: 17px;
     > button {
       height: 47px;
       width: 47px;
       min-width: 47px;
+      max-width: 47px;
       padding: 0px !important;
     }
   }

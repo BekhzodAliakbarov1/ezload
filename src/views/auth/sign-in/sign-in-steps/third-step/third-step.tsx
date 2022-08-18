@@ -6,7 +6,8 @@ import FileInput from 'components/input/file-input';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
-import { useUpdateProfile } from 'server-state/mutations/use-update-profile';
+import { useTranslation } from 'react-i18next';
+import { useUpdateCustomerProfile } from 'server-state/mutations/use-update-profile';
 import { useUpload } from 'server-state/mutations/use-upload';
 import {
   CreatorSignInThirdStepWrapper,
@@ -23,6 +24,7 @@ const ThirdStep: React.FC<{
   user_id: string;
   handleLogin: () => void;
 }> = ({ token, user_id, handleLogin }) => {
+  const { t } = useTranslation();
   const [hasError, setHasError] = useState(false);
   const [data, setData] = useState<{
     picture_url?: string;
@@ -32,7 +34,7 @@ const ThirdStep: React.FC<{
     first_name: '',
   });
   const uploadImageRequest = useUpload();
-  const updateProfileRequest = useUpdateProfile();
+  const updateProfileRequest = useUpdateCustomerProfile();
 
   const clickHandler = () => {
     if (data.first_name) {
@@ -81,13 +83,13 @@ const ThirdStep: React.FC<{
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p>Sorry, this mobile not registered</p>
+            <p>{t('Sorry, this mobile not registered')}</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
       <ThirdStepDataWrapper>
         <Text size="lg" weight="800">
-          Additional Infomartion
+          {t('Additional Infomartion')}
         </Text>
         <PictureAndNameWrapper>
           <form>
@@ -110,11 +112,11 @@ const ThirdStep: React.FC<{
           </form>
 
           <NameInputWrapper>
-            <label htmlFor="name">Your displayed name</label>
+            <label htmlFor="name">{t('Your displayed name')}</label>
             <Input
               value={data.first_name}
               onChange={(e) => onChangeHandler(e.target.value)}
-              placeholder="Write your name"
+              placeholder={t('Write your name')}
               id="name"
             />
           </NameInputWrapper>
@@ -128,7 +130,7 @@ const ThirdStep: React.FC<{
         >
           {uploadImageRequest.isLoading
             ? `${uploadImageRequest.progress}%`
-            : 'Save'}
+            : t('Save')}
         </Button>
       </ThirdStepDataWrapper>
     </CreatorSignInThirdStepWrapper>

@@ -18,6 +18,10 @@ export interface CustomTheme {
 
     light: string;
   };
+  text_active: {
+    active: string;
+    red_active: string;
+  };
   button: {
     contained: string;
     dark: string;
@@ -27,6 +31,7 @@ export interface CustomTheme {
     contained_hover: string;
     dark_hover: string;
     warning_hover: string;
+    red_active: string;
   };
   colors: {
     primary: string;

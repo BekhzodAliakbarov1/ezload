@@ -1,18 +1,20 @@
 import { MenuItem, SelectChangeEvent } from '@mui/material';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useAddress } from 'server-state/queries/use-address';
 import { StyledSelectInput } from './address-input.styles';
 
 const AddressInput = () => {
-  const [location, setLocation] = useState<number>(5);
   const addressRequest = useAddress();
+  const [location, setLocation] = useState<string>('');
+  const { t } = useTranslation();
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
     const selectedAddress = addressRequest.data?.pages[0].results.filter(
       (address) => address.id === event.target.value
     );
     if (selectedAddress) {
-      setLocation(selectedAddress[0].id);
+      setLocation(String(selectedAddress[0].id));
     }
   };
 
@@ -21,7 +23,7 @@ const AddressInput = () => {
       fullWidth
       id="demo-simple-select"
       value={location}
-      placeholder="Your addresses"
+      placeholder={t('My addresses')}
       onChange={handleSelectChange}
     >
       {addressRequest.data?.pages &&

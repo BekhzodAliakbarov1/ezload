@@ -3,6 +3,7 @@ import { QueryKey, useInfiniteQuery } from 'react-query';
 import qs from 'qs';
 import { request } from '../server-state/api';
 import { IListFilters, Paginated } from '../types/utility.types';
+import { useAuth } from 'global-state/auth/auth.state';
 
 interface IDetails extends Omit<IListFilters, 'page'> {
   path: string;
@@ -11,9 +12,15 @@ interface IDetails extends Omit<IListFilters, 'page'> {
 // I stands for Item in a list and O for additional data
 const usePaginatedQuery = <I, O = unknown>(
   queryKey: QueryKey,
-  details: IDetails
-) =>
-  useInfiniteQuery(
+  details: IDetails,
+  token?: string
+) => {
+  const {
+    tokens: { access },
+  } = useAuth();
+
+  const accessToken = token ?? access;
+  return useInfiniteQuery(
     queryKey,
     async ({ pageParam = 1 }) => {
       const data = await request
@@ -28,7 +35,12 @@ const usePaginatedQuery = <I, O = unknown>(
                 search: details.search,
               },
               { addQueryPrefix: true }
-            )
+            ),
+          {
+            headers: {
+              Authorization: `Token ${accessToken}`,
+            },
+          }
         )
         .then((res) => res.data);
       return {
@@ -45,5 +57,6 @@ const usePaginatedQuery = <I, O = unknown>(
       enabled: false,
     }
   );
+};
 
 export default usePaginatedQuery;

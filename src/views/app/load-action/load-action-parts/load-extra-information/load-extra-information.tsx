@@ -11,9 +11,11 @@ import {
 } from './load-extra-information.styles';
 import MenuItem from '@mui/material/MenuItem';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+import { useTranslation } from 'react-i18next';
 
 const LoadExtraInformation = () => {
   const { data, setValues } = useData();
+  const { t } = useTranslation();
 
   const handleChangeCurrency = (value: string) => {
     setValues({ ...data, currency_type: value });
@@ -34,18 +36,18 @@ const LoadExtraInformation = () => {
   return (
     <LoadExtraInformationWrapper>
       <Text color="main_80" weight="700">
-        Extra information
+        {t('Extra information')}
       </Text>
       <LoadExtraInformationInputsWrapper>
         <LoadExtraInformationLeftSideInputsBox>
           <Input
-            placeholder="Lugage size "
+            placeholder={t('Lugage size')}
             value={data.lugage_size}
             onChange={handleChangeLugageSize}
           />
           <LoadExtraInformationPriceInputWrapper>
             <Input
-              placeholder="Cost"
+              placeholder={t('Cost')}
               type="number"
               value={data.cost}
               onChange={handleChangeCost}
@@ -61,9 +63,12 @@ const LoadExtraInformation = () => {
           </LoadExtraInformationPriceInputWrapper>
         </LoadExtraInformationLeftSideInputsBox>
         <StyledTextFiled
+          sx={{
+            border: 'none',
+          }}
           multiline
           fullWidth
-          placeholder="Extra information"
+          placeholder={t('Extra information')}
           value={data.description}
           onChange={handleDescriptionCost}
         />

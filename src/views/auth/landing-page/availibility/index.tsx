@@ -1,4 +1,5 @@
 import Text from 'components/typography/text';
+import { useTranslation } from 'react-i18next';
 import {
   FeedStatisticsCard,
   FeedStatisticsWrapper,
@@ -6,6 +7,7 @@ import {
 import { AvailibilityWrapper } from './availibility.styles';
 
 const Availibility = () => {
+  const { t } = useTranslation();
   const feedStats = [
     {
       id: 1,
@@ -29,7 +31,7 @@ const Availibility = () => {
         {feedStats.map(({ name, number, id }) => (
           <FeedStatisticsCard key={id}>
             <Text weight="700">{number}</Text>
-            <Text weight="600">{name}</Text>
+            <Text weight="600">{t(name)}</Text>
           </FeedStatisticsCard>
         ))}
       </FeedStatisticsWrapper>

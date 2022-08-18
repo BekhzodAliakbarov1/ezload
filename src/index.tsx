@@ -7,6 +7,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { queryClient } from './server-state/react-query';
+import './i18n';
 
 ReactDOM.render(
   <React.StrictMode>

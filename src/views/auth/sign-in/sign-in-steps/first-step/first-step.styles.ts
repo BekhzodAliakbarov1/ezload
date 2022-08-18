@@ -11,6 +11,10 @@ export const CreatorSignInFirstStepWrapper = styled.div`
   > p {
     font-size: 24px;
   }
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 0px 24px;
+  }
 `;
 
 export const ErrorMessageWrapper = styled.div`
@@ -56,6 +60,12 @@ export const FirstStepDataWrapper = styled.div`
         color: ${colors.red_80};
         cursor: pointer;
       }
+    }
+  }
+  @media (max-width: 800px) {
+    form p:nth-child(1) {
+      text-align: center;
+      width: auto;
     }
   }
 `;

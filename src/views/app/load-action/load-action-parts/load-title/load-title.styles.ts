@@ -10,4 +10,8 @@ export const LoadTitleWrapper = styled.div`
     max-width: 353px;
     height: 46px;
   }
+  @media (max-width: 800px) {
+    margin-top: 32px;
+    margin-bottom: 20px;
+  }
 `;

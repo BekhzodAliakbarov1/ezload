@@ -10,12 +10,31 @@ export interface AddressInterface {
     orientation: string;
     country: {
       title: string;
+      id: number;
     };
     region: {
       title: string;
+      id: number;
     };
     district: {
       title: string;
+      id: number;
     };
   };
+}
+
+export interface CreateProfileAddressRequestInterface {
+  country: number;
+  region: number;
+  district: number;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  orientation: string;
+  postal_code: string;
+}
+export interface CreateAddressRequestInterface
+  extends CreateProfileAddressRequestInterface {
+  is_user_address: boolean;
 }

@@ -1,6 +1,7 @@
 import { useMutation } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 interface IVerificationRequest {
   phone_number: string;
@@ -13,6 +14,7 @@ interface IVerificationResponse {
 
 export const useVerification = () => {
   const { enqueueSnackbar } = useSnackbar();
+  const { t } = useTranslation();
   return useMutation(
     (data: IVerificationRequest) =>
       request
@@ -21,12 +23,12 @@ export const useVerification = () => {
     {
       retry: false,
       onSuccess() {
-        enqueueSnackbar('Verification code sent successfully!', {
+        enqueueSnackbar(t('Verification code sent successfully!'), {
           variant: 'success',
         });
       },
       onError() {
-        enqueueSnackbar('Something went wrong!', { variant: 'error' });
+        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
   );

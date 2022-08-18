@@ -15,12 +15,14 @@ import {
   ModalStyledTextFiled,
 } from './load-bids-modal.styles';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const LoadBidsModals: React.FC<{
   close: () => void;
   isOpen: boolean;
   data?: SingleLoadDetailsResponse;
 }> = ({ close, isOpen, data }) => {
+  const { t } = useTranslation();
   const { load_id } = useParams<{
     load_id: string;
   }>();
@@ -54,13 +56,23 @@ const LoadBidsModals: React.FC<{
           {cancelDriverSteps === 1 && (
             <>
               <Text>
-                Are you sure you want to cancel “{data?.driver?.first_name}”
-                assigned to the order ID: {data?.accepted_bid}?
+                {t('Are you sure you want to cancel ')} “
+                {data?.driver?.first_name}” {t('assigned to the order ID: ')}{' '}
+                {data?.accepted_bid}?
               </Text>
               <LoadBitsModalButtonsWrapper>
-                <Button onClick={() => setCancelDriverSteps(2)}>Submit</Button>
-                <Button buttonType="white" onClick={cancelHandler}>
-                  Cancel
+                <Button
+                  aria-label="submit"
+                  onClick={() => setCancelDriverSteps(2)}
+                >
+                  {t('Submit')}
+                </Button>
+                <Button
+                  aria-label="cancel"
+                  buttonType="white"
+                  onClick={cancelHandler}
+                >
+                  {t('Cancel')}
                 </Button>
               </LoadBitsModalButtonsWrapper>
             </>
@@ -69,24 +81,35 @@ const LoadBidsModals: React.FC<{
             <>
               <Text>Provide reason</Text>
               <ModalInputsWrapper>
-                <Input placeholder="Other" />
+                <Input placeholder={t('Other')} />
                 <ModalStyledTextFiled
                   multiline
                   fullWidth
-                  placeholder="Please, provide reason and explain of cancelling the load"
+                  placeholder={t(
+                    'Please, provide reason and explain of cancelling the load'
+                  )}
                 />
               </ModalInputsWrapper>
               <LoadBitsModalButtonsWrapper>
-                <Button onClick={() => setCancelDriverSteps(3)}>Submit</Button>
-                <Button buttonType="white" onClick={cancelHandler}>
-                  Cancel
+                <Button
+                  aria-label="submit"
+                  onClick={() => setCancelDriverSteps(3)}
+                >
+                  {t('Submit')}
+                </Button>
+                <Button
+                  aria-label="ccancel"
+                  buttonType="white"
+                  onClick={cancelHandler}
+                >
+                  {t('Cancel')}
                 </Button>
               </LoadBitsModalButtonsWrapper>
             </>
           )}
           {cancelDriverSteps === 3 && (
             <>
-              <Text>Rate your experience</Text>
+              <Text>{t('Rate your experience')}</Text>
               <LoadBidRatingWrapper>
                 <Rating
                   value={rating}
@@ -98,13 +121,19 @@ const LoadBidsModals: React.FC<{
               <ModalInputsWrapper>
                 <ModalStyledTextFiled
                   multiline
-                  placeholder="Please be honest to leave your feedback"
+                  placeholder={t('Please be honest to leave your feedback')}
                 />
               </ModalInputsWrapper>
               <LoadBitsModalButtonsWrapper>
-                <Button onClick={handleSubmit}>Submit</Button>
-                <Button buttonType="white" onClick={cancelHandler}>
-                  Cancel
+                <Button aria-label="submit" onClick={handleSubmit}>
+                  {t('Submit')}
+                </Button>
+                <Button
+                  aria-label="cancel"
+                  buttonType="white"
+                  onClick={cancelHandler}
+                >
+                  {t('Cancel')}
                 </Button>
               </LoadBitsModalButtonsWrapper>
             </>
@@ -114,13 +143,17 @@ const LoadBidsModals: React.FC<{
       {/* Delete load modal */}
       <Modal open={data?.status === 1 && isOpen} onClose={close}>
         <LoadBidsSimpleModalWrapper type="small">
-          <Text>Are you sure to delete? Actions cannot be undone</Text>
+          <Text>{t('Are you sure to delete? Actions cannot be undone')}</Text>
           <LoadBitsModalButtonsWrapper>
-            <Button buttonType="warning" onClick={deleteLoad}>
-              Yes, delete
+            <Button
+              aria-label="delete"
+              buttonType="warning"
+              onClick={deleteLoad}
+            >
+              {t('Yes, delete')}
             </Button>
-            <Button buttonType="white" onClick={close}>
-              Cancel
+            <Button aria-label="cancel" buttonType="white" onClick={close}>
+              {t('Cancel')}
             </Button>
           </LoadBitsModalButtonsWrapper>
         </LoadBidsSimpleModalWrapper>

@@ -7,6 +7,10 @@ export const CreatorSignInSecondStepWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (max-width: 800px) {
+    width: 100%;
+    padding: 0px 24px;
+  }
 `;
 
 export const ErrorMessageWrapper = styled.div`
@@ -63,6 +67,11 @@ export const SecondStepDataWrapper = styled.div`
     p:nth-child(2) {
       margin-top: 16px;
       margin-bottom: 35px;
+    }
+  }
+  @media (max-width: 800px) {
+    form p {
+      width: auto;
     }
   }
 `;

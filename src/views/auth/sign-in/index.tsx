@@ -56,11 +56,11 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
             user_id={data.user_id}
           />
         ) : (
-          <ThirdStepDriver />
+          <ThirdStepDriver token={data.token} />
         )}
       </Step>
       <Step step={4}>
-        <FourthStep />
+        <FourthStep handleLogin={handleLogin} token={data.token} />
       </Step>
     </StepsProvider>
   );
