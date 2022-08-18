@@ -3,6 +3,7 @@ export interface CustomTheme {
     main: string;
     secondary: string;
     third: string;
+    filter: string;
   };
   text: {
     main_100: string;

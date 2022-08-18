@@ -49,7 +49,9 @@ export const FooterLeftContentLinksWrapper = styled.div`
   margin-bottom: 135px;
   @media (max-width: 1024px) {
     margin-bottom: 30px;
-    gap: 20px;
+    justify-content: space-between;
+    padding-right: 24px;
+    gap: 0px;
   }
 `;
 export const FooterLeftContentLinksBox = styled.div`

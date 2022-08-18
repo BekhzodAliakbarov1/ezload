@@ -32,6 +32,7 @@ export const FeedDataWrapper = styled.div`
   }
   @media (max-width: 800px) {
     margin-top: 56px;
+    margin-bottom: 136px;
     > p:nth-child(1) {
       font-size: 24px;
       line-height: 24px;
