@@ -1,10 +1,7 @@
-import { Modal } from '@mui/material';
-import Button from 'components/button/button';
 import DistanceIcon from 'components/icons/distance.icon';
 import LocationIcon from 'components/icons/location.icon';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
-import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -14,7 +11,6 @@ import {
   GreenText,
   LoadBidCountWrapper,
   LoadCardBottomSideWrapper,
-  LoadCardButtonWrapper,
   LoadCardDistanceSizeBox,
   LoadCardLocationInfoWrapper,
   LoadCardPickupDeliverBox,
@@ -22,41 +18,26 @@ import {
   LoadCardSvgWrapper,
   LoadCardWrapper,
   LoadCarLocationBox,
-  ModalButtonsBox,
-  ModalWrapper,
 } from './load-card.styles';
+import SingleLoadButtons from './single-load-buttons';
 
 const LoadCard: React.FC<{
   load: SingleLoadResponse;
   clickable?: boolean;
   withButtons?: boolean;
-}> = ({ load, clickable = true, withButtons = false }) => {
+  status: 1 | 2 | 3;
+}> = ({ load, clickable = true, withButtons = false, status }) => {
   const { t } = useTranslation();
-  const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
   const { load_id } = useParams<{ load_id: string }>();
   const { isDriver } = useDriver();
 
-  const handleDelete = () => {
-    // Delete api will connect here
-    console.log(load_id);
-  };
-  const handleEdit = () => {
-    navigate('/edit-load', {
-      state: {
-        type: 'EDIT',
-        data: { ...load, id: load_id },
-      },
-    });
-  };
-
   return (
     <>
-      <LoadCardWrapper
-        clickable={clickable}
-        onClick={() => clickable && navigate(`/load/${load.id}`)}
-      >
-        <LoadCarLocationBox>
+      <LoadCardWrapper clickable={clickable}>
+        <LoadCarLocationBox
+          onClick={() => clickable && navigate(`/load/${load.id}`)}
+        >
           <LoadCardSvgDistanceWrapper>
             <LoadCardSvgWrapper>
               <LocationIcon fill="#fff" />
@@ -103,29 +84,11 @@ const LoadCard: React.FC<{
               {t('View count:')} {load.visits_count}
             </Text>
           </LoadBidCountWrapper>
-          {withButtons && !isDriver && load.status !== 3 && (
-            <LoadCardButtonWrapper>
-              <Text onClick={open}>{t('Delete Load')}</Text>
-              <Text onClick={handleEdit}>{t('Change details')}</Text>
-            </LoadCardButtonWrapper>
-          )}
         </LoadCardBottomSideWrapper>
+        {withButtons && !isDriver && (
+          <SingleLoadButtons status={status} load={load} />
+        )}
       </LoadCardWrapper>
-      <Modal open={isOpen} onClose={close}>
-        <ModalWrapper>
-          <Text color="main_100">
-            {t('Are you sure to delete? Actions cannot be undone')}
-          </Text>
-          <ModalButtonsBox>
-            <Button aria-label="delete" onClick={handleDelete}>
-              {t('Yes, delete')}
-            </Button>
-            <Button aria-label="cancel" onClick={close}>
-              {t('Cancel')}
-            </Button>
-          </ModalButtonsBox>
-        </ModalWrapper>
-      </Modal>
     </>
   );
 };

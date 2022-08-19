@@ -14,13 +14,23 @@ const LoadsContainer: React.FC<{
   loads?: SingleLoadResponse[];
   hasNextPage?: boolean;
   clickable?: boolean;
-}> = ({ loads = [], clickable, hasNextPage }) => {
+  status: 1 | 2 | 3;
+  withButton?: boolean;
+}> = ({ loads = [], clickable, hasNextPage, status, withButton }) => {
   const { t } = useTranslation();
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (
         loads.map((load, index) => {
-          return <LoadCard clickable={clickable} key={index} load={load} />;
+          return (
+            <LoadCard
+              clickable={clickable}
+              key={index}
+              load={load}
+              withButtons={withButton}
+              status={status}
+            />
+          );
         })
       ) : (
         <NoLoadsFindSection>

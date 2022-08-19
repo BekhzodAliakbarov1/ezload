@@ -99,6 +99,7 @@ const LoadInfoView = () => {
               clickable={false}
               load={singleLoadRequest.data}
               // withButtons
+              status={singleLoadRequest.data.status}
             />
           )}
           {singleLoadRequest.data && (
