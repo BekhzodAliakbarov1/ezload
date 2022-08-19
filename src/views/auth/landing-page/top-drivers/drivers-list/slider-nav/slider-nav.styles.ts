@@ -10,7 +10,8 @@ export const SliderNavWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${colors.dark_90};
+  /* background-color: ${colors.dark_90}; */
+  /* background-color: red; */
   @media (max-width: 800px) {
     justify-content: center;
   }
