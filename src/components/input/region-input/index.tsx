@@ -28,6 +28,10 @@ const RegionInput: React.FC<{
   } = useRegion({ search: region, country });
 
   useEffect(() => {
+    setRegion(value);
+  }, [value]);
+
+  useEffect(() => {
     if (country) {
       refetch();
     }

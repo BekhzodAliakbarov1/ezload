@@ -25,6 +25,9 @@ const CountryInput: React.FC<{
     refetch,
     data,
   } = useCountry({ search: country });
+  useEffect(() => {
+    setCountry(value);
+  }, [value]);
 
   useEffect(() => {
     refetch();

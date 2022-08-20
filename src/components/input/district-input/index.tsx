@@ -29,6 +29,10 @@ const DistrictInput: React.FC<{
   } = useDistrict({ search: district, country, region });
 
   useEffect(() => {
+    setdistrict(value);
+  }, [value]);
+
+  useEffect(() => {
     if (region) {
       refetch();
     }
