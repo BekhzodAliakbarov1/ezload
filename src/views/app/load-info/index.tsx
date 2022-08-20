@@ -3,6 +3,8 @@ import LoadInfoCard from 'components/cards/load-info-card';
 import LoadCard from 'components/cards/single-load/load-card';
 import CancelBidModal from 'components/modals/cancel-bid-modal';
 import MakeBidModal from 'components/modals/make-bid-modal';
+import LoadSkeloton from 'components/skelotons/load-card';
+import LoadInfoSkeloton from 'components/skelotons/load-info';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useTranslation } from 'react-i18next';
@@ -50,16 +52,20 @@ const LoadInfoView = () => {
           )}
         </LoadInfowViewHeader>
         <LoadInfoDataWrapperBox>
-          {singleLoadRequest.data && (
+          {singleLoadRequest.data ? (
             <LoadCard
               clickable={false}
               load={singleLoadRequest.data}
               // withButtons
               status={singleLoadRequest.data.status}
             />
+          ) : (
+            <LoadSkeloton />
           )}
-          {singleLoadRequest.data && (
+          {singleLoadRequest.data ? (
             <LoadInfoCard data={singleLoadRequest.data} />
+          ) : (
+            <LoadInfoSkeloton />
           )}
         </LoadInfoDataWrapperBox>
         {isDriver ? (

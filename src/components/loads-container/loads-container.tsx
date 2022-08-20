@@ -18,6 +18,8 @@ const LoadsContainer: React.FC<{
   withButton?: boolean;
 }> = ({ loads = [], clickable, hasNextPage, status, withButton }) => {
   const { t } = useTranslation();
+  console.log(loads);
+
   return (
     <LoadsContainerBox>
       {loads.length > 0 ? (

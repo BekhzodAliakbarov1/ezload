@@ -44,11 +44,3 @@ export const SingleController = styled.div<{ active: boolean }>`
     }
   }
 `;
-
-export const LoadingComponentWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
