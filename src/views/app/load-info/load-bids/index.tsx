@@ -76,7 +76,9 @@ const LoadBids: React.FC<{
         )}
         {data?.status === 1 && (
           <DeletLoadModal load_id={Number(load_id)}>
-            <Button fullWidth>{t('Delete load')}</Button>
+            <Button fullWidth style={{ maxWidth: '300px' }}>
+              {t('Delete load')}
+            </Button>
           </DeletLoadModal>
         )}
 
@@ -86,7 +88,9 @@ const LoadBids: React.FC<{
             driver_name={data.driver?.first_name}
             load_id={load_id}
           >
-            <Button fullWidth>{t('Cancel the driver')}</Button>
+            <Button fullWidth style={{ maxWidth: '300px' }}>
+              {t('Cancel the driver')}
+            </Button>
           </CancelDriverModal>
         )}
 
