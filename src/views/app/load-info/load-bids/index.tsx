@@ -15,7 +15,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import FileIcon from 'components/icons/file.icon';
 import { useTranslation } from 'react-i18next';
 import ReviewDriverModal from 'components/modals/review-driver-modal';
-import CancelDriverModal from 'components/modals/cancel-driver-modal';
+import CancelDriverModal from 'components/modals/cancel-driver-bid-modal';
 import DeletLoadModal from 'components/modals/delete-load-modal';
 
 const LoadBids: React.FC<{
@@ -71,7 +71,6 @@ const LoadBids: React.FC<{
               id={3}
               rates_avg={data?.driver?.average_rate ?? 3}
               image={data?.driver?.profile_picture?.file}
-              // bg_color={colors.green_5}
             />
           </LoadBidsDataBox>
         )}

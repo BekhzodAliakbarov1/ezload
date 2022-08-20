@@ -43,7 +43,7 @@ export const ModalWrapper = styled.form`
       margin-bottom: 24px;
     }
     input {
-      width: max-content;
+      width: 100%;
     }
   }
 `;
@@ -51,10 +51,15 @@ export const ModalWrapper = styled.form`
 export const ModalButtonsWrapper = styled.div`
   display: flex;
   gap: 24px;
+  width: 100%;
+  justify-content: center;
   button {
     width: 120px;
   }
   @media (max-width: 800px) {
-    width: fit-content;
+    button {
+      width: fit-content;
+      max-width: fit-content;
+    }
   }
 `;

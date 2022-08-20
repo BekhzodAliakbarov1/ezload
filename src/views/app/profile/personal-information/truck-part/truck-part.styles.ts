@@ -60,6 +60,11 @@ export const TruckInfoChangeInput = styled.div`
     font-size: 18px;
     line-height: 32px;
   }
+  @media (max-width: 800px) {
+    input {
+      width: 200px;
+    }
+  }
 `;
 
 export const TruckButtonsWrapper = styled.div`

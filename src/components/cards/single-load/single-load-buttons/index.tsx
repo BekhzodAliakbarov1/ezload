@@ -6,7 +6,7 @@ import { SingleLoadResponse } from 'types/load.types';
 import { useTranslation } from 'react-i18next';
 import { useModal } from 'hooks/use-modal';
 import ReviewDriverModal from 'components/modals/review-driver-modal';
-import CancelDriverModal from 'components/modals/cancel-driver-modal';
+import CancelDriverModal from 'components/modals/cancel-driver-bid-modal';
 import DeletLoadModal from 'components/modals/delete-load-modal';
 
 const SingleLoadButtons: React.FC<{
