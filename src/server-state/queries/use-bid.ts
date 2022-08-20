@@ -1,8 +1,7 @@
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import { useMutation, useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { request } from '../api';
-import { useLoad } from './use-load';
 
 interface AcceptBidResponse {
   message: string;
@@ -36,6 +35,8 @@ export const useAcceptBid = ({ bid_id }: { bid_id?: string }) => {
 
 export const useCancelBid = ({ load_id }: { load_id?: string }) => {
   // const { refetch } = useLoad({ load_id });
+  const qc = useQueryClient();
+
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
 
@@ -46,13 +47,16 @@ export const useCancelBid = ({ load_id }: { load_id?: string }) => {
           `/load/bid/${bid_id}/cancel/`
         )
         .then((res) => res.data),
+
     {
       onSuccess() {
-        // refetch();
         enqueueSnackbar(t('Bid canceled successfully!'), { variant: 'info' });
+        qc.invalidateQueries(['loads', 'on_the_way']);
+        qc.invalidateQueries([`load_${load_id}`]);
       },
       onError(err) {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+        console.log('ERROR', err);
       },
     }
   );

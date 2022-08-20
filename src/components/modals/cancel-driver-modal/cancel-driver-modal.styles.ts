@@ -1,12 +1,16 @@
 import { TextField } from '@mui/material';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
+
+export const ChildrenWrapper = styled.div`
+  width: fit-content;
+  height: fit-content;
+`;
 
 export const LoadBidsSimpleModalWrapper = styled.div<{ type: 'big' | 'small' }>`
   width: fit-content;
   height: fit-content;
   padding: 56px 80px;
-  background-color: ${colors.white};
+  background-color: ${(props) => props.theme.bg.secondary};
   position: absolute;
   top: 50%;
   left: 50%;
@@ -31,18 +35,6 @@ export const LoadBitsModalButtonsWrapper = styled.div`
   margin: auto;
 `;
 
-export const ModalStyledTextFiled = styled(TextField)`
-  height: 118px;
-  border: 1.5px solid ${(props) => props.theme.text.main_20};
-  padding: 16px;
-  > div {
-    height: 100%;
-    > textarea {
-      height: 100% !important;
-    }
-  }
-`;
-
 export const ModalInputsWrapper = styled.div`
   width: 100%;
   display: flex;
@@ -51,9 +43,16 @@ export const ModalInputsWrapper = styled.div`
   margin-bottom: 32px;
 `;
 
-export const LoadBidRatingWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  margin-bottom: 32px;
-  justify-content: center;
+export const ModalStyledTextFiled = styled(TextField)`
+  && {
+    height: 118px;
+    border: 1.5px solid ${(props) => props.theme.text.main_20};
+    padding: 0px;
+    > div {
+      height: 100%;
+      > textarea {
+        height: 100% !important;
+      }
+    }
+  }
 `;

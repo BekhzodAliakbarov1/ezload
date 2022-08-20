@@ -10,20 +10,20 @@ import {
 } from './load-bids.styles';
 import Button from 'components/button/button';
 import DollarIcon from 'components/icons/dollar.icon';
-import { colors } from 'styles/variables';
-import { useModal } from 'hooks/use-modal';
-import LoadBidsModals from './load-bids-modals';
 import { SingleLoadDetailsResponse } from 'types/load.types';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import FileIcon from 'components/icons/file.icon';
 import { useTranslation } from 'react-i18next';
+import ReviewDriverModal from 'components/modals/review-driver-modal';
+import CancelDriverModal from 'components/modals/cancel-driver-modal';
+import DeletLoadModal from 'components/modals/delete-load-modal';
 
 const LoadBids: React.FC<{
   data?: SingleLoadDetailsResponse;
 }> = ({ data }) => {
-  const { close, isOpen, open } = useModal();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { load_id } = useParams<{ load_id: string }>();
 
   return (
     <>
@@ -75,15 +75,31 @@ const LoadBids: React.FC<{
             />
           </LoadBidsDataBox>
         )}
-        {data?.status !== 3 && (
-          <Button fullWidth onClick={open} aria-label="delete cancel load">
-            {data?.status === 1
-              ? t('Delete load')
-              : data?.status === 2 && t('Cancel the driver')}
-          </Button>
+        {data?.status === 1 && (
+          <DeletLoadModal load_id={Number(load_id)}>
+            <Button fullWidth>{t('Delete load')}</Button>
+          </DeletLoadModal>
+        )}
+
+        {data?.status === 2 && (
+          <CancelDriverModal
+            accepted_bid={data.accepted_bid}
+            driver_name={data.driver?.first_name}
+            load_id={load_id}
+          >
+            <Button fullWidth>{t('Cancel the driver')}</Button>
+          </CancelDriverModal>
+        )}
+
+        {data?.status === 3 && (
+          <ReviewDriverModal
+            load_id={Number(load_id)}
+            reviewee_id={data.driver?.id}
+          >
+            <Button fullWidth>{t('Review the driver')}</Button>
+          </ReviewDriverModal>
         )}
       </LoadBidsWrapper>
-      <LoadBidsModals data={data} close={close} isOpen={isOpen} />
     </>
   );
 };

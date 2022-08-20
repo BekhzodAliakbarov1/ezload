@@ -6,7 +6,7 @@ import {
   FirstBox,
   FlexBox,
   HappyCusmrWrapper,
-  Rectangle,
+  // Rectangle,
   SecondBox,
   TextBox,
   ThirdBox,

@@ -3,7 +3,6 @@ import Button from 'components/button/button';
 import FilledStarIcon from 'components/icons/filled-star.icon';
 import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
-import { useSnackbar } from 'notistack';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateReview } from 'server-state/mutations/use-create-review';

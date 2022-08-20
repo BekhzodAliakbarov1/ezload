@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMutation } from 'react-query';
 import { request } from '../api';
 import { useSnackbar } from 'notistack';
