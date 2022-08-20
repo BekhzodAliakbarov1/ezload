@@ -24,6 +24,10 @@ export const SearchLoadsFiltersBox = styled.div`
     width: 100%;
     /* max-width: 234px; */
   }
+  input,
+  svg {
+    color: ${(props) => props.theme.text.main_100};
+  }
 `;
 
 export const StyledTextFiled = styled(TextField)`
@@ -44,6 +48,7 @@ export const StyledSelect = styled(Select)`
   > div {
     padding: 0px;
     padding-left: 16px;
+    color: ${(props) => props.theme.text.main_100};
   }
 `;
 
@@ -53,6 +58,7 @@ export const SearchLoadsFilterButtonWrapper = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 8px;
+
   @media (max-width: 800px) {
     margin-bottom: 30px;
   }

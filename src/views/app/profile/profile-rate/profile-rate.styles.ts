@@ -82,7 +82,7 @@ export const RatingsRaw = styled.div`
 
 export const ProfileRateReviewsDataBox = styled.div<{ isEmpty: boolean }>`
   width: 100%;
-  height: ${(props) => (props.isEmpty ? '300px' : '750px')};
+  height: ${(props) => (props.isEmpty ? '300px' : 'auto')};
   margin-bottom: 104px;
   padding-top: 32px;
   overflow-x: scroll;

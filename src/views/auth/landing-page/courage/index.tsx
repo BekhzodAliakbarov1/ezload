@@ -1,4 +1,3 @@
-import { CoverageMapImg } from 'assets/svg';
 import { useTranslation } from 'react-i18next';
 import {
   BoldText,
@@ -6,7 +5,7 @@ import {
   StyledText,
   TextBox,
   Image,
-  ImageWrapper,
+  // ImageWrapper,
 } from './courage.styles';
 // import rectangle from 'assets/img/rectangle.png';
 

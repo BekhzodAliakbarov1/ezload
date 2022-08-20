@@ -1,26 +1,24 @@
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { request } from '../api';
-import { useLoad } from './use-load';
+import { useLoads } from './use-loads';
 
 interface AcceptBidResponse {
   message: string;
   status_code: number;
 }
 
-export const useAcceptBid = ({ bid_id }: { bid_id?: string }) => {
+export const useAcceptBid = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
-  return useQuery(
-    `accept_${bid_id}`,
-    () =>
+  return useMutation(
+    ({ bid_id }: { bid_id?: string }) =>
       request
         .get<AcceptBidResponse>(`/load/bid/${bid_id}/accept/`)
         .then((res) => res.data),
     {
-      enabled: false,
       onSuccess() {
         enqueueSnackbar(t('Bid accepted successfully!'), {
           variant: 'success',
@@ -28,38 +26,34 @@ export const useAcceptBid = ({ bid_id }: { bid_id?: string }) => {
       },
       onError(err) {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
-        console.log('ERROR', err);
       },
     }
   );
 };
 
-export const useCancelBid = ({
-  bid_id,
-  load_id,
-}: {
-  bid_id?: number;
-  load_id?: string;
-}) => {
-  const { refetch } = useLoad({ load_id });
+export const useCancelBid = ({ load_id }: { load_id?: string }) => {
+  const qc = useQueryClient();
+  const { refetch } = useLoads('on_the_way');
+
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
 
-  return useQuery(
-    `cancel_${bid_id}`,
-    () =>
+  return useMutation(
+    ({ bid_id }: { bid_id?: number }) =>
       request
-        .get<AcceptBidResponse>(`/load/bid/${bid_id}/cancel/`)
+        .get<{ message: string; status_code: number; id: number }>(
+          `/load/bid/${bid_id}/cancel/`
+        )
         .then((res) => res.data),
+
     {
-      enabled: false,
       onSuccess() {
-        refetch();
         enqueueSnackbar(t('Bid canceled successfully!'), { variant: 'info' });
+        refetch();
+        qc.invalidateQueries([`load_${load_id}`]);
       },
-      onError(err) {
+      onError() {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
-        console.log('ERROR', err);
       },
     }
   );

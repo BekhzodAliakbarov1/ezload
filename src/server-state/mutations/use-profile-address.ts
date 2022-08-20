@@ -16,7 +16,7 @@ interface EditAddressRequest {
   postal_code: string;
 }
 interface DeleteAddressRequest {
-  id: string;
+  id?: number;
 }
 
 // CREATE

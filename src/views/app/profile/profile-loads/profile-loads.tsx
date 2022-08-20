@@ -1,11 +1,10 @@
-import Spinner from 'components/loaders/spinner/spinner';
 import LoadsContainer from 'components/loads-container/loads-container';
+import LoadsContainerSkeloton from 'components/skelotons/loads-container';
 import Text from 'components/typography/text';
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLoads } from 'server-state/queries/use-loads';
 import {
-  LoadingComponentWrapper,
   ProfileLoadsWrapper,
   SectionControllerWrapper,
   SingleController,
@@ -68,14 +67,7 @@ const ProfileLoads = () => {
           <Text weight="700">{t('Delivered')}</Text>
         </SingleController>
       </SectionControllerWrapper>
-      <LoadingComponentWrapper>
-        <Spinner
-          loading={isLoading}
-          loaderSize="40px"
-          width="300px"
-          height="300px"
-        />
-      </LoadingComponentWrapper>
+      {isLoading && <LoadsContainerSkeloton />}
       {sectionType === 'NEW' &&
         newLoadsRequest.data?.pages &&
         newLoadsRequest.data.pages.map((page, index) => (
@@ -83,6 +75,8 @@ const ProfileLoads = () => {
             hasNextPage={newLoadsRequest.hasNextPage}
             key={index}
             loads={page.results}
+            status={1}
+            withButton
           />
         ))}
       {sectionType === 'PENDING' &&
@@ -92,6 +86,8 @@ const ProfileLoads = () => {
             hasNextPage={onTheWayLoadsRequest.hasNextPage}
             key={index}
             loads={page.results}
+            status={2}
+            withButton
           />
         ))}
       {sectionType === 'DONE' &&
@@ -101,6 +97,8 @@ const ProfileLoads = () => {
             hasNextPage={deliveredLoadsRequest.hasNextPage}
             key={index}
             loads={page.results}
+            status={3}
+            withButton
           />
         ))}
     </ProfileLoadsWrapper>

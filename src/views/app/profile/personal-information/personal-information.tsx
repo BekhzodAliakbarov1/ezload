@@ -12,10 +12,11 @@ import ProfileImagePart from './profile-image-part';
 import { useUpload } from 'server-state/mutations/use-upload';
 import { useDriver } from 'hooks/use-driver';
 import { useTranslation } from 'react-i18next';
+import ProfileSkeloton from 'components/skelotons/profile';
 
 const PersonalInformation = () => {
   const { t } = useTranslation();
-  const { data } = useProfile();
+  const { data, isLoading } = useProfile();
   const updateProfileRequest = useUpdateCustomerProfile();
   const uploadImageRequest = useUpload();
   const { isDriver } = useDriver();
@@ -76,33 +77,40 @@ const PersonalInformation = () => {
   return (
     <PersonalInformationWrapper>
       <PersonalInformationTopPartWrapper isDriver={isDriver}>
-        <ProfileImagePart
-          img={profileInfo.profile_picture}
-          onSubmit={handleImageUpload}
-          isLoading={uploadImageRequest.isLoading}
-        />
-        <NamePhoneNumberWrapper>
-          {profileInfo.name && (
-            <EditableFiled
-              inputType="text"
-              label={t('Your name')}
-              value={profileInfo.name}
-              placeholder={t('Enter name')}
-              onSubmit={handleNameSubmit}
+        {isLoading ? (
+          <ProfileSkeloton />
+        ) : (
+          <>
+            <ProfileImagePart
+              img={profileInfo.profile_picture}
+              onSubmit={handleImageUpload}
+              isLoading={uploadImageRequest.isLoading}
             />
-          )}
-          {profileInfo.phone && (
-            <EditableFiled
-              inputType="number"
-              label={t('Your phone number')}
-              value={profileInfo.phone}
-              placeholder={t('Enter your phone number')}
-              onSubmit={handlePhoneSubmit}
-            />
-          )}
-        </NamePhoneNumberWrapper>
+
+            <NamePhoneNumberWrapper>
+              {profileInfo.name && (
+                <EditableFiled
+                  inputType="text"
+                  label={t('Your name')}
+                  value={profileInfo.name}
+                  placeholder={t('Enter name')}
+                  onSubmit={handleNameSubmit}
+                />
+              )}
+              {profileInfo.phone && (
+                <EditableFiled
+                  inputType="number"
+                  label={t('Your phone number')}
+                  value={profileInfo.phone}
+                  placeholder={t('Enter your phone number')}
+                  onSubmit={handlePhoneSubmit}
+                />
+              )}
+            </NamePhoneNumberWrapper>
+          </>
+        )}
       </PersonalInformationTopPartWrapper>
-      {profileInfo.vehicle?.title && (
+      {profileInfo.vehicle?.title && isDriver && (
         <TruckInfo
           car_capacity={profileInfo.vehicle?.capacity}
           car_model={profileInfo.vehicle?.title}

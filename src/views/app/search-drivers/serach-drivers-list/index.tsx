@@ -7,7 +7,6 @@ import {
 } from './search-drivers-list.styles';
 import { Link } from 'react-router-dom';
 import { SingleDriverResponse } from 'server-state/queries/use-drivers';
-import { colors } from 'styles/variables';
 
 const SearchDriversList: React.FC<{ drivers?: SingleDriverResponse[] }> = ({
   drivers,

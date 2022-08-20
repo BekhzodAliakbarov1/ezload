@@ -4,7 +4,6 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 
 interface CreateBidRequest {
-  load?: string;
   price: string;
 }
 
@@ -16,7 +15,10 @@ export const useCreateBid = ({ load_id }: { load_id?: string }) => {
   return useMutation(
     (data: CreateBidRequest) =>
       request
-        .post<{ success: boolean }>('/driver/bid/create/', data)
+        .post<{ success: boolean }>('/driver/bid/create/', {
+          load: load_id,
+          price: data.price,
+        })
         .then((res) => res.data),
     {
       retry: false,

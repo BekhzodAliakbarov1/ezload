@@ -45,13 +45,17 @@ export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
   // const url = isDriver ? '/driver/load/list/' : '/load/list/';
   const url = '/load/list/';
 
-  return useInfiniteQuery(['loads', type], () => fetchLoads({ status, url }), {
-    enabled: false,
-    getNextPageParam(lastPage) {
-      if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
-      return undefined;
-    },
-  });
+  return useInfiniteQuery(
+    [`loads_${type}`],
+    () => fetchLoads({ status, url }),
+    {
+      enabled: false,
+      getNextPageParam(lastPage) {
+        if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
+        return undefined;
+      },
+    }
+  );
 };
 
 export const useSearchLoads = (data: { query?: string }) => {

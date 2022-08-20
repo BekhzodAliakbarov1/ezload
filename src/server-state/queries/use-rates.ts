@@ -9,7 +9,16 @@ interface RatesResponse {
   rate_four: number;
   rate_five: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  feedbacks: any[];
+  reviews?: {
+    rate: number;
+    feedback: string;
+    reviewer: {
+      profile_picture?: {
+        file: string;
+      };
+      first_name: string;
+    };
+  }[];
 }
 
 export const useRates = () => {

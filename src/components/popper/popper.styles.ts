@@ -5,7 +5,8 @@ import { IPaperProps } from './popper.types';
 
 export const StyledPaper = styled(Paper)<IPaperProps>`
   && {
-    background-color: ${(props) => props.theme.bg.main};
+    background-color: ${(props) => props.theme.bg.secondary};
+    color: ${(props) => props.theme.text.main_100};
     border-radius: 4px;
     ${(props) => props.paperstyles}
   }

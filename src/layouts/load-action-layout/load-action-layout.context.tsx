@@ -48,7 +48,7 @@ tommorrow.setDate(tommorrow.getDate() + 1);
 theDayAfterTommorrow.setDate(theDayAfterTommorrow.getDate() + 2);
 console.log(tommorrow);
 
-const defaultdata = {
+export const defaultdata = {
   load_title: '',
   pickup: {
     address_1: '',
@@ -108,8 +108,8 @@ export const LoadContextProvider: React.FC = ({ children }) => {
   const [data, setData] = useState({
     load_title: state?.data?.title ?? '',
     pickup: {
-      address_1: state?.data?.pickup_point.orientation,
-      address_2: '',
+      address_1: '',
+      address_2: state?.data?.pickup_point.orientation ?? '',
       district: {
         title: state?.data?.pickup_point.district.title ?? '',
         id: '',
@@ -130,8 +130,8 @@ export const LoadContextProvider: React.FC = ({ children }) => {
       save_my_address: false,
     },
     delivery: {
-      address_1: state?.data?.destination.orientation,
-      address_2: '',
+      address_1: '',
+      address_2: state?.data?.destination.orientation ?? '',
       district: {
         title: state?.data?.destination.district.title ?? '',
         id: '',

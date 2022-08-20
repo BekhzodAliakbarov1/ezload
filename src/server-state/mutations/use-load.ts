@@ -21,7 +21,7 @@ interface EditAddressRequest extends CreateLoadRequest {
   id: string;
 }
 interface DeleteLoadRequest {
-  id?: string;
+  id?: number | string;
 }
 
 // CREATE
@@ -70,7 +70,7 @@ export const useEditLoad = () => {
 // DELETE
 export const useDeleteLoad = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const { invalidateQueries } = useQueryClient();
+  const qc = useQueryClient();
 
   return useMutation(
     (data: DeleteLoadRequest) =>
@@ -83,7 +83,7 @@ export const useDeleteLoad = () => {
         enqueueSnackbar('Load deleted succesffuly!', {
           variant: 'success',
         });
-        invalidateQueries(['loads']);
+        qc.invalidateQueries(['loads_new']);
       },
       onError() {
         enqueueSnackbar('Something went wrong!', {

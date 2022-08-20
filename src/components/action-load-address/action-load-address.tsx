@@ -16,7 +16,10 @@ import Input from 'components/input/input';
 import CloseIcon from 'components/icons/close.icon';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
-import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+import {
+  defaultdata,
+  useData,
+} from 'layouts/load-action-layout/load-action-layout.context';
 import AddressInput from './action-loads-inputs/address-input';
 import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
@@ -32,6 +35,7 @@ const ActionLoadAddress: React.FC<{
   const { data, setValues } = useData();
   const { address_1, address_2, country, region, district, zip_code } =
     data[type];
+  console.log(data[type]);
 
   const searchInputSelectHandler = ({
     fieldName,
@@ -86,7 +90,7 @@ const ActionLoadAddress: React.FC<{
       <AddressInput />
       <ChooseAndCreateTextWrapper>
         <StyledText>{t('Or choose manually')}</StyledText>
-        <ClearTextWrapper>
+        <ClearTextWrapper onClick={() => setValues(defaultdata)}>
           <StyledIconButton>
             <CloseIcon />
           </StyledIconButton>

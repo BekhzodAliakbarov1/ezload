@@ -36,7 +36,7 @@ const colors = {
     }
   `,
   white: css`
-    background-color: ${(props) => props.theme.colors.white};
+    background-color: ${(props) => props.theme.bg.secondary};
     color: ${globalColors.red_100};
     &:hover {
       background-color: ${(props) => props.theme.bg.main};
