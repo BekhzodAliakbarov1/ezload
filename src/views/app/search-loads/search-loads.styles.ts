@@ -5,7 +5,7 @@ export const SearchLoadsWrapper = styled.div`
   width: 100%;
   margin-top: 40px;
   margin-bottom: 80px;
-  background-color: ${colors.white};
+  background-color: ${(props) => props.theme.bg.secondary};
   @media (max-width: 800px) {
     margin-top: 32px;
     margin-bottom: 30px;

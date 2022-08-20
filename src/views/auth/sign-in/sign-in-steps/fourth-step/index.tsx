@@ -76,14 +76,7 @@ const FourthStep: React.FC<{
   };
 
   const deleteLocation = (route_id: number) => {
-    deleteRouteRequest.mutate(
-      { route_id },
-      {
-        onSuccess() {
-          routesRequest.refetch();
-        },
-      }
-    );
+    deleteRouteRequest.mutate({ route_id });
   };
 
   const completeButton = () => {

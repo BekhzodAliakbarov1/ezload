@@ -24,9 +24,8 @@ export const useUpdatePhoneNumber = () => {
           variant: 'success',
         });
       },
-      onError(err) {
+      onError() {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
-        console.log('ERROR', err);
       },
     }
   );

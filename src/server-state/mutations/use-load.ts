@@ -84,14 +84,11 @@ export const useDeleteLoad = () => {
           variant: 'success',
         });
         qc.invalidateQueries(['loads_new']);
-        console.log('success');
       },
-      onError(err) {
-        console.log(err);
-
-        // enqueueSnackbar('Something went wrong!', {
-        //   variant: 'error',
-        // });
+      onError() {
+        enqueueSnackbar('Something went wrong!', {
+          variant: 'error',
+        });
       },
     }
   );

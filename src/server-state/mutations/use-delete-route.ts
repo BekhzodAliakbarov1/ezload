@@ -1,7 +1,7 @@
 import { useAuth } from 'global-state/auth/auth.state';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 
 interface DeleteRouteRequest {
@@ -10,6 +10,7 @@ interface DeleteRouteRequest {
 
 export const useDeleteRoute = (token?: string) => {
   const { enqueueSnackbar } = useSnackbar();
+  const qc = useQueryClient();
   const { t } = useTranslation();
   const {
     tokens: { access },
@@ -31,6 +32,7 @@ export const useDeleteRoute = (token?: string) => {
     {
       onSuccess() {
         enqueueSnackbar(t('Route deleted successfully!'), { variant: 'info' });
+        qc.invalidateQueries([`routes`]);
       },
       onError() {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
