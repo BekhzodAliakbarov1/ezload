@@ -70,7 +70,7 @@ const LoadBids: React.FC<{
               first_name={data?.driver?.first_name ?? ''}
               id={3}
               rates_avg={data?.driver?.average_rate ?? 3}
-              image={data?.driver?.profile_picture.file}
+              image={data?.driver?.profile_picture?.file}
               // bg_color={colors.green_5}
             />
           </LoadBidsDataBox>

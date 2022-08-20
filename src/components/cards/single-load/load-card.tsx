@@ -4,7 +4,7 @@ import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SingleLoadResponse } from 'types/load.types';
 import { getDate } from 'utils/getDate';
 import {
@@ -29,7 +29,6 @@ const LoadCard: React.FC<{
 }> = ({ load, clickable = true, withButtons = false, status }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { load_id } = useParams<{ load_id: string }>();
   const { isDriver } = useDriver();
 
   return (

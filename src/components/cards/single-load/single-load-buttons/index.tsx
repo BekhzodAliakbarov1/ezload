@@ -1,7 +1,6 @@
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import {
-  LoadBidRatingWrapper,
   LoadBidsSimpleModalWrapper,
   LoadBitsModalButtonsWrapper,
   LoadCardButtonWrapper,
@@ -14,21 +13,24 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { SingleLoadResponse } from 'types/load.types';
 import { useTranslation } from 'react-i18next';
 import { useModal } from 'hooks/use-modal';
-import { Modal, Rating } from '@mui/material';
+import { Modal } from '@mui/material';
 import Button from 'components/button/button';
 import Input from 'components/input/input';
-import FilledStarIcon from 'components/icons/filled-star.icon';
+import { useCancelBid } from 'server-state/queries/use-bid';
+import { useDeleteLoad } from 'server-state/mutations/use-load';
+import ReviewDriverModal from 'components/modals/review-driver-modal';
 
 const SingleLoadButtons: React.FC<{
   load: SingleLoadResponse;
   status?: 1 | 2 | 3;
 }> = ({ load, status }) => {
   const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2>(1);
-  const [rating, setRating] = useState(1);
 
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { load_id } = useParams<{ load_id: string }>();
+  const cancelBidRequest = useCancelBid({ load_id });
+  const deleteLoadRequest = useDeleteLoad();
   const deleteModal = useModal();
   const cancelDriverModal = useModal();
   const reviewDriverModal = useModal();
@@ -42,7 +44,15 @@ const SingleLoadButtons: React.FC<{
     });
   };
   const handleDelete = () => {
-    console.log('delete handler');
+    deleteLoadRequest.mutate({
+      id: load.id,
+    });
+  };
+  const handleCancelDriver = () => {
+    // should give correct bid id
+    cancelBidRequest.mutate({
+      bid_id: Number(load.accepted_bid),
+    });
   };
 
   return (
@@ -59,9 +69,13 @@ const SingleLoadButtons: React.FC<{
         </LoadCardButtonWrapper>
       )}
       {status === 3 && (
-        <LoadCardButtonWrapper>
-          <Text onClick={reviewDriverModal.open}>{t('Review the driver')}</Text>
-        </LoadCardButtonWrapper>
+        <ReviewDriverModal load_id={load.id} reviewee_id={load.driver?.id}>
+          <LoadCardButtonWrapper>
+            <Text onClick={reviewDriverModal.open}>
+              {t('Review the driver')}
+            </Text>
+          </LoadCardButtonWrapper>
+        </ReviewDriverModal>
       )}
       {/* delete load modal */}
       <Modal open={deleteModal.isOpen} onClose={deleteModal.close}>
@@ -89,10 +103,7 @@ const SingleLoadButtons: React.FC<{
             <>
               <Text>{t('Are you sure you want to cancel ')} driver“</Text>
               <LoadBitsModalButtonsWrapper>
-                <Button
-                  aria-label="submit"
-                  onClick={() => setCancelDriverSteps(2)}
-                >
+                <Button aria-label="submit" onClick={handleCancelDriver}>
                   {t('Submit')}
                 </Button>
                 <Button
@@ -135,41 +146,6 @@ const SingleLoadButtons: React.FC<{
               </LoadBitsModalButtonsWrapper>
             </>
           )}
-        </LoadBidsSimpleModalWrapper>
-      </Modal>
-      {/* review driver modal */}
-      <Modal open={reviewDriverModal.isOpen} onClose={reviewDriverModal.close}>
-        <LoadBidsSimpleModalWrapper type={'big'}>
-          <Text>{t('Rate your experience')}</Text>
-          <LoadBidRatingWrapper>
-            <Rating
-              value={rating}
-              onChange={(e, newValue) => setRating(newValue ?? rating)}
-              icon={<FilledStarIcon size="40" fill="#76CBB4" />}
-              emptyIcon={<FilledStarIcon size="40" fill="#EBF8F4" />}
-            />
-          </LoadBidRatingWrapper>
-          <ModalInputsWrapper>
-            <ModalStyledTextFiled
-              multiline
-              placeholder={t('Please be honest to leave your feedback')}
-            />
-          </ModalInputsWrapper>
-          <LoadBitsModalButtonsWrapper>
-            <Button
-              aria-label="submit"
-              onClick={() => console.log('review driver')}
-            >
-              {t('Submit')}
-            </Button>
-            <Button
-              aria-label="cancel"
-              buttonType="white"
-              onClick={reviewDriverModal.close}
-            >
-              {t('Cancel')}
-            </Button>
-          </LoadBitsModalButtonsWrapper>
         </LoadBidsSimpleModalWrapper>
       </Modal>
     </>

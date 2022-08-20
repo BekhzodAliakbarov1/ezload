@@ -29,13 +29,12 @@ const LoadBidsModals: React.FC<{
   const [cancelDriverSteps, setCancelDriverSteps] = useState<1 | 2 | 3>(1);
   const [rating, setRating] = useState(1);
   const deleteLoadRequest = useDeleteLoad();
-  const cancelBidRequest = useCancelBid({
-    bid_id: data?.accepted_bid,
-    load_id,
-  });
+  const cancelBidRequest = useCancelBid({ load_id });
 
   const handleSubmit = () => {
-    cancelBidRequest.refetch();
+    cancelBidRequest.mutate({
+      bid_id: data?.accepted_bid,
+    });
     setCancelDriverSteps(1);
     close();
   };

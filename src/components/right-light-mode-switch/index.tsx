@@ -56,7 +56,7 @@ export const DarkLightModeSwitch = () => {
       <MaterialUISwitch
         onClick={toggleTheme}
         sx={{ m: 1 }}
-        defaultChecked={theme !== 'dark'}
+        checked={theme !== 'dark'}
       />
     </FormGroup>
   );

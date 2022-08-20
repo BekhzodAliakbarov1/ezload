@@ -29,10 +29,12 @@ interface LoadMainPart {
   visits_count: number;
   id: number;
   status?: 1 | 2 | 3;
+  accepted_bid?: number;
 }
 
 export interface SingleLoadResponse extends LoadMainPart {
   driver?: {
+    id: string;
     profile_picture?: {
       file: string;
     };
@@ -49,10 +51,11 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
   weight: number;
   status: 1 | 2 | 3;
   driver?: {
+    id: string;
     average_rate: number;
     first_name: string;
     phone_number: string;
-    profile_picture: {
+    profile_picture?: {
       file: string;
     };
   };

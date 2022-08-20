@@ -4,10 +4,10 @@ import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 
 interface CreateReviewRequest {
-  rate: string;
+  rate: number;
   feedback: string;
-  reviewee: string;
-  load: string;
+  reviewee?: string;
+  load?: number;
 }
 
 export const useCreateReview = () => {
@@ -25,8 +25,10 @@ export const useCreateReview = () => {
           variant: 'success',
         });
       },
-      onError() {
-        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+      onError(err: any) {
+        enqueueSnackbar(err.response.data.errors.message, {
+          variant: 'error',
+        });
       },
     }
   );

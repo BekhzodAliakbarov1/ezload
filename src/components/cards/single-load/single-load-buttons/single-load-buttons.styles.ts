@@ -112,10 +112,3 @@ export const ModalInputsWrapper = styled.div`
   gap: 16px;
   margin-bottom: 32px;
 `;
-
-export const LoadBidRatingWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  margin-bottom: 32px;
-  justify-content: center;
-`;

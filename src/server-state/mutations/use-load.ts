@@ -21,7 +21,7 @@ interface EditAddressRequest extends CreateLoadRequest {
   id: string;
 }
 interface DeleteLoadRequest {
-  id?: string;
+  id?: number | string;
 }
 
 // CREATE
