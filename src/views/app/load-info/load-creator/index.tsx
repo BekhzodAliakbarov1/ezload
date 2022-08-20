@@ -8,7 +8,6 @@ import {
 import Avatar from 'components/avatar';
 import Text from 'components/typography/text';
 import Button from 'components/button/button';
-import { useModal } from 'hooks/use-modal';
 import { SingleLoadDetailsResponse } from 'types/load.types';
 import { useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';

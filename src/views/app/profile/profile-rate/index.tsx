@@ -1,3 +1,4 @@
+import ReviewCard from 'components/cards/review-card';
 import FileIcon from 'components/icons/file.icon';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
@@ -53,21 +54,17 @@ const ProfileRate = () => {
       <Text className="reviews" weight="700">
         {t('All user reviews')}
       </Text>
-      <ProfileRateReviewsDataBox isEmpty={data?.feedbacks.length === 0}>
-        {data?.feedbacks.length === 0 ? (
+      <ProfileRateReviewsDataBox isEmpty={data?.reviews?.length === 0}>
+        {data?.reviews?.length === 0 ? (
           <EmptyReviewWrapper>
             <FileIcon />
             <Text>{t('No reviews yet')}</Text>
           </EmptyReviewWrapper>
         ) : (
           <>
-            {/* <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard /> */}
+            {data?.reviews?.map((review, index) => (
+              <ReviewCard key={index} {...review} />
+            ))}
           </>
         )}
       </ProfileRateReviewsDataBox>

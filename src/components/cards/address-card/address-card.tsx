@@ -1,13 +1,10 @@
-import { Modal } from '@mui/material';
 import Button from 'components/button/button';
 import BucketIcon from 'components/icons/bucket';
 import DeleteAddressModal from 'components/modals/delete-address-modal';
 import Text from 'components/typography/text';
-import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteProfileAddress } from 'server-state/mutations/use-profile-address';
 import { AddressInterface } from 'types/address.types';
 import {
   AddressCardButtonsWrapper,

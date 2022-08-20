@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const LoadInfoViewWrapper = styled.div`
   width: 100%;
