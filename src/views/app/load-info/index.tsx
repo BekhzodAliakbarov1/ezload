@@ -4,6 +4,7 @@ import LoadInfoCard from 'components/cards/load-info-card';
 import LoadCard from 'components/cards/single-load/load-card';
 import BidIcon from 'components/icons/bid.icon';
 import Input from 'components/input/input';
+import MakeBidModal from 'components/modals/make-bid-modal';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';
 import { useModal } from 'hooks/use-modal';
@@ -19,8 +20,6 @@ import {
   LoadInfoDataWrapperBox,
   LoadInfoViewWrapper,
   LoadInfowViewHeader,
-  MakeBidModalWrapper,
-  ModalButtonsWrapper,
 } from './load-info.styles';
 
 const LoadInfoView = () => {
@@ -28,29 +27,9 @@ const LoadInfoView = () => {
     load_id: string;
   }>();
   const { t } = useTranslation();
-  const { close, isOpen, open } = useModal();
   const { isDriver } = useDriver();
   const singleLoadRequest = useLoad({ load_id });
-  const createBidRequest = useCreateBid({ load_id });
   const deleteBidRequest = useDeleteBid({ load_id });
-
-  const submitHandler = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    const target = e.target as typeof e.target & {
-      price: { value: string };
-    };
-    createBidRequest.mutate(
-      {
-        load: load_id,
-        price: target.price.value,
-      },
-      {
-        onSuccess() {
-          close();
-        },
-      }
-    );
-  };
 
   const deleteBidClickHandler = () => {
     deleteBidRequest.mutate({
@@ -72,9 +51,14 @@ const LoadInfoView = () => {
                       {t('Delete bid')}
                     </Button>
                   ) : (
-                    <Button aria-label="bid load" onClick={open}>
-                      {t('Bid to the load')}
-                    </Button>
+                    <MakeBidModal
+                      load_id={load_id}
+                      wanted_price={singleLoadRequest.data.price}
+                    >
+                      <Button aria-label="bid load">
+                        {t('Bid to the load')}
+                      </Button>
+                    </MakeBidModal>
                   )}
                 </>
               ) : (
@@ -112,27 +96,6 @@ const LoadInfoView = () => {
           <LoadBids data={singleLoadRequest.data} />
         )}
       </LoadInfoViewWrapper>
-      {/* Bid Modal */}
-      <Modal open={isOpen} onClose={close}>
-        <MakeBidModalWrapper onSubmit={submitHandler}>
-          <Text className="header">{t('Make a bid')}</Text>
-          <Text className="cost">
-            {t('Customer’s suggestion')} {singleLoadRequest.data?.price} USD
-          </Text>
-          <Input name="price" placeholder={t('Your bid')} />
-          <ModalButtonsWrapper>
-            <Button aria-label="submit">{t('Submit')}</Button>
-            <Button
-              aria-label="cencel"
-              type="button"
-              onClick={close}
-              buttonType="white"
-            >
-              {t('Cancel')}
-            </Button>
-          </ModalButtonsWrapper>
-        </MakeBidModalWrapper>
-      </Modal>
     </>
   );
 };
