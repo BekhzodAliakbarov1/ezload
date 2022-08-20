@@ -8,9 +8,9 @@ import { useTranslation } from 'react-i18next';
 import { useCreateReview } from 'server-state/mutations/use-create-review';
 import {
   ChildrenWrapper,
-  LoadBidRatingWrapper,
-  LoadBidsSimpleModalWrapper,
-  LoadBitsModalButtonsWrapper,
+  RatingWrapper,
+  ModalWrapper,
+  ModalButtonsWrapper,
   ModalInputsWrapper,
   ModalStyledTextFiled,
 } from './review-driver-moda.styles';
@@ -45,16 +45,16 @@ const ReviewDriverModal: React.FC<{
     <>
       <ChildrenWrapper onClick={open}>{children}</ChildrenWrapper>
       <Modal open={isOpen} onClose={close}>
-        <LoadBidsSimpleModalWrapper type={'big'}>
+        <ModalWrapper type={'big'}>
           <Text>{t('Rate your experience')}</Text>
-          <LoadBidRatingWrapper>
+          <RatingWrapper>
             <Rating
               value={rating}
               onChange={(e, newValue) => setRating(newValue ?? rating)}
               icon={<FilledStarIcon size="40" fill="#76CBB4" />}
               emptyIcon={<FilledStarIcon size="40" fill="#EBF8F4" />}
             />
-          </LoadBidRatingWrapper>
+          </RatingWrapper>
           <ModalInputsWrapper>
             <ModalStyledTextFiled
               multiline
@@ -63,15 +63,15 @@ const ReviewDriverModal: React.FC<{
               placeholder={t('Please be honest to leave your feedback')}
             />
           </ModalInputsWrapper>
-          <LoadBitsModalButtonsWrapper>
+          <ModalButtonsWrapper>
             <Button aria-label="submit" onClick={handleReviewDriver}>
               {t('Submit')}
             </Button>
             <Button aria-label="cancel" buttonType="white" onClick={close}>
               {t('Cancel')}
             </Button>
-          </LoadBitsModalButtonsWrapper>
-        </LoadBidsSimpleModalWrapper>
+          </ModalButtonsWrapper>
+        </ModalWrapper>
       </Modal>
     </>
   );

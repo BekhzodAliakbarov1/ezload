@@ -1,23 +1,18 @@
 import Avatar from 'components/avatar';
 import React from 'react';
 import {
-  AcceptBidModalWrapper,
   AvatarWrapper,
   DriverMainInfoContactWrapper,
   DriverMainInfosWrapper,
   DriversMainInfoDataWrapper,
   DriversMainInfoLocationsWrapper,
-  ModalButtonsWrapper,
 } from './driver-main-infos.styles';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
-import { useNavigate } from 'react-router-dom';
 import Button from 'components/button/button';
-import { useModal } from 'hooks/use-modal';
-import { Modal } from '@mui/material';
 import { SingleDriverResponse } from 'server-state/queries/use-driver';
-import { useAcceptBid } from 'server-state/queries/use-bid';
 import { useTranslation } from 'react-i18next';
+import AcceptBidModal from 'components/modals/accept-bid-modal';
 
 const DriverMainInfos: React.FC<{
   data?: SingleDriverResponse;
@@ -25,18 +20,7 @@ const DriverMainInfos: React.FC<{
   bidded_price?: number;
 }> = ({ data, bid_id, bidded_price }) => {
   const { t } = useTranslation();
-  const acceptBidRequest = useAcceptBid({ bid_id });
-  const { close, isOpen, open } = useModal();
-  const navigate = useNavigate();
   const biddedDriver = Boolean(bid_id);
-
-  const handleClick = () => {
-    close();
-
-    acceptBidRequest.refetch().then(() => {
-      navigate(-1);
-    });
-  };
 
   return (
     <>
@@ -76,33 +60,17 @@ const DriverMainInfos: React.FC<{
           </h2>
         </DriverMainInfoContactWrapper>
         {biddedDriver && (
-          <Button
-            aria-label="accept bid"
-            fullWidth
-            buttonType="warning"
-            onClick={open}
+          <AcceptBidModal
+            bid_id={bid_id}
+            bidded_price={bidded_price}
+            driver_name={data?.first_name}
           >
-            {t('Accept bid')}
-          </Button>
+            <Button aria-label="accept bid" fullWidth buttonType="warning">
+              {t('Accept bid')}
+            </Button>
+          </AcceptBidModal>
         )}
       </DriverMainInfosWrapper>
-      <Modal open={isOpen} onClose={close}>
-        <AcceptBidModalWrapper>
-          <Text>
-            {t('Are you sure you want to accept this bid from')}{' '}
-            {data?.first_name}
-            {t(' with the amount of ')}${bidded_price}?
-          </Text>
-          <ModalButtonsWrapper>
-            <Button aria-label="accept" onClick={handleClick}>
-              {t('Accept')}
-            </Button>
-            <Button aria-label="cancel" buttonType="white" onClick={close}>
-              {t('Cancel')}
-            </Button>
-          </ModalButtonsWrapper>
-        </AcceptBidModalWrapper>
-      </Modal>
     </>
   );
 };

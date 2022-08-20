@@ -2,11 +2,11 @@ import { TextField } from '@mui/material';
 import styled from 'styled-components';
 
 export const ChildrenWrapper = styled.div`
-  width: fit-content;
-  height: fit-content;
+  /* width: fit-content;
+  height: fit-content; */
 `;
 
-export const LoadBidsSimpleModalWrapper = styled.div<{ type: 'big' | 'small' }>`
+export const ModalWrapper = styled.div<{ type: 'big' | 'small' }>`
   width: fit-content;
   height: fit-content;
   padding: 56px 80px;
@@ -26,13 +26,23 @@ export const LoadBidsSimpleModalWrapper = styled.div<{ type: 'big' | 'small' }>`
     margin-bottom: 48px;
     text-align: center;
   }
+  @media (max-width: 800px) {
+    max-width: 90vw;
+    padding: 24px;
+  }
 `;
 
-export const LoadBidRatingWrapper = styled.div`
+export const RatingWrapper = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 32px;
   justify-content: center;
+  @media (max-width: 800px) {
+    margin-bottom: 20px;
+    svg {
+      width: 32px;
+    }
+  }
 `;
 
 export const ModalInputsWrapper = styled.div`
@@ -58,7 +68,7 @@ export const ModalStyledTextFiled = styled(TextField)`
   }
 `;
 
-export const LoadBitsModalButtonsWrapper = styled.div`
+export const ModalButtonsWrapper = styled.div`
   width: fit-content;
   gap: 24px;
   display: flex;

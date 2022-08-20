@@ -91,6 +91,7 @@ export const DriverMainInfoContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-bottom: 56px;
   gap: 17px;
   p {
     font-size: 16px;
@@ -109,31 +110,4 @@ export const DriverMainInfoContactWrapper = styled.div`
   .label {
     color: ${(props) => props.theme.text.main_70};
   }
-`;
-
-export const AcceptBidModalWrapper = styled.div`
-  width: fit-content;
-  height: fit-content;
-  padding: 56px 80px;
-  background-color: ${colors.white};
-  border-radius: 8px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 515px;
-  > p {
-    font-size: 20px;
-    line-height: 32px;
-    text-align: center;
-    letter-spacing: 0.15px;
-    margin-bottom: 48px;
-  }
-`;
-
-export const ModalButtonsWrapper = styled.div`
-  display: flex;
-  width: fit-content;
-  gap: 24px;
-  margin: auto;
 `;

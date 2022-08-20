@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import { colors } from 'styles/variables';
 
 export const ChildrenWrapper = styled.div`
-  width: fit-content;
-  height: fit-content;
+  /* width: fit-content;
+  height: fit-content; */
 `;
 
 export const ModalWrapper = styled.div`
@@ -28,6 +28,15 @@ export const ModalWrapper = styled.div`
     letter-spacing: 0.15px;
     margin-bottom: 48px;
   }
+  @media (max-width: 800px) {
+    width: 90vw;
+    height: fit-content;
+    padding: 24px;
+    > p {
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+  }
 `;
 
 export const ModalButtonsBox = styled.div`
@@ -45,6 +54,14 @@ export const ModalButtonsBox = styled.div`
     color: ${(props) => props.theme.text.main_70};
     :hover {
       background-color: ${(props) => props.theme.text.main_5};
+    }
+  }
+  @media (max-width: 800px) {
+    margin-top: 0px;
+    width: 100%;
+    gap: 12px;
+    button {
+      width: fit-content;
     }
   }
 `;

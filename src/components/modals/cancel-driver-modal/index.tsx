@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useCancelBid } from 'server-state/queries/use-bid';
 import {
   ChildrenWrapper,
-  LoadBidsSimpleModalWrapper,
-  LoadBitsModalButtonsWrapper,
+  ModalWrapper,
+  ModalButtonsWrapper,
   ModalInputsWrapper,
   ModalStyledTextFiled,
 } from './cancel-driver-modal.styles';
@@ -29,40 +29,43 @@ const CancelDriverModal: React.FC<{
     close();
   };
 
-  const cancelDriverHandler = () => {
-    cancelBidRequest.mutate({
-      bid_id: accepted_bid,
-    });
-    // Writing feed back will implement soon
+  const submitHandler = () => {
+    cancelBidRequest.mutate(
+      {
+        bid_id: accepted_bid,
+      },
+      {
+        onSuccess() {
+          close();
+        },
+      }
+    );
+    // Writing feed back will implement soon just we should add setCancelDriverSteps 2 and it move next step
   };
 
   return (
     <>
       <ChildrenWrapper onClick={open}>{children}</ChildrenWrapper>
       <Modal open={isOpen} onClose={close}>
-        <LoadBidsSimpleModalWrapper
-          type={cancelDriverSteps === 1 ? 'small' : 'big'}
-        >
+        <ModalWrapper type={cancelDriverSteps === 1 ? 'small' : 'big'}>
           {cancelDriverSteps === 1 && (
             <>
               <Text>
                 {t('Are you sure you want to cancel ')}
                 {driver_name}” {t('assigned to the order ID: ')} {accepted_bid}?
               </Text>
-              <LoadBitsModalButtonsWrapper>
-                <Button aria-label="submit" onClick={cancelDriverHandler}>
+              <ModalButtonsWrapper>
+                <Button aria-label="submit" onClick={submitHandler}>
                   {t('Submit')}
                 </Button>
                 <Button
                   aria-label="cancel"
                   buttonType="white"
-                  onClick={() => {
-                    setCancelDriverSteps(2);
-                  }}
+                  onClick={cancelHandler}
                 >
                   {t('Cancel')}
                 </Button>
-              </LoadBitsModalButtonsWrapper>
+              </ModalButtonsWrapper>
             </>
           )}
           {cancelDriverSteps === 2 && (
@@ -78,21 +81,21 @@ const CancelDriverModal: React.FC<{
                   )}
                 />
               </ModalInputsWrapper>
-              <LoadBitsModalButtonsWrapper>
-                <Button aria-label="submit" onClick={cancelDriverHandler}>
+              <ModalButtonsWrapper>
+                <Button aria-label="submit" onClick={() => console.log('1221')}>
                   {t('Submit')}
                 </Button>
                 <Button
-                  aria-label="ccancel"
+                  aria-label="cancel"
                   buttonType="white"
                   onClick={cancelHandler}
                 >
                   {t('Cancel')}
                 </Button>
-              </LoadBitsModalButtonsWrapper>
+              </ModalButtonsWrapper>
             </>
           )}
-        </LoadBidsSimpleModalWrapper>
+        </ModalWrapper>
       </Modal>
     </>
   );

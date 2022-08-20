@@ -8,18 +8,16 @@ interface AcceptBidResponse {
   status_code: number;
 }
 
-export const useAcceptBid = ({ bid_id }: { bid_id?: string }) => {
+export const useAcceptBid = () => {
   const { enqueueSnackbar } = useSnackbar();
   const { t } = useTranslation();
 
-  return useQuery(
-    `accept_${bid_id}`,
-    () =>
+  return useMutation(
+    ({ bid_id }: { bid_id?: string }) =>
       request
         .get<AcceptBidResponse>(`/load/bid/${bid_id}/accept/`)
         .then((res) => res.data),
     {
-      enabled: false,
       onSuccess() {
         enqueueSnackbar(t('Bid accepted successfully!'), {
           variant: 'success',
