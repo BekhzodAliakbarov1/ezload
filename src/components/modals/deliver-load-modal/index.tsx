@@ -42,7 +42,11 @@ const DeliverLoadModal: React.FC<{
             )}
           </Text>
           <ModalButtonsWrapper>
-            <Button onClick={submitHandler} buttonType="contained">
+            <Button
+              loading={deliverLoadRequest.isLoading}
+              onClick={submitHandler}
+              buttonType="contained"
+            >
               {t('Submit')}
             </Button>
             <Button onClick={close} buttonType="white">

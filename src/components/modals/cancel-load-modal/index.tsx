@@ -58,7 +58,9 @@ const CancelLoadModal: React.FC<{
             />
           </ModalInputsWrapper>
           <ModalButtonsWrapper>
-            <Button type="submit">{t('Submit')}</Button>
+            <Button loading={cancelLoadRequest.isLoading} type="submit">
+              {t('Submit')}
+            </Button>
             <Button onClick={close} type="button" buttonType="white">
               {t('Cancel')}
             </Button>

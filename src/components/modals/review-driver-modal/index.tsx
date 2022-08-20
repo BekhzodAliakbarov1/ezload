@@ -64,7 +64,11 @@ const ReviewDriverModal: React.FC<{
             />
           </ModalInputsWrapper>
           <ModalButtonsWrapper>
-            <Button aria-label="submit" onClick={handleReviewDriver}>
+            <Button
+              loading={createReviewRequest.isLoading}
+              aria-label="submit"
+              onClick={handleReviewDriver}
+            >
               {t('Submit')}
             </Button>
             <Button aria-label="cancel" buttonType="white" onClick={close}>

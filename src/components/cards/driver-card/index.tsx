@@ -27,7 +27,7 @@ const DriverCard: React.FC<{
   rates_avg,
   sizes,
   styles,
-  vehicle,
+  vehicle = { capacity: 0, licence_plate: 0, title: '' },
   shadow = false,
   clickable = false,
   // bg_color = '',
@@ -46,7 +46,7 @@ const DriverCard: React.FC<{
           {first_name.substring(0, 20)}
         </Text>
         <Text size="sm" color="main_100" weight="400">
-          {vehicle?.title} ({vehicle?.capacity} Ton)
+          {vehicle?.title} ({vehicle?.capacity ?? '0'} Ton)
         </Text>
         <Text size="md" weight="600">
           100+ {t('LOADS')}

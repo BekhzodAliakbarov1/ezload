@@ -70,7 +70,7 @@ export const useEditLoad = () => {
 // DELETE
 export const useDeleteLoad = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const { invalidateQueries } = useQueryClient();
+  const qc = useQueryClient();
 
   return useMutation(
     (data: DeleteLoadRequest) =>
@@ -83,12 +83,15 @@ export const useDeleteLoad = () => {
         enqueueSnackbar('Load deleted succesffuly!', {
           variant: 'success',
         });
-        invalidateQueries(['loads']);
+        qc.invalidateQueries(['loads_new']);
+        console.log('success');
       },
-      onError() {
-        enqueueSnackbar('Something went wrong!', {
-          variant: 'error',
-        });
+      onError(err) {
+        console.log(err);
+
+        // enqueueSnackbar('Something went wrong!', {
+        //   variant: 'error',
+        // });
       },
     }
   );

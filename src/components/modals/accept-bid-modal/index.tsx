@@ -46,7 +46,11 @@ const AcceptBidModal: React.FC<{
             {t(' with the amount of ')}${bidded_price}?
           </Text>
           <ModalButtonsWrapper>
-            <Button aria-label="accept" onClick={handleClick}>
+            <Button
+              loading={acceptBidRequest.isLoading}
+              aria-label="accept"
+              onClick={handleClick}
+            >
               {t('Accept')}
             </Button>
             <Button aria-label="cancel" buttonType="white" onClick={close}>

@@ -40,7 +40,11 @@ const CancelBidModal: React.FC<{
         <ModalWrapper>
           <Text>{t('Are you sure you want to cancel ')} ?</Text>
           <ModalButtonsWrapper>
-            <Button aria-label="submit" onClick={submitHandler}>
+            <Button
+              loading={deleteBidRequest.isLoading}
+              aria-label="submit"
+              onClick={submitHandler}
+            >
               {t('Submit')}
             </Button>
             <Button aria-label="cancel" buttonType="white" onClick={close}>

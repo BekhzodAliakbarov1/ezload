@@ -16,10 +16,10 @@ const DeleteAddressModal: React.FC<{
 }> = ({ address_id, children }) => {
   const { close, isOpen, open } = useModal();
   const [t] = useTranslation();
-  const deleteAddressrequest = useDeleteProfileAddress();
+  const deleteAddressRequest = useDeleteProfileAddress();
 
   const handleDelete = () => {
-    deleteAddressrequest.mutate({ id: address_id });
+    deleteAddressRequest.mutate({ id: address_id });
     close();
   };
   return (
@@ -31,7 +31,11 @@ const DeleteAddressModal: React.FC<{
             {t('Are you sure to delete? Actions cannot be undone')}
           </Text>
           <ModalButtonsBox>
-            <Button aria-label="delete" onClick={handleDelete}>
+            <Button
+              loading={deleteAddressRequest.isLoading}
+              aria-label="delete"
+              onClick={handleDelete}
+            >
               {t('Yes, delete')}
             </Button>
             <Button aria-label="cancel" onClick={close}>

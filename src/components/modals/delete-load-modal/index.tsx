@@ -19,9 +19,16 @@ const DeletLoadModal: React.FC<{
   const deleteLoadRequest = useDeleteLoad();
 
   const handleDelete = () => {
-    deleteLoadRequest.mutate({
-      id: load_id,
-    });
+    deleteLoadRequest.mutate(
+      {
+        id: load_id,
+      },
+      {
+        onSuccess() {
+          close();
+        },
+      }
+    );
   };
 
   return (
@@ -33,7 +40,11 @@ const DeletLoadModal: React.FC<{
             {t('Are you sure to delete? Actions cannot be undone')}
           </Text>
           <ModalButtonsBox>
-            <Button aria-label="delete" onClick={handleDelete}>
+            <Button
+              loading={deleteLoadRequest.isLoading}
+              aria-label="delete"
+              onClick={handleDelete}
+            >
               {t('Yes, delete')}
             </Button>
             <Button aria-label="cancel" onClick={close}>

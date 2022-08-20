@@ -48,7 +48,9 @@ const MakeBidModal: React.FC<{
           </Text>
           <Input name="price" placeholder={t('Your bid')} />
           <ModalButtonsWrapper>
-            <Button aria-label="submit">{t('Submit')}</Button>
+            <Button loading={createBidRequest.isLoading} aria-label="submit">
+              {t('Submit')}
+            </Button>
             <Button
               aria-label="cencel"
               type="button"

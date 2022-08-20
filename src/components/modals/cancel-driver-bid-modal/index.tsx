@@ -55,7 +55,11 @@ const CancelDriverModal: React.FC<{
                 {driver_name}” {t('assigned to the order ID: ')} {accepted_bid}?
               </Text>
               <ModalButtonsWrapper>
-                <Button aria-label="submit" onClick={submitHandler}>
+                <Button
+                  loading={cancelBidRequest.isLoading}
+                  aria-label="submit"
+                  onClick={submitHandler}
+                >
                   {t('Submit')}
                 </Button>
                 <Button
