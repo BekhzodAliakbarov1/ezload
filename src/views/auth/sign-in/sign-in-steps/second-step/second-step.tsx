@@ -34,6 +34,7 @@ const SecondStep: React.FC<{
   const sendCodeAgain = () => {
     verificationRequest.mutate({ phone_number });
   };
+  console.log(verificationCode);
 
   const onSubmit = () => {
     loginRequest.mutate(
@@ -45,9 +46,13 @@ const SecondStep: React.FC<{
       },
       {
         onSuccess(res) {
+          console.log(res);
+
           if (res.is_new_user) {
             saveTokenAndId(res.token, res.id);
             nextStep();
+          } else if (res.status_code) {
+            setHasError(true);
           } else {
             login({
               tokens: { access: res.token, refresh: '12' },
@@ -69,7 +74,7 @@ const SecondStep: React.FC<{
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p>{t('Sorry, this mobile not registered')}</p>
+            <p>{t('Code is incorrect')}</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
@@ -81,8 +86,17 @@ const SecondStep: React.FC<{
           <Text size="sm" weight="500">
             {t('We just sent a code to your phone')} +{phone_number}
           </Text>
-          <ConfirmCodeWrapper error={hasError}>
-            <ReactCodeInputComponent size="lg" setCode={setVerificationCode} />
+          <ConfirmCodeWrapper>
+            <ReactCodeInputComponent
+              error={hasError}
+              size="lg"
+              typingHandler={() => hasError && setHasError(false)}
+              setCode={(val: string) => {
+                console.log('12');
+
+                setVerificationCode(val);
+              }}
+            />
           </ConfirmCodeWrapper>
           <Button loading={loginRequest.isLoading} type="submit" fullWidth>
             {t('Confirm code')}
