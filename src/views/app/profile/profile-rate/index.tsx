@@ -2,6 +2,7 @@ import ReviewCard from 'components/cards/review-card';
 import FileIcon from 'components/icons/file.icon';
 import RatingComponent from 'components/rating/rating';
 import RateContainerSkeloton from 'components/skelotons/rate-container';
+import ReviewsContainerSkeloton from 'components/skelotons/reviews-container';
 import Text from 'components/typography/text';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -65,17 +66,17 @@ const ProfileRate = () => {
         {t('All user reviews')}
       </Text>
       <ProfileRateReviewsDataBox isEmpty={data?.reviews?.length === 0}>
-        {data?.reviews?.length === 0 ? (
+        {isLoading ? (
+          <ReviewsContainerSkeloton />
+        ) : data?.reviews && data?.reviews?.length > 0 ? (
+          data?.reviews?.map((review, index) => (
+            <ReviewCard key={index} {...review} />
+          ))
+        ) : (
           <EmptyReviewWrapper>
             <FileIcon />
             <Text>{t('No reviews yet')}</Text>
           </EmptyReviewWrapper>
-        ) : (
-          <>
-            {data?.reviews?.map((review, index) => (
-              <ReviewCard key={index} {...review} />
-            ))}
-          </>
         )}
       </ProfileRateReviewsDataBox>
     </ProfileRatesWrapper>
