@@ -34,7 +34,6 @@ const SecondStep: React.FC<{
   const sendCodeAgain = () => {
     verificationRequest.mutate({ phone_number });
   };
-  console.log(verificationCode);
 
   const onSubmit = () => {
     loginRequest.mutate(
@@ -46,12 +45,10 @@ const SecondStep: React.FC<{
       },
       {
         onSuccess(res) {
-          console.log(res);
-
           if (res.is_new_user) {
             saveTokenAndId(res.token, res.id);
             nextStep();
-          } else if (res.status_code) {
+          } else if (res.status_code === 400) {
             setHasError(true);
           } else {
             login({

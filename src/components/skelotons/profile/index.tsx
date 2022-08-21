@@ -10,7 +10,7 @@ const ProfileSkeloton = () => {
         flexWrap="wrap"
         gap="47px"
         alignItems="center"
-        width="100%"
+        width="fit-content"
         justifyContent="center"
       >
         <Skeleton variant="circular" width={135} height={135} />
