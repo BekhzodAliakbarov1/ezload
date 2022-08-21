@@ -2,7 +2,7 @@ import Button from 'components/button/button';
 import AddressCard from 'components/cards/address-card/address-card';
 import FileIcon from 'components/icons/file.icon';
 import PlusIcon from 'components/icons/plus.icon';
-import Spinner from 'components/loaders/spinner';
+import AddressCardsContainer from 'components/skelotons/address-cards-container';
 import Text from 'components/typography/text';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -33,13 +33,10 @@ const ProfileAddress = () => {
         </Button>
       </ProfileAddressTopPartContainer>
       <ProfileAddressesWrapper>
-        <Spinner
-          loading={isLoading}
-          loaderSize="40px"
-          width="300px"
-          height="300px"
-        />
-        {data?.pages &&
+        {isLoading ? (
+          <AddressCardsContainer />
+        ) : (
+          data?.pages &&
           data.pages.map((page, index) =>
             page.results.length > 0 ? (
               page?.results.map((address) => {
@@ -51,7 +48,8 @@ const ProfileAddress = () => {
                 <Text>{t('You have not create address yet')}</Text>
               </NoAddressesFindSection>
             )
-          )}
+          )
+        )}
       </ProfileAddressesWrapper>
     </ProfileAddressWrapper>
   );
