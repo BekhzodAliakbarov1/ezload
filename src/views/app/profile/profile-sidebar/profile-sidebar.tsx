@@ -28,7 +28,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-loads'}
                 weight="700"
               >
-                {t('My loads')}
+                {t('My Loads')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-statistics">

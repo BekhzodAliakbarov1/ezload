@@ -89,8 +89,6 @@ const SecondStep: React.FC<{
               size="lg"
               typingHandler={() => hasError && setHasError(false)}
               setCode={(val: string) => {
-                console.log('12');
-
                 setVerificationCode(val);
               }}
             />

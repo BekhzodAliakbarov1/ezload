@@ -12,7 +12,6 @@ const PersonalStatistics = () => {
   const { t } = useTranslation();
 
   const { data } = useStats();
-  console.log(data);
 
   return (
     <PersonalStatisticsWrapper>

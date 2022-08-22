@@ -46,7 +46,6 @@ const tommorrow = new Date();
 const theDayAfterTommorrow = new Date();
 tommorrow.setDate(tommorrow.getDate() + 1);
 theDayAfterTommorrow.setDate(theDayAfterTommorrow.getDate() + 2);
-console.log(tommorrow);
 
 export const defaultdata = {
   load_title: '',

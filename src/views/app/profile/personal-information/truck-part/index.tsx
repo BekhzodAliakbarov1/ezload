@@ -66,7 +66,7 @@ const TruckInfo: React.FC<{
           )}
         </TruckInfoChangeInput>
         <TruckInfoChangeInput>
-          <Text>{t('Truck Capacity (in tonnes)')}</Text>
+          <Text>{t('Truck capacity (in tonnes)')}</Text>
           {isEditing ? (
             <Input
               value={capacity}

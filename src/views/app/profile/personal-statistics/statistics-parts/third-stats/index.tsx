@@ -20,7 +20,6 @@ const ThirdStats: React.FC<{
   bids_rejected?: number;
 }> = ({ all_bids_number = 0, bids_accepted = 0, bids_rejected = 0 }) => {
   const { t } = useTranslation();
-  console.log({ all_bids_number, bids_accepted, bids_rejected });
 
   const data = {
     // labels: ['Rejected', 'Accepted'],
