@@ -6,24 +6,30 @@ import { useTranslation } from 'react-i18next';
 import { colors } from 'styles/variables';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
-import { ThirdStatsContainer } from './third-stats.styles';
+import {
+  CardsBox,
+  InformationContainer,
+  ThirdStatsContainer,
+  ThreeCrdsWrapper,
+} from './third-stats.styles';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const ThirdStats = () => {
+const ThirdStats: React.FC<{
+  all_bids_number?: number;
+  bids_accepted?: number;
+  bids_rejected?: number;
+}> = ({ all_bids_number = 0, bids_accepted = 0, bids_rejected = 0 }) => {
   const { t } = useTranslation();
-  const allInfo = {
-    all_bids: 456,
-    rejected: 253,
-    accepted: 203,
-  };
+  console.log({ all_bids_number, bids_accepted, bids_rejected });
+
   const data = {
-    labels: ['Rejected', 'Accepted'],
+    // labels: ['Rejected', 'Accepted'],
     datasets: [
       {
         label: '%',
         data: [
-          Math.round((allInfo.rejected * 100) / allInfo.all_bids),
-          Math.round((allInfo.accepted * 100) / allInfo.all_bids),
+          Math.round((bids_rejected * 100) / all_bids_number),
+          Math.round((bids_accepted * 100) / all_bids_number),
         ],
         backgroundColor: [colors.red_100, colors.green_100],
         borderWidth: 1,
@@ -32,50 +38,33 @@ const ThirdStats = () => {
   };
   return (
     <ThirdStatsContainer>
-      <Box
-        display="flex"
-        flexDirection="column"
-        width="100%"
-        justifyContent="flex-start"
-        gap="32px"
-      >
+      <InformationContainer>
         <Text weight="700">{t('Bids')}</Text>
-        <Box display="flex" flexWrap="wrap" sx={{ gap: ['20px', '94px'] }}>
-          <Box display="flex" flexDirection="column" gap="16px">
+        <ThreeCrdsWrapper>
+          <CardsBox>
             <Text size="sm">{t('All bids number')}</Text>
-            <Text
-              style={{ fontSize: '34px', lineHeight: '1.5' }}
-              size="lg"
-              weight="700"
-            >
-              456
-            </Text>
-          </Box>
-          <Box display="flex" flexDirection="column" gap="16px">
+            <Text>{all_bids_number}</Text>
+          </CardsBox>
+          <CardsBox>
             <Text size="sm">{t('Rejected ')}</Text>
-            <Typography fontSize="34px" fontWeight="700" color={colors.red_90}>
-              223
-            </Typography>
-          </Box>
-          <Box display="flex" flexDirection="column" gap="16px">
+            <Typography color={colors.red_90}>{bids_rejected}</Typography>
+          </CardsBox>
+          <CardsBox>
             <Text size="sm">{t('Accepted')}</Text>
-            <Typography
-              fontSize="34px"
-              fontWeight="700"
-              color={colors.green_100}
-            >
-              223
-            </Typography>
-          </Box>
+            <Typography color={colors.green_100}>{bids_accepted}</Typography>
+          </CardsBox>
+        </ThreeCrdsWrapper>
+      </InformationContainer>
+      {all_bids_number > 0 && (
+        <Box
+          sx={{
+            maxWidth: ['70%', '70%', '380px'],
+            alignSelf: 'flex-start',
+          }}
+        >
+          <Doughnut data={data} options={{ responsive: true }} />
         </Box>
-      </Box>
-      <Box
-        sx={{
-          maxWidth: ['100%', '100%', '380px'],
-        }}
-      >
-        <Doughnut data={data} options={{ responsive: true }} />
-      </Box>
+      )}
     </ThirdStatsContainer>
   );
 };

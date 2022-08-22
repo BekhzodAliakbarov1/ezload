@@ -31,4 +31,9 @@ export const MoneyStatsRow = styled.div`
   > p {
     color: ${(props) => props.theme.text.main_50};
   }
+  @media (max-width: 800px) {
+    > h3 {
+      font-size: 28px;
+    }
+  }
 `;
