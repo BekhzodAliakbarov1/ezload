@@ -67,7 +67,9 @@ const LoadBids: React.FC<{
               )}
             </LoadBidsDataBox>
           ) : (
-            <LoadBidsDataBox>
+            <LoadBidsDataBox
+              onClick={() => navigate(`/drivers/${data.driver?.id}`)}
+            >
               <DriverCard
                 shadow
                 clickable

@@ -51,8 +51,8 @@ const CancelDriverModal: React.FC<{
           {cancelDriverSteps === 1 && (
             <>
               <Text>
-                {t('Are you sure you want to cancel ')}
-                {driver_name}” {t('assigned to the order ID: ')} {accepted_bid}?
+                {t('Are you sure you want to cancel ')} ”{driver_name}”{' '}
+                {t('assigned to the order ID: ')} {accepted_bid}?
               </Text>
               <ModalButtonsWrapper>
                 <Button

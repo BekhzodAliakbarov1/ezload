@@ -58,7 +58,7 @@ const ProfileLoads = () => {
           onClick={() => onClickHandler('PENDING')}
           active={sectionType === 'PENDING'}
         >
-          <Text weight="700">{t(' On the way')}</Text>
+          <Text weight="700">{t('On the way')}</Text>
         </SingleController>
         <SingleController
           onClick={() => onClickHandler('DONE')}
