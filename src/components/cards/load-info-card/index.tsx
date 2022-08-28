@@ -21,7 +21,7 @@ const LoadInfoCard: React.FC<{
       <Text weight="600">{t('Information about load')}</Text>
       <Button aria-label="status button" buttonType="warning" size="medium">
         {data.status === 1
-          ? t('NEW')
+          ? t('New')
           : data.status === 2
           ? t('On the way')
           : data.status === 3 && t('Delivered')}

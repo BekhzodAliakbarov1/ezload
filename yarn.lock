@@ -1354,6 +1354,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@faker-js/faker@^7.4.0":
+  "integrity" "sha512-xDd3Tvkt2jgkx1LkuwwxpNBy/Oe+LkZBTwkgEFTiWpVSZgQ5sc/LenbHKRHbFl0dq/KFeeq/szyyPtpJRKY0fg=="
+  "resolved" "https://registry.npmjs.org/@faker-js/faker/-/faker-7.4.0.tgz"
+  "version" "7.4.0"
+
 "@googlemaps/js-api-loader@^1.7.0":
   version "1.14.3"
   resolved "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.14.3.tgz"
@@ -7372,6 +7377,7 @@ postcss-preset-env@^7.0.1:
     "@csstools/postcss-normalize-display-values" "^1.0.0"
     "@csstools/postcss-oklab-function" "^1.0.1"
     "@csstools/postcss-progressive-custom-properties" "^1.2.0"
+
     autoprefixer "^10.4.2"
     browserslist "^4.19.3"
     css-blank-pseudo "^3.0.3"
