@@ -1,7 +1,6 @@
 import { lazy } from 'react';
-const ProfileLayout = lazy(
-  () => import('layouts/profile-layout/profile-layout')
-);
+import ProfileLayout from 'layouts/profile-layout/profile-layout';
+
 const ActionLoadLayout = lazy(() => import('layouts/load-action-layout'));
 const SearchDriverLayout = lazy(() => import('layouts/search-driver-layout'));
 const DriverInfoLayout = lazy(
