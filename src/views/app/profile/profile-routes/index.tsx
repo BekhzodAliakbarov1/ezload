@@ -6,7 +6,6 @@ import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
 import CountryRouteInput from 'components/input/route-inputs/country-route';
 import RegionRouteInput from 'components/input/route-inputs/region-route';
-import RoutesContainerSkeloton from 'components/skelotons/routes-container';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -90,10 +89,7 @@ const ProfileRoutes = () => {
           </MyRoutesEditButtonWrapper>
         )}
       </ProfileRoutesHeader>
-      {routesRequest.isLoading ? (
-        <RoutesContainerSkeloton />
-      ) : routesRequest?.data?.routes &&
-        routesRequest.data.routes.length > 0 ? (
+      {routesRequest?.data?.routes && routesRequest.data.routes.length > 0 ? (
         <ProfileRoutesCreatedLocationsWrapper>
           {routesRequest.data?.routes?.map((route, index) => (
             <ProfileRoutesCreatedLocationsSingleRow key={route.id}>
@@ -112,7 +108,6 @@ const ProfileRoutes = () => {
           <Text>{t('No routes yet')}</Text>
         </NoRoutesFindSection>
       )}
-
       {isEditing && (
         <>
           <ProfileRoutesInputsWrapper>

@@ -10,6 +10,7 @@ const SearchLoadsList: React.FC<{ data?: SingleLoadResponse[] }> = ({
   data,
 }) => {
   const { t } = useTranslation();
+  console.log(data);
 
   return (
     <SearchLoadsListWrapper>
