@@ -1,13 +1,9 @@
-import { lazy } from 'react';
 import ProfileLayout from 'layouts/profile-layout/profile-layout';
-
-const ActionLoadLayout = lazy(() => import('layouts/load-action-layout'));
-const SearchDriverLayout = lazy(() => import('layouts/search-driver-layout'));
-const DriverInfoLayout = lazy(
-  () => import('layouts/driver-info-layout/driver-info-layout')
-);
-const SearchLoadLayout = lazy(() => import('layouts/search-load-layout'));
-const LoadInfoLayout = lazy(() => import('layouts/load-info-layout'));
+import ActionLoadLayout from 'layouts/load-action-layout';
+import SearchDriverLayout from 'layouts/search-driver-layout';
+import DriverInfoLayout from 'layouts/driver-info-layout/driver-info-layout';
+import SearchLoadLayout from 'layouts/search-load-layout';
+import LoadInfoLayout from 'layouts/load-info-layout';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import Feed from './feed/feed';
 import { useDriver } from 'hooks/use-driver';
