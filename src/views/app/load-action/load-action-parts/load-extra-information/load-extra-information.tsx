@@ -16,7 +16,6 @@ import { useTranslation } from 'react-i18next';
 const LoadExtraInformation = () => {
   const { data, setValues } = useData();
   const { t } = useTranslation();
-  console.log(data);
 
   const handleChangeCurrency = (value: string) => {
     setValues({ ...data, currency_type: value });

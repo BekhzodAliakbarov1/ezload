@@ -137,7 +137,11 @@ const EditableField: React.FC<{
             {t('We just sent a code to your phone')} {inputValue}
           </Text>
           <ConfirmVerificationCodeWrapper>
-            <ReactCodeInputComponent size="md" setCode={setVerificationCode} />
+            <ReactCodeInputComponent
+              typingHandler={() => console.log('error handler off')}
+              size="md"
+              setCode={(val: string) => setVerificationCode(val)}
+            />
             <Button
               aria-label="confirm code"
               loading={updatePhoneNumberRequest.isLoading}

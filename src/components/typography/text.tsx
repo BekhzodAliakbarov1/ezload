@@ -42,6 +42,7 @@ interface TextProps {
   className?: string;
   weight?: string;
   onClick?: () => void;
+  style?: any;
 }
 
 const StyledText = styled.p<TextProps>`

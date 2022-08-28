@@ -14,7 +14,7 @@ const ProfileSidebar = () => {
   return (
     <>
       <ProfileSidebarWrapper>
-        <Text weight="700">Profile page</Text>
+        <Text weight="700">{t('Profile page')}</Text>
         {isDriver ? (
           // Driver Links
           <div>
@@ -28,7 +28,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-loads'}
                 weight="700"
               >
-                {t('My loads')}
+                {t('My Loads')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-statistics">
@@ -69,7 +69,7 @@ const ProfileSidebar = () => {
                 active={pathname === '/profile/my-loads'}
                 weight="700"
               >
-                {t('My loads')}
+                {t('My Loads')}
               </StyledLink>
             </Link>
             <Link to="/profile/my-addresses">

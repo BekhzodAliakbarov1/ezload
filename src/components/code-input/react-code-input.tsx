@@ -5,11 +5,12 @@ import { ReactCodeInputWrapper } from './react-code-input.styles';
 const ReactCodeInputComponent: React.FC<{
   size: 'lg' | 'md';
   setCode: (val: string) => void;
+  typingHandler: () => void;
   error?: boolean;
-}> = ({ setCode, size, error }) => {
+}> = ({ setCode, size, error, typingHandler }) => {
   return (
     <ReactCodeInputWrapper error={error} size={size}>
-      <ReactCodeInput onComplete={(number) => setCode(number)} />
+      <ReactCodeInput onChange={() => typingHandler()} onComplete={setCode} />
     </ReactCodeInputWrapper>
   );
 };
