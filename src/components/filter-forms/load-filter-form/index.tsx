@@ -162,7 +162,7 @@ const LoadFiterForm: React.FC<{
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
-        <Text color="main_90">{`${t('Budget')} (${filterData.currency})`}</Text>
+        <Text color="main_90">{t('Budget (in USD)')}</Text>
         <Input
           onChange={(e) => handlePriceChange(e.target.value, 'price_from')}
           value={filterData.price_from ?? ''}

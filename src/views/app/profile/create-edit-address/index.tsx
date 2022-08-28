@@ -189,7 +189,9 @@ const CreateEditAddress = () => {
         <Button
           type="submit"
           loading={
-            editAddressRequest.isLoading || createAddressRequest.isLoading
+            state?.type === 'EDIT'
+              ? editAddressRequest.isLoading
+              : createAddressRequest.isLoading
           }
         >
           {state?.type === 'EDIT' ? t('Edit address') : t('Add address')}

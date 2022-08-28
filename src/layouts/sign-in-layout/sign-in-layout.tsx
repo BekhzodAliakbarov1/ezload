@@ -4,7 +4,6 @@ import logo from 'assets/img/logo-dark.png';
 import styled from 'styled-components';
 import SignIn from 'views/auth/sign-in';
 import CheckUserType from 'views/auth/sign-in/check-user-type';
-import { useNavigate } from 'react-router';
 
 export const SignInLayoutWrapper = styled.div`
   width: 100%;
@@ -23,7 +22,6 @@ export const SignInImageWrapper = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   img {
-    cursor: pointer;
     margin-top: 32px;
     margin-left: 75px;
   }
@@ -34,7 +32,6 @@ export const SignInImageWrapper = styled.div`
 
 const SignInLayout = () => {
   const [type, setType] = useState<'customer' | 'driver' | ''>('');
-  const navigate = useNavigate();
 
   const handleChangeUserType = (val: 'customer' | 'driver' | '') => {
     setType(val);
@@ -42,7 +39,7 @@ const SignInLayout = () => {
   return (
     <SignInLayoutWrapper>
       <SignInImageWrapper style={{ backgroundImage: `url(${image})` }}>
-        <img onClick={() => navigate(-1)} src={logo} alt="Logo" />
+        <img src={logo} alt="Logo" />
       </SignInImageWrapper>
       {type === '' ? (
         <CheckUserType onChange={handleChangeUserType} />

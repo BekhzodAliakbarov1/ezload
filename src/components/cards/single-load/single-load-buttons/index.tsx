@@ -32,7 +32,7 @@ const SingleLoadButtons: React.FC<{
       {status === 1 && (
         <LoadCardButtonWrapper>
           <DeletLoadModal load_id={load.id}>
-            <Text>{t('Delete load')}</Text>
+            <Text>{t('Delete Load')}</Text>
           </DeletLoadModal>
           <Text onClick={handleEdit}>{t('Change details')}</Text>
         </LoadCardButtonWrapper>

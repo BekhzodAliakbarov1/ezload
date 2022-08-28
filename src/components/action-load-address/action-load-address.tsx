@@ -35,6 +35,7 @@ const ActionLoadAddress: React.FC<{
   const { data, setValues } = useData();
   const { address_1, address_2, country, region, district, zip_code } =
     data[type];
+  console.log(data[type]);
 
   const searchInputSelectHandler = ({
     fieldName,

@@ -24,7 +24,7 @@ export const useAcceptBid = () => {
           variant: 'success',
         });
       },
-      onError() {
+      onError(err) {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
       },
     }
