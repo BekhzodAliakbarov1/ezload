@@ -41,6 +41,7 @@ const Map: React.FC<{
     if (address) {
       getAddressLine({ fieldName: 'address_1', val: address_line });
     }
+    console.log(address_line);
   }, [address_line]);
 
   useEffect(() => {

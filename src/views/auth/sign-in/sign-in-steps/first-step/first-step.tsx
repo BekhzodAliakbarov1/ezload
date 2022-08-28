@@ -34,7 +34,6 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
     register,
     handleSubmit,
     formState: { errors },
-    setError,
   } = useForm<Inputs>();
   const { t } = useTranslation();
 
@@ -45,15 +44,6 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
         onSuccess() {
           setPhoneNumber(`${countryCode}${data.phone_num}`.substring(1));
           nextStep();
-        },
-        onError() {
-          setError(
-            'phone_num',
-            { type: 'pattern' },
-            {
-              shouldFocus: true,
-            }
-          );
         },
       }
     );
@@ -89,13 +79,6 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
                   required: true,
                   pattern: PHONE_NUMBER_REGEX,
                 })}
-                error={
-                  errors.phone_num?.type === 'required'
-                    ? t('Please enter Number')
-                    : errors.phone_num?.type === 'pattern'
-                    ? t('Invalid Phone Number')
-                    : ''
-                }
               />
             </PhoneInput>
           </PhoneNumberWrapper>
@@ -104,7 +87,7 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
           </Button>
           <LineDiv />
           <Text size="md" weight="500">
-            {t('By clicking on the button I agree the ')}{' '}
+            {t('By clicking on the button I agree the')}{' '}
             <span>{t('Terms & Conditions')}</span>.
           </Text>
         </form>

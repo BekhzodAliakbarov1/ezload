@@ -48,8 +48,6 @@ const SecondStep: React.FC<{
           if (res.is_new_user) {
             saveTokenAndId(res.token, res.id);
             nextStep();
-          } else if (res.status_code === 400) {
-            setHasError(true);
           } else {
             login({
               tokens: { access: res.token, refresh: '12' },
@@ -71,7 +69,7 @@ const SecondStep: React.FC<{
         <ErrorMessageWrapper>
           <ErrorMessageData>
             <InfoIcon />
-            <p>{t('Code is incorrect')}</p>
+            <p>{t('Sorry, this mobile not registered')}</p>
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
@@ -83,15 +81,8 @@ const SecondStep: React.FC<{
           <Text size="sm" weight="500">
             {t('We just sent a code to your phone')} +{phone_number}
           </Text>
-          <ConfirmCodeWrapper>
-            <ReactCodeInputComponent
-              error={hasError}
-              size="lg"
-              typingHandler={() => hasError && setHasError(false)}
-              setCode={(val: string) => {
-                setVerificationCode(val);
-              }}
-            />
+          <ConfirmCodeWrapper error={hasError}>
+            <ReactCodeInputComponent size="lg" setCode={setVerificationCode} />
           </ConfirmCodeWrapper>
           <Button loading={loginRequest.isLoading} type="submit" fullWidth>
             {t('Confirm code')}

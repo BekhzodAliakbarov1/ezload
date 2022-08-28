@@ -50,10 +50,10 @@
   "My Account": "My Account",
   "My account": "My account",
   "Truck info": "Truck info",
-  "On the way": " On the way",
+  " On the way": " On the way",
   "Add address": "Add address",
   "As a Driver": "As a Driver",
-  "Budget": "Budget",
+  "Budget (in ": "Budget (in",
   "Create Load": "Create Load",
   "Delete load": "Delete load",
   "Description": "Description",
@@ -186,17 +186,11 @@
   "Our core value is customer satisfaction": "Our core value is customer satisfaction",
   "Please be honest to leave your feedback": "Please be honest to leave your feedback",
   "Are you sure you want to cancel the load? ": "Are you sure you want to cancel the load? ",
-  "Are you sure you want to accept this bid from ": "Are you sure you want to accept this\n bid from ",
+  "Are you sure you want to accept this\n bid from ": "Are you sure you want to accept this\n bid from ",
   "Are you sure to delete? Actions cannot be undone": "Are you sure to delete? Actions cannot be undone",
   "Please, provide reason and explain of cancelling the load": "Please, provide reason and explain of cancelling the load",
   "Internationally or regionally, simple process, simple delivery": "Internationally or regionally, simple process, simple delivery",
   "Are you sure you want to complete the load? Make sure to deliver the load to the destination address": {
     " Also make sure to update the customer": "Are you sure you want to complete the load? Make sure to deliver the load to the destination address. Also make sure to update the customer."
-  },
-  "All bids number": "All bids number",
-  "Rejected": "Rejected",
-  "Accepted": "Accepted",
-  "Earned amount": "Earned amount",
-  "Top drivers": "Top drivers",
-  "Review the driver": "Review the driver"
+  }
 }
