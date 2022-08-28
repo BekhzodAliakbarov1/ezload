@@ -11,7 +11,7 @@ import ThirdStats from './statistics-parts/third-stats';
 const PersonalStatistics = () => {
   const { t } = useTranslation();
 
-  const { data } = useStats();
+  const { data } = useStats({ year: 2022 });
 
   return (
     <PersonalStatisticsWrapper>
@@ -21,8 +21,8 @@ const PersonalStatistics = () => {
         delivered_count={data?.delivered}
         on_the_way_count={data?.on_the_way}
       />
-      <SecondStats />
-      <ThirdStats />
+      {data?.chart && <SecondStats {...data?.chart} />}
+      <ThirdStats {...data} />
       <FourStats {...data} />
     </PersonalStatisticsWrapper>
   );
