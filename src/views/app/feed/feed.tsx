@@ -16,6 +16,7 @@ import leftImage from 'assets/img/left-bg-image.png';
 import rightImage from 'assets/img/right-bg-image.png';
 import { useDriver } from 'hooks/use-driver';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router';
 
 const feedStats = [
   {
@@ -38,6 +39,15 @@ const feedStats = [
 const Feed = () => {
   const { isDriver } = useDriver();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (isDriver) {
+      navigate('/search-load');
+    } else {
+      navigate('/create-load');
+    }
+  };
 
   return (
     <FeedWrapper>
@@ -63,7 +73,11 @@ const Feed = () => {
             </LocationAndSvgWrapper>
           </FeedLocationCard>
         </FeedLocationWrapper>
-        <Button aria-label="serch create load" endIcon={<RightShowIcon />}>
+        <Button
+          onClick={handleClick}
+          aria-label="serch create load"
+          endIcon={<RightShowIcon />}
+        >
           {isDriver ? t('Search loads') : t('Create Load')}
         </Button>
       </FeedDataWrapper>
