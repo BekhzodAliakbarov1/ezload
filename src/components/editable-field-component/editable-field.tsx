@@ -34,6 +34,7 @@ const EditableField: React.FC<{
   const updatePhoneNumberRequest = useUpdatePhoneNumber();
   const updateProfileRequest = useUpdateCustomerProfile();
   const { t } = useTranslation();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     setEditClicked(false);
@@ -70,9 +71,13 @@ const EditableField: React.FC<{
         phone_number: inputValue,
       },
       {
-        onSuccess() {
-          onSubmit(inputValue);
-          setEditClicked(false);
+        onSuccess(data: any) {
+          if (data.status_code !== 400) {
+            onSubmit(inputValue);
+            setEditClicked(false);
+          } else {
+            setError(true);
+          }
         },
       }
     );
@@ -138,7 +143,8 @@ const EditableField: React.FC<{
           </Text>
           <ConfirmVerificationCodeWrapper>
             <ReactCodeInputComponent
-              typingHandler={() => console.log('error handler off')}
+              error={error}
+              typingHandler={() => setError(false)}
               size="md"
               setCode={(val: string) => setVerificationCode(val)}
             />

@@ -19,10 +19,16 @@ export const useUpdatePhoneNumber = () => {
     },
     {
       retry: false,
-      onSuccess() {
-        enqueueSnackbar(t('Phone number updated successfully!'), {
-          variant: 'success',
-        });
+      onSuccess(data: any) {
+        if (data.status_code !== 400) {
+          enqueueSnackbar(t('Phone number updated successfully!'), {
+            variant: 'success',
+          });
+        } else {
+          enqueueSnackbar(t('Something went wrong!'), {
+            variant: 'error',
+          });
+        }
       },
       onError() {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });

@@ -70,6 +70,7 @@ export const EditFiedlForm = styled.form`
   }
   @media (max-width: 800px) {
     width: 100%;
+    max-width: 360px;
     flex-direction: column;
     input {
       width: 100%;
