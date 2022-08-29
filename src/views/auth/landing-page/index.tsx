@@ -1,4 +1,5 @@
-import { LeftBox, RightBox } from 'assets/svg';
+import LeftBox from 'assets/img/left-bg-image.png';
+import RightBox from 'assets/img/right-bg-image.png';
 import Footer from 'components/footer';
 import Navbar from 'components/navbar/navbar';
 import Container from 'wrappers/container/container';

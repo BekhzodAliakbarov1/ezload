@@ -1,5 +1,5 @@
 import React from 'react';
-import { ProfileImg } from 'assets/svg';
+import ProfileImg from 'assets/img/profile.png';
 import {
   LoadCardButtonWrapper,
   LoadCardDataWrapper,

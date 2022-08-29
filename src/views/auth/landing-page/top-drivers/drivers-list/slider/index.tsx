@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { MobileDriverCardWrapper, SliderWrapper } from '../drivers-list.styles';
 import SwiperCore from 'swiper';
 import DriverCard from 'components/cards/driver-card';
-import { ProfileImg } from 'assets/svg';
+import ProfileImg from 'assets/img/profile.png';
 
 interface SliderProps {
   slideChangeHandle: (e: SwiperCore) => void;
