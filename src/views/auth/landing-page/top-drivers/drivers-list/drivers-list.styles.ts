@@ -13,7 +13,7 @@ export const SliderWrapper = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
-  gap: 35px;
+  gap: 30px;
   align-items: center;
   flex-wrap: wrap;
   margin: 88px auto 0px auto;
