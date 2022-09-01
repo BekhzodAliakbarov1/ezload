@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 
 export const useOutsideHandler = (ref: any) => {
   const [outsideClicked, setOutsideClicked] = useState<boolean>();
-  console.log('clicked');
 
   useEffect(() => {
     setOutsideClicked(false);

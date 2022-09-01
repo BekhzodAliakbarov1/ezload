@@ -28,8 +28,6 @@ export const useUpload = () => {
     (data: UploadRequest) => {
       const fd = new FormData();
       fd.append('file', data.file ?? '');
-      console.log(data);
-      console.log(access);
 
       const token = data.token ?? access;
 

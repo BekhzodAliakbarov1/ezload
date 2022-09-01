@@ -76,7 +76,7 @@ export const SecondStepDataWrapper = styled.div`
   }
 `;
 
-export const ConfirmCodeWrapper = styled.div<{ error?: boolean }>`
+export const ConfirmCodeWrapper = styled.div`
   width: 100%;
   margin-bottom: 40px;
 `;

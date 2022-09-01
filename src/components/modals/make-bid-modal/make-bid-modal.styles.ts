@@ -55,6 +55,8 @@ export const ModalButtonsWrapper = styled.div`
   justify-content: center;
   button {
     width: 120px;
+    height: 46px;
+    padding: 0px 0px !important;
   }
   @media (max-width: 800px) {
     button {

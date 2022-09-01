@@ -42,7 +42,7 @@ const AcceptBidModal: React.FC<{
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
           <Text>
-            {t('Are you sure you want to accept this bid from')} {driver_name}
+            {t('Are you sure you want to accept this bid from ')} {driver_name}
             {t(' with the amount of ')}${bidded_price}?
           </Text>
           <ModalButtonsWrapper>

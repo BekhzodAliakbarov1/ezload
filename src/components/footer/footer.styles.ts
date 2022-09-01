@@ -26,6 +26,7 @@ export const FooterLeftContent = styled.div`
   padding-top: 94px;
   padding-bottom: 50px;
   padding-left: 75px;
+  padding-right: 50px;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
@@ -46,7 +47,7 @@ export const FooterLeftContentLinksWrapper = styled.div`
   width: 100%;
   display: flex;
   gap: 90px;
-  margin-bottom: 135px;
+  margin-bottom: 115px;
   @media (max-width: 1024px) {
     margin-bottom: 30px;
     justify-content: space-between;

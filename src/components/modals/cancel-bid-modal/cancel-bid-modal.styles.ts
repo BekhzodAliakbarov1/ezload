@@ -11,6 +11,7 @@ export const ModalWrapper = styled.div`
   padding: 56px 80px;
   background-color: ${(props) => props.theme.bg.secondary};
   position: absolute;
+  max-width: 500px;
   top: 50%;
   left: 50%;
   width: 100%;

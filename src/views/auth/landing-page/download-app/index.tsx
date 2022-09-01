@@ -1,6 +1,9 @@
-import { AppStoreImg, GooglePlayImg, PhoneImg, QrCodeImg } from 'assets/svg';
+import AppStoreImg from 'assets/img/app-store.png';
 import { useTranslation } from 'react-i18next';
 import Container from 'wrappers/container/container';
+import PhoneImg from 'assets/img/phone.png';
+import QrCodeImg from 'assets/img/qrcode.png';
+import GooglePlayImg from 'assets/img/google-play.png';
 import {
   BigRectangle,
   BoldText,

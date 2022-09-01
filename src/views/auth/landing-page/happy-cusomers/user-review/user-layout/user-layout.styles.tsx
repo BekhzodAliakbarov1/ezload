@@ -1,6 +1,5 @@
 import Text from 'components/typography/text';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const UserWrapper = styled.div`
   max-width: 205px;
