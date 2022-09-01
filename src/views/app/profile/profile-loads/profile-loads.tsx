@@ -1,8 +1,10 @@
 import LoadsContainer from 'components/loads-container/loads-container';
 import LoadsContainerSkeloton from 'components/skelotons/loads-container';
 import Text from 'components/typography/text';
-import React, { useState, useEffect } from 'react';
+import { useQueryUrl } from 'hooks/use-query-url';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useLoads } from 'server-state/queries/use-loads';
 import {
   ProfileLoadsWrapper,
@@ -11,23 +13,23 @@ import {
 } from './profile-loads.styles';
 
 const ProfileLoads = () => {
-  const [sectionType, setSectionType] = useState<'NEW' | 'PENDING' | 'DONE'>(
-    'NEW'
-  );
   const { t } = useTranslation();
   const newLoadsRequest = useLoads('new');
   const onTheWayLoadsRequest = useLoads('on_the_way');
   const deliveredLoadsRequest = useLoads('delivered');
+  const query = useQueryUrl();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    switch (sectionType) {
-      case 'NEW':
+    const type = query.get('name');
+    switch (type) {
+      case 'new':
         newLoadsRequest.refetch();
         break;
-      case 'PENDING':
+      case 'on_the_way':
         onTheWayLoadsRequest.refetch();
         break;
-      case 'DONE':
+      case 'done':
         deliveredLoadsRequest.refetch();
         break;
       default:
@@ -35,9 +37,10 @@ const ProfileLoads = () => {
         break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sectionType]);
-  const onClickHandler = (type: 'NEW' | 'PENDING' | 'DONE') => {
-    setSectionType(type);
+  }, [query.get('name')]);
+  const onClickHandler = (type: 'new' | 'on_the_way' | 'done') => {
+    // setSectionType(type);
+    navigate(`/profile/my-loads?name=${type.toLowerCase()}`);
   };
 
   const isLoading =
@@ -49,26 +52,26 @@ const ProfileLoads = () => {
     <ProfileLoadsWrapper>
       <SectionControllerWrapper>
         <SingleController
-          onClick={() => onClickHandler('NEW')}
-          active={sectionType === 'NEW'}
+          onClick={() => onClickHandler('new')}
+          active={query.get('name') === 'new'}
         >
           <Text weight="700">{t('New')}</Text>
         </SingleController>
         <SingleController
-          onClick={() => onClickHandler('PENDING')}
-          active={sectionType === 'PENDING'}
+          onClick={() => onClickHandler('on_the_way')}
+          active={query.get('name') === 'on_the_way'}
         >
           <Text weight="700">{t('On the way')}</Text>
         </SingleController>
         <SingleController
-          onClick={() => onClickHandler('DONE')}
-          active={sectionType === 'DONE'}
+          onClick={() => onClickHandler('done')}
+          active={query.get('name') === 'done'}
         >
           <Text weight="700">{t('Delivered')}</Text>
         </SingleController>
       </SectionControllerWrapper>
       {isLoading && <LoadsContainerSkeloton />}
-      {sectionType === 'NEW' &&
+      {query.get('name') === 'new' &&
         newLoadsRequest.data?.pages &&
         newLoadsRequest.data.pages.map((page, index) => (
           <LoadsContainer
@@ -79,7 +82,7 @@ const ProfileLoads = () => {
             withButton
           />
         ))}
-      {sectionType === 'PENDING' &&
+      {query.get('name') === 'on_the_way' &&
         onTheWayLoadsRequest.data?.pages &&
         onTheWayLoadsRequest.data.pages.map((page, index) => (
           <LoadsContainer
@@ -90,7 +93,7 @@ const ProfileLoads = () => {
             withButton
           />
         ))}
-      {sectionType === 'DONE' &&
+      {query.get('name') === 'done' &&
         deliveredLoadsRequest.data?.pages &&
         deliveredLoadsRequest.data.pages.map((page, index) => (
           <LoadsContainer

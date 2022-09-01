@@ -71,6 +71,7 @@ const EditableField: React.FC<{
         phone_number: inputValue,
       },
       {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         onSuccess(data: any) {
           if (data.status_code !== 400) {
             onSubmit(inputValue);

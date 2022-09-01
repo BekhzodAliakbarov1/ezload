@@ -26,7 +26,7 @@ const ThirdStepDriver: React.FC<{
   token: string;
 }> = ({ token }) => {
   const { t } = useTranslation();
-  const [hasError, setHasError] = useState(false);
+  const [hasError] = useState(false);
   const [data, setData] = useState<{
     picture_url?: string;
     picture_id?: number;

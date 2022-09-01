@@ -19,6 +19,7 @@ export const useUpdatePhoneNumber = () => {
     },
     {
       retry: false,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       onSuccess(data: any) {
         if (data.status_code !== 400) {
           enqueueSnackbar(t('Phone number updated successfully!'), {

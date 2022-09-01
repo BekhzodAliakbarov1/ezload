@@ -1,6 +1,5 @@
 import { IconButton } from '@mui/material';
 import styled from 'styled-components';
-import { colors } from 'styles/variables';
 
 export const AddressCardWrapper = styled.div`
   width: 100%;

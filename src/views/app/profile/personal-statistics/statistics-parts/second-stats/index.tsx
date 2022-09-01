@@ -3,7 +3,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SecondStatsWrapper } from './second-stats.styles';
 import { Bar } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
 import {
   Chart as ChartJS,
   CategoryScale,

@@ -67,7 +67,6 @@
     ]
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.4.0",
     "@types/styled-components": "^5.1.24"
   },
   "resolutions": {
