@@ -7,10 +7,13 @@ import {
   Image,
   // ImageWrapper,
 } from './courage.styles';
-// import rectangle from 'assets/img/rectangle.png';
+import light_image from 'assets/img/earth.png';
+import dark_image from 'assets/img/earth-dark.png';
+import { useTheme } from 'global-state/theme/theme.state';
 
 const Coverage = () => {
   const { t } = useTranslation();
+  const { theme } = useTheme();
   return (
     <CoverageWrappper>
       <TextBox>
@@ -19,8 +22,7 @@ const Coverage = () => {
         </BoldText>
         <StyledText weight="500">{t('We are growing fast')}</StyledText>
       </TextBox>
-      <Image />
-      {/* <ImageWrapper src={rectangle} /> */}
+      <Image img={theme === 'dark' ? dark_image : light_image} />
     </CoverageWrappper>
   );
 };

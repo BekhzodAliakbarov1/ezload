@@ -77,7 +77,7 @@ const ActionLoad = () => {
       } else {
         createLoadRequest.mutate(loadData, {
           onSuccess() {
-            navigate('/profile/my-loads');
+            navigate('/profile/my-loads?name=new');
           },
         });
       }

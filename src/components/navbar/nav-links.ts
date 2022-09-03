@@ -32,7 +32,7 @@ export const profileCustomer = [
   },
   {
     name: 'My Loads',
-    to: '/profile/my-loads',
+    to: '/profile/my-loads?name=new',
     id: 2,
   },
   {
@@ -50,7 +50,7 @@ export const profileDrivers = [
   },
   {
     name: 'My Loads',
-    to: '/profile/my-loads',
+    to: '/profile/my-loads?name=new',
     id: 2,
   },
   {

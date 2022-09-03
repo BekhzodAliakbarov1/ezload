@@ -56,7 +56,6 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
           {dummyArray.map((value) => {
             return (
               <DriverCard
-                styles={{ marginBottom: '40px' }}
                 key={value}
                 image={ProfileImg}
                 first_name="Antonio Fred."

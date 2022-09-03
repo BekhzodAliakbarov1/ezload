@@ -28,7 +28,6 @@ export const BoldText = styled(Text)`
     font-size: 24px;
   }
 `;
-import img from 'assets/img/earth.png';
 
 export const StyledText = styled(Text)`
   font-size: 14px;
@@ -37,9 +36,9 @@ export const StyledText = styled(Text)`
   color: ${(props) => props.theme.text.main_70};
 `;
 
-export const Image = styled.div`
+export const Image = styled.div<{ img: string }>`
   width: 100%;
-  background-image: ${`url(${img})`};
+  background-image: ${(props) => `url(${props.img})`};
   height: 500px;
   background-position: center;
   @media (max-width: 800px) {

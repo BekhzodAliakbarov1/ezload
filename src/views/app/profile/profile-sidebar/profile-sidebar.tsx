@@ -23,7 +23,7 @@ const ProfileSidebar = () => {
                 {t('Account details')}
               </StyledLink>
             </Link>
-            <Link to="/profile/my-loads">
+            <Link to="/profile/my-loads?name=new">
               <StyledLink
                 active={pathname === '/profile/my-loads'}
                 weight="700"
@@ -64,11 +64,8 @@ const ProfileSidebar = () => {
                 {t('Personal information')}
               </StyledLink>
             </Link>
-            <Link to="/profile/my-loads">
-              <StyledLink
-                active={pathname === '/profile/my-loads'}
-                weight="700"
-              >
+            <Link to="/profile/my-loads?name=new">
+              <StyledLink active={pathname.includes('my-loads')} weight="700">
                 {t('My Loads')}
               </StyledLink>
             </Link>
