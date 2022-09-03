@@ -16,7 +16,7 @@ export const SliderWrapper = styled.div`
   gap: 30px;
   align-items: center;
   flex-wrap: wrap;
-  margin: 88px auto 0px auto;
+  margin: 88px auto 60px auto;
   width: fit-content;
   @media (max-width: 800px) {
     margin: 40px 0px 40px 0px;

@@ -13,7 +13,7 @@ const LoadButtons: React.FC<{ isEditing: boolean; isLoading: boolean }> = ({
 
   const handleCancel = () => {
     if (isEditing) {
-      navigate('/profile/my-loads');
+      navigate('/profile/my-loads?name=new');
     } else {
       navigate('/');
     }
