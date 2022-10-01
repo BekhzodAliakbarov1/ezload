@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import image from 'assets/img/login-bg-image.jpg';
-import logo from 'assets/img/logo-dark.png';
+import logo from 'assets/img/logo-white.png';
 import styled from 'styled-components';
 import SignIn from 'views/auth/sign-in';
 import CheckUserType from 'views/auth/sign-in/check-user-type';

@@ -32,8 +32,9 @@ const PhoneInput: React.FC<{
         MenuProps={{
           PaperProps: {
             sx: {
-              width: '233px',
+              width: '170px',
               maxHeight: '277px',
+              marginLeft: '13px',
               '::-webkit-scrollbar': {
                 display: 'none',
               },

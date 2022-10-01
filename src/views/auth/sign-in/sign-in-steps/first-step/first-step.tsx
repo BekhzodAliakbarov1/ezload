@@ -89,13 +89,6 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
                   required: true,
                   pattern: PHONE_NUMBER_REGEX,
                 })}
-                error={
-                  errors.phone_num?.type === 'required'
-                    ? t('Please enter Number')
-                    : errors.phone_num?.type === 'pattern'
-                    ? t('Invalid Phone Number')
-                    : ''
-                }
               />
             </PhoneInput>
           </PhoneNumberWrapper>

@@ -22,7 +22,6 @@ const HappyCustomers = () => {
     <>
       <Container>
         <HappyCusmrWrapper>
-          {/* <Rectangle /> */}
           <TextBox>
             <BoldText weight="700">{t('Happy Customers')}</BoldText>
             <StyledText weight="500">

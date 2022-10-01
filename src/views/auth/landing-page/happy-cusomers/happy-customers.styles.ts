@@ -100,4 +100,5 @@ export const TextBox = styled.div<{ align?: string }>`
   margin: 0 auto 62px auto;
   gap: 16px;
   padding: 0px 24px;
+  padding-top: 76px;
 `;
