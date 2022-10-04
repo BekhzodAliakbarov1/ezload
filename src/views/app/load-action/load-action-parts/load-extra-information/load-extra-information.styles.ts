@@ -43,7 +43,9 @@ export const StyledSelect = styled(Select)`
   width: 100%;
   max-width: 96px;
   height: 47px;
-  border: 1.5px solid ${(props) => props.theme.text.main_20};
+  fieldset {
+    border: 1.5px solid ${(props) => props.theme.text.main_20};
+  }
   color: ${(props) => props.theme.text.main_100} !important;
 
   svg {
@@ -58,10 +60,12 @@ export const StyledTextFiled = styled(TextField)`
   && {
     max-width: 506px;
     height: 118px;
-    border: 1.5px solid ${(props) => props.theme.text.main_20};
+    fieldset {
+      border: 1.5px solid ${(props) => props.theme.text.main_20};
 
-    :focus-visible {
-      border: none;
+      :focus-visible {
+        border: none;
+      }
     }
     > div {
       height: 100%;

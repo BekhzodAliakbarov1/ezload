@@ -7,6 +7,7 @@ import {
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAddress } from 'server-state/queries/use-address';
+import { colors } from 'styles/variables';
 import { StyledSelectInput } from './address-input.styles';
 
 const AddressInput = () => {
@@ -25,7 +26,10 @@ const AddressInput = () => {
 
   return (
     <FormControl style={{ height: '46px' }} fullWidth>
-      <InputLabel id="demo-simple-select-label">
+      <InputLabel
+        style={{ color: colors.dark_30 }}
+        id="demo-simple-select-label"
+      >
         {t('Choose from my routes')}
       </InputLabel>
 

@@ -115,7 +115,7 @@ export const StyledMenu = styled((props: MenuProps) => (
     minWidth: 174,
     minHeight: 160,
     marginLeft: -100,
-    paddingBottom: 44,
+    // paddingBottom: 44,
   },
 }));
 

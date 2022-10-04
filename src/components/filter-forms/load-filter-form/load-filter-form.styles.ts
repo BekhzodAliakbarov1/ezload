@@ -43,7 +43,9 @@ export const StyledSelect = styled(Select)`
   width: 100%;
   max-width: 96px;
   height: 47px;
-  border: 1.5px solid ${(props) => props.theme.text.main_20};
+  fieldset {
+    border: 1.5px solid ${(props) => props.theme.text.main_20};
+  }
   text-align: left;
   > div {
     padding: 0px;
