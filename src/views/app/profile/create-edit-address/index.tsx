@@ -19,7 +19,6 @@ import RegionInput from 'components/input/region-input';
 import DistrictInput from 'components/input/district-input';
 import Map from 'components/map';
 import { useTranslation } from 'react-i18next';
-
 const CreateEditAddress = () => {
   const { state } = useLocation() as {
     state: { type?: 'EDIT'; data?: AddressInterface };
@@ -52,7 +51,6 @@ const CreateEditAddress = () => {
   const navigate = useNavigate();
   const createAddressRequest = useCreateProfileAddress();
   const editAddressRequest = useEditProfileAddress(state?.data?.id);
-
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
     const address = {
@@ -89,7 +87,6 @@ const CreateEditAddress = () => {
       return { ...value, [fieldName]: val };
     });
   };
-
   const simpleInputSelectionHandler = ({
     fieldName,
     val,
@@ -101,17 +98,47 @@ const CreateEditAddress = () => {
       return { ...value, [fieldName]: val };
     });
   };
-
   const getLatLong = ({ lat, lng }: { lat: number; lng: number }) => {
     setAddress((val) => {
       return { ...val, latLong: { lat, lng } };
     });
   };
-
   return (
     <CreateAddressWrapper onSubmit={submitHandler}>
       <Text color="main_100">{t('My addresses')}</Text>
       <CreateAddressInputsBox>
+        <div>
+          <CountryInput
+            value={country.title}
+            selectHanlder={({ id, title }) => {
+              searchInputSelectHandler({
+                fieldName: 'country',
+                val: { id, title },
+              });
+            }}
+          />
+          <RegionInput
+            country={country.title}
+            selectHanlder={({ id, title }) => {
+              searchInputSelectHandler({
+                fieldName: 'region',
+                val: { id, title },
+              });
+            }}
+            value={region.title}
+          />
+          <DistrictInput
+            country={country.title}
+            region={region.title}
+            value={district.title}
+            selectHanlder={({ id, title }) => {
+              searchInputSelectHandler({
+                fieldName: 'district',
+                val: { id, title },
+              });
+            }}
+          />
+        </div>
         <div>
           <Input
             placeholder={`${'Addressline'} 1`}
@@ -130,38 +157,6 @@ const CreateEditAddress = () => {
               simpleInputSelectionHandler({
                 fieldName: 'address_2',
                 val: e.target.value,
-              });
-            }}
-          />
-          <DistrictInput
-            country={country.title}
-            region={region.title}
-            value={district.title}
-            selectHanlder={({ id, title }) => {
-              searchInputSelectHandler({
-                fieldName: 'district',
-                val: { id, title },
-              });
-            }}
-          />
-        </div>
-        <div>
-          <RegionInput
-            country={country.title}
-            selectHanlder={({ id, title }) => {
-              searchInputSelectHandler({
-                fieldName: 'region',
-                val: { id, title },
-              });
-            }}
-            value={region.title}
-          />
-          <CountryInput
-            value={country.title}
-            selectHanlder={({ id, title }) => {
-              searchInputSelectHandler({
-                fieldName: 'country',
-                val: { id, title },
               });
             }}
           />

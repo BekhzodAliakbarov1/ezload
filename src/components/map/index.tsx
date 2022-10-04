@@ -7,7 +7,7 @@ import { useMap } from 'hooks/use-map';
 import { MapComponentWrapper } from './map.styles';
 
 const AnyReactComponent = () => (
-  <div>
+  <div style={{ marginTop: '-30px', marginLeft: '-5px' }}>
     <MapLocationIcon />
   </div>
 );

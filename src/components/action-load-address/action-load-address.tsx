@@ -13,7 +13,7 @@ import {
   StyledIconButton,
 } from './action-load-address.styles';
 import Input from 'components/input/input';
-import CloseIcon from 'components/icons/close.icon';
+// import CloseIcon from 'components/icons/close.icon';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
 import {
@@ -90,41 +90,19 @@ const ActionLoadAddress: React.FC<{
       <ChooseAndCreateTextWrapper>
         <StyledText>{t('Or choose manually')}</StyledText>
         <ClearTextWrapper onClick={() => setValues(defaultdata)}>
-          <StyledIconButton>
+          {/* <StyledIconButton>
             <CloseIcon />
           </StyledIconButton>
-          <Text weight="500">{t('Clear form')}</Text>
+          <Text weight="500">{t('Clear form')}</Text> */}
         </ClearTextWrapper>
       </ChooseAndCreateTextWrapper>
       <ActionLoadInputAndMapWrapper>
         <ActionLoadInputsWrapper>
-          <Input
-            onChange={(e) => {
-              simpleInputSelectionHandler({
-                fieldName: 'address_1',
-                val: e.target.value,
-              });
-            }}
-            placeholder={`${t('addressline')} 1`}
-            value={address_1}
-          />
-          <Input
-            onChange={(e) => {
-              simpleInputSelectionHandler({
-                fieldName: 'address_2',
-                val: e.target.value,
-              });
-            }}
-            placeholder={`${t('addressline')} 2`}
-            value={address_2}
-          />
-          <DistrictInput
-            country={country.title}
-            region={region.title}
-            value={district.title}
+          <CountryInput
+            value={country.title}
             selectHanlder={(value) => {
               searchInputSelectHandler({
-                fieldName: 'district',
+                fieldName: 'country',
                 val: { id: value.id, title: value.title },
               });
             }}
@@ -139,14 +117,36 @@ const ActionLoadAddress: React.FC<{
             }}
             value={region.title}
           />
-          <CountryInput
-            value={country.title}
+          <DistrictInput
+            country={country.title}
+            region={region.title}
+            value={district.title}
             selectHanlder={(value) => {
               searchInputSelectHandler({
-                fieldName: 'country',
+                fieldName: 'district',
                 val: { id: value.id, title: value.title },
               });
             }}
+          />
+          <Input
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'address_2',
+                val: e.target.value,
+              });
+            }}
+            placeholder={`${t('addressline')} 2`}
+            value={address_2}
+          />
+          <Input
+            onChange={(e) => {
+              simpleInputSelectionHandler({
+                fieldName: 'address_1',
+                val: e.target.value,
+              });
+            }}
+            placeholder={`${t('addressline')} 1`}
+            value={address_1}
           />
           <Input
             onChange={(e) => {

@@ -33,7 +33,6 @@ const DriverCard: React.FC<{
   bg_color,
 }) => {
   const { t } = useTranslation();
-  console.log({ bg_color });
   return (
     <DriverCardWrapper
       bg_color={bg_color}
