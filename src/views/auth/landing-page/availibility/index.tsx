@@ -1,10 +1,10 @@
 import Text from 'components/typography/text';
 import { useTranslation } from 'react-i18next';
 import {
-  FeedStatisticsCard,
+  AvailibilityWrapper,
   FeedStatisticsWrapper,
-} from 'views/app/feed/feed.styles';
-import { AvailibilityWrapper } from './availibility.styles';
+  FeedStatisticsCard,
+} from './availibility.styles';
 
 const Availibility = () => {
   const { t } = useTranslation();

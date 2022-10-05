@@ -5,9 +5,9 @@ import { useTheme } from 'global-state/theme/theme.state';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 52,
-  height: 24,
+  height: 28,
   '& .MuiSwitch-switchBase': {
-    margin: 10,
+    margin: 9,
     padding: 0,
     transform: 'translateX(0px)',
     '&.Mui-checked': {

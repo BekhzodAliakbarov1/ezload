@@ -65,6 +65,9 @@ export const ActionLoadInputsWrapper = styled.div`
   width: 100%;
   gap: 12px;
   max-width: 353px;
+  input::placeholder {
+    text-transform: capitalize;
+  }
 `;
 
 export const ActionLoadMapContentWrapper = styled.div`

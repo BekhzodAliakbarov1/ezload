@@ -20,6 +20,7 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
         clickable: true,
         type: 'bullets',
         bulletElement: 'span',
+
         // bulletClass: 'timeline-icon',
         bulletActiveClass: 'timeline-icon-active',
       }}
@@ -34,6 +35,7 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
           {dummyArray.map((value) => {
             return (
               <DriverCard
+                bg_color="white"
                 key={value}
                 image={ProfileImg}
                 first_name="Antonio Fred."
@@ -56,6 +58,7 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
           {dummyArray.map((value) => {
             return (
               <DriverCard
+                bg_color="white"
                 key={value}
                 image={ProfileImg}
                 first_name="Antonio Fred."
@@ -77,6 +80,7 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
         <SwiperSlide className="mobile" key={value}>
           <MobileDriverCardWrapper>
             <DriverCard
+              bg_color="white"
               key={value}
               image={ProfileImg}
               first_name="Antonio Fred."

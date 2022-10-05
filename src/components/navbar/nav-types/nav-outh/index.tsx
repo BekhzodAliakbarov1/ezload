@@ -127,6 +127,7 @@ const NavbarAuth = () => {
             sx={{
               '& .MuiPaper-root': {
                 width: '100px',
+                // left: '-100px !important',
               },
             }}
             id="basic-menu"

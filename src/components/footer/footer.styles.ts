@@ -103,11 +103,8 @@ export const LinksWrapper = styled.div`
 
 export const FooterRightContent = styled.div`
   height: 100%;
-  background-image: ${`url(${img})`};
-  background-position: bottom;
-  background-repeat: no-repeat;
+
   background-color: ${`${colors.dark_90}`};
-  background-size: cover;
   width: 100%;
   height: 100%;
   max-width: 925px;
@@ -118,6 +115,19 @@ export const FooterRightContent = styled.div`
   align-items: flex-start;
   gap: 80px;
   position: relative;
+  ::before {
+    content: '';
+    background-image: ${`url(${img})`};
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.2;
+  }
   @media (max-width: 1024px) {
     max-width: 100vw;
     padding-top: 40px;
