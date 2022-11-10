@@ -61,6 +61,7 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
   };
   owner: {
     first_name: string;
+    phone_number: string;
   };
   bids?: {
     id: number;
