@@ -1,6 +1,7 @@
 export interface AddressInterface {
   id: number;
   address: {
+    id: number;
     location: {
       latitude: number;
       longitude: number;

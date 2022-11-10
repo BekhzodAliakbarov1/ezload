@@ -24,7 +24,7 @@ const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
       (address) => address.id === event.target.value
     );
     if (selectedAddress) {
-      setLocation(String(selectedAddress[0].id));
+      setLocation(String(selectedAddress[0].address.id));
     }
   };
   useEffect(() => {
