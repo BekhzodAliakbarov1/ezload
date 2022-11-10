@@ -23,6 +23,8 @@ interface LoadContextInterface {
     load_title: string;
     pickup: Locations;
     delivery: Locations;
+    delivery_route: null;
+    pickup_route: null;
     dates: {
       pickup: {
         start: Date | undefined;
@@ -62,6 +64,7 @@ export const defaultdata = {
     },
     save_my_address: false,
   },
+  pickup_route: null,
   delivery: {
     address_1: '',
     address_2: '',
@@ -75,6 +78,7 @@ export const defaultdata = {
     },
     save_my_address: false,
   },
+  delivery_route: null,
   dates: {
     pickup: {
       start: tommorrow,
@@ -106,6 +110,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
 
   const [data, setData] = useState({
     load_title: state?.data?.title ?? '',
+    pickup_route: null,
     pickup: {
       address_1: '',
       address_2: state?.data?.pickup_point.orientation ?? '',
@@ -128,6 +133,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
       },
       save_my_address: false,
     },
+    delivery_route: null,
     delivery: {
       address_1: '',
       address_2: state?.data?.destination.orientation ?? '',

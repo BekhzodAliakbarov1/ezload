@@ -63,6 +63,6 @@
     //   }
     // ],
     "react/destructuring-assignment": ["off"],
-    "max-lines": ["error", { "max": 200, "skipBlankLines": true }]
+    "max-lines": ["error", { "max": 300, "skipBlankLines": true }]
   }
 }

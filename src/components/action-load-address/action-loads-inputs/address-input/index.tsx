@@ -1,16 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   FormControl,
   InputLabel,
   MenuItem,
   SelectChangeEvent,
 } from '@mui/material';
-import React, { useState } from 'react';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAddress } from 'server-state/queries/use-address';
 import { colors } from 'styles/variables';
 import { StyledSelectInput } from './address-input.styles';
 
-const AddressInput = () => {
+const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
+  const { data, setValues } = useData();
+
   const addressRequest = useAddress();
   const [location, setLocation] = useState<string>('');
   const { t } = useTranslation();
@@ -23,6 +27,11 @@ const AddressInput = () => {
       setLocation(String(selectedAddress[0].id));
     }
   };
+  useEffect(() => {
+    if (location) {
+      setValues({ ...data, [`${type}_route`]: location });
+    }
+  }, [location]);
 
   return (
     <FormControl style={{ height: '46px' }} fullWidth>

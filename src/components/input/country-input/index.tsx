@@ -13,7 +13,8 @@ import { useTranslation } from 'react-i18next';
 const CountryInput: React.FC<{
   value: string;
   selectHanlder: ({ id, title }: { title: string; id: string }) => void;
-}> = ({ value, selectHanlder }) => {
+  required?: boolean;
+}> = ({ value, selectHanlder, required }) => {
   const { t } = useTranslation();
   const popperState = usePopper();
   const [country, setCountry] = useState(value);
@@ -92,7 +93,7 @@ const CountryInput: React.FC<{
       }
     >
       <SearchInput
-        required
+        required={required}
         {...bindToggle(popperState)}
         placeholder={t('Country')}
         onChange={(e) => {
