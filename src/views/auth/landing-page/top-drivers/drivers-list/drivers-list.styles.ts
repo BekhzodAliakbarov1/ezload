@@ -25,6 +25,10 @@ export const SliderWrapper = styled.div`
 
 export const StyledContainer = styled(Container)`
   && {
+    .swiper {
+      margin-top: 100px;
+      height: 200px;
+    }
     .timeline-icon {
       width: 12px;
       height: 12px;
@@ -48,14 +52,14 @@ export const StyledContainer = styled(Container)`
     .mobile {
       display: none;
     }
-    @media (max-width: 800px) {
+    /* @media (max-width: 800px) {
       .desktop {
         display: none;
       }
       .mobile {
         display: block;
       }
-    }
+    } */
   }
 `;
 
