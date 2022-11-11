@@ -30,7 +30,7 @@ const SearchLoads = () => {
       destination_point_region: data.destination_point_region?.id,
     };
     setQuery(qs.stringify(queryData));
-    searchLoadsRequest.refetch();
+    // searchLoadsRequest.refetch();
   };
 
   return (
