@@ -9,7 +9,11 @@ export const useLoad = ({ load_id }: { load_id?: string }) => {
   const url = isDriver
     ? `/driver/load/${load_id}/detail/`
     : `/load/${load_id}/detail/`;
-  return useQuery(`load_${load_id}`, () =>
-    request.get<SingleLoadDetailsResponse>(url).then((res) => res.data)
+  return useQuery(
+    `load_${load_id}`,
+    () => request.get<SingleLoadDetailsResponse>(url).then((res) => res.data),
+    {
+      enabled: true,
+    }
   );
 };

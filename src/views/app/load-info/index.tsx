@@ -17,6 +17,7 @@ import {
   LoadInfoViewWrapper,
   LoadInfowViewHeader,
 } from './load-info.styles';
+import { useEffect } from 'react';
 
 const LoadInfoView = () => {
   const { load_id } = useParams<{
@@ -24,27 +25,24 @@ const LoadInfoView = () => {
   }>();
   const { t } = useTranslation();
   const { isDriver } = useDriver();
-  const singleLoadRequest = useLoad({ load_id });
+  const { data, refetch } = useLoad({ load_id });
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <>
       <LoadInfoViewWrapper>
         <LoadInfowViewHeader>
           <Text weight="700">{t('Load Details')}</Text>
-          {isDriver && singleLoadRequest.data?.status === 1 && (
+          {isDriver && data?.status === 1 && (
             <>
-              {singleLoadRequest.data.is_bidden ? (
-                <CancelBidModal
-                  bid_id={singleLoadRequest.data.bid_id}
-                  load_id={load_id}
-                >
+              {data.is_bidden ? (
+                <CancelBidModal bid_id={data.bid_id} load_id={load_id}>
                   <Button aria-label="delete">{t('Delete bid')}</Button>
                 </CancelBidModal>
               ) : (
-                <MakeBidModal
-                  load_id={load_id}
-                  wanted_price={singleLoadRequest.data.price}
-                >
+                <MakeBidModal load_id={load_id} wanted_price={data.price}>
                   <Button aria-label="bid load">{t('Bid to the load')}</Button>
                 </MakeBidModal>
               )}
@@ -52,27 +50,19 @@ const LoadInfoView = () => {
           )}
         </LoadInfowViewHeader>
         <LoadInfoDataWrapperBox>
-          {singleLoadRequest.data ? (
+          {data ? (
             <LoadCard
               clickable={false}
-              load={singleLoadRequest.data}
+              load={data}
               // withButtons
-              status={singleLoadRequest.data.status}
+              status={data.status}
             />
           ) : (
             <LoadSkeloton />
           )}
-          {singleLoadRequest.data ? (
-            <LoadInfoCard data={singleLoadRequest.data} />
-          ) : (
-            <LoadInfoSkeloton />
-          )}
+          {data ? <LoadInfoCard data={data} /> : <LoadInfoSkeloton />}
         </LoadInfoDataWrapperBox>
-        {isDriver ? (
-          <LoadCreator data={singleLoadRequest.data} />
-        ) : (
-          <LoadBids data={singleLoadRequest.data} />
-        )}
+        {isDriver ? <LoadCreator data={data} /> : <LoadBids data={data} />}
       </LoadInfoViewWrapper>
     </>
   );

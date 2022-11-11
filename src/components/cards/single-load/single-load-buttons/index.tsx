@@ -1,7 +1,7 @@
 import Text from 'components/typography/text';
 import React from 'react';
 import { LoadCardButtonWrapper } from './single-load-buttons.styles';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { SingleLoadResponse } from 'types/load.types';
 import { useTranslation } from 'react-i18next';
 import { useModal } from 'hooks/use-modal';
@@ -15,14 +15,13 @@ const SingleLoadButtons: React.FC<{
 }> = ({ load, status }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { load_id } = useParams<{ load_id: string }>();
   const reviewDriverModal = useModal();
 
   const handleEdit = () => {
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
-        data: { ...load, id: load_id },
+        id: load.id,
       },
     });
   };

@@ -8,12 +8,15 @@ interface LocationPoint {
   is_user_address: boolean;
   country: {
     title: string;
+    id: string;
   };
   region: {
     title: string;
+    id: string;
   };
   district: {
     title: string;
+    id: string;
   };
 }
 
@@ -77,4 +80,5 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
   }[];
   is_bidden?: boolean;
   bid_id?: number;
+  currency?: 'USD' | 'UZS' | 'RUB';
 }
