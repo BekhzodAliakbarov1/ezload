@@ -10,7 +10,6 @@ import { useDriver } from 'hooks/use-driver';
 import { useWebsocket } from 'server-state/ws/use-websocket';
 import { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
-import Button from 'components/button/button';
 
 const CustomerView = () => (
   <Routes>
@@ -118,13 +117,49 @@ const AppViews = () => {
           });
           break;
         case 4:
-          console.log('Load created');
+          enqueueSnackbar('New load created', {
+            variant: 'info',
+            preventDuplicate: true,
+            autoHideDuration: 3000,
+            action: () => (
+              <>
+                <Link
+                  to={`/load/${message.data.object_id}`}
+                  style={{
+                    color: 'white',
+                    fontSize: '12px',
+                  }}
+                  onClick={() => console.log(message)}
+                >
+                  Full detail
+                </Link>
+              </>
+            ),
+          });
           break;
-        case 5:
+        case 5: // should know condition when it should works
           console.log('Load canceled');
           break;
-        case 6:
-          console.log('Load finished');
+        case 6: //load finished
+          enqueueSnackbar('Driver finish the load', {
+            variant: 'info',
+            preventDuplicate: true,
+            autoHideDuration: 3000,
+            action: () => (
+              <>
+                <Link
+                  to={`/load/${message.data.object_id}`}
+                  style={{
+                    color: 'white',
+                    fontSize: '12px',
+                  }}
+                  onClick={() => console.log(message)}
+                >
+                  Full detail
+                </Link>
+              </>
+            ),
+          });
           break;
         default:
           console.log('Something went wrong' + message);
@@ -138,10 +173,3 @@ const AppViews = () => {
 };
 
 export default AppViews;
-
-// BID_CREATED = 1, "Bid created"
-// BID_ACCEPTED = 2, "Bid accepted"
-// BID_CANCELED = 3, "Bid canceled"
-// LOAD_CREATED = 4, "Load created"
-// LOAD_CANCELED = 5, "Load canceled"
-// LOAD_FINISHED = 6, "Load finished"
