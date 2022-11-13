@@ -4,6 +4,7 @@ import Text from 'components/typography/text';
 import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { useDeleteLoad } from 'server-state/mutations/use-load';
 import {
   ChildrenWrapper,
@@ -17,6 +18,7 @@ const DeletLoadModal: React.FC<{
   const { t } = useTranslation();
   const { close, isOpen, open } = useModal();
   const deleteLoadRequest = useDeleteLoad();
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     deleteLoadRequest.mutate(
@@ -25,6 +27,7 @@ const DeletLoadModal: React.FC<{
       },
       {
         onSuccess() {
+          navigate('/');
           close();
         },
       }
