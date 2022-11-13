@@ -9,7 +9,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { SnackbarProvider } from 'notistack';
 
 const App = () => (
-  <SnackbarProvider maxSnack={3}>
+  <SnackbarProvider maxSnack={2}>
     <AppProvider>
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <GlobalStyle />
