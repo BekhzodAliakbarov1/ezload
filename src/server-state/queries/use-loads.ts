@@ -4,7 +4,7 @@ import { useInfiniteQuery, useQuery } from 'react-query';
 import { SingleLoadResponse } from 'types/load.types';
 import { request } from '../api';
 
-interface LoadsResponse {
+export interface LoadsResponse {
   count: number;
   next: null | number;
   previous: null | number;

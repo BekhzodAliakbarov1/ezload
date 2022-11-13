@@ -16,6 +16,7 @@ interface CreateLoadRequest {
   weight: number;
   mobile: boolean;
   web: boolean;
+  currency: string;
 }
 interface EditAddressRequest extends CreateLoadRequest {
   id: string;

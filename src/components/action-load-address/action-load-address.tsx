@@ -86,7 +86,7 @@ const ActionLoadAddress: React.FC<{
       <Text size="md" weight="600">
         {title}
       </Text>
-      <AddressInput />
+      <AddressInput type={type} />
       <ChooseAndCreateTextWrapper>
         <StyledText>{t('Or choose manually')}</StyledText>
         <ClearTextWrapper onClick={() => setValues(defaultdata)}>
@@ -106,6 +106,7 @@ const ActionLoadAddress: React.FC<{
                 val: { id: value.id, title: value.title },
               });
             }}
+            required={!data[`${type}_route`]}
           />
           <RegionInput
             country={country.title}
@@ -116,6 +117,7 @@ const ActionLoadAddress: React.FC<{
               });
             }}
             value={region.title}
+            required={!data[`${type}_route`]}
           />
           <DistrictInput
             country={country.title}
@@ -127,6 +129,7 @@ const ActionLoadAddress: React.FC<{
                 val: { id: value.id, title: value.title },
               });
             }}
+            required={!data[`${type}_route`]}
           />
           <Input
             onChange={(e) => {
@@ -157,7 +160,7 @@ const ActionLoadAddress: React.FC<{
             }}
             placeholder="Zip Code"
             value={zip_code}
-            required
+            required={!data[`${type}_route`]}
           />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>

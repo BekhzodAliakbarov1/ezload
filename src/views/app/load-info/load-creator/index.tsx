@@ -28,7 +28,7 @@ const LoadCreator: React.FC<{
           <Text color="main_60">{t('Load owner')}</Text>
           <Text weight="600">{data?.owner.first_name}</Text>
           <Text color="main_80" weight="600">
-            +99894 555 66 66
+            +{data?.owner.phone_number}
           </Text>
         </LoadCardDataWrapper>
       </LoadCreatorWrapper>

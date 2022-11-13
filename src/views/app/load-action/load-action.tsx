@@ -49,10 +49,16 @@ const ActionLoad = () => {
   const submitHandler: React.FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
 
-    const pickup_point = await createAddressFunction({ type: 'pickup' });
-    const destination = await createAddressFunction({ type: 'delivery' });
+    const pickup_point =
+      (await data.pickup_route) ??
+      (await createAddressFunction({ type: 'pickup' }));
+    const destination =
+      (await data.delivery_route) ??
+      (await createAddressFunction({ type: 'delivery' }));
 
     if (destination && pickup_point) {
+      console.log({ destination, pickup_point });
+
       const loadData = {
         description: data.description,
         destination: destination,
@@ -66,6 +72,7 @@ const ActionLoad = () => {
         title: data.load_title,
         web: true,
         weight: Number(data.lugage_size),
+        currency: data.currency_type,
         id: data.id ?? '',
       };
       if (data.id) {

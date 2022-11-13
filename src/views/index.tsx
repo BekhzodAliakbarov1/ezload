@@ -18,6 +18,7 @@ const AuthenticatedRouter = () => (
 
 const Views = () => {
   const { tokens } = useAuth();
+
   return (
     <Routes>
       {tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}

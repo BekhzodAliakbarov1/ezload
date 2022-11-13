@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable camelcase */
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useLocation } from 'react-router';
-import { SingleLoadDetailsResponse } from 'types/load.types';
+import { useLoad } from 'server-state/queries/use-load';
 
 interface Locations {
   address_1?: string;
@@ -23,6 +23,8 @@ interface LoadContextInterface {
     load_title: string;
     pickup: Locations;
     delivery: Locations;
+    delivery_route: null;
+    pickup_route: null;
     dates: {
       pickup: {
         start: Date | undefined;
@@ -62,6 +64,7 @@ export const defaultdata = {
     },
     save_my_address: false,
   },
+  pickup_route: null,
   delivery: {
     address_1: '',
     address_2: '',
@@ -75,6 +78,7 @@ export const defaultdata = {
     },
     save_my_address: false,
   },
+  delivery_route: null,
   dates: {
     pickup: {
       start: tommorrow,
@@ -98,90 +102,150 @@ const LoadContext = createContext<LoadContextInterface>({
 });
 
 interface StateType {
-  state?: { type?: 'EDIT'; data?: SingleLoadDetailsResponse };
+  state?: { type?: 'EDIT'; id?: string };
 }
 
 export const LoadContextProvider: React.FC = ({ children }) => {
   const { state } = useLocation() as StateType;
-
+  const { data: editedLoadData, refetch } = useLoad({ load_id: state?.id });
   const [data, setData] = useState({
-    load_title: state?.data?.title ?? '',
+    load_title: '',
+    pickup_route: null,
     pickup: {
       address_1: '',
-      address_2: state?.data?.pickup_point.orientation ?? '',
+      address_2: '',
       district: {
-        title: state?.data?.pickup_point.district.title ?? '',
+        title: '',
         id: '',
       },
       region: {
-        title: state?.data?.pickup_point.region.title ?? '',
+        title: '',
         id: '',
       },
       country: {
-        title: state?.data?.pickup_point.country.title ?? '',
+        title: '',
         id: '',
       },
-      zip_code: state?.data?.pickup_point.postal_code ?? '',
-      latLong: {
-        lat: state?.data?.pickup_point.location.latitude,
-        lng: state?.data?.pickup_point.location.longitude,
-      },
+      zip_code: '',
+      latLong: {},
       save_my_address: false,
     },
+    delivery_route: null,
     delivery: {
       address_1: '',
-      address_2: state?.data?.destination.orientation ?? '',
+      address_2: '',
       district: {
-        title: state?.data?.destination.district.title ?? '',
+        title: '',
         id: '',
       },
       region: {
-        title: state?.data?.destination.region.title ?? '',
+        title: '',
         id: '',
       },
       country: {
-        title: state?.data?.destination.country.title ?? '',
+        title: '',
         id: '',
       },
-      zip_code: state?.data?.destination.postal_code ?? '',
-      latLong: {
-        lat: state?.data?.destination.location.latitude,
-        lng: state?.data?.destination.location.longitude,
-      },
+      zip_code: '',
+      latLong: {},
       save_my_address: false,
     },
     dates: {
       pickup: {
-        start: new Date(
-          state?.data?.earliest_pick_up
-            ? `${state?.data?.earliest_pick_up}`
-            : tommorrow
-        ),
-        end: new Date(
-          state?.data?.latest_pick_up
-            ? `${state?.data?.latest_pick_up}`
-            : theDayAfterTommorrow
-        ),
+        start: new Date(tommorrow),
+        end: new Date(theDayAfterTommorrow),
       },
       delivery: {
-        start: new Date(
-          state?.data?.earliest_delivery
-            ? `${state?.data?.earliest_delivery}`
-            : tommorrow
-        ),
-        end: new Date(
-          state?.data?.latest_delivery
-            ? `${state?.data?.latest_delivery}`
-            : theDayAfterTommorrow
-        ),
+        start: new Date(tommorrow),
+        end: new Date(theDayAfterTommorrow),
       },
     },
-    lugage_size: state?.data?.weight ? String(state?.data?.weight) : '',
-    cost: state?.data?.price ?? 0,
+    lugage_size: '',
+    cost: 0,
     currency_type: 'USD',
-    description: state?.data?.description ?? '',
-    id: state?.data?.id ? String(state?.data?.id) : '',
+    description: '',
+    id: '',
   });
+  useEffect(() => {
+    if (state?.id) {
+      refetch();
+    }
+  }, [refetch, state?.id]);
+
+  useEffect(() => {
+    if (editedLoadData) {
+      setData({
+        load_title: editedLoadData?.title ?? '',
+        pickup_route: null,
+        pickup: {
+          address_1: editedLoadData?.pickup_point.orientation ?? '',
+          address_2: '',
+          district: {
+            title: editedLoadData?.pickup_point.district.title ?? '',
+            id: editedLoadData?.pickup_point.district.id ?? '',
+          },
+          region: {
+            title: editedLoadData?.pickup_point.region.title ?? '',
+            id: editedLoadData?.pickup_point.region.id ?? '',
+          },
+          country: {
+            title: editedLoadData?.pickup_point.country.title ?? '',
+            id: editedLoadData?.pickup_point.country.id ?? '',
+          },
+          zip_code: editedLoadData?.pickup_point.postal_code ?? '',
+          latLong: {
+            lat: editedLoadData?.pickup_point.location.latitude,
+            lng: editedLoadData?.pickup_point.location.longitude,
+          },
+          save_my_address: false,
+        },
+        delivery_route: null,
+        delivery: {
+          address_1: editedLoadData?.destination.orientation ?? '',
+          address_2: '',
+          district: {
+            title: editedLoadData?.destination.district.title ?? '',
+            id: editedLoadData?.destination.district.id ?? '',
+          },
+          region: {
+            title: editedLoadData?.destination.region.title ?? '',
+            id: editedLoadData?.destination.region.id ?? '',
+          },
+          country: {
+            title: editedLoadData?.destination.country.title ?? '',
+            id: editedLoadData?.destination.country.id ?? '',
+          },
+          zip_code: editedLoadData?.destination.postal_code ?? '',
+          latLong: {
+            lat: editedLoadData?.destination.location.latitude ?? undefined,
+            lng: editedLoadData?.destination.location.longitude ?? undefined,
+          },
+          save_my_address: false,
+        },
+        dates: {
+          pickup: {
+            start: new Date(editedLoadData?.earliest_pick_up ?? tommorrow),
+            end: new Date(
+              editedLoadData?.latest_pick_up ?? theDayAfterTommorrow
+            ),
+          },
+          delivery: {
+            start: new Date(editedLoadData?.earliest_delivery ?? tommorrow),
+            end: new Date(
+              editedLoadData?.latest_delivery ?? theDayAfterTommorrow
+            ),
+          },
+        },
+        lugage_size: editedLoadData?.weight
+          ? String(editedLoadData?.weight)
+          : '',
+        cost: editedLoadData?.price ?? 0,
+        currency_type: editedLoadData?.currency ?? 'USD',
+        description: editedLoadData?.description ?? '',
+        id: state?.id ?? '',
+      });
+    }
+  }, [editedLoadData, state?.id]);
 
   const setValues = (values = {}) => {
     setData((prevData) => ({

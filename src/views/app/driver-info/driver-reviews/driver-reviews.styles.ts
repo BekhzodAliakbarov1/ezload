@@ -38,6 +38,7 @@ export const EmptyReviewWrapper = styled.div`
   flex-direction: column;
   gap: 21px;
   align-items: center;
+  margin: auto;
   > p {
     font-size: 24px;
     line-height: 24px;

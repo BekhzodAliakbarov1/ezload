@@ -14,7 +14,7 @@ const SearchLoadsList: React.FC<{ data?: SingleLoadResponse[] }> = ({
   return (
     <SearchLoadsListWrapper>
       <Text weight="700">{t('Loads')}</Text>
-      {data && data?.length > 0 ? (
+      {data ? (
         <LoadsContainer status={1} clickable loads={data} />
       ) : (
         <LoadsContainerSkeloton />

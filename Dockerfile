@@ -2,12 +2,12 @@ FROM node:12-alpine as build
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package.json ./
-COPY yarn.lock ./
+COPY package-lock.lock ./
 
-RUN yarn install
+RUN npm install
 
 COPY . ./
-RUN CI=false yarn run build
+RUN CI=false npm run build
 
 # production environment
 FROM nginx:stable-alpine
