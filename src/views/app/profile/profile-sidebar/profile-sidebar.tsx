@@ -55,6 +55,14 @@ const ProfileSidebar = () => {
                 {t('Rates & Testimonials')}
               </StyledLink>
             </Link>
+            <Link to="/profile/notifications">
+              <StyledLink
+                active={pathname === '/profile/notifications'}
+                weight="700"
+              >
+                {t('Notifications')}
+              </StyledLink>
+            </Link>
           </div>
         ) : (
           // Customer Links
@@ -72,6 +80,14 @@ const ProfileSidebar = () => {
             <Link to="/profile/my-addresses">
               <StyledLink active={pathname.includes('address')} weight="700">
                 {t('My addresses')}
+              </StyledLink>
+            </Link>
+            <Link to="/profile/notifications">
+              <StyledLink
+                active={pathname === '/profile/notifications'}
+                weight="700"
+              >
+                {t('Notifications')}
               </StyledLink>
             </Link>
           </div>

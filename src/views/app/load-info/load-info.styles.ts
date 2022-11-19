@@ -43,3 +43,11 @@ export const LoadInfoDataWrapperBox = styled.div`
     flex-direction: column;
   }
 `;
+
+export const NoLoadWrapper = styled.div`
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
