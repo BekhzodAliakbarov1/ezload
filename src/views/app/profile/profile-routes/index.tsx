@@ -78,9 +78,7 @@ const ProfileRoutes = () => {
   return (
     <ProfileRoutesDataWrapper>
       <ProfileRoutesHeader>
-        <Text size="lg" weight="800">
-          {t('My routes')}
-        </Text>
+        <Text size="lg">{t('My routes')}</Text>
         {!isEditing && (
           <MyRoutesEditButtonWrapper onClick={() => setIsEditing(true)}>
             <IconButton>

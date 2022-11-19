@@ -16,8 +16,10 @@ import {
   LoadInfoDataWrapperBox,
   LoadInfoViewWrapper,
   LoadInfowViewHeader,
+  NoLoadWrapper,
 } from './load-info.styles';
 import { useEffect } from 'react';
+import NoItemComponent from 'components/no-item';
 
 const LoadInfoView = () => {
   const { load_id } = useParams<{
@@ -25,45 +27,54 @@ const LoadInfoView = () => {
   }>();
   const { t } = useTranslation();
   const { isDriver } = useDriver();
-  const { data, refetch } = useLoad({ load_id });
+  const { data, refetch, isError } = useLoad({ load_id });
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, [load_id, refetch]);
+  console.log(isError);
 
   return (
     <>
-      <LoadInfoViewWrapper>
-        <LoadInfowViewHeader>
-          <Text weight="700">{t('Load Details')}</Text>
-          {isDriver && data?.status === 1 && (
-            <>
-              {data.is_bidden ? (
-                <CancelBidModal bid_id={data.bid_id} load_id={load_id}>
-                  <Button aria-label="delete">{t('Delete bid')}</Button>
-                </CancelBidModal>
-              ) : (
-                <MakeBidModal load_id={load_id} wanted_price={data.price}>
-                  <Button aria-label="bid load">{t('Bid to the load')}</Button>
-                </MakeBidModal>
-              )}
-            </>
-          )}
-        </LoadInfowViewHeader>
-        <LoadInfoDataWrapperBox>
-          {data ? (
-            <LoadCard
-              clickable={false}
-              load={data}
-              // withButtons
-              status={data.status}
-            />
-          ) : (
-            <LoadSkeloton />
-          )}
-          {data ? <LoadInfoCard data={data} /> : <LoadInfoSkeloton />}
-        </LoadInfoDataWrapperBox>
-        {isDriver ? <LoadCreator data={data} /> : <LoadBids data={data} />}
-      </LoadInfoViewWrapper>
+      {isError ? (
+        <NoLoadWrapper>
+          <NoItemComponent text="No load info" />
+        </NoLoadWrapper>
+      ) : (
+        <LoadInfoViewWrapper>
+          <LoadInfowViewHeader>
+            <Text weight="700">{t('Load Details')}</Text>
+            {isDriver && data?.status === 1 && (
+              <>
+                {data.is_bidden ? (
+                  <CancelBidModal bid_id={data.bid_id} load_id={load_id}>
+                    <Button aria-label="delete">{t('Delete bid')}</Button>
+                  </CancelBidModal>
+                ) : (
+                  <MakeBidModal load_id={load_id} wanted_price={data.price}>
+                    <Button aria-label="bid load">
+                      {t('Bid to the load')}
+                    </Button>
+                  </MakeBidModal>
+                )}
+              </>
+            )}
+          </LoadInfowViewHeader>
+          <LoadInfoDataWrapperBox>
+            {data ? (
+              <LoadCard
+                clickable={false}
+                load={data}
+                // withButtons
+                status={data.status}
+              />
+            ) : (
+              <LoadSkeloton />
+            )}
+            {data ? <LoadInfoCard data={data} /> : <LoadInfoSkeloton />}
+          </LoadInfoDataWrapperBox>
+          {isDriver ? <LoadCreator data={data} /> : <LoadBids data={data} />}
+        </LoadInfoViewWrapper>
+      )}
     </>
   );
 };
