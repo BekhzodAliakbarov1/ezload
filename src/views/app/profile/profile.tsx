@@ -10,6 +10,7 @@ import { useDriver } from 'hooks/use-driver';
 import PersonalStatistics from './personal-statistics';
 import ProfileRoutes from './profile-routes';
 import ProfileRate from './profile-rate';
+import ProfileNotifications from './profile-notifications/profile-notifications';
 
 const CustomerProfileView = () => (
   <Routes>
@@ -18,8 +19,7 @@ const CustomerProfileView = () => (
     <Route path="/my-addresses" element={<ProfileAddress />} />
     <Route path="/create-address" element={<CreateEditAddress />} />
     <Route path="/edit-address" element={<CreateEditAddress />} />
-
-    {/* Navigator */}
+    <Route path="/notifications" element={<ProfileNotifications />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );
@@ -31,8 +31,7 @@ const DriverProfileView = () => (
     <Route path="/my-statistics" element={<PersonalStatistics />} />
     <Route path="/my-routes" element={<ProfileRoutes />} />
     <Route path="/my-rates" element={<ProfileRate />} />
-
-    {/* Navigator */}
+    <Route path="/notifications" element={<ProfileNotifications />} />
     <Route path="*" element={<Navigate to="/" replace />} />
   </Routes>
 );
