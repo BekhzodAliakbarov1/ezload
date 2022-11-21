@@ -75,6 +75,11 @@ export const PhoneNumberWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 31px 0px;
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;
 
 export const LineDiv = styled.div`
