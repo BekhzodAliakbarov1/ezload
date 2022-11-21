@@ -34,20 +34,6 @@ export const StyledText = styled.h3`
   text-align: left;
 `;
 
-export const ClearTextWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  margin-left: 20%;
-  cursor: pointer;
-  align-items: center;
-  p {
-    font-size: 14px;
-  }
-  svg {
-    margin-right: 4px;
-  }
-`;
-
 export const ActionLoadInputAndMapWrapper = styled.div`
   display: flex;
   width: 100%;

@@ -20,11 +20,13 @@ const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
   const { t } = useTranslation();
 
   const handleSelectChange = (event: SelectChangeEvent<unknown>) => {
-    const selectedAddress = addressRequest.data?.pages[0].results.filter(
+    const selectedAddress = addressRequest.data?.pages[0].results.find(
       (address) => address.id === event.target.value
     );
     if (selectedAddress) {
-      setLocation(String(selectedAddress[0].address.id));
+      setLocation(
+        `${selectedAddress.address.country.title},${selectedAddress.address.region.title}`
+      );
     }
   };
   useEffect(() => {
@@ -45,15 +47,10 @@ const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
       <StyledSelectInput
         fullWidth
         labelId="demo-simple-select-label"
-        value={location}
         placeholder={t('My addresses')}
         onChange={handleSelectChange}
         label={t('Choose from my routes')}
-        sx={{
-          '.MuiSelect-select': {
-            paddingTop: '11.5px',
-          },
-        }}
+        disabled={!addressRequest.data?.pages[0].results[0].id}
       >
         {addressRequest.data?.pages &&
           addressRequest.data.pages.map((page) =>

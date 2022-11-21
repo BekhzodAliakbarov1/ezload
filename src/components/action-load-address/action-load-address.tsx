@@ -7,19 +7,14 @@ import {
   StyledText,
   ActionLoadMapContentWrapper,
   ChooseAndCreateTextWrapper,
-  ClearTextWrapper,
   ActionLoadMapWrapper,
   SaveAddressWrapper,
   StyledIconButton,
 } from './action-load-address.styles';
 import Input from 'components/input/input';
-// import CloseIcon from 'components/icons/close.icon';
 import TickIcon from 'components/icons/tick.icon';
 import { colors } from 'styles/variables';
-import {
-  defaultdata,
-  useData,
-} from 'layouts/load-action-layout/load-action-layout.context';
+import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 import AddressInput from './action-loads-inputs/address-input';
 import CountryInput from 'components/input/country-input';
 import RegionInput from 'components/input/region-input';
@@ -89,12 +84,6 @@ const ActionLoadAddress: React.FC<{
       <AddressInput type={type} />
       <ChooseAndCreateTextWrapper>
         <StyledText>{t('Or choose manually')}</StyledText>
-        <ClearTextWrapper onClick={() => setValues(defaultdata)}>
-          {/* <StyledIconButton>
-            <CloseIcon />
-          </StyledIconButton>
-          <Text weight="500">{t('Clear form')}</Text> */}
-        </ClearTextWrapper>
       </ChooseAndCreateTextWrapper>
       <ActionLoadInputAndMapWrapper>
         <ActionLoadInputsWrapper>
@@ -160,7 +149,6 @@ const ActionLoadAddress: React.FC<{
             }}
             placeholder="Zip Code"
             value={zip_code}
-            required={!data[`${type}_route`]}
           />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>
