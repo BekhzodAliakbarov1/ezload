@@ -13,7 +13,7 @@ export const NabarBox = styled.div`
   background-color: ${(props) => props.theme.bg.main};
   transition: all 0.5s ease;
   padding: 0px 24px;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     height: 88px;
     padding: 0px 0px;
   }
@@ -29,7 +29,7 @@ export const NavbarWrapper = styled.div`
   max-width: 1290px;
   /* padding: 0px 10px; */
   margin: auto;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     height: 88px;
     padding: 0px 24px;
   }
@@ -41,7 +41,7 @@ export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   img {
     height: 60px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     margin-left: 0%;
     img {
       height: 40px;
@@ -60,7 +60,7 @@ export const NavbarLinksWrapper = styled.div`
   p {
     letter-spacing: 0.15px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -84,7 +84,7 @@ export const ProfileAndLanguageWrapper = styled.div`
       background: ${colors.red_100};
     }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     gap: 0px;
     .menu {
       display: none;
@@ -131,7 +131,7 @@ export const NavbarPositionEffectEraiser = styled.div`
   height: 92px;
   background-color: ${(props) => props.theme.bg.main};
   z-index: 10;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     height: 88px;
   }
 `;
@@ -162,7 +162,7 @@ export const StyledMenu = styled((props: MenuProps) => (
 
 export const NavbarMobileMenu = styled.div`
   display: none;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     cursor: pointer;
     display: flex;
     width: fit-content;
@@ -201,6 +201,10 @@ export const LoginButton = styled(Button)`
     :hover {
       background-color: ${(props) => props.theme.button.warning};
       opacity: 0.7;
+    }
+    @media (max-width: 900px) {
+      font-size: 10px;
+      padding: 4px 6px;
     }
   }
 `;

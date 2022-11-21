@@ -4,14 +4,18 @@ import { IconButton, Menu, MenuProps } from '@mui/material';
 
 export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   cursor: pointer;
-  margin-left: ${(props) => (props.isDriver ? '10%' : '0%')};
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   img {
     height: 60px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
+    position: static;
+    transform: translateX(0%);
     margin-left: 0%;
     img {
-      height: 40px;
+      height: 35px;
     }
   }
 `;
@@ -27,7 +31,7 @@ export const NavbarLinksWrapper = styled.div`
   p {
     letter-spacing: 0.15px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
@@ -51,7 +55,7 @@ export const ProfileAndLanguageWrapper = styled.div`
       background: ${colors.red_100};
     }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     gap: 0px;
     .menu {
       display: none;
@@ -67,6 +71,11 @@ export const RightContentItemWrapper = styled.div`
     letter-spacing: 0.15px;
     text-transform: capitalize;
   }
+  @media (max-width: 900px) {
+    p {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const StyledDropdownButton = styled(IconButton)`
@@ -76,6 +85,9 @@ export const StyledDropdownButton = styled(IconButton)`
     height: 32px;
     margin-left: 4px;
     position: relative;
+    @media (max-width: 900px) {
+      margin-left: 0px;
+    }
   }
 `;
 
@@ -121,7 +133,7 @@ export const StyledMenu = styled((props: MenuProps) => (
 
 export const NavbarMobileMenu = styled.div`
   display: none;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     cursor: pointer;
     display: flex;
     width: fit-content;
