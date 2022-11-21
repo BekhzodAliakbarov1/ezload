@@ -41,9 +41,18 @@ export const useCreateLoad = () => {
           variant: 'success',
         });
       },
-      onError() {
-        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onError(e: any) {
+        const errors = Object.entries(e.response?.data);
+        errors.map((error) =>
+          enqueueSnackbar(`${error} `, {
+            variant: 'error',
+          })
+        );
       },
+      // onError() {
+      //   enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+      // },
     }
   );
 };
