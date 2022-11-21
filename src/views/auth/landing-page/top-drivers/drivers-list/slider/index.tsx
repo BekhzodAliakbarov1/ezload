@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay } from 'swiper';
 import DriverCard from 'components/cards/driver-card';
 import ProfileImg from 'assets/img/profile.png';
+import { useTopDrivers } from 'server-state/queries/use-top-driver';
 
 interface SliderProps {
   slideChangeHandle: (e: SwiperCore) => void;
@@ -9,6 +10,9 @@ interface SliderProps {
 
 const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
   const dummyArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  const { data } = useTopDrivers();
+  console.log(data);
+
   return (
     <Swiper
       height={400}

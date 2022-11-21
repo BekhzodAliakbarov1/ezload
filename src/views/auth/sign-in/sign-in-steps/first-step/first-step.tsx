@@ -84,11 +84,12 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
           <PhoneNumberWrapper>
             <PhoneInput value={countryCode} setValue={handleChange}>
               <Input
-                placeholder={t('Enter your phone number')}
+                placeholder={t('98 123 45 67')}
                 {...register('phone_num', {
                   required: true,
                   pattern: PHONE_NUMBER_REGEX,
                 })}
+                type="number"
               />
             </PhoneInput>
           </PhoneNumberWrapper>

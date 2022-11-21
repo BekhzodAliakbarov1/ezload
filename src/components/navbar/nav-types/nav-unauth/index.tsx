@@ -48,7 +48,7 @@ const NavbarUnAuth = () => {
 
         <RightContentItemWrapper>
           <Text size="md" weight="600">
-            En
+            {i18n.language}
           </Text>
           <StyledDropdownButton onClick={language.handleClick}>
             <ChevronDownIcon size="30" />

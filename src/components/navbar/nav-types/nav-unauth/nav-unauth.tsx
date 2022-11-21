@@ -12,7 +12,7 @@ export const NavbarWrapper = styled.div`
   max-width: 1290px;
   /* padding: 0px 10px; */
   margin: auto;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     height: 88px;
     padding: 0px 24px;
   }
@@ -37,7 +37,7 @@ export const ProfileAndLanguageWrapper = styled.div`
       background: ${colors.red_100};
     }
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     gap: 0px;
     .menu {
       display: none;
@@ -51,6 +51,12 @@ export const RightContentItemWrapper = styled.div`
   /* margin-right: 20px; */
   p {
     letter-spacing: 0.15px;
+    text-transform: capitalize;
+  }
+  @media (max-width: 900px) {
+    p {
+      font-size: 12px;
+    }
   }
 `;
 
@@ -61,26 +67,33 @@ export const StyledDropdownButton = styled(IconButton)`
     height: 32px;
     margin-left: 4px;
     position: relative;
+    @media (max-width: 900px) {
+      margin-left: 0px;
+    }
   }
 `;
 
 export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   cursor: pointer;
-  margin-left: ${(props) => (props.isDriver ? '10%' : '0%')};
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   img {
     height: 60px;
   }
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     margin-left: 0%;
+    position: static;
+    transform: translateX(0%);
     img {
-      height: 40px;
+      height: 35px;
     }
   }
 `;
 
 export const EmptySpaceDiv = styled.div`
   display: block;
-  @media (max-width: 640px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `;
