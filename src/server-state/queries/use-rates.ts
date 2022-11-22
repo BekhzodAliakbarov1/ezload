@@ -17,6 +17,7 @@ interface RatesResponse {
         file: string;
       };
       first_name: string;
+      created_at: string;
     };
   }[];
 }

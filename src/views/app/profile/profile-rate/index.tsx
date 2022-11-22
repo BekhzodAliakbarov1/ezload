@@ -30,13 +30,16 @@ const ProfileRate = () => {
           <RateContainerSkeloton />
         ) : (
           <>
-            <OveralRatingDataWrapper>
-              <RatingComponent
-                value={data?.average_rate ?? 0}
-                iconSize="35px"
-              />
-              <Text weight="700">{data?.average_rate}</Text>
-            </OveralRatingDataWrapper>
+            {data?.average_rate ? (
+              <OveralRatingDataWrapper>
+                <RatingComponent
+                  value={data?.average_rate ?? 0}
+                  iconSize="35px"
+                />
+                <Text weight="700">{data?.average_rate}</Text>
+              </OveralRatingDataWrapper>
+            ) : null}
+
             <DifferentRatingsBox>
               <RatingsRaw>
                 <RatingComponent value={5} iconSize="24px" />

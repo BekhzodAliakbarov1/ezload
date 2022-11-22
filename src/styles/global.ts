@@ -22,7 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
   ::-webkit-scrollbar {
-    width: 7px;
+    width: 0px;
     height: 7px;
     opacity: 0.8;    
 

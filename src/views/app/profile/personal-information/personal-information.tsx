@@ -112,7 +112,7 @@ const PersonalInformation = () => {
       </PersonalInformationTopPartWrapper>
       {profileInfo.vehicle?.title && isDriver && (
         <TruckInfo
-          car_capacity={profileInfo.vehicle?.capacity}
+          car_capacity={Number(profileInfo.vehicle?.capacity)}
           car_model={profileInfo.vehicle?.title}
           car_number={profileInfo.vehicle?.licence_plate}
         />

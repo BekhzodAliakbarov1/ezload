@@ -53,9 +53,19 @@ export const RightContentItemWrapper = styled.div`
     letter-spacing: 0.15px;
     text-transform: capitalize;
   }
+  svg {
+    min-width: unset;
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+    position: relative;
+  }
   @media (max-width: 900px) {
     p {
       font-size: 12px;
+    }
+    svg {
+      margin-left: 0px;
     }
   }
 `;
@@ -81,6 +91,7 @@ export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   img {
     height: 60px;
   }
+
   @media (max-width: 900px) {
     margin-left: 0%;
     position: static;

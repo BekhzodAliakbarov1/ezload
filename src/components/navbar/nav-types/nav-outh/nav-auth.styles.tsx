@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { colors } from 'styles/variables';
-import { IconButton, Menu, MenuProps } from '@mui/material';
+import { Menu, MenuProps } from '@mui/material';
 
 export const NavbarLogoWrapper = styled.div<{ isDriver?: boolean }>`
   cursor: pointer;
@@ -57,9 +57,6 @@ export const ProfileAndLanguageWrapper = styled.div`
   }
   @media (max-width: 900px) {
     gap: 0px;
-    .menu {
-      display: none;
-    }
   }
 `;
 export const RightContentItemWrapper = styled.div`
@@ -71,23 +68,21 @@ export const RightContentItemWrapper = styled.div`
     letter-spacing: 0.15px;
     text-transform: capitalize;
   }
-  @media (max-width: 900px) {
-    p {
-      font-size: 14px;
-    }
-  }
-`;
-
-export const StyledDropdownButton = styled(IconButton)`
-  && {
+  svg {
     min-width: unset;
-    width: 32px;
-    height: 32px;
+    width: 18px;
+    height: 18px;
     margin-left: 4px;
     position: relative;
-    @media (max-width: 900px) {
-      margin-left: 0px;
+  }
+  @media (max-width: 900px) {
+    display: none;
+    /* p {
+      font-size: 14px;
     }
+    svg {
+      margin-left: 0px;
+    } */
   }
 `;
 
@@ -102,6 +97,7 @@ export const StyledtText = styled.p`
   padding: 12px 0px;
   padding-left: 16px;
   cursor: pointer;
+
   :hover {
     background-color: ${colors.green_20};
   }
@@ -151,7 +147,8 @@ export const NavbarMobileMenuOpenList = styled.div`
   background-color: ${(props) => props.theme.bg.secondary};
   top: 0;
   right: 0;
-  a {
+  > a,
+  > div {
     width: 100%;
   }
 `;
@@ -162,4 +159,12 @@ export const CloseIconWrapper = styled.div`
   cursor: pointer;
   display: flex;
   align-items: center;
+`;
+
+export const NavbarLanguageWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 12px 0px;
+  padding-left: 8px;
 `;

@@ -98,9 +98,9 @@ export const ProfileRoutesCreatedLocationsWrapper = styled.div`
   max-height: 300px;
   overflow-y: scroll;
   margin-bottom: 48px;
-  /* ::-webkit-scrollbar {
-    display: none;
-  } */
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
 `;
 
 export const ProfileRoutesCreatedLocationsSingleRow = styled.div`
