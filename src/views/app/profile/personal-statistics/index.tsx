@@ -1,3 +1,4 @@
+import { SelectChangeEvent } from '@mui/material';
 import Text from 'components/typography/text';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -10,8 +11,11 @@ import ThirdStats from './statistics-parts/third-stats';
 
 const PersonalStatistics = () => {
   const { t } = useTranslation();
-
-  const { data } = useStats({ year: 2022 });
+  const [year, setYear] = React.useState(`${new Date().getFullYear()}`);
+  const { data } = useStats({ year });
+  const handleChange = (event: SelectChangeEvent) => {
+    setYear(event.target.value as string);
+  };
 
   return (
     <PersonalStatisticsWrapper>
@@ -21,7 +25,8 @@ const PersonalStatistics = () => {
         delivered_count={data?.delivered}
         on_the_way_count={data?.on_the_way}
       />
-      {data?.chart && <SecondStats {...data?.chart} />}
+      <SecondStats onChange={handleChange} year={year} {...data?.chart} />
+
       <ThirdStats {...data} />
       <FourStats {...data} />
     </PersonalStatisticsWrapper>

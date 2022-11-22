@@ -17,7 +17,7 @@ import {
 
 const TruckInfo: React.FC<{
   car_model?: string;
-  car_capacity?: string;
+  car_capacity?: number;
   car_number?: string;
 }> = ({ car_capacity = '', car_model = '', car_number = '' }) => {
   const { t } = useTranslation();
@@ -42,6 +42,11 @@ const TruckInfo: React.FC<{
     );
   };
   const handleCancel = () => {
+    console.log({ car_model, car_capacity, car_number });
+
+    setModel(car_model);
+    setCapacity(car_capacity);
+    setcarNumber(car_number);
     setisEditing(false);
   };
 
@@ -71,9 +76,10 @@ const TruckInfo: React.FC<{
             <Input
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
+              placeholder="20 (Equal 20 tonna)"
             />
           ) : (
-            <Text weight="600">{capacity} kg</Text>
+            <Text weight="600">{Number(capacity)} Tonna</Text>
           )}
         </TruckInfoChangeInput>
         <TruckInfoChangeInput>
@@ -82,6 +88,7 @@ const TruckInfo: React.FC<{
             <Input
               value={carNumber}
               onChange={(e) => setcarNumber(e.target.value)}
+              placeholder="00 A 000 AA"
             />
           ) : (
             <Text color="main_100" weight="600">

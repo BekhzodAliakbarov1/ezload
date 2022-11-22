@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from 'react-query';
 import { request } from '../api';
 
 interface DeleteRouteRequest {
-  route_id: number;
+  route_id?: number;
 }
 
 export const useDeleteRoute = (token?: string) => {

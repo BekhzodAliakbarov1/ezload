@@ -6,14 +6,13 @@ import {
 } from 'components/navbar/nav-links';
 
 import Text from 'components/typography/text';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from 'global-state/theme/theme.state';
 import logoLight from 'assets/img/logo-light.svg';
 import logoDark from 'assets/img/logo-dark.png';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
-import { useAuth } from 'global-state/auth/auth.state';
-import { Drawer, IconButton, Menu } from '@mui/material';
+import { Badge, Drawer, IconButton, Menu } from '@mui/material';
 import { useDriver } from 'hooks/use-driver';
 import MenuCloseIcon from 'components/icons/menu-close.icon';
 import MenuIcon from 'components/icons/menu.icon';
@@ -21,7 +20,6 @@ import { useState } from 'react';
 import {
   ProfileAndLanguageWrapper,
   RightContentItemWrapper,
-  StyledDropdownButton,
   StyledMenu,
   StyledtText,
   NavbarMobileMenuOpenList,
@@ -29,17 +27,20 @@ import {
   NavbarLinksWrapper,
   NavbarLogoWrapper,
   NavbarMobileMenu,
+  NavbarLanguageWrapper,
 } from './nav-auth.styles';
 import { useTranslation } from 'react-i18next';
 import { DarkLightModeSwitch } from 'components/right-light-mode-switch';
+import LogoutModal from 'components/modals/logout-modal';
+import RingIcon from 'components/icons/ring.icon';
 
 const NavbarAuth = () => {
+  const navigate = useNavigate();
   const account = useMenu();
   const language = useMenu();
   const [state, setState] = useState(false);
   const { t, i18n } = useTranslation();
 
-  const { logout } = useAuth();
   const { theme } = useTheme();
   const { isDriver } = useDriver();
 
@@ -53,7 +54,7 @@ const NavbarAuth = () => {
     lng: 'uz' | 'ru' | 'en' | 'tr';
   }) => {
     i18n.changeLanguage(lng);
-
+    localStorage.setItem('language', lng);
     language.handleClose();
   };
 
@@ -81,13 +82,22 @@ const NavbarAuth = () => {
 
       <ProfileAndLanguageWrapper>
         <DarkLightModeSwitch />
+        <IconButton onClick={() => navigate('/profile/notifications')}>
+          <Badge variant="dot" badgeContent={4} color="error">
+            <RingIcon size="20" />
+          </Badge>
+        </IconButton>
         <RightContentItemWrapper className="menu">
-          <Text size="md" weight="600">
-            {t('My Account')}
-          </Text>
-          <StyledDropdownButton onClick={account.handleClick}>
+          <IconButton
+            disableFocusRipple
+            disableRipple
+            onClick={account.handleClick}
+          >
+            <Text size="md" weight="600">
+              {t('My Account')}
+            </Text>
             <ChevronDownIcon size="30" />
-          </StyledDropdownButton>
+          </IconButton>
           <StyledMenu
             id="basic-menu"
             anchorEl={account.element}
@@ -98,7 +108,7 @@ const NavbarAuth = () => {
             }}
             anchorOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'center',
             }}
             transformOrigin={{
               vertical: 'top',
@@ -110,19 +120,25 @@ const NavbarAuth = () => {
                 <StyledtText>{t(item.name)}</StyledtText>
               </Link>
             ))}
-            <a onClick={logout}>
-              <StyledtText>{t('Log out')}</StyledtText>
-            </a>
+            <LogoutModal>
+              <h3>
+                <StyledtText>{t('Log out')}</StyledtText>
+              </h3>
+            </LogoutModal>
           </StyledMenu>
         </RightContentItemWrapper>
 
         <RightContentItemWrapper>
-          <Text size="md" weight="600">
-            {i18n.language}
-          </Text>
-          <StyledDropdownButton onClick={language.handleClick}>
+          <IconButton
+            disableFocusRipple
+            disableRipple
+            onClick={language.handleClick}
+          >
+            <Text size="md" weight="600">
+              {i18n.language}
+            </Text>
             <ChevronDownIcon size="30" />
-          </StyledDropdownButton>
+          </IconButton>
           <Menu
             sx={{
               '& .MuiPaper-root': {
@@ -181,9 +197,51 @@ const NavbarAuth = () => {
               <StyledtText>{t(item.name)}</StyledtText>
             </Link>
           ))}
-          <a onClick={logout}>
-            <StyledtText>{t('Log out')}</StyledtText>
-          </a>
+          <NavbarLanguageWrapper>
+            <IconButton
+              disableFocusRipple
+              disableRipple
+              onClick={language.handleClick}
+            >
+              <Text size="md" weight="600">
+                {i18n.language}
+              </Text>
+              <ChevronDownIcon size="18" />
+            </IconButton>
+            <Menu
+              sx={{
+                '& .MuiPaper-root': {
+                  width: '100px',
+                  // left: '-100px !important',
+                },
+              }}
+              id="basic-menu"
+              anchorEl={language.element}
+              open={language.isMenuOpen}
+              onClose={language.handleClose}
+              MenuListProps={{
+                'aria-labelledby': 'basic-button',
+              }}
+            >
+              <StyledtText onClick={() => languageClickHandler({ lng: 'en' })}>
+                En
+              </StyledtText>
+              <StyledtText onClick={() => languageClickHandler({ lng: 'uz' })}>
+                Uz
+              </StyledtText>
+              <StyledtText onClick={() => languageClickHandler({ lng: 'ru' })}>
+                Ru
+              </StyledtText>
+              <StyledtText onClick={() => languageClickHandler({ lng: 'tr' })}>
+                Tr
+              </StyledtText>
+            </Menu>
+          </NavbarLanguageWrapper>
+          <LogoutModal>
+            <h3>
+              <StyledtText>{t('Log out')}</StyledtText>
+            </h3>
+          </LogoutModal>
         </NavbarMobileMenuOpenList>
       </Drawer>
     </>

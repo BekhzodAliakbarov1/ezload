@@ -3,7 +3,6 @@ import {
   NavbarLogoWrapper,
   ProfileAndLanguageWrapper,
   RightContentItemWrapper,
-  StyledDropdownButton,
   StyledtText,
 } from './nav-unauth';
 import React from 'react';
@@ -15,7 +14,7 @@ import logoDark from 'assets/img/logo-dark.png';
 import Text from 'components/typography/text';
 import ChevronDownIcon from 'components/icons/chevron-down.icon';
 import { useMenu } from 'hooks/use-menu';
-import { Menu } from '@mui/material';
+import { IconButton, Menu } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { DarkLightModeSwitch } from 'components/right-light-mode-switch';
 
@@ -31,7 +30,7 @@ const NavbarUnAuth = () => {
     lng: 'uz' | 'ru' | 'en' | 'tr';
   }) => {
     i18n.changeLanguage(lng);
-
+    localStorage.setItem('language', lng);
     language.handleClose();
   };
 
@@ -47,12 +46,16 @@ const NavbarUnAuth = () => {
         <DarkLightModeSwitch />
 
         <RightContentItemWrapper>
-          <Text size="md" weight="600">
-            {i18n.language}
-          </Text>
-          <StyledDropdownButton onClick={language.handleClick}>
+          <IconButton
+            disableRipple
+            disableFocusRipple
+            onClick={language.handleClick}
+          >
+            <Text size="md" weight="600">
+              {i18n.language}
+            </Text>
             <ChevronDownIcon size="30" />
-          </StyledDropdownButton>
+          </IconButton>
           <Menu
             sx={{
               '& .MuiPaper-root': {
