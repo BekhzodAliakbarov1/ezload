@@ -5,6 +5,8 @@ export const ReviewCardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border-bottom: 1px dashed ${(props) => props.theme.bg.filter};
+  padding-bottom: 20px;
   span {
     display: flex;
     gap: 12px;

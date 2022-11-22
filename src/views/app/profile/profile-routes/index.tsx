@@ -6,12 +6,12 @@ import PlusIcon from 'components/icons/plus.icon';
 import XIcon from 'components/icons/x.icon';
 import CountryRouteInput from 'components/input/route-inputs/country-route';
 import RegionRouteInput from 'components/input/route-inputs/region-route';
+import DeletRouteModal from 'components/modals/delete-route-modal';
 import RoutesContainerSkeloton from 'components/skelotons/routes-container';
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateRoute } from 'server-state/mutations/use-create-route';
-import { useDeleteRoute } from 'server-state/mutations/use-delete-route';
 import { useRoutes } from 'server-state/queries/use-routes';
 import {
   LastButtonWrapper,
@@ -34,7 +34,6 @@ const ProfileRoutes = () => {
     initialState
   );
   const createRouteRequest = useCreateRoute();
-  const deleteRouteRequest = useDeleteRoute();
   const [isEditing, setIsEditing] = useState(false);
   const routesRequest = useRoutes();
   const { t } = useTranslation();
@@ -64,17 +63,6 @@ const ProfileRoutes = () => {
     }
   };
 
-  const deleteLocation = (route_id: number) => {
-    deleteRouteRequest.mutate(
-      { route_id },
-      {
-        onSuccess() {
-          routesRequest.refetch();
-        },
-      }
-    );
-  };
-
   return (
     <ProfileRoutesDataWrapper>
       <ProfileRoutesHeader>
@@ -98,9 +86,11 @@ const ProfileRoutes = () => {
               <Text weight="600">
                 {index + 1}. {route.region.title}, {route.country.title}
               </Text>
-              <IconButton onClick={() => deleteLocation(route.id)}>
-                <XIcon />
-              </IconButton>
+              <DeletRouteModal route_id={route.id}>
+                <IconButton>
+                  <XIcon />
+                </IconButton>
+              </DeletRouteModal>
             </ProfileRoutesCreatedLocationsSingleRow>
           ))}
         </ProfileRoutesCreatedLocationsWrapper>
@@ -144,7 +134,9 @@ const ProfileRoutes = () => {
             Submit
           </Button> */}
           <LastButtonWrapper>
-            <Button>{t('Save changes')}</Button>
+            <Button onClick={() => setIsEditing(false)}>
+              {t('Save changes')}
+            </Button>
             <Button onClick={() => setIsEditing(false)} buttonType="white">
               {t('Cancel')}
             </Button>

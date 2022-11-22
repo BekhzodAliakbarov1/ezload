@@ -1,7 +1,10 @@
 import Text from 'components/typography/text';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { SecondStatsWrapper } from './second-stats.styles';
+import {
+  HeaderAndYearWrapper,
+  SecondStatsWrapper,
+} from './second-stats.styles';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -14,6 +17,12 @@ import {
 } from 'chart.js';
 import { colors } from 'styles/variables';
 import { ChartResponse } from 'server-state/queries/use-get-stats';
+import {
+  FormControl,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from '@mui/material';
 
 ChartJS.register(
   CategoryScale,
@@ -23,7 +32,15 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const SecondStats: React.FC<ChartResponse> = ({
+const SecondStats: React.FC<
+  ChartResponse & {
+    year: string;
+    onChange: (
+      event: SelectChangeEvent<string>,
+      child: React.ReactNode
+    ) => void;
+  }
+> = ({
   delivered_apr_count = 0,
   delivered_aug_count = 0,
   delivered_dec_count = 0,
@@ -60,6 +77,8 @@ const SecondStats: React.FC<ChartResponse> = ({
   on_the_way_nov_count = 0,
   on_the_way_oct_count = 0,
   on_the_way_sep_count = 0,
+  onChange,
+  year,
 }) => {
   const { t } = useTranslation();
 
@@ -151,7 +170,20 @@ const SecondStats: React.FC<ChartResponse> = ({
   };
   return (
     <SecondStatsWrapper>
-      <Text weight="700">{t('Load numbers by date')}</Text>
+      <HeaderAndYearWrapper>
+        <Text weight="700">{t('Load numbers by date')}</Text>
+        <FormControl>
+          <Select value={year} onChange={onChange}>
+            <MenuItem value={2022}>2022</MenuItem>
+            <MenuItem value={2023}>2023</MenuItem>
+            <MenuItem value={2024}>2024</MenuItem>
+            <MenuItem value={2025}>2025</MenuItem>
+            <MenuItem value={2026}>2026</MenuItem>
+            <MenuItem value={2027}>2027</MenuItem>
+            <MenuItem value={2028}>2028</MenuItem>
+          </Select>
+        </FormControl>
+      </HeaderAndYearWrapper>
       <Bar options={options} data={data} />
     </SecondStatsWrapper>
   );

@@ -13,6 +13,7 @@ import {
   NewNotificationCircle,
   NotificationRightContent,
 } from './profile-notifications.styles';
+import { getSmallDate } from 'utils/getDate';
 
 const ProfileNotifications = () => {
   const { data, isLoading, fetchNextPage } = useNotificationsList();
@@ -77,7 +78,7 @@ const ProfileNotifications = () => {
                     <Text>{creator.first_name} delivered load</Text>
                   )}
                 </NotificationRightContent>
-                <Text>{new Date(created_at).toLocaleDateString()}</Text>
+                <Text>{getSmallDate({ date: created_at })}</Text>
               </SingleNotification>
             )
           )

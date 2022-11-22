@@ -19,7 +19,6 @@ const FirstStats: React.FC<{
 
     datasets: [
       {
-        label: 'helcbdfuhskcbrouyw',
         data: [delivered_count, on_the_way_count, new_count],
         backgroundColor: ['#EA694D', '#4FBC9F', '#6B7C82'],
         borderWidth: 1,
@@ -40,7 +39,10 @@ const FirstStats: React.FC<{
         <Doughnut
           width={100}
           height={100}
-          options={{ responsive: true }}
+          options={{
+            responsive: true,
+            plugins: {},
+          }}
           data={data}
         />
       </Box>
