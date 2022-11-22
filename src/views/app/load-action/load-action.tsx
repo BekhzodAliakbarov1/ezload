@@ -57,7 +57,7 @@ const ActionLoad = () => {
       (await createAddressFunction({ type: 'delivery' }));
 
     if (destination && pickup_point) {
-      console.log({ destination, pickup_point });
+      console.dir({ destination, pickup_point });
 
       const loadData = {
         description: data.description,
