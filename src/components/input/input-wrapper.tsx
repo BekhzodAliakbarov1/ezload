@@ -7,6 +7,10 @@ const InputWrapper = styled(Box)<BoxProps>`
   flex-direction: column;
   text-align: left;
   width: 100%;
+  span {
+    color: red;
+    display: block;
+  }
 `;
 
 export default InputWrapper;

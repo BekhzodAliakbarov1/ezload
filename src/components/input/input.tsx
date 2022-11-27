@@ -5,6 +5,7 @@ import styled, { css } from 'styled-components';
 import Label from 'components/typography/label';
 import ErrorMessage from 'components/typography/error-message-input';
 import InputWrapper from './input-wrapper';
+
 // import EyeIcon from 'components/icons/eye.icon';
 import IconButton from '@mui/material/IconButton';
 import { BoxProps } from '@mui/material/Box';
@@ -77,6 +78,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
         {props.startIcon && (
           <StartIconButton>{props.startIcon}</StartIconButton>
         )}
+        {props.required && <span>*</span>}
+
         <StyledInput
           ref={ref}
           {...props}

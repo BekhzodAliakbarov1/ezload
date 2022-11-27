@@ -30,34 +30,38 @@ const leftLinks = [
   {
     id: 2,
     name: 'Terms of Use',
-    to: '/',
+    to: '/info/term-condition',
   },
   {
     id: 3,
     name: 'Privacy Policy',
-    to: '/',
+    to: '/info',
   },
   {
     id: 4,
     name: 'Copyrights',
-    to: '/',
+    to: '/info/copyrights',
   },
 ];
 const rightLinks = [
   {
     id: 1,
     name: 'Profile',
-    to: '/',
+    to: '/profile',
   },
   {
     id: 2,
     name: 'My Loads',
-    to: '/',
+    to: '/profile/my-loads',
   },
   {
     id: 3,
     name: 'My addresses',
-    to: '/',
+    to: `/profile/${
+      localStorage.getItem('userType') === 'driver'
+        ? 'my-routes'
+        : 'my-addresses'
+    }`,
   },
 ];
 

@@ -4,6 +4,7 @@ const AppLayout = lazy(() => import('layouts/app-layout'));
 const AuthLayout = lazy(() => import('layouts/auth-layout'));
 import { AUTH_PREFIX_PATH, APP_PREFIX_PATH } from '../configs/route.config';
 import { useAuth } from 'global-state/auth/auth.state';
+import TermAndPolicy from './shared/term-privacy';
 
 const UnAuthenticatedRouter = () => (
   <>
@@ -13,7 +14,9 @@ const UnAuthenticatedRouter = () => (
 );
 
 const AuthenticatedRouter = () => (
-  <Route path={`${APP_PREFIX_PATH}*`} element={<AppLayout />} />
+  <>
+    <Route path={`${APP_PREFIX_PATH}*`} element={<AppLayout />} />
+  </>
 );
 
 const Views = () => {
@@ -22,6 +25,7 @@ const Views = () => {
   return (
     <Routes>
       {tokens.access ? AuthenticatedRouter() : UnAuthenticatedRouter()}
+      <Route path="/info/*" element={<TermAndPolicy />} />
     </Routes>
   );
 };
