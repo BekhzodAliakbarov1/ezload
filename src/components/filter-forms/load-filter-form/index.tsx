@@ -55,7 +55,9 @@ const LoadFiterForm: React.FC<{
   ) => {
     setFilterData({
       ...filterData,
-      [type]: newValue?.toLocaleDateString('uz'),
+      [type]: newValue?.toLocaleDateString(
+        localStorage.getItem('language') ?? 'en'
+      ),
     });
   };
   const handleWeightChange = (weight: string) => {

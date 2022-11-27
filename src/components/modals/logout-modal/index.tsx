@@ -30,14 +30,14 @@ const LogoutModal: React.FC<{
 
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
-          <Text>{t('Are you sure to log out from Ezload?')}</Text>
+          <Text>{t('Are you sure you want to log out?')}</Text>
           <ModalButtonsWrapper>
             <Button
               loading={deliverLoadRequest.isLoading}
               onClick={submitHandler}
               buttonType="contained"
             >
-              {t('Submit')}
+              {t('Log out')}
             </Button>
             <Button onClick={close} buttonType="white">
               {t('Cancel')}

@@ -13,7 +13,7 @@ export const useLoad = ({ load_id }: { load_id?: string }) => {
     `load_${load_id}`,
     () => request.get<SingleLoadDetailsResponse>(url).then((res) => res.data),
     {
-      enabled: true,
+      enabled: !!load_id,
     }
   );
 };
