@@ -15,6 +15,7 @@ const LoadTitle = () => {
         {t('Load title')}
       </Text>
       <Input
+        required
         onChange={(e) => setValues({ ...data, load_title: e.target.value })}
         placeholder={t('Need to deliver metal')}
         value={data.load_title}
