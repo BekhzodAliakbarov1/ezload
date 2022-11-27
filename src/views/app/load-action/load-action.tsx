@@ -98,7 +98,7 @@ const ActionLoad = () => {
       </Text>
       <LoadTitle />
       <LoadAddress />
-      <LoadDistination />
+      {/* <LoadDistination /> */}
       <LoadDateTime isEditing={state?.type === 'EDIT'} />
       <LoadExtraInformation />
       <LoadButtons
