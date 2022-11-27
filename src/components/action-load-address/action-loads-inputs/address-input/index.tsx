@@ -50,7 +50,7 @@ const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
         placeholder={t('My addresses')}
         onChange={handleSelectChange}
         label={t('Choose from my routes')}
-        disabled={!addressRequest.data?.pages[0].results[0].id}
+        disabled={!addressRequest.data?.pages[0].results[0]?.id}
       >
         {addressRequest.data?.pages &&
           addressRequest.data.pages.map((page) =>

@@ -5,10 +5,14 @@ export const moneyFormatter = ({
   currency: 'USD' | 'UZS' | 'RUB';
   number: number;
 }) => {
-  const formatter = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency,
-  });
-
+  const formatter = new Intl.NumberFormat(
+    localStorage.getItem('language') ?? 'en',
+    {
+      style: 'currency',
+      currency,
+      notation: 'standard',
+      currencyDisplay: 'code',
+    }
+  );
   return formatter.format(number);
 };
