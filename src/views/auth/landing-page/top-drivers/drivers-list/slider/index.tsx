@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay } from 'swiper';
 import DriverCard from 'components/cards/driver-card';
-import ProfileImg from 'assets/img/profile.png';
 import { useTopDrivers } from 'server-state/queries/use-top-driver';
 
 interface SliderProps {
@@ -9,9 +8,7 @@ interface SliderProps {
 }
 
 const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
-  const dummyArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   const { data } = useTopDrivers();
-  console.log(data);
 
   return (
     <Swiper
@@ -37,6 +34,7 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
         900: {
           slidesPerView: 2,
         },
+
         1300: {
           slidesPerView: 4,
         },
@@ -49,89 +47,26 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
         disableOnInteraction: false,
       }}
     >
-      {dummyArray.map((value) => (
-        <SwiperSlide key={value}>
-          <DriverCard
-            bg_color="white"
-            image={ProfileImg}
-            first_name="Antonio Fred."
-            id={3}
-            rates_avg={3}
-            vehicle={{
-              capacity: '30',
-              licence_plate: '01A777AB',
-              title: 'MAN',
-            }}
-            sizes="104px"
-            shadow
-          />
-        </SwiperSlide>
-      ))}
-      {/* <SwiperSlide className="desktop" data-hash="slide1">
-        <SliderWrapper>
-          {dummyArray.map((value) => (
+      {data?.pages.map((page) =>
+        page.results.map((driver) => (
+          <SwiperSlide key={driver.id}>
             <DriverCard
               bg_color="white"
-              key={value}
-              image={ProfileImg}
-              first_name="Antonio Fred."
-              id={3}
-              rates_avg={3}
+              image={driver.profile_picture?.file}
+              first_name={driver.first_name}
+              id={driver.id}
+              rates_avg={driver.rates_avg}
               vehicle={{
-                capacity: '30',
-                licence_plate: '01A777AB',
-                title: 'MAN',
+                capacity: driver.vehicle?.capacity,
+                licence_plate: driver.vehicle?.licence_plate,
+                title: driver.vehicle?.title,
               }}
               sizes="104px"
               shadow
             />
-          ))}
-        </SliderWrapper>
-      </SwiperSlide>
-      <SwiperSlide className="desktop" data-hash="slide2">
-        <SliderWrapper>
-          {dummyArray.map((value) => {
-            return (
-              <DriverCard
-                bg_color="white"
-                key={value}
-                image={ProfileImg}
-                first_name="Antonio Fred."
-                id={3}
-                rates_avg={3}
-                vehicle={{
-                  capacity: '30',
-                  licence_plate: '01A777AB',
-                  title: 'MAN',
-                }}
-                sizes="104px"
-                shadow
-              />
-            );
-          })}
-        </SliderWrapper>
-      </SwiperSlide>
-      {dummyArray.map((value) => (
-        <SwiperSlide className="mobile" key={value}>
-          <MobileDriverCardWrapper>
-            <DriverCard
-              bg_color="white"
-              key={value}
-              image={ProfileImg}
-              first_name="Antonio Fred."
-              id={3}
-              rates_avg={3}
-              vehicle={{
-                capacity: '30',
-                licence_plate: '01A777AB',
-                title: 'MAN',
-              }}
-              sizes="104px"
-              shadow
-            />
-          </MobileDriverCardWrapper>
-        </SwiperSlide>
-      ))} */}
+          </SwiperSlide>
+        ))
+      )}
     </Swiper>
   );
 };

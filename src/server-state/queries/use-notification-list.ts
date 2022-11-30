@@ -16,6 +16,7 @@ export interface LoadsResponse {
     is_viewed: boolean;
     created_at: string;
   }[];
+  unwatched_count: number;
 }
 
 const fetchNotifications = async ({ pageParam = 1 }) => {
@@ -28,6 +29,7 @@ const fetchNotifications = async ({ pageParam = 1 }) => {
     totalPages: Math.ceil(Number(data?.count) / 6),
     count: data.count,
     hasNextPage: Boolean(data.next),
+    unwatched_count: data.unwatched_count,
   };
 };
 

@@ -16,6 +16,8 @@ interface ILoginResponse {
   is_new_user: boolean;
   token: string;
   id: string;
+  id_broker: boolean;
+  id_driver: boolean;
 }
 
 export const useLogin = () => {

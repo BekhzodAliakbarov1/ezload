@@ -35,12 +35,20 @@ export const useCreateProfileAddress = () => {
     {
       retry: false,
       onSuccess() {
+        console.log(1221);
+
         enqueueSnackbar(t('Address created successfully!'), {
           variant: 'success',
         });
       },
-      onError() {
-        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      onError(e: any) {
+        const errors = Object.entries(e.response?.data);
+        errors.map((error) =>
+          enqueueSnackbar(`${error} `, {
+            variant: 'error',
+          })
+        );
       },
     }
   );

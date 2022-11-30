@@ -161,7 +161,6 @@ const CreateEditAddress = () => {
             }}
           />
           <Input
-            required
             placeholder="Zip Code"
             value={zip_code}
             onChange={(e) => {
