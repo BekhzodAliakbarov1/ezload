@@ -33,6 +33,7 @@ import { useTranslation } from 'react-i18next';
 import { DarkLightModeSwitch } from 'components/right-light-mode-switch';
 import LogoutModal from 'components/modals/logout-modal';
 import RingIcon from 'components/icons/ring.icon';
+import { useNotificationsList } from 'server-state/queries/use-notification-list';
 
 const NavbarAuth = () => {
   const navigate = useNavigate();
@@ -40,6 +41,7 @@ const NavbarAuth = () => {
   const language = useMenu();
   const [state, setState] = useState(false);
   const { t, i18n } = useTranslation();
+  const { data } = useNotificationsList();
 
   const { theme } = useTheme();
   const { isDriver } = useDriver();
@@ -83,7 +85,7 @@ const NavbarAuth = () => {
       <ProfileAndLanguageWrapper>
         <DarkLightModeSwitch />
         <IconButton onClick={() => navigate('/profile/notifications')}>
-          <Badge variant="dot" badgeContent={4} color="error">
+          <Badge badgeContent={data?.pages[0].unwatched_count} color="error">
             <RingIcon size="20" />
           </Badge>
         </IconButton>

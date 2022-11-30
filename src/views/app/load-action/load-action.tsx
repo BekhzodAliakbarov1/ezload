@@ -3,7 +3,6 @@ import React from 'react';
 import LoadAddress from './load-action-parts/load-address/load-address';
 import LoadTitle from './load-action-parts/load-title/load-title';
 import { ActionLoadWrapper } from './load-action.styles';
-import LoadDistination from './load-action-parts/load-distination/load-distinetion';
 import LoadDateTime from './load-action-parts/load-date-time/load-date-time';
 import LoadExtraInformation from './load-action-parts/load-extra-information/load-extra-information';
 import LoadButtons from './load-action-parts/load-buttons/load-buttons';
@@ -25,6 +24,8 @@ const ActionLoad = () => {
   const createAddressRequest = useCreateAddress();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  console.log(data);
 
   const createAddressFunction = async ({
     type,
@@ -57,8 +58,6 @@ const ActionLoad = () => {
       (await createAddressFunction({ type: 'delivery' }));
 
     if (destination && pickup_point) {
-      console.dir({ destination, pickup_point });
-
       const loadData = {
         description: data.description,
         destination: destination,

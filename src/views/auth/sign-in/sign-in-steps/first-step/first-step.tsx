@@ -16,6 +16,7 @@ import PhoneInput from 'components/phone-input/phone-input';
 import Input from 'components/input/input';
 import { useVerification } from 'server-state/mutations/use-verification';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const PHONE_NUMBER_REGEX =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
@@ -27,6 +28,7 @@ type Inputs = {
 const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
   setPhoneNumber,
 }) => {
+  const navigate = useNavigate();
   const [countryCode, setCountryCode] = useState('+998');
   const { nextStep } = useSteps();
   const { mutate, isLoading } = useVerification();
@@ -37,6 +39,9 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
     setError,
   } = useForm<Inputs>();
   const { t } = useTranslation();
+  const clickHandler = () => {
+    navigate('/info');
+  };
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(
@@ -98,8 +103,8 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
           </Button>
           <LineDiv />
           <Text size="md" weight="500">
-            {t('By clicking on the button I agree the ')}{' '}
-            <span>{t('Terms & Conditions')}</span>.
+            {t('By clicking on the button I agree the ')}
+            <span onClick={clickHandler}>{t('Terms & Conditions')}</span>
           </Text>
         </form>
       </FirstStepDataWrapper>
