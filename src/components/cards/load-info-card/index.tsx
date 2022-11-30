@@ -16,6 +16,8 @@ const LoadInfoCard: React.FC<{
   data: SingleLoadDetailsResponse;
 }> = ({ data }) => {
   const { t } = useTranslation();
+  console.log(data.description);
+
   return (
     <LoadInfoCradWrapper>
       <Text weight="600">{t('Information about load')}</Text>
@@ -42,7 +44,9 @@ const LoadInfoCard: React.FC<{
       </LoadInfoCardDataBox>
       <LoadDescriptionWrapper>
         <Text>{t('Description')}</Text>
-        <Text color="main_100">{data.description}</Text>
+        <Text color="main_100">
+          {data.description ?? 'No description for this load'}
+        </Text>
       </LoadDescriptionWrapper>
       <LoadBidAndViewCountWrapper>
         <LoadBidAndViewBox>

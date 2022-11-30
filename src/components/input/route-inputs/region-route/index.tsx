@@ -16,7 +16,8 @@ const RegionRouteInput: React.FC<{
   selectHanlder: ({ id, title }: { title: string; id: string }) => void;
   country: string;
   token?: string;
-}> = ({ value = '', selectHanlder, country, token }) => {
+  required?: boolean;
+}> = ({ value = '', selectHanlder, country, token, required = false }) => {
   const { t } = useTranslation();
   const popperState = usePopper();
   const [region, setRegion] = useState(value);
@@ -97,7 +98,7 @@ const RegionRouteInput: React.FC<{
       }
     >
       <SearchInput
-        required
+        required={required}
         {...bindToggle(popperState)}
         placeholder={t('Region')}
         onChange={(e) => {

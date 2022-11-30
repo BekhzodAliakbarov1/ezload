@@ -54,7 +54,7 @@ const SecondStep: React.FC<{
             login({
               tokens: { access: res.token, refresh: '12' },
               userId: res.id,
-              userType,
+              userType: res.id_driver ? 'driver' : 'customer',
             });
           }
         },
