@@ -37,7 +37,11 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
             {address.postal_code && `, ${address.postal_code}`}
           </Text>
           <AddressCardButtonsWrapper>
-            <Button aria-label="Edit" onClick={handleClick}>
+            <Button
+              className="edit-button"
+              aria-label="Edit"
+              onClick={handleClick}
+            >
               {t('Edit')}
             </Button>
             <DeleteAddressModal address_id={id}>

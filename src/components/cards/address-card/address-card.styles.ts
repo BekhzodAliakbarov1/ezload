@@ -25,15 +25,19 @@ export const AddressCardDataLine = styled.div`
     text-align: left;
     color: ${(props) => props.theme.text.main_100};
   }
-  @media (max-width: 800px) {
+  @media (max-width: 1000px) {
     p {
-      font-size: 16px;
-      text-align: left;
       margin-bottom: 32px;
     }
     height: auto;
     align-items: flex-start;
     flex-direction: column;
+  }
+  @media (max-width: 800px) {
+    p {
+      font-size: 16px;
+      text-align: left;
+    }
   }
 `;
 
@@ -41,8 +45,10 @@ export const AddressCardButtonsWrapper = styled.div`
   width: fit-content;
   display: flex;
   gap: 32px;
-  button {
+  .edit-button {
     max-height: 40px;
+    padding: 5px !important;
+    width: 140px;
   }
 `;
 

@@ -14,7 +14,7 @@ interface SearchCountryFilters {
 
 export const useCountry = (filters?: SearchCountryFilters) =>
   usePaginatedQuery<SearchCountryResponse>(
-    ['country', filters],
+    [`country`, filters],
     {
       path: '/area/country/list/',
       limit: 10,

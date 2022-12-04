@@ -133,14 +133,21 @@ const FourthStep: React.FC<{
               token={token}
             />
 
-            <Button onClick={() => createRoute({ clear: 'region' })}>
+            <Button
+              buttonType={
+                !Boolean(country.id) && !Boolean(region.id)
+                  ? 'disabled'
+                  : 'contained'
+              }
+              onClick={() => createRoute({ clear: 'both' })}
+            >
               <PlusIcon />
             </Button>
           </div>
         </FourthStepInputsWrapper>
-        <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
+        {/* <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
           {t('+ Add new country')}
-        </StyledGreenText>
+        </StyledGreenText> */}
         {/* <Button buttonType="dark" onClick={submitLocations}>
           {t('Submit')}
         </Button> */}

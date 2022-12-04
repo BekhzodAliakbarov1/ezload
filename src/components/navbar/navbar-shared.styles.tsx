@@ -84,6 +84,7 @@ export const ProfileAndLanguageWrapper = styled.div`
       background: ${colors.red_100};
     }
   }
+
   @media (max-width: 900px) {
     gap: 0px;
     .menu {
@@ -198,13 +199,15 @@ export const LoginButton = styled(Button)`
     background-color: ${(props) => props.theme.button.warning};
     color: white;
     padding: 4px 12px;
+    width: 170px;
     :hover {
       background-color: ${(props) => props.theme.button.warning};
       opacity: 0.7;
     }
     @media (max-width: 900px) {
       font-size: 10px;
-      padding: 4px 6px;
+      padding: 5px;
+      width: 111px;
     }
   }
 `;

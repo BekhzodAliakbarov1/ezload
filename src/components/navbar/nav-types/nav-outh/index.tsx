@@ -68,7 +68,7 @@ const NavbarAuth = () => {
       <NavbarLinksWrapper>
         {accountLinks.map((link) => {
           return (
-            <Link to={link.to} key={link.id}>
+            <Link className="links" to={link.to} key={link.id}>
               <Text weight="600" size="md">
                 {t(link.name)}
               </Text>
@@ -135,6 +135,7 @@ const NavbarAuth = () => {
             disableFocusRipple
             disableRipple
             onClick={language.handleClick}
+            className="language"
           >
             <Text size="md" weight="600">
               {i18n.language}

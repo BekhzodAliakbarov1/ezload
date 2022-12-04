@@ -30,14 +30,14 @@ const RegionInput: React.FC<{
 
   useEffect(() => {
     setRegion(value);
-  }, [value]);
+  }, [value, localStorage.getItem('language')]);
 
   useEffect(() => {
     if (country) {
       refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [country]);
+  }, [country, localStorage.getItem('language')]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(

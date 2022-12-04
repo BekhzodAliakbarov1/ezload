@@ -3,6 +3,7 @@ import { IconType } from 'types/icon.types';
 
 const PlusIcon: IconType = (props) => (
   <svg
+    {...props}
     width={props.size ?? '24'}
     height={props.size ?? '24'}
     viewBox="0 0 24 24"

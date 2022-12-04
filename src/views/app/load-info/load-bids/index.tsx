@@ -78,6 +78,7 @@ const LoadBids: React.FC<{
                 id={3}
                 rates_avg={data?.driver?.average_rate ?? 3}
                 image={data?.driver?.profile_picture?.file}
+                loads_count={data?.driver?.loads_count}
               />
             </LoadBidsDataBox>
           )}

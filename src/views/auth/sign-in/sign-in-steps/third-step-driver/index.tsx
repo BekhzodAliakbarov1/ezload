@@ -1,7 +1,9 @@
+import { Tooltip } from '@mui/material';
 import Avatar from 'components/avatar';
 import Button from 'components/button/button';
 import GaleryIcon from 'components/icons/galery.icon';
 import InfoIcon from 'components/icons/info.icon';
+import PlusIcon from 'components/icons/plus.icon';
 import FileInput from 'components/input/file-input';
 import Input from 'components/input/input';
 import Text from 'components/typography/text';
@@ -111,9 +113,19 @@ const ThirdStepDriver: React.FC<{
           <label htmlFor="profile_photo">
             <ProfilePhotoUploaderWrapper>
               {data.picture_url ? (
-                <Avatar sizes="120px" src={data.picture_url} />
+                <>
+                  <Tooltip title={t('Change Photo')}>
+                    <div className="avatar">
+                      <PlusIcon className="plus" size="50" />
+                      <Avatar sizes="120px" src={data.picture_url} />
+                    </div>
+                  </Tooltip>
+                </>
               ) : (
-                <GaleryIcon />
+                <>
+                  <GaleryIcon className="galery" />
+                  <PlusIcon className="plus" />
+                </>
               )}
               <FileInput
                 onChange={(e) =>
@@ -142,7 +154,6 @@ const ThirdStepDriver: React.FC<{
               setData({ ...data, vehicle_title: e.target.value })
             }
             placeholder={t('Truck model')}
-            required
           />
           <Input
             value={data.licence_plate}
@@ -150,16 +161,24 @@ const ThirdStepDriver: React.FC<{
               setData({ ...data, licence_plate: e.target.value })
             }
             placeholder={t('Plate number')}
-            required
           />
           <Input
             value={data.capacity}
+            type="number"
             onChange={(e) => setData({ ...data, capacity: e.target.value })}
             placeholder={t('Truck capacity (in tonnes)')}
-            required
           />
         </TruckInputsWrapper>
-        <Button fullWidth type="submit">
+        <Button
+          disabled={
+            !Boolean(data.capacity) ||
+            !Boolean(data.first_name) ||
+            !Boolean(data.licence_plate) ||
+            !Boolean(data.vehicle_title)
+          }
+          fullWidth
+          type="submit"
+        >
           {t('Next')}
         </Button>
       </ThirdStepDataWrapper>

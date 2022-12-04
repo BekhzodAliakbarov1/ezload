@@ -3,7 +3,6 @@ import { colors } from 'styles/variables';
 
 export const DriverSignInThirdStepWrapper = styled.form`
   width: 50%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -43,14 +42,15 @@ export const ThirdStepDataWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  p {
-    font-size: 24px;
-    margin-bottom: 32px;
+  > p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: left;
   }
   @media (max-width: 800px) {
     max-height: 80vh;
-    p {
-      margin-bottom: 20px;
+    > p {
+      margin-bottom: 16px;
     }
   }
 `;
@@ -80,8 +80,28 @@ export const ProfilePhotoUploaderWrapper = styled.div`
   cursor: pointer;
   transition: all 0.3s ease;
   margin-right: 26px;
+  .plus {
+    z-index: 10;
+    display: none;
+  }
   :hover {
     background-color: ${colors.green_60};
+    .avatar {
+      position: relative;
+      opacity: 0.7;
+      .plus {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+    .plus {
+      display: block;
+    }
+    .galery {
+      display: none;
+    }
   }
   @media (max-width: 800px) {
     margin-right: 0px;
@@ -131,5 +151,10 @@ export const TruckInputsWrapper = styled.div`
   input {
     margin-bottom: 16px;
     width: 100%;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;

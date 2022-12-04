@@ -45,8 +45,9 @@ const colors = {
   disabled: css`
     background-color: ${globalColors.dark_40};
     color: ${globalColors.white} !important;
-    &:hover {
-      background-color: ${(props) => props.theme.bg.main};
+    :hover {
+      cursor: not-allowed;
+      background-color: ${globalColors.dark_40};
     }
   `,
 };

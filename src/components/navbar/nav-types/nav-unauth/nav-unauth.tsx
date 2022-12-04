@@ -37,6 +37,7 @@ export const ProfileAndLanguageWrapper = styled.div`
       background: ${colors.red_100};
     }
   }
+
   @media (max-width: 900px) {
     gap: 0px;
     .menu {
@@ -45,7 +46,7 @@ export const ProfileAndLanguageWrapper = styled.div`
   }
 `;
 export const RightContentItemWrapper = styled.div`
-  width: fit-content;
+  width: 49px;
   display: flex;
   align-items: center;
   /* margin-right: 20px; */

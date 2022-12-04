@@ -7,6 +7,7 @@ export const TermSidebarelementsWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 32px;
+  width: 300px;
   @media (max-width: 800px) {
     padding: 10px 0px;
     max-width: 100%;

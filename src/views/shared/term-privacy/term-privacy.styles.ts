@@ -13,7 +13,7 @@ export const TermAndPolicyWrapper = styled.div`
   margin-top: 40px;
   padding: 48px;
   display: flex;
-  gap: 129px;
+  /* gap: 129px; */
   @media (max-width: 900px) {
     gap: 50px;
   }
@@ -22,6 +22,7 @@ export const TermAndPolicyWrapper = styled.div`
   }
   @media (max-width: 600px) {
     padding: 24px;
+    margin-top: 0px;
   }
 `;
 

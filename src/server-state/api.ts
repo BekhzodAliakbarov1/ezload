@@ -11,9 +11,10 @@ request.interceptors.request.use(
     if (accessToken) {
       if (config.headers) {
         config.headers.Authorization = `Token ${accessToken}`;
-        config.headers['Content-Language'] =
-          localStorage.getItem('language') ?? 'en';
       }
+    }
+    if (config.headers) {
+      config.headers['Content-Language'] = getStorage('language') ?? 'en';
     }
     return config;
   },
