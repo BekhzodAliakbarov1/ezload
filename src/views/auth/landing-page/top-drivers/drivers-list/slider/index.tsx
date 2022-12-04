@@ -61,6 +61,7 @@ const DriversSlider = ({ slideChangeHandle }: SliderProps) => {
                 licence_plate: driver.vehicle?.licence_plate,
                 title: driver.vehicle?.title,
               }}
+              loads_count={driver.loads_count}
               sizes="104px"
               shadow
             />

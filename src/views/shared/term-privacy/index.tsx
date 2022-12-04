@@ -13,8 +13,12 @@ import { Routes, Route } from 'react-router-dom';
 import PrivacyPolicy from './parts/privacy-policy';
 import TermsAndCondition from './parts/terms-condition';
 import Copyrights from './parts/copyrights';
+import { usePrivacyPolicy } from 'server-state/queries/use-privacy-policy';
 
 const TermAndPolicy = () => {
+  const { data } = usePrivacyPolicy();
+  console.log(data);
+
   return (
     <>
       <Main>

@@ -34,7 +34,7 @@ const RegionRouteInput: React.FC<{
     if (country) {
       refetch();
     }
-  }, [country]);
+  }, [country, localStorage.getItem('language')]);
 
   useEffect(() => {
     setRegion(value);

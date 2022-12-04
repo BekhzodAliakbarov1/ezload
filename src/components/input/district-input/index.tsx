@@ -38,7 +38,7 @@ const DistrictInput: React.FC<{
       refetch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [region]);
+  }, [region, localStorage.getItem('language')]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleSearch = useCallback(

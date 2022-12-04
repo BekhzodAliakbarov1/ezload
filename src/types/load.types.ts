@@ -61,6 +61,7 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
     profile_picture?: {
       file: string;
     };
+    loads_count: number;
   };
   owner: {
     first_name: string;

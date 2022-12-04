@@ -3,6 +3,7 @@ import { IconType } from 'types/icon.types';
 
 const GaleryIcon: IconType = (props) => (
   <svg
+    {...props}
     width={props.size ?? '62'}
     height={props.size ?? '62'}
     viewBox="0 0 62 62"

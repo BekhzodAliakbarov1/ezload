@@ -103,7 +103,7 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
           </Button>
           <LineDiv />
           <Text size="md" weight="500">
-            {t('By clicking on the button I agree the ')}
+            {t('By clicking on the button I agree the ')}{' '}
             <span onClick={clickHandler}>{t('Terms & Conditions')}</span>
           </Text>
         </form>

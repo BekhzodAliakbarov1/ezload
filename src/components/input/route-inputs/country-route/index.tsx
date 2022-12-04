@@ -31,7 +31,7 @@ const CountryRouteInput: React.FC<{
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [localStorage.getItem('language')]);
 
   useEffect(() => {
     setCountry(value);

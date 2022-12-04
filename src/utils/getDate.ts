@@ -1,30 +1,19 @@
-export const getDate = ({ date = '' }: { date: string }) => {
-  const dateFormat = new Date(date);
+import moment from 'moment';
+import 'moment/locale/tr';
+import 'moment/locale/ru';
+import 'moment/locale/uz';
+import 'moment/locale/en-au';
+import i18n from 'i18n';
 
-  const result = dateFormat.toLocaleString(
-    localStorage.getItem('language') ?? 'en',
-    {
-      year: 'numeric',
-      day: 'numeric',
-      month: 'long',
-      hour: 'numeric',
-      minute: 'numeric',
-    }
-  );
+export const getDate = ({ date = '' }: { date: string }) => {
+  moment.locale(i18n.language);
+  const result = moment(date).format('LLL');
   return result;
 };
 
 export const getSmallDate = ({ date = '' }: { date: string }) => {
-  const dateFormat = new Date(date);
+  moment.locale(i18n.language);
+  const result = moment(date).format('LLLL');
 
-  const result = dateFormat.toLocaleString(
-    localStorage.getItem('language') ?? 'en',
-    {
-      day: 'numeric',
-      month: 'long',
-      hour: 'numeric',
-      minute: 'numeric',
-    }
-  );
   return result;
 };

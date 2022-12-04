@@ -35,6 +35,8 @@ export const FlexWrap = styled.div`
   align-items: center; */
   flex-direction: column;
   gap: 32px;
+  width: 450px;
+  text-align: center;
 `;
 
 export const BigRectangle = styled.div`
@@ -69,7 +71,7 @@ export const ImagesWrapper = styled.div`
 
 export const BoldText = styled(Text)`
   font-size: 28px;
-  line-height: 24px;
+  line-height: 40px;
   @media (max-width: 800px) {
     font-size: 24px;
   }

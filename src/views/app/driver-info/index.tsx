@@ -21,7 +21,7 @@ const DriverInfo = () => {
     } else if (bid_id) {
       biddedDriverRequest.refetch();
     }
-  }, [bid_id, id]);
+  }, [bid_id, id, localStorage.getItem('language')]);
 
   return (
     <DriverInfoWrapper>

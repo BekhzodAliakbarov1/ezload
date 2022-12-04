@@ -31,8 +31,11 @@ const fetchLoads = async ({
   };
 };
 
-export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
-  const { isDriver } = useDriver();
+export const useLoads = (
+  type: 'new' | 'on_the_way' | 'delivered',
+  language?: string
+) => {
+  const lng = language ?? localStorage.getItem('language') ?? 'en';
   let status: 1 | 2 | 3;
   if (type === 'new') {
     status = 1;
@@ -42,7 +45,6 @@ export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
     status = 3;
   }
 
-  // const url = isDriver ? '/driver/load/list/' : '/load/list/';
   const url = '/load/list/';
 
   return useInfiniteQuery(
