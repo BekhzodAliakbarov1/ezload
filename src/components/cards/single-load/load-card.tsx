@@ -70,10 +70,7 @@ const LoadCard: React.FC<{
           </LoadCardPickupDeliverBox>
         </LoadCarLocationBox>
         <LoadCardBottomSideWrapper>
-          <LoadCardDistanceSizeBox>
-            {/* <DistanceIcon size="24" />
-            <Text weight="600">894 km</Text> */}
-          </LoadCardDistanceSizeBox>
+          <LoadCardDistanceSizeBox></LoadCardDistanceSizeBox>
           <LoadBidCountWrapper>
             <Text>
               {t('Bid count:')}

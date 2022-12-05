@@ -24,9 +24,13 @@ const fetchAddress = async ({ pageParam = 1 }) => {
 };
 
 export const useAddress = () =>
-  useInfiniteQuery('address', fetchAddress, {
-    getNextPageParam(lastPage) {
-      if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
-      return undefined;
-    },
-  });
+  useInfiniteQuery(
+    `address ${localStorage.getItem('language')}`,
+    fetchAddress,
+    {
+      getNextPageParam(lastPage) {
+        if (lastPage.nextPage <= lastPage.totalPages) return lastPage.nextPage;
+        return undefined;
+      },
+    }
+  );

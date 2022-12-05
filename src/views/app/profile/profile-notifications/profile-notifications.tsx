@@ -61,21 +61,35 @@ const ProfileNotifications = () => {
               >
                 <NotificationRightContent is_viewed={is_viewed}>
                   <NewNotificationCircle is_viewed={is_viewed} />
-                  {status === 1 && <Text>{creator.first_name} send a bid</Text>}
+                  {status === 1 && (
+                    <Text>
+                      {creator.first_name} {t('send a bid')}
+                    </Text>
+                  )}
                   {status === 2 && (
-                    <Text>{creator.first_name} accepted your bid</Text>
+                    <Text>
+                      {creator.first_name} {t('accepted your bid')}
+                    </Text>
                   )}
                   {status === 3 && (
-                    <Text>{creator.first_name} canceled a bid</Text>
+                    <Text>
+                      {creator.first_name} {t('canceled a bid')}
+                    </Text>
                   )}
                   {status === 4 && (
-                    <Text>{creator.first_name} created new load</Text>
+                    <Text>
+                      {creator.first_name} {t('created new load')}
+                    </Text>
                   )}
                   {status === 5 && (
-                    <Text>{creator.first_name} canceled a load</Text>
+                    <Text>
+                      {creator.first_name} {t('canceled a load')}
+                    </Text>
                   )}
                   {status === 6 && (
-                    <Text>{creator.first_name} delivered load</Text>
+                    <Text>
+                      {creator.first_name} {t('delivered load')}
+                    </Text>
                   )}
                 </NotificationRightContent>
                 <Text>{getSmallDate({ date: created_at })}</Text>

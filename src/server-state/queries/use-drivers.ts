@@ -7,7 +7,7 @@ export interface SingleDriverResponse {
   first_name: string;
   last_name: string;
   rates_avg: number;
-  profile_picture: {
+  profile_picture?: {
     file: string;
   };
   vehicle: {
@@ -15,6 +15,7 @@ export interface SingleDriverResponse {
     licence_plate: string;
     capacity: string;
   };
+  loads_count: number;
 }
 
 export interface DriversResponse {

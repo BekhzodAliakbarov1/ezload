@@ -38,7 +38,7 @@ const CancelBidModal: React.FC<{
 
       <Modal open={isOpen} onClose={close}>
         <ModalWrapper>
-          <Text>{t('Are you sure you want to cancel ')} ?</Text>
+          <Text>{`${t('Are you sure you want to cancel ')}?`}</Text>
           <ModalButtonsWrapper>
             <Button
               loading={deleteBidRequest.isLoading}

@@ -95,25 +95,25 @@ const SecondStats: React.FC<
     },
   };
   const labels = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    t('Jan'),
+    t('Feb'),
+    t('Mar'),
+    t('Apr'),
+    t('May'),
+    t('Jun'),
+    t('Jul'),
+    t('Aug'),
+    t('Sep'),
+    t('Oct'),
+    t('Nov'),
+    t('Dec'),
   ];
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'Delivered',
+        label: t('Delivered'),
         data: [
           delivered_jan_count,
           delivered_feb_count,
@@ -131,7 +131,7 @@ const SecondStats: React.FC<
         backgroundColor: colors.red_100,
       },
       {
-        label: 'On the way',
+        label: t('On the way'),
         data: [
           new_jan_count,
           new_feb_count,
@@ -149,7 +149,7 @@ const SecondStats: React.FC<
         backgroundColor: colors.green_90,
       },
       {
-        label: 'New',
+        label: t('New'),
         data: [
           on_the_way_jan_count,
           on_the_way_feb_count,

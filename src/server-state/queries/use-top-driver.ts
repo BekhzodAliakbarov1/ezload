@@ -15,6 +15,7 @@ export interface SingleDriverResponse {
     licence_plate: string;
     capacity: string;
   };
+  loads_count: number;
 }
 
 export interface DriversResponse {

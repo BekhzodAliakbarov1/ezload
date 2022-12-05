@@ -37,7 +37,7 @@ const ProfileLoads = () => {
         break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [query.get('name')]);
+  }, [query.get('name'), localStorage.getItem('language')]);
   const onClickHandler = (type: 'new' | 'on_the_way' | 'done') => {
     // setSectionType(type);
     navigate(`/profile/my-loads?name=${type.toLowerCase()}`);

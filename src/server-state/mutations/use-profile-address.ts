@@ -69,7 +69,7 @@ export const useEditProfileAddress = (id?: number) =>
 // DELETE
 export const useDeleteProfileAddress = () => {
   const { enqueueSnackbar } = useSnackbar();
-  const { invalidateQueries } = useQueryClient();
+  const qc = useQueryClient();
   const { t } = useTranslation();
 
   return useMutation(
@@ -83,12 +83,13 @@ export const useDeleteProfileAddress = () => {
         enqueueSnackbar(t('Address deleted successfully!'), {
           variant: 'success',
         });
-        invalidateQueries(['address']);
+        qc.invalidateQueries([`address ${localStorage.getItem('language')}`]);
       },
       onError() {
         enqueueSnackbar(t('Something went wrong!'), {
           variant: 'error',
         });
+        qc.invalidateQueries([`address ${localStorage.getItem('language')}`]);
       },
     }
   );

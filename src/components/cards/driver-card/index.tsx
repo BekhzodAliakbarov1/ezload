@@ -21,6 +21,7 @@ const DriverCard: React.FC<{
   styles?: CSSProperties;
   clickable?: boolean;
   bg_color?: string;
+  loads_count?: number;
 }> = ({
   image,
   first_name,
@@ -31,6 +32,7 @@ const DriverCard: React.FC<{
   shadow = false,
   clickable = false,
   bg_color,
+  loads_count = 0,
 }) => {
   const { t } = useTranslation();
   return (
@@ -46,10 +48,10 @@ const DriverCard: React.FC<{
           {first_name.substring(0, 20)}
         </Text>
         <Text size="sm" color="main_100" weight="400">
-          {vehicle?.title} ({vehicle?.capacity ?? '0'} Ton)
+          {vehicle?.title} ({Number(vehicle?.capacity ?? '0')} Ton)
         </Text>
         <Text size="md" weight="600">
-          100+ {t('LOADS')}
+          {loads_count} {t('LOADS')}
         </Text>
         <RatingComponent value={rates_avg} />
       </DriverCardInfoWrapper>

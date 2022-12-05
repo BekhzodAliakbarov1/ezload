@@ -106,9 +106,9 @@ export const FourthStepCreatedLocationsWrapper = styled.div`
   max-height: 100px;
   overflow-y: scroll;
   margin-bottom: 48px;
-  /* ::-webkit-scrollbar {
-    display: none;
-  } */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
 `;
 
 export const FourthStepCreatedLocationsSingleRow = styled.div`

@@ -27,6 +27,9 @@ export const NavbarLinksWrapper = styled.div`
   gap: 24px;
   justify-content: space-between;
   align-items: center;
+  .links {
+    /* width: 130px; */
+  }
 
   p {
     letter-spacing: 0.15px;
@@ -54,6 +57,16 @@ export const ProfileAndLanguageWrapper = styled.div`
     :hover {
       background: ${colors.red_100};
     }
+  }
+  .menu {
+    /* width: 165px; */
+    text-align: center;
+    display: flex;
+
+    justify-content: center;
+  }
+  .language {
+    /* width: 60px; */
   }
   @media (max-width: 900px) {
     gap: 0px;

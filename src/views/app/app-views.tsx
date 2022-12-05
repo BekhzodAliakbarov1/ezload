@@ -10,6 +10,7 @@ import { useDriver } from 'hooks/use-driver';
 import { useWebsocket } from 'server-state/ws/use-websocket';
 import { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
+import { useTranslation } from 'react-i18next';
 
 const CustomerView = () => (
   <Routes>
@@ -38,6 +39,7 @@ const DriverView = () => (
 );
 
 const AppViews = () => {
+  const { t } = useTranslation();
   const { isDriver } = useDriver();
   const { socket } = useWebsocket();
   const { enqueueSnackbar } = useSnackbar();
@@ -54,7 +56,7 @@ const AppViews = () => {
 
       switch (message.data.status) {
         case 1: //bid created
-          enqueueSnackbar('Driver sent a bid', {
+          enqueueSnackbar(t('Driver sent a bid'), {
             variant: 'info',
             preventDuplicate: true,
             autoHideDuration: 3000,
@@ -75,7 +77,7 @@ const AppViews = () => {
           });
           break;
         case 2: //bid accepted
-          enqueueSnackbar('Your bid accepted', {
+          enqueueSnackbar(t('Your bid accepted'), {
             variant: 'info',
             preventDuplicate: true,
             autoHideDuration: 3000,
@@ -96,7 +98,7 @@ const AppViews = () => {
           });
           break;
         case 3: //bid canceled
-          enqueueSnackbar('Your bid canceled', {
+          enqueueSnackbar(t('Your bid canceled'), {
             variant: 'info',
             preventDuplicate: true,
             autoHideDuration: 3000,
@@ -117,7 +119,7 @@ const AppViews = () => {
           });
           break;
         case 4:
-          enqueueSnackbar('New load created', {
+          enqueueSnackbar(t('New load created'), {
             variant: 'info',
             preventDuplicate: true,
             autoHideDuration: 3000,
@@ -138,10 +140,9 @@ const AppViews = () => {
           });
           break;
         case 5: // should know condition when it should works
-          console.log('Load canceled');
           break;
         case 6: //load finished
-          enqueueSnackbar('Driver finish the load', {
+          enqueueSnackbar(t('Driver finish the load'), {
             variant: 'info',
             preventDuplicate: true,
             autoHideDuration: 3000,
@@ -162,10 +163,8 @@ const AppViews = () => {
           });
           break;
         default:
-          console.log('Something went wrong' + message);
+          console.log(t('Something went wrong') + message);
       }
-
-      console.log({ message });
     });
   }, [socket]);
 
