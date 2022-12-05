@@ -188,7 +188,11 @@ const CreateEditAddress = () => {
         >
           {state?.type === 'EDIT' ? t('Edit address') : t('Add address')}
         </Button>
-        <Button buttonType="secondary_dark" onClick={() => navigate(-1)}>
+        <Button
+          type="button"
+          buttonType="secondary_dark"
+          onClick={() => navigate(-1)}
+        >
           {t('Cancel')}
         </Button>
       </CreateAddressButtonsWrapper>

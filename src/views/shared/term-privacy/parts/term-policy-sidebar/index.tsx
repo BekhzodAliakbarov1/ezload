@@ -21,7 +21,7 @@ const TermsAndPolicySidebar = () => {
           active={pathname.includes('/info/term-condition')}
           weight="700"
         >
-          {t('Terms & conditions')}
+          {t('Terms of Use')}
         </StyledLink>
       </Link>
       <Link to="/info/copyrights">

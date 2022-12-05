@@ -60,6 +60,11 @@ export const TruckInfoChangeInput = styled.div`
     font-size: 18px;
     line-height: 32px;
   }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   @media (max-width: 800px) {
     input {
       width: 200px;

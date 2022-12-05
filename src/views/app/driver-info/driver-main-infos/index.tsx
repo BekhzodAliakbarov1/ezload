@@ -48,11 +48,15 @@ const DriverMainInfos: React.FC<{
           <DriversMainInfoLocationsWrapper>
             <Text className="label">{t('Locations')}</Text>
             <div>
-              {data?.routes?.map((location, index) => (
-                <Text key={index} weight="700">
-                  {location.country.title}, {location.region.title}
-                </Text>
-              ))}
+              {data.routes && data.routes.length > 0 ? (
+                data.routes.map((location, index) => (
+                  <Text key={index} weight="700">
+                    {location.country.title}, {location.region.title}
+                  </Text>
+                ))
+              ) : (
+                <Text weight="700">{t('No routes yet')}</Text>
+              )}
             </div>
           </DriversMainInfoLocationsWrapper>
           <DriverMainInfoContactWrapper>

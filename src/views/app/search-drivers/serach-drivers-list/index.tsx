@@ -8,6 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import { SingleDriverResponse } from 'server-state/queries/use-drivers';
 import DriverCardContainerSkeloton from 'components/skelotons/driver-card-container';
+import { t } from 'i18next';
 
 const SearchDriversList: React.FC<{ drivers?: SingleDriverResponse[] }> = ({
   drivers,
@@ -18,7 +19,7 @@ const SearchDriversList: React.FC<{ drivers?: SingleDriverResponse[] }> = ({
 
   return (
     <SearchDriversListWrapper>
-      <Text weight="700">Top drivers</Text>
+      <Text weight="700">{t('Top drivers')}</Text>
       <SearchDriversListItemsWrapper>
         {drivers ? (
           drivers?.map((driver) => (
@@ -27,7 +28,7 @@ const SearchDriversList: React.FC<{ drivers?: SingleDriverResponse[] }> = ({
                 sizes="104px"
                 {...driver}
                 clickable
-                image={driver.profile_picture.file}
+                image={driver.profile_picture?.file}
               />
             </Link>
           ))

@@ -15,7 +15,7 @@ const FirstStats: React.FC<{
 }> = ({ delivered_count = 0, new_count = 0, on_the_way_count = 0 }) => {
   const { t } = useTranslation();
   const data = {
-    labels: ['Delivered', 'On the way', 'New'],
+    labels: [t('Delivered'), t('On the way'), t('New')],
 
     datasets: [
       {

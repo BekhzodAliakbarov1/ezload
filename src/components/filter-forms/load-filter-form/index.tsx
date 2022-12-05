@@ -1,5 +1,5 @@
 import { MenuItem } from '@mui/material';
-import { DateTimePicker } from '@mui/x-date-pickers';
+import { DatePicker } from '@mui/x-date-pickers';
 import Button from 'components/button/button';
 import CountryInput from 'components/input/country-input';
 import Input from 'components/input/input';
@@ -130,27 +130,27 @@ const LoadFiterForm: React.FC<{
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
         <Text color="main_90">{t('Pickup date')}</Text>
-        <DateTimePicker
+        <DatePicker
           value={
             filterData.pickup_date ? new Date(filterData.pickup_date) : null
           }
           onChange={(e) => handleDateChange(e, 'pickup_date')}
           renderInput={(params) => <StyledTextFiled {...params} />}
           disableMaskedInput
-          inputFormat="d-MMMM , HH:mm "
+          // inputFormat="d-MMMM , HH:mm "
           disablePast
         />
       </SearchLoadsFiltersBox>
       <SearchLoadsFiltersBox>
         <Text color="main_90">{t('Delivery date')}</Text>
-        <DateTimePicker
+        <DatePicker
           value={
             filterData.deliver_date ? new Date(filterData.deliver_date) : null
           }
           onChange={(e) => handleDateChange(e, 'deliver_date')}
           renderInput={(params) => <StyledTextFiled {...params} />}
           disableMaskedInput
-          inputFormat="d-MMMM , HH:mm "
+          // inputFormat="d-MMMM , HH:mm "
           disablePast
           minDate={new Date(filterData.pickup_date ?? '')}
         />

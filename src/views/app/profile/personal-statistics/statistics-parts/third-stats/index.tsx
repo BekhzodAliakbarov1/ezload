@@ -45,7 +45,7 @@ const ThirdStats: React.FC<{
             <Text>{all_bids_number}</Text>
           </CardsBox>
           <CardsBox>
-            <Text size="sm">{t('Rejected ')}</Text>
+            <Text size="sm">{t('Rejected')}</Text>
             <Typography color={colors.red_90}>{bids_rejected}</Typography>
           </CardsBox>
           <CardsBox>
@@ -61,7 +61,31 @@ const ThirdStats: React.FC<{
             alignSelf: 'flex-start',
           }}
         >
-          <Doughnut data={data} options={{ responsive: true }} />
+          <Doughnut
+            data={data}
+            options={{
+              responsive: true,
+              plugins: {
+                tooltip: {
+                  callbacks: {
+                    label: (item) => {
+                      console.log(item);
+
+                      const value = item.parsed;
+                      const sum = item.dataset.data.reduce(
+                        (overal, current) => overal + Number(current),
+                        0
+                      );
+                      const result = `${Math.floor(
+                        (value * 100) / sum
+                      )}%  in ${sum}%`;
+                      return result;
+                    },
+                  },
+                },
+              },
+            }}
+          />
         </Box>
       )}
     </ThirdStatsContainer>
