@@ -117,5 +117,6 @@ export const LoadBidCountWrapper = styled.div`
     line-height: 18px;
     letter-spacing: 0.25px;
     color: ${(props) => props.theme.text.main_70};
+    text-align: left;
   }
 `;

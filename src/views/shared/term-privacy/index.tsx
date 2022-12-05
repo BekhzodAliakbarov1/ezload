@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   TermAndPolicyWrapper,
   Main,
@@ -14,10 +14,10 @@ import PrivacyPolicy from './parts/privacy-policy';
 import TermsAndCondition from './parts/terms-condition';
 import Copyrights from './parts/copyrights';
 import { usePrivacyPolicy } from 'server-state/queries/use-privacy-policy';
+import i18next from 'i18next';
 
 const TermAndPolicy = () => {
-  const { data } = usePrivacyPolicy();
-  console.log(data);
+  const privacyPolicy = usePrivacyPolicy({ language: i18next.language });
 
   return (
     <>

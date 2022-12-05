@@ -28,7 +28,7 @@ export const NavbarLinksWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   .links {
-    width: 130px;
+    /* width: 130px; */
   }
 
   p {
@@ -59,14 +59,14 @@ export const ProfileAndLanguageWrapper = styled.div`
     }
   }
   .menu {
-    width: 165px;
+    /* width: 165px; */
     text-align: center;
     display: flex;
 
     justify-content: center;
   }
   .language {
-    width: 60px;
+    /* width: 60px; */
   }
   @media (max-width: 900px) {
     gap: 0px;

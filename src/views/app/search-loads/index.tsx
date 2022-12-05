@@ -32,7 +32,6 @@ const SearchLoads = () => {
     setQuery(qs.stringify(queryData));
     // searchLoadsRequest.refetch();
   };
-
   return (
     <SearchLoadsWrapper>
       <SearchLoadsBox>

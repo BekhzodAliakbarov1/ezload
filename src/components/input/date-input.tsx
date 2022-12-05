@@ -1,5 +1,5 @@
 import React from 'react';
-import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import Text from 'components/typography/text';
 import {
   DateInputComponentWrapper,
@@ -7,6 +7,7 @@ import {
 } from './date-input.styles';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 import { useTranslation } from 'react-i18next';
+import moment from 'moment';
 
 export const DateRangePickerInput: React.FC<{
   type: 'pickup' | 'delivery';
@@ -38,28 +39,28 @@ export const DateRangePickerInput: React.FC<{
       });
     }
   };
+  console.log(moment(data.dates[type].start).format('LLL'));
 
   return (
     <DateInputComponentWrapper>
       <div>
         <Text weight="500">{t('From')}</Text>
-        <DateTimePicker
+        <DatePicker
           value={data.dates[type].start}
           onChange={handleStartDateChange}
           renderInput={(params) => <StyledTextFiled {...params} />}
           disableMaskedInput
-          inputFormat="d-MMMM , HH:mm "
           disablePast={!isEditing}
         />
       </div>
       <div>
         <Text weight="500">{t('To')}</Text>
-        <DateTimePicker
+        <DatePicker
           value={data.dates[type].end}
           onChange={handleEndDateChange}
           renderInput={(params) => <StyledTextFiled {...params} />}
           disableMaskedInput
-          inputFormat="d-MMMM , HH:mm "
+          // inputFormat="d-MMMM , HH:mm "
           disablePast={!isEditing}
           minDate={data.dates[type].start}
         />

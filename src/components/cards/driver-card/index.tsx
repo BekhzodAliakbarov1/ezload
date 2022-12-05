@@ -48,7 +48,7 @@ const DriverCard: React.FC<{
           {first_name.substring(0, 20)}
         </Text>
         <Text size="sm" color="main_100" weight="400">
-          {vehicle?.title} ({vehicle?.capacity ?? '0'} Ton)
+          {vehicle?.title} ({Number(vehicle?.capacity ?? '0')} Ton)
         </Text>
         <Text size="md" weight="600">
           {loads_count} {t('LOADS')}

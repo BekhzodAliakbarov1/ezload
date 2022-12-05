@@ -17,29 +17,14 @@ import rightImage from 'assets/img/right-bg-image.png';
 import { useDriver } from 'hooks/use-driver';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-
-const feedStats = [
-  {
-    id: 1,
-    number: '7',
-    name: 'Countries',
-  },
-  {
-    id: 2,
-    number: '98',
-    name: 'Cities & Towns',
-  },
-  {
-    id: 3,
-    number: '24 / 7',
-    name: 'Availibility',
-  },
-];
+import { usePlaceStats } from 'server-state/queries/use-place-stats';
+import CountUp from 'react-countup';
 
 const Feed = () => {
   const { isDriver } = useDriver();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { data } = usePlaceStats();
 
   const handleClick = () => {
     if (isDriver) {
@@ -61,7 +46,7 @@ const Feed = () => {
             <Text weight="600">{t('Pickup location')}</Text>
             <LocationAndSvgWrapper>
               <LocationIcon />
-              <Text weight="500">Tashkent, Uzbekistan</Text>
+              <Text weight="500">{t('Tashkent, Uzbekistan')}</Text>
             </LocationAndSvgWrapper>
           </FeedLocationCard>
           <FeedLocationCard>
@@ -69,7 +54,7 @@ const Feed = () => {
             <LocationAndSvgWrapper>
               <LocationIcon />
 
-              <Text weight="500">Moscow, Russia</Text>
+              <Text weight="500">{t('Moscow, Russia')}</Text>
             </LocationAndSvgWrapper>
           </FeedLocationCard>
         </FeedLocationWrapper>
@@ -82,12 +67,30 @@ const Feed = () => {
         </Button>
       </FeedDataWrapper>
       <FeedStatisticsWrapper>
-        {feedStats.map(({ name, number, id }) => (
-          <FeedStatisticsCard key={id}>
-            <Text weight="700">{number}</Text>
-            <Text weight="600">{t(name)}</Text>
-          </FeedStatisticsCard>
-        ))}
+        <FeedStatisticsCard>
+          <Text weight="700">
+            <CountUp
+              start={0}
+              end={Number(data?.country_count)}
+              duration={1.1}
+            />
+          </Text>
+          <Text weight="600">{t('Countries')}</Text>
+        </FeedStatisticsCard>
+        <FeedStatisticsCard>
+          <Text weight="700">
+            <CountUp
+              start={0}
+              end={Number(data?.region_count)}
+              duration={1.1}
+            />
+          </Text>
+          <Text weight="600">{t('Cities & Towns')}</Text>
+        </FeedStatisticsCard>
+        <FeedStatisticsCard>
+          <Text weight="700">24 / 7</Text>
+          <Text weight="600">{t('Availibility')}</Text>
+        </FeedStatisticsCard>
       </FeedStatisticsWrapper>
       <BackgrounImageWrapper src={leftImage} alt="left image" position="left" />
       <BackgrounImageWrapper

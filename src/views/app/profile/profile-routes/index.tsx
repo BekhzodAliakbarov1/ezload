@@ -9,7 +9,7 @@ import RegionRouteInput from 'components/input/route-inputs/region-route';
 import DeletRouteModal from 'components/modals/delete-route-modal';
 import RoutesContainerSkeloton from 'components/skelotons/routes-container';
 import Text from 'components/typography/text';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateRoute } from 'server-state/mutations/use-create-route';
 import { useRoutes } from 'server-state/queries/use-routes';
@@ -37,6 +37,9 @@ const ProfileRoutes = () => {
   const [isEditing, setIsEditing] = useState(false);
   const routesRequest = useRoutes();
   const { t } = useTranslation();
+  useEffect(() => {
+    routesRequest.refetch();
+  }, [localStorage.getItem('language')]);
 
   const createRoute = ({
     clear,
@@ -95,10 +98,12 @@ const ProfileRoutes = () => {
           ))}
         </ProfileRoutesCreatedLocationsWrapper>
       ) : (
-        <NoRoutesFindSection>
-          <FileIcon size="150" />
-          <Text>{t('No routes yet')}</Text>
-        </NoRoutesFindSection>
+        !isEditing && (
+          <NoRoutesFindSection>
+            <FileIcon size="150" />
+            <Text>{t('No routes yet')}</Text>
+          </NoRoutesFindSection>
+        )
       )}
 
       {isEditing && (
@@ -121,15 +126,15 @@ const ProfileRoutes = () => {
 
               <Button
                 disabled={!country.id || !region.id}
-                onClick={() => createRoute({ clear: 'region' })}
+                onClick={() => createRoute({ clear: 'both' })}
               >
                 <PlusIcon />
               </Button>
             </div>
           </ProfileRoutesInputsWrapper>
-          <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
+          {/* <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
             {t('+ Add new country')}
-          </StyledGreenText>
+          </StyledGreenText> */}
           {/* <Button buttonType="dark" onClick={submitLocations}>
             Submit
           </Button> */}

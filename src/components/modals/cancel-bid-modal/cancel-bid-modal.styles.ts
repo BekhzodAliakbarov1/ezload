@@ -11,10 +11,9 @@ export const ModalWrapper = styled.div`
   padding: 56px 80px;
   background-color: ${(props) => props.theme.bg.secondary};
   position: absolute;
-  max-width: 500px;
+  width: min-content;
   top: 50%;
   left: 50%;
-  width: 100%;
   transform: translate(-50%, -50%);
   border-radius: 8px;
   > p {
@@ -40,4 +39,7 @@ export const ModalButtonsWrapper = styled.div`
   gap: 24px;
   display: flex;
   margin: auto;
+  button {
+    width: fit-content;
+  }
 `;

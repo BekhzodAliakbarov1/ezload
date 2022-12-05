@@ -77,6 +77,7 @@ const TruckInfo: React.FC<{
               value={capacity}
               onChange={(e) => setCapacity(e.target.value)}
               placeholder="20 (Equal 20 tonna)"
+              type="number"
             />
           ) : (
             <Text weight="600">{Number(capacity)} Tonna</Text>
