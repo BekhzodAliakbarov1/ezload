@@ -1,4 +1,3 @@
-import DistanceIcon from 'components/icons/distance.icon';
 import LocationIcon from 'components/icons/location.icon';
 import Text from 'components/typography/text';
 import { useDriver } from 'hooks/use-driver';

@@ -73,7 +73,7 @@ const ThirdStepDriver: React.FC<{
         user: {
           first_name: data.first_name,
           last_name: data.first_name,
-          profile_picture: data.picture_id ?? 0,
+          profile_picture: data.picture_id ?? null,
         },
         vehicle: {
           capacity: data.capacity,
@@ -174,7 +174,8 @@ const ThirdStepDriver: React.FC<{
             !Boolean(data.capacity) ||
             !Boolean(data.first_name) ||
             !Boolean(data.licence_plate) ||
-            !Boolean(data.vehicle_title)
+            !Boolean(data.vehicle_title) ||
+            !Boolean(data.picture_id)
           }
           fullWidth
           type="submit"
