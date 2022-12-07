@@ -39,7 +39,6 @@ export const DateRangePickerInput: React.FC<{
       });
     }
   };
-  console.log(moment(data.dates[type].start).format('LLL'));
 
   return (
     <DateInputComponentWrapper>

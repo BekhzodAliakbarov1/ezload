@@ -8,8 +8,8 @@ import { useSearchDrivers } from 'server-state/queries/use-drivers';
 export interface SearchDriverFilterType {
   pickup_point_country?: { id: string | string; title: string };
   pickup_point_region?: { id: string | string; title: string };
-  destination_point_country?: { id: string | string; title: string };
-  destination_point_region?: { id: string | string; title: string };
+  destination_country?: { id: string | string; title: string };
+  destination_region?: { id: string | string; title: string };
   weight?: string;
   rating?: number;
 }
@@ -23,8 +23,8 @@ const SearchDrivers = () => {
       ...data,
       pickup_point_country: data.pickup_point_country?.id,
       pickup_point_region: data.pickup_point_region?.id,
-      destination_point_country: data.destination_point_country?.id,
-      destination_point_region: data.destination_point_region?.id,
+      destination_country: data.destination_country?.id,
+      destination_region: data.destination_region?.id,
     };
     setQuery(qs.stringify(queryData));
     searchDriversRequest.refetch();

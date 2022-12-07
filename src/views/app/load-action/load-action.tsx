@@ -25,8 +25,6 @@ const ActionLoad = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
 
-  console.log(data);
-
   const createAddressFunction = async ({
     type,
   }: {

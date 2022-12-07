@@ -25,7 +25,11 @@ const PersonalStatistics = () => {
         delivered_count={data?.delivered}
         on_the_way_count={data?.on_the_way}
       />
-      <SecondStats onChange={handleChange} year={year} {...data?.chart} />
+      <SecondStats
+        onChange={handleChange}
+        year={year}
+        // {...data?.chart}
+      />
 
       <ThirdStats {...data} />
       <FourStats {...data} />

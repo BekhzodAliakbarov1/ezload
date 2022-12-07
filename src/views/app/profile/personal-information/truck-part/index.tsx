@@ -42,8 +42,6 @@ const TruckInfo: React.FC<{
     );
   };
   const handleCancel = () => {
-    console.log({ car_model, car_capacity, car_number });
-
     setModel(car_model);
     setCapacity(car_capacity);
     setcarNumber(car_number);

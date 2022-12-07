@@ -16,7 +16,6 @@ const LoadInfoCard: React.FC<{
   data: SingleLoadDetailsResponse;
 }> = ({ data }) => {
   const { t } = useTranslation();
-  console.log(Boolean(data.description));
 
   return (
     <LoadInfoCradWrapper>
@@ -39,7 +38,9 @@ const LoadInfoCard: React.FC<{
         </LoadInfoCardDataSingleBox>
         <LoadInfoCardDataSingleBox>
           <Text>{t('Payment')}</Text>
-          <Text color="main_100">{data.price} USD</Text>
+          <Text color="main_100">
+            {data.price} {data.currency ?? '-'}
+          </Text>
         </LoadInfoCardDataSingleBox>
       </LoadInfoCardDataBox>
       <LoadDescriptionWrapper>

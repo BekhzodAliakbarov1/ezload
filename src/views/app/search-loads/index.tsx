@@ -8,8 +8,8 @@ import { useSearchLoads } from 'server-state/queries/use-loads';
 export interface SearchLoadFilterType {
   pickup_point_country?: { id: string | string; title: string };
   pickup_point_region?: { id: string | string; title: string };
-  destination_point_country?: { id: string | string; title: string };
-  destination_point_region?: { id: string | string; title: string };
+  destination_country?: { id: string | string; title: string };
+  destination_region?: { id: string | string; title: string };
   weight?: string;
   pickup_date?: string | Date;
   deliver_date?: string | Date;
@@ -26,8 +26,8 @@ const SearchLoads = () => {
       ...data,
       pickup_point_country: data.pickup_point_country?.id,
       pickup_point_region: data.pickup_point_region?.id,
-      destination_point_country: data.destination_point_country?.id,
-      destination_point_region: data.destination_point_region?.id,
+      destination_country: data.destination_country?.id,
+      destination_region: data.destination_region?.id,
     };
     setQuery(qs.stringify(queryData));
     // searchLoadsRequest.refetch();
