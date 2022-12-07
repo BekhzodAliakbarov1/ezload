@@ -68,7 +68,6 @@ const AppViews = () => {
                     color: 'white',
                     fontSize: '12px',
                   }}
-                  onClick={() => console.log(message)}
                 >
                   Full detail
                 </Link>
@@ -89,7 +88,6 @@ const AppViews = () => {
                     color: 'white',
                     fontSize: '12px',
                   }}
-                  onClick={() => console.log(message)}
                 >
                   Full detail
                 </Link>
@@ -110,7 +108,6 @@ const AppViews = () => {
                     color: 'white',
                     fontSize: '12px',
                   }}
-                  onClick={() => console.log(message)}
                 >
                   Full detail
                 </Link>
@@ -131,7 +128,6 @@ const AppViews = () => {
                     color: 'white',
                     fontSize: '12px',
                   }}
-                  onClick={() => console.log(message)}
                 >
                   Full detail
                 </Link>
@@ -154,7 +150,6 @@ const AppViews = () => {
                     color: 'white',
                     fontSize: '12px',
                   }}
-                  onClick={() => console.log(message)}
                 >
                   Full detail
                 </Link>

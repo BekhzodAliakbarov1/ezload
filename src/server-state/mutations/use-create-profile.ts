@@ -7,7 +7,7 @@ interface CreateDriverProfileRequestRequest {
   user: {
     first_name: string;
     last_name: string;
-    profile_picture: number;
+    profile_picture?: number | null;
   };
   vehicle: {
     title: string;
@@ -41,9 +41,15 @@ export const useCreateDriverProfile = () => {
           variant: 'success',
         });
       },
-      onError(err) {
-        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
-        console.log('ERROR', err);
+      onError(err: any) {
+        console.dir(err);
+        const errors = Object.entries(err.response?.data?.user);
+
+        errors?.map((error) =>
+          enqueueSnackbar(`${error} `, {
+            variant: 'error',
+          })
+        );
       },
     }
   );

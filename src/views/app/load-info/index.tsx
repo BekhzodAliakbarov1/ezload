@@ -31,7 +31,6 @@ const LoadInfoView = () => {
   useEffect(() => {
     refetch();
   }, [load_id, refetch]);
-  console.log(isError);
 
   return (
     <>

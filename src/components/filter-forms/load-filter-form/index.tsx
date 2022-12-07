@@ -37,8 +37,8 @@ const LoadFiterForm: React.FC<{
     type:
       | 'pickup_point_country'
       | 'pickup_point_region'
-      | 'destination_point_country'
-      | 'destination_point_region';
+      | 'destination_country'
+      | 'destination_region';
   }) => {
     setFilterData({
       ...filterData,
@@ -107,23 +107,23 @@ const LoadFiterForm: React.FC<{
       <SearchLoadsFiltersBox>
         <Text color="main_90">{t('Delivery location')}</Text>
         <CountryInput
-          value={filterData.destination_point_country?.title ?? ''}
+          value={filterData.destination_country?.title ?? ''}
           selectHanlder={({ id, title }) =>
             handleLocationChange({
               id,
               title,
-              type: 'destination_point_country',
+              type: 'destination_country',
             })
           }
         />
         <RegionInput
-          country={filterData.destination_point_country?.title ?? ''}
-          value={filterData.destination_point_region?.title ?? ''}
+          country={filterData.destination_country?.title ?? ''}
+          value={filterData.destination_region?.title ?? ''}
           selectHanlder={({ id, title }) =>
             handleLocationChange({
               id,
               title,
-              type: 'destination_point_region',
+              type: 'destination_region',
             })
           }
         />

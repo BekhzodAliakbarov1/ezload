@@ -35,8 +35,6 @@ export const useCreateProfileAddress = () => {
     {
       retry: false,
       onSuccess() {
-        console.log(1221);
-
         enqueueSnackbar(t('Address created successfully!'), {
           variant: 'success',
         });

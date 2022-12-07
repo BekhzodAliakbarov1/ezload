@@ -29,7 +29,6 @@ export const useUpdateVehicle = () => {
       },
       onError(err) {
         enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
-        console.log('ERROR', err);
       },
     }
   );

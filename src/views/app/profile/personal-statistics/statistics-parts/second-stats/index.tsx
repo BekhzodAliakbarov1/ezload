@@ -88,10 +88,6 @@ const SecondStats: React.FC<
       legend: {
         position: 'top' as const,
       },
-      title: {
-        display: true,
-        text: 'Chart.js Bar Chart',
-      },
     },
   };
   const labels = [

@@ -69,8 +69,6 @@ const ThirdStats: React.FC<{
                 tooltip: {
                   callbacks: {
                     label: (item) => {
-                      console.log(item);
-
                       const value = item.parsed;
                       const sum = item.dataset.data.reduce(
                         (overal, current) => overal + Number(current),
