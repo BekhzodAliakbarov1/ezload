@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { Step, StepsProvider } from 'global-state/step/step-context';
-import FirstStep from './sign-in-steps/first-step/first-step';
-import SecondStep from './sign-in-steps/second-step/second-step';
+import PhoneNumber from './sign-in-steps/phone-number/phone-number';
+import Confirmation from './sign-in-steps/confirmation/confirmation';
 import ThirdStep from './sign-in-steps/third-step/third-step';
 import ThirdStepDriver from './sign-in-steps/third-step-driver';
 import FourthStep from './sign-in-steps/fourth-step';
 import { useAuth } from 'global-state/auth/auth.state';
+import CheckUserType from './sign-in-steps/check-user-type';
 
-const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
-  userType,
-}) => {
+const SignIn = () => {
   const [data, setData] = useState<{
     phone_number: string;
     token: string;
@@ -32,24 +31,25 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
     login({
       tokens: { access: data.token, refresh: '' },
       userId: data.user_id,
-      userType,
     });
   };
 
   return (
     <StepsProvider>
       <Step step={1}>
-        <FirstStep setPhoneNumber={handlePhoneNumber} />
+        <PhoneNumber setPhoneNumber={handlePhoneNumber} />
       </Step>
       <Step step={2}>
-        <SecondStep
+        <Confirmation
           phone_number={data.phone_number}
-          userType={userType}
           saveTokenAndId={handleTokenAnUserId}
         />
       </Step>
       <Step step={3}>
-        {userType === 'customer' ? (
+        <CheckUserType token={data.token} />
+      </Step>
+      <Step step={4}>
+        {localStorage.getItem('userType') === 'customer' ? (
           <ThirdStep
             handleLogin={handleLogin}
             token={data.token}
@@ -59,7 +59,7 @@ const SignIn: React.FC<{ userType: 'customer' | 'driver' }> = ({
           <ThirdStepDriver token={data.token} />
         )}
       </Step>
-      <Step step={4}>
+      <Step step={5}>
         <FourthStep handleLogin={handleLogin} token={data.token} />
       </Step>
     </StepsProvider>

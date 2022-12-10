@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 interface ILoginRequest {
   phone_number: string;
   code: string;
-  is_broker: boolean;
-  is_driver: boolean;
+  firebase_token?: string;
 }
 
 interface ILoginResponse {
