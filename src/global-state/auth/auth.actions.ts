@@ -7,6 +7,7 @@ export const login = (
   setStorage('accessToken', data.tokens.access);
   setStorage('refreshToken', data.tokens.refresh);
   setStorage('userId', data.userId);
+  setStorage('userType', data.userType);
   return {
     type: 'LOGIN',
     payload: {
