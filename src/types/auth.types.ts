@@ -11,7 +11,7 @@ export interface AuthCredentials extends Tokens {
 }
 
 export interface AuthContextInterface extends AuthCredentials {
-  login: (data: { userId: string } & Tokens) => void;
+  login: (data: { userId: string; userType: string } & Tokens) => void;
   logout: () => void;
 }
 
@@ -22,6 +22,7 @@ export type Login = {
     accessToken: string;
     refreshToken: string;
     userId: string;
+    userType: string;
   };
 };
 
