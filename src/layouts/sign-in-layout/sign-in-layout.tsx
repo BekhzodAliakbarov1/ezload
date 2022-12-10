@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import image from 'assets/img/login-bg-image.jpg';
 import logo from 'assets/img/logo-white.png';
 import styled from 'styled-components';
 import SignIn from 'views/auth/sign-in';
-import CheckUserType from 'views/auth/sign-in/check-user-type';
 import { useNavigate } from 'react-router';
 import { IconButton, Menu } from '@mui/material';
 import { useMenu } from 'hooks/use-menu';
@@ -65,7 +63,7 @@ export const StyledtText = styled.p`
 `;
 
 const SignInLayout = () => {
-  const [type, setType] = useState<'customer' | 'driver' | ''>('');
+  // const [type, setType] = useState<'customer' | 'driver' | ''>('');
   const navigate = useNavigate();
   const language = useMenu();
 
@@ -79,19 +77,15 @@ const SignInLayout = () => {
     language.handleClose();
   };
 
-  const handleChangeUserType = (val: 'customer' | 'driver' | '') => {
-    setType(val);
-  };
+  // const handleChangeUserType = (val: 'customer' | 'driver' | '') => {
+  //   setType(val);
+  // };
   return (
     <SignInLayoutWrapper>
       <SignInImageWrapper style={{ backgroundImage: `url(${image})` }}>
         <img onClick={() => navigate(-1)} src={logo} alt="Logo" />
       </SignInImageWrapper>
-      {type === '' ? (
-        <CheckUserType onChange={handleChangeUserType} />
-      ) : (
-        <SignIn userType={type} />
-      )}
+      <SignIn />
       <LanguageWrapper>
         <IconButton
           disableFocusRipple
