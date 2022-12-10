@@ -13,10 +13,12 @@ const SignIn = () => {
     phone_number: string;
     token: string;
     user_id: string;
+    userType: 'customer' | 'driver' | '';
   }>({
     phone_number: '',
     token: '',
     user_id: '',
+    userType: '',
   });
   const { login } = useAuth();
 
@@ -27,12 +29,18 @@ const SignIn = () => {
     setData({ ...data, token: accessToken, user_id });
   };
 
+  const setUserType = (userType: 'customer' | 'driver') => {
+    setData({ ...data, userType });
+  };
+
   const handleLogin = () => {
     login({
       tokens: { access: data.token, refresh: '' },
       userId: data.user_id,
+      userType: data.userType,
     });
   };
+  console.log(localStorage.getItem('userType'));
 
   return (
     <StepsProvider>
@@ -46,10 +54,10 @@ const SignIn = () => {
         />
       </Step>
       <Step step={3}>
-        <CheckUserType token={data.token} />
+        <CheckUserType token={data.token} setUserType={setUserType} />
       </Step>
       <Step step={4}>
-        {localStorage.getItem('userType') === 'customer' ? (
+        {data.userType === 'customer' ? (
           <ThirdStep
             handleLogin={handleLogin}
             token={data.token}

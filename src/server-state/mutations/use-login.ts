@@ -34,6 +34,7 @@ export const useLogin = () => {
           enqueueSnackbar(t('Phone registered successfully!'), {
             variant: 'success',
           });
+          console.log(res);
         }
       },
       onError() {
