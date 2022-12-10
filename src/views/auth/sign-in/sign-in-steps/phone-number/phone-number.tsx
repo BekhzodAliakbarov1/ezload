@@ -1,13 +1,13 @@
 import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import {
-  CreatorSignInFirstStepWrapper,
+  CreatorSignInPhoneNumberWrapper,
   ErrorMessageData,
   ErrorMessageWrapper,
-  FirstStepDataWrapper,
+  PhoneNumberDataWrapper,
   LineDiv,
   PhoneNumberWrapper,
-} from './first-step.styles';
+} from './phone-number.styles';
 import Button from 'components/button/button';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import InfoIcon from 'components/icons/info.icon';
@@ -25,7 +25,7 @@ type Inputs = {
   phone_num: string;
 };
 
-const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
+const PhoneNumber: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
   setPhoneNumber,
 }) => {
   const navigate = useNavigate();
@@ -69,7 +69,7 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
   };
 
   return (
-    <CreatorSignInFirstStepWrapper>
+    <CreatorSignInPhoneNumberWrapper>
       {errors.phone_num && (
         <ErrorMessageWrapper>
           <ErrorMessageData>
@@ -81,7 +81,7 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
-      <FirstStepDataWrapper>
+      <PhoneNumberDataWrapper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Text size="lg" weight="800">
             {t('Login')}
@@ -107,9 +107,9 @@ const FirstStep: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
             <span onClick={clickHandler}>{t('Terms & Conditions')}</span>
           </Text>
         </form>
-      </FirstStepDataWrapper>
-    </CreatorSignInFirstStepWrapper>
+      </PhoneNumberDataWrapper>
+    </CreatorSignInPhoneNumberWrapper>
   );
 };
 
-export default FirstStep;
+export default PhoneNumber;

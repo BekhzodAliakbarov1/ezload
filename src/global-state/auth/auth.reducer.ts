@@ -20,7 +20,6 @@ export const authReducer = (state: AuthCredentials, action: AuthActions) => {
           access: action.payload.accessToken,
         },
         userId: action.payload.userId,
-        userType: action.payload.userType,
       };
     case 'SET_AUTH_CREDENTIALS':
       return {

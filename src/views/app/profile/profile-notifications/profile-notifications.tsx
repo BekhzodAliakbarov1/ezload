@@ -102,7 +102,7 @@ const ProfileNotifications = () => {
           )
         ) : (
           <EmptyReviewWrapper>
-            <FileIcon size="200" />
+            <FileIcon size="150" />
             <Text>{t('No notifications yet')}</Text>
           </EmptyReviewWrapper>
         )}

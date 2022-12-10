@@ -4,11 +4,11 @@ import Text from 'components/typography/text';
 import React, { useState } from 'react';
 import {
   ConfirmCodeWrapper,
-  CreatorSignInSecondStepWrapper,
+  CreatorSignInConfirmationWrapper,
   ErrorMessageData,
   ErrorMessageWrapper,
-  SecondStepDataWrapper,
-} from './second-step.styles';
+  ConfirmationDataWrapper,
+} from './confirmation.styles';
 import { useForm } from 'react-hook-form';
 import { useSteps } from 'global-state/step/step-context';
 import ReactCodeInputComponent from 'components/code-input/react-code-input';
@@ -17,11 +17,10 @@ import { useAuth } from 'global-state/auth/auth.state';
 import { useVerification } from 'server-state/mutations/use-verification';
 import { useTranslation } from 'react-i18next';
 
-const SecondStep: React.FC<{
+const Confirmation: React.FC<{
   phone_number: string;
-  userType: 'customer' | 'driver';
   saveTokenAndId: (accessToken: string, user_id: string) => void;
-}> = ({ phone_number, userType, saveTokenAndId }) => {
+}> = ({ phone_number, saveTokenAndId }) => {
   const { t } = useTranslation();
   const [hasError, setHasError] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
@@ -39,9 +38,8 @@ const SecondStep: React.FC<{
     loginRequest.mutate(
       {
         code: verificationCode,
-        is_broker: userType === 'customer',
-        is_driver: userType === 'driver',
         phone_number,
+        firebase_token: '12211221',
       },
       {
         onSuccess(res) {
@@ -54,7 +52,6 @@ const SecondStep: React.FC<{
             login({
               tokens: { access: res.token, refresh: '12' },
               userId: res.id,
-              userType: res.id_driver ? 'driver' : 'customer',
             });
           }
         },
@@ -66,7 +63,7 @@ const SecondStep: React.FC<{
   };
 
   return (
-    <CreatorSignInSecondStepWrapper>
+    <CreatorSignInConfirmationWrapper>
       {hasError && (
         <ErrorMessageWrapper>
           <ErrorMessageData>
@@ -75,7 +72,7 @@ const SecondStep: React.FC<{
           </ErrorMessageData>
         </ErrorMessageWrapper>
       )}
-      <SecondStepDataWrapper>
+      <ConfirmationDataWrapper>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Text size="lg" weight="800">
             {t('Great! Just one step')}
@@ -98,9 +95,9 @@ const SecondStep: React.FC<{
           </Button>
           <h3 onClick={sendCodeAgain}>{t('Send another code')}</h3>
         </form>
-      </SecondStepDataWrapper>
-    </CreatorSignInSecondStepWrapper>
+      </ConfirmationDataWrapper>
+    </CreatorSignInConfirmationWrapper>
   );
 };
 
-export default SecondStep;
+export default Confirmation;
