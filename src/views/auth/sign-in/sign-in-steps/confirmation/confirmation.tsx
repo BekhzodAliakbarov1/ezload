@@ -52,6 +52,11 @@ const Confirmation: React.FC<{
             login({
               tokens: { access: res.token, refresh: '12' },
               userId: res.id,
+              userType: res.id_broker
+                ? 'customer'
+                : res.id_driver
+                ? 'driver'
+                : '',
             });
           }
         },

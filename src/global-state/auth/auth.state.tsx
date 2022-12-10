@@ -12,7 +12,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [authState, dispatch] = React.useReducer(authReducer, initialState);
 
   const login = useCallback(
-    (data: { userId: string } & Tokens) => {
+    (data: { userId: string; userType: string } & Tokens) => {
       dispatch(loginAction(data));
     },
     [dispatch]

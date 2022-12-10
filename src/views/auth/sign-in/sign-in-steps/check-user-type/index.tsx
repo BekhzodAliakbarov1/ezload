@@ -9,7 +9,10 @@ import {
   LoginStyledButton,
 } from './check-user-type.styles';
 
-const CheckUserType: React.FC<{ token: string }> = ({ token }) => {
+const CheckUserType: React.FC<{
+  token: string;
+  setUserType: (type: 'customer' | 'driver') => void;
+}> = ({ token, setUserType }) => {
   const { t } = useTranslation();
   const { mutate } = useFillAccount(token);
   const { nextStep } = useSteps();
@@ -24,6 +27,7 @@ const CheckUserType: React.FC<{ token: string }> = ({ token }) => {
       {
         onSuccess() {
           localStorage.setItem('userType', type);
+          setUserType(type);
           nextStep();
         },
       }
