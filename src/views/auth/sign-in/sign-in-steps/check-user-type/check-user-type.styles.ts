@@ -12,13 +12,14 @@ export const CheckUserTypeWrapper = styled.div`
     width: 100%;
   }
 `;
-export const CheckUserTypeBox = styled.div`
+export const CheckUserTypeBox = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   max-width: 517px;
   > p {
+    text-align: center;
     font-size: 24px;
     line-height: 29px;
     margin-bottom: 40px;
@@ -31,18 +32,5 @@ export const CheckUserTypeBox = styled.div`
   }
   @media (max-width: 800px) {
     max-width: 302px;
-  }
-`;
-
-export const LoginStyledButton = styled(MuiButton)`
-  && {
-    background: ${(props) => props.theme.bg.secondary};
-    border: 1px solid ${(props) => props.theme.text.main_40};
-    border-radius: 2px;
-    color: ${(props) => props.theme.text.main_100};
-    margin-bottom: 32px;
-    height: 46px;
-    font-weight: 700;
-    text-transform: uppercase;
   }
 `;

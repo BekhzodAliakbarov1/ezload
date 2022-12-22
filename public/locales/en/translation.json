@@ -245,5 +245,9 @@
   "Driver finish the load": "Driver finish the load",
   "send a bid": "send a bid",
   "No description": "No description",
-  "No notifications yet": "No notifications yet"
+  "No notifications yet": "No notifications yet",
+  "You are new": "You are new",
+  "I am a driver": "I am a driver",
+  "I am a customer": "I am a customer",
+  "Continue": "Continue"
 }

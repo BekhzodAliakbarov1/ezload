@@ -248,5 +248,9 @@
   "Your bid canceled": "Ваша ставка отменена",
   "send a bid": "отправить ставку",
   "No description": "Hет описания",
-  "No notifications yet": "Уведомлений пока нет"
+  "No notifications yet": "Уведомлений пока нет",
+  "You are new": "Tы новенький",
+  "I am a driver": "Я водитель",
+  "I am a customer": "Я клиент",
+  "Continue": "Продолжать"
 }

@@ -7,7 +7,7 @@ export const useWebsocket = () => {
 
   useEffect(() => {
     const connect = new WebSocket(
-      `ws://api.ezload.uz/ws/notification/?token=${tokens.access}`
+      `ws://3.111.197.25/ws/notification/?token=${tokens.access}`
     );
     connect.addEventListener('open', () => {
       console.log('CONNECTED');

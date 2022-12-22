@@ -14,8 +14,10 @@ interface ProfileResponse {
 }
 
 export const useProfile = () => {
-  const { userId, userType } = useAuth();
-  const typeOfRequest = userType === 'driver' ? 'driver' : 'account';
+  const { userId } = useAuth();
+
+  const typeOfRequest =
+    localStorage.getItem('userType') === 'driver' ? 'driver' : 'account';
   return useQuery([`profile`], () =>
     request
       .get<ProfileResponse>(`/${typeOfRequest}/${userId}/detail/`)
