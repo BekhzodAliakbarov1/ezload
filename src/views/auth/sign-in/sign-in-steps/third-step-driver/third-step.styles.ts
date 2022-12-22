@@ -59,6 +59,7 @@ export const PictureAndNameWrapper = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 40px;
+  justify-content: center;
   @media (max-width: 800px) {
     flex-direction: column;
     margin-bottom: 20px;

@@ -248,5 +248,9 @@
   "Your bid canceled": "teklifiniz iptal edildi",
   "send a bid": "teklif gönder",
   "No description": "açıklama yok",
-  "No notifications yet": "Henüz bildirim yok "
+  "No notifications yet": "Henüz bildirim yok ",
+  "You are new": "Sen yenisin",
+  "I am a driver": "Ben bir sürücüyüm",
+  "I am a customer": "Ben bir müşteriyim",
+  "Continue": "Devam et"
 }

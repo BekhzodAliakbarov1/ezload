@@ -17,8 +17,6 @@ const Popper: React.FC<IPopperProps> = ({
     <StyledBox>
       {props.children}
       <MuiPopper
-        onResize={undefined}
-        onResizeCapture={undefined}
         modifiers={[
           {
             name: 'flip',

@@ -248,5 +248,9 @@
   "Your bid canceled": "Taklifingiz bekor qilindi",
   "send a bid": "taklif yubordi",
   "No description": "Ta'rif yo'q",
-  "No notifications yet": "Hozircha bildirishnomalar yo‘q"
+  "No notifications yet": "Hozircha bildirishnomalar yo‘q",
+  "You are new": "Siz yangisiz",
+  "I am a driver": "Men haydovchiman",
+  "I am a customer": "Men mijozman",
+  "Continue": "Davom eting"
 }

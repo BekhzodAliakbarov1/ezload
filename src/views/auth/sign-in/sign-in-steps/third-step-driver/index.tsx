@@ -26,18 +26,17 @@ import {
 
 const ThirdStepDriver: React.FC<{
   token: string;
-}> = ({ token }) => {
+  name: string;
+}> = ({ token, name }) => {
   const { t } = useTranslation();
   const [hasError] = useState(false);
   const [data, setData] = useState<{
     picture_url?: string;
     picture_id?: number;
-    first_name: string;
     vehicle_title: string;
     licence_plate: string;
     capacity: string;
   }>({
-    first_name: '',
     capacity: '',
     licence_plate: '',
     vehicle_title: '',
@@ -71,8 +70,8 @@ const ThirdStepDriver: React.FC<{
       {
         token,
         user: {
-          first_name: data.first_name,
-          last_name: data.first_name,
+          first_name: name,
+          last_name: name,
           profile_picture: data.picture_id ?? null,
         },
         vehicle: {
@@ -136,15 +135,6 @@ const ThirdStepDriver: React.FC<{
               />
             </ProfilePhotoUploaderWrapper>
           </label>
-          <NameInputWrapper>
-            <label htmlFor="name">{t('Your displayed name')}</label>
-            <Input
-              value={data.first_name}
-              onChange={(e) => setData({ ...data, first_name: e.target.value })}
-              placeholder={t('Write your name')}
-              id="name"
-            />
-          </NameInputWrapper>
         </PictureAndNameWrapper>
         <TruckInputsWrapper>
           <Text>{t('Truck info')}</Text>
@@ -160,19 +150,18 @@ const ThirdStepDriver: React.FC<{
             onChange={(e) =>
               setData({ ...data, licence_plate: e.target.value })
             }
-            placeholder={t('Plate number')}
+            placeholder={`${t('Plate number')} ex: 01 A 777 AA`}
           />
           <Input
             value={data.capacity}
             type="number"
             onChange={(e) => setData({ ...data, capacity: e.target.value })}
-            placeholder={t('Truck capacity (in tonnes)')}
+            placeholder={`${t('Truck capacity (in tonnes)')} ex: 10`}
           />
         </TruckInputsWrapper>
         <Button
           disabled={
             !Boolean(data.capacity) ||
-            !Boolean(data.first_name) ||
             !Boolean(data.licence_plate) ||
             !Boolean(data.vehicle_title) ||
             !Boolean(data.picture_id)
