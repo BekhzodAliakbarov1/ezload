@@ -11,7 +11,7 @@ const Copyrights = () => {
   return (
     <>
       <h1>{t('Copyrights')}</h1>
-      <p>{data?.title}</p>
+      <p>{data?.results?.[0].title}</p>
     </>
   );
 };

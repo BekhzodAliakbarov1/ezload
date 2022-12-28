@@ -17,8 +17,6 @@ import { usePrivacyPolicy } from 'server-state/queries/use-privacy-policy';
 import i18next from 'i18next';
 
 const TermAndPolicy = () => {
-  const privacyPolicy = usePrivacyPolicy({ language: i18next.language });
-
   return (
     <>
       <Main>

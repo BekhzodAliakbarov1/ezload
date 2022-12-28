@@ -7,10 +7,12 @@ const PrivacyPolicy = () => {
   const { data } = usePrivacyPolicy({
     language: localStorage.getItem('language') ?? undefined,
   });
+  console.log(data);
+
   return (
     <>
       <h1>{t('Privacy and policy')}</h1>
-      <p>{data?.title}</p>
+      <p>{data?.results?.[0].title}</p>
     </>
   );
 };
