@@ -1,4 +1,4 @@
-import { useInfiniteQuery } from 'react-query';
+import { useInfiniteQuery, useQueryClient } from 'react-query';
 import { request } from '../api';
 
 export interface LoadsResponse {
@@ -7,7 +7,7 @@ export interface LoadsResponse {
   previous: null | number;
   results: {
     id: number;
-    creator: {
+    creator?: {
       id: number;
       first_name: string;
     };

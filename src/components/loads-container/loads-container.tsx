@@ -16,7 +16,15 @@ const LoadsContainer: React.FC<{
   clickable?: boolean;
   status: 1 | 2 | 3;
   withButton?: boolean;
-}> = ({ loads = [], clickable, hasNextPage, status, withButton }) => {
+  fetchNextPage?: () => void;
+}> = ({
+  loads = [],
+  clickable,
+  hasNextPage,
+  status,
+  withButton,
+  fetchNextPage,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -38,11 +46,6 @@ const LoadsContainer: React.FC<{
           <FileIcon size="150" />
           <Text>{t('No loads yet')}</Text>
         </NoLoadsFindSection>
-      )}
-      {hasNextPage && (
-        <Button aria-label="more" fullWidth buttonType="secondary_dark">
-          {t('Load more')}
-        </Button>
       )}
     </LoadsContainerBox>
   );

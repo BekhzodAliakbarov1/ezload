@@ -80,8 +80,20 @@ const FourthStep: React.FC<{
   };
 
   const completeButton = () => {
-    handleLogin();
-    navigate('/');
+    if (region.id && country.id) {
+      createRouteRequest.mutate(
+        { country: country.id, region: region.id },
+        {
+          onSuccess() {
+            handleLogin();
+            navigate('/');
+          },
+        }
+      );
+    } else {
+      handleLogin();
+      navigate('/');
+    }
   };
 
   return (
@@ -134,25 +146,21 @@ const FourthStep: React.FC<{
             />
 
             <Button
-              buttonType={
-                !Boolean(country.id) && !Boolean(region.id)
-                  ? 'disabled'
-                  : 'contained'
-              }
+              buttonType={'contained'}
+              disabled={!Boolean(country.id) || !Boolean(region.id)}
               onClick={() => createRoute({ clear: 'both' })}
             >
               <PlusIcon />
             </Button>
           </div>
         </FourthStepInputsWrapper>
-        {/* <StyledGreenText onClick={() => createRoute({ clear: 'both' })}>
-          {t('+ Add new country')}
-        </StyledGreenText> */}
-        {/* <Button buttonType="dark" onClick={submitLocations}>
-          {t('Submit')}
-        </Button> */}
         <LastButtonWrapper>
-          <Button fullWidth onClick={completeButton}>
+          <Button
+            buttonType={'contained'}
+            disabled={Boolean(country.id) && !Boolean(region.id)}
+            fullWidth
+            onClick={completeButton}
+          >
             {t('Complete')}
           </Button>
         </LastButtonWrapper>

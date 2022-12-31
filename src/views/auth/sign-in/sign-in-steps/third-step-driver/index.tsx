@@ -16,13 +16,13 @@ import {
   DriverSignInThirdStepWrapper,
   ErrorMessageData,
   ErrorMessageWrapper,
-  NameInputWrapper,
   PictureAndNameWrapper,
   ProfilePhotoUploaderWrapper,
   SignInStepShowInfoWrapper,
   ThirdStepDataWrapper,
   TruckInputsWrapper,
 } from './third-step.styles';
+import Spinner from 'components/loaders/spinner';
 
 const ThirdStepDriver: React.FC<{
   token: string;
@@ -113,17 +113,23 @@ const ThirdStepDriver: React.FC<{
             <ProfilePhotoUploaderWrapper>
               {data.picture_url ? (
                 <>
+                  <Avatar sizes="120px" src={data.picture_url} />
                   <Tooltip title={t('Change Photo')}>
                     <div className="avatar">
                       <PlusIcon className="plus" size="50" />
-                      <Avatar sizes="120px" src={data.picture_url} />
                     </div>
                   </Tooltip>
                 </>
               ) : (
                 <>
-                  <GaleryIcon className="galery" />
-                  <PlusIcon className="plus" />
+                  {uploadImageRequest.isLoading ? (
+                    <Spinner loaderSize={22} loading height={20} />
+                  ) : (
+                    <>
+                      <GaleryIcon className="galery" />
+                      <PlusIcon className="plus" />
+                    </>
+                  )}
                 </>
               )}
               <FileInput
@@ -166,6 +172,7 @@ const ThirdStepDriver: React.FC<{
             !Boolean(data.vehicle_title) ||
             !Boolean(data.picture_id)
           }
+          loading={createProfileRequest.isLoading}
           fullWidth
           type="submit"
         >

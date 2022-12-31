@@ -39,6 +39,8 @@ const DriverInfo = () => {
               data={biddedDriverRequest.data?.owner}
               bid_id={bid_id}
               bidded_price={biddedDriverRequest.data?.price}
+              currency={biddedDriverRequest.data?.currecy}
+              bidded_load_Id={biddedDriverRequest.data?.load_id}
             />
             <DriverReviews data={biddedDriverRequest.data?.owner} />
           </>

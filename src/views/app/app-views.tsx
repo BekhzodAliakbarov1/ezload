@@ -11,6 +11,7 @@ import { useWebsocket } from 'server-state/ws/use-websocket';
 import { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
+import { useQueryClient } from 'react-query';
 
 const CustomerView = () => (
   <Routes>
@@ -39,6 +40,7 @@ const DriverView = () => (
 );
 
 const AppViews = () => {
+  const qc = useQueryClient();
   const { t } = useTranslation();
   const { isDriver } = useDriver();
   const { socket } = useWebsocket();
@@ -53,6 +55,7 @@ const AppViews = () => {
           status: number;
         };
       } = JSON.parse(e.data);
+      qc.invalidateQueries([`notifications`]);
 
       switch (message.data.status) {
         case 1: //bid created

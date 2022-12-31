@@ -4,6 +4,7 @@ export const LoadsContainerBox = styled.div`
   display: flex;
   gap: 32px;
   flex-wrap: wrap;
+  margin-bottom: 30px;
 `;
 
 export const NoLoadsFindSection = styled.div`
