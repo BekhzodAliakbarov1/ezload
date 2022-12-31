@@ -90,7 +90,7 @@ export const DriverMainInfoContactWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 56px;
+  margin-bottom: 26px;
   gap: 17px;
   p {
     font-size: 16px;

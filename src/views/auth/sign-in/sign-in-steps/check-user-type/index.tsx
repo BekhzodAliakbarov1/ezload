@@ -18,32 +18,19 @@ const CheckUserType: React.FC<{
   handleLogin: () => void;
 }> = ({ token, setUserType, handleLogin, setUserName }) => {
   const { t } = useTranslation();
-  const { mutate } = useFillAccount(token);
+  const { mutate, isLoading } = useFillAccount(token);
   const { nextStep } = useSteps();
   const [name, setName] = useState('');
   const [type, setType] = useState('');
 
-  // const changeHandler = (type: 'customer' | 'driver') => {
-  //   mutate(
-  //     {
-  //       first_name: type,
-  //       is_driver: type === 'driver',
-  //       is_broker: type === 'customer',
-  //     },
-  //     {
-  //       onSuccess() {
-  //         localStorage.setItem('userType', type);
-  //         setUserType(type);
-  //         nextStep();
-  //       },
-  //     }
-  //   );
-  // };
-
   const submitHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     mutate(
-      { first_name: name, is_broker: true, is_driver: false },
+      {
+        first_name: name,
+        is_broker: type === 'customer',
+        is_driver: type === 'driver',
+      },
       {
         onSuccess() {
           if (type === 'customer') {
@@ -90,7 +77,7 @@ const CheckUserType: React.FC<{
             label={t('I am a customer')}
           />
         </RadioGroup>
-        <Button disabled={!name} fullWidth>
+        <Button loading={isLoading} disabled={!name || !type} fullWidth>
           {t('Continue')}
         </Button>
       </CheckUserTypeBox>

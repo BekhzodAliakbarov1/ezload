@@ -6,21 +6,28 @@ const Button: React.FC<ButtonProps> = ({
   loading = false,
   disabled = false,
   type = 'submit',
+  buttonType,
   ...props
-}) => (
-  <StyledButton
-    aria-label="Button"
-    type={type}
-    loading={loading}
-    disabled={disabled}
-    {...props}
-  >
-    {props.children}
-    {loading ? (
-      <StyledProgress buttonType={props.buttonType} size="1.2em" />
-    ) : null}
-  </StyledButton>
-);
+}) => {
+  return (
+    <StyledButton
+      aria-label="Button"
+      type={type}
+      loading={loading}
+      disabled={disabled}
+      {...props}
+      buttonType={disabled ? 'disabled' : buttonType}
+    >
+      {props.children}
+      {loading ? (
+        <StyledProgress
+          buttonType={disabled ? 'disabled' : buttonType}
+          size="1.2em"
+        />
+      ) : null}
+    </StyledButton>
+  );
+};
 
 Button.defaultProps = {
   buttonType: 'contained',

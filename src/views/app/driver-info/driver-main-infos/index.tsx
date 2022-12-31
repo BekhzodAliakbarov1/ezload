@@ -14,14 +14,24 @@ import { SingleDriverResponse } from 'server-state/queries/use-driver';
 import { useTranslation } from 'react-i18next';
 import AcceptBidModal from 'components/modals/accept-bid-modal';
 import DriverInfoCardSkeloton from 'components/skelotons/driver-info-card';
+import { useNavigate } from 'react-router';
 
 const DriverMainInfos: React.FC<{
   data?: SingleDriverResponse;
   bid_id?: string;
   bidded_price?: number;
-}> = ({ data, bid_id, bidded_price }) => {
+  currency?: string;
+  bidded_load_Id?: string;
+}> = ({
+  data,
+  bid_id,
+  bidded_price = 0,
+  currency = '-',
+  bidded_load_Id = 'nononono',
+}) => {
   const { t } = useTranslation();
   const biddedDriver = Boolean(bid_id);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -64,10 +74,29 @@ const DriverMainInfos: React.FC<{
             <h2 className="number">
               +{data?.phone_number ?? 'backend donot send number'}
             </h2>
+            {bidded_price && (
+              <>
+                <Text className="label">{t('Offered price')}</Text>
+                <h2 className="number">
+                  {bidded_price} {currency}
+                </h2>
+              </>
+            )}
           </DriverMainInfoContactWrapper>
+          {biddedDriver && (
+            <Button
+              style={{ marginBottom: '20px', marginTop: '0px' }}
+              fullWidth
+              buttonType="secondary_dark"
+              onClick={() => navigate(`/load/${bidded_load_Id}`)}
+            >
+              {t('Load info')}
+            </Button>
+          )}
           {biddedDriver && (
             <AcceptBidModal
               bid_id={bid_id}
+              currency={currency}
               bidded_price={bidded_price}
               driver_name={data?.first_name}
             >

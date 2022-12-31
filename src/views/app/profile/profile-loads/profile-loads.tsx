@@ -1,3 +1,4 @@
+import Button from 'components/button/button';
 import LoadsContainer from 'components/loads-container/loads-container';
 import LoadsContainerSkeloton from 'components/skelotons/loads-container';
 import Text from 'components/typography/text';
@@ -33,7 +34,7 @@ const ProfileLoads = () => {
         deliveredLoadsRequest.refetch();
         break;
       default:
-        console.log('ERROR');
+        newLoadsRequest.refetch();
         break;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -48,12 +49,23 @@ const ProfileLoads = () => {
     onTheWayLoadsRequest.isLoading ||
     deliveredLoadsRequest.isLoading;
 
+  const fetchNextPage = () => {
+    const type = query.get('name');
+    if (type === 'new' || !query.get('name')) {
+      newLoadsRequest.fetchNextPage();
+    } else if (type === 'on_the_way') {
+      onTheWayLoadsRequest.fetchNextPage();
+    } else if (type === 'done') {
+      deliveredLoadsRequest.fetchNextPage();
+    }
+  };
+
   return (
     <ProfileLoadsWrapper>
       <SectionControllerWrapper>
         <SingleController
           onClick={() => onClickHandler('new')}
-          active={query.get('name') === 'new'}
+          active={query.get('name') === 'new' || !query.get('name')}
         >
           <Text weight="700">{t('New')}</Text>
         </SingleController>
@@ -71,39 +83,62 @@ const ProfileLoads = () => {
         </SingleController>
       </SectionControllerWrapper>
       {isLoading && <LoadsContainerSkeloton />}
-      {query.get('name') === 'new' &&
-        newLoadsRequest.data?.pages &&
-        newLoadsRequest.data.pages.map((page, index) => (
-          <LoadsContainer
-            hasNextPage={newLoadsRequest.hasNextPage}
-            key={index}
-            loads={page.results}
-            status={1}
-            withButton
-          />
-        ))}
+      {(query.get('name') === 'new' || !query.get('name')) &&
+        newLoadsRequest.data?.pages && (
+          <>
+            {newLoadsRequest.data.pages.map((page, index) => (
+              <LoadsContainer key={index} loads={page.results} status={1} />
+            ))}
+            {newLoadsRequest.hasNextPage && (
+              <Button
+                onClick={fetchNextPage}
+                aria-label="more"
+                fullWidth
+                buttonType="secondary_dark"
+                loading={newLoadsRequest.isFetching}
+              >
+                {t('Load more')}
+              </Button>
+            )}
+          </>
+        )}
       {query.get('name') === 'on_the_way' &&
-        onTheWayLoadsRequest.data?.pages &&
-        onTheWayLoadsRequest.data.pages.map((page, index) => (
-          <LoadsContainer
-            hasNextPage={onTheWayLoadsRequest.hasNextPage}
-            key={index}
-            loads={page.results}
-            status={2}
-            withButton
-          />
-        ))}
-      {query.get('name') === 'done' &&
-        deliveredLoadsRequest.data?.pages &&
-        deliveredLoadsRequest.data.pages.map((page, index) => (
-          <LoadsContainer
-            hasNextPage={deliveredLoadsRequest.hasNextPage}
-            key={index}
-            loads={page.results}
-            status={3}
-            withButton
-          />
-        ))}
+        onTheWayLoadsRequest.data?.pages && (
+          <>
+            {onTheWayLoadsRequest.data.pages.map((page, index) => (
+              <LoadsContainer key={index} loads={page.results} status={2} />
+            ))}
+            {onTheWayLoadsRequest.hasNextPage && (
+              <Button
+                onClick={fetchNextPage}
+                aria-label="more"
+                fullWidth
+                buttonType="secondary_dark"
+                loading={onTheWayLoadsRequest.isFetching}
+              >
+                {t('Load more')}
+              </Button>
+            )}
+          </>
+        )}
+      {query.get('name') === 'done' && deliveredLoadsRequest.data?.pages && (
+        <>
+          {deliveredLoadsRequest.data.pages.map((page, index) => (
+            <LoadsContainer key={index} loads={page.results} status={3} />
+          ))}
+          {deliveredLoadsRequest.hasNextPage && (
+            <Button
+              onClick={fetchNextPage}
+              aria-label="more"
+              fullWidth
+              buttonType="secondary_dark"
+              loading={deliveredLoadsRequest.isFetching}
+            >
+              {t('Load more')}
+            </Button>
+          )}
+        </>
+      )}
     </ProfileLoadsWrapper>
   );
 };

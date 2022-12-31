@@ -33,6 +33,7 @@ const ProfileNotifications = () => {
     id: number;
   }) => {
     mutate({ notification_id: id });
+
     if (status === 1) {
       navigate(`/load-bidded-driver/${object_id}`);
     } else if (status === 2) {
@@ -66,32 +67,32 @@ const ProfileNotifications = () => {
                     <NewNotificationCircle is_viewed={is_viewed} />
                     {status === 1 && (
                       <Text>
-                        {creator.first_name} {t('send a bid')}
+                        {creator?.first_name} {t('send a bid')}
                       </Text>
                     )}
                     {status === 2 && (
                       <Text>
-                        {creator.first_name} {t('accepted your bid')}
+                        {creator?.first_name} {t('accepted your bid')}
                       </Text>
                     )}
                     {status === 3 && (
                       <Text>
-                        {creator.first_name} {t('canceled a bid')}
+                        {creator?.first_name} {t('canceled a bid')}
                       </Text>
                     )}
                     {status === 4 && (
                       <Text>
-                        {creator.first_name} {t('created new load')}
+                        {creator?.first_name} {t('created new load')}
                       </Text>
                     )}
                     {status === 5 && (
                       <Text>
-                        {creator.first_name} {t('canceled a load')}
+                        {creator?.first_name} {t('canceled a load')}
                       </Text>
                     )}
                     {status === 6 && (
                       <Text>
-                        {creator.first_name} {t('delivered load')}
+                        {creator?.first_name} {t('delivered load')}
                       </Text>
                     )}
                   </NotificationRightContent>
