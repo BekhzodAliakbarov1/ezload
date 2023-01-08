@@ -1,13 +1,17 @@
+import { Tooltip } from '@mui/material';
 import Button from 'components/button/button';
+import PlusIcon from 'components/icons/plus.icon';
 import LoadsContainer from 'components/loads-container/loads-container';
 import LoadsContainerSkeloton from 'components/skelotons/loads-container';
 import Text from 'components/typography/text';
+import { useDriver } from 'hooks/use-driver';
 import { useQueryUrl } from 'hooks/use-query-url';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useLoads } from 'server-state/queries/use-loads';
 import {
+  PlusIconWrapper,
   ProfileLoadsWrapper,
   SectionControllerWrapper,
   SingleController,
@@ -20,6 +24,7 @@ const ProfileLoads = () => {
   const deliveredLoadsRequest = useLoads('delivered');
   const query = useQueryUrl();
   const navigate = useNavigate();
+  const { isDriver } = useDriver();
 
   useEffect(() => {
     const type = query.get('name');
@@ -89,7 +94,7 @@ const ProfileLoads = () => {
             {newLoadsRequest.data.pages.map((page, index) => (
               <LoadsContainer key={index} loads={page.results} status={1} />
             ))}
-            {newLoadsRequest.hasNextPage && (
+            {newLoadsRequest.data?.pages?.at(-1)?.hasNextPage && (
               <Button
                 onClick={fetchNextPage}
                 aria-label="more"
@@ -108,7 +113,7 @@ const ProfileLoads = () => {
             {onTheWayLoadsRequest.data.pages.map((page, index) => (
               <LoadsContainer key={index} loads={page.results} status={2} />
             ))}
-            {onTheWayLoadsRequest.hasNextPage && (
+            {onTheWayLoadsRequest.data?.pages?.at(-1)?.hasNextPage && (
               <Button
                 onClick={fetchNextPage}
                 aria-label="more"
@@ -126,7 +131,7 @@ const ProfileLoads = () => {
           {deliveredLoadsRequest.data.pages.map((page, index) => (
             <LoadsContainer key={index} loads={page.results} status={3} />
           ))}
-          {deliveredLoadsRequest.hasNextPage && (
+          {deliveredLoadsRequest.data?.pages?.at(-1)?.hasNextPage && (
             <Button
               onClick={fetchNextPage}
               aria-label="more"
@@ -138,6 +143,13 @@ const ProfileLoads = () => {
             </Button>
           )}
         </>
+      )}
+      {!isDriver && (
+        <Tooltip title={t('Create Load')}>
+          <PlusIconWrapper onClick={() => navigate('/create-load')}>
+            <PlusIcon fill="red" size="20" />
+          </PlusIconWrapper>
+        </Tooltip>
       )}
     </ProfileLoadsWrapper>
   );

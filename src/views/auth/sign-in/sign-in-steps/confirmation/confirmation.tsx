@@ -22,6 +22,7 @@ const Confirmation: React.FC<{
   saveTokenAndId: (accessToken: string, user_id: string) => void;
 }> = ({ phone_number, saveTokenAndId }) => {
   const { t } = useTranslation();
+  const [values, setTalues] = useState(['', '', '', '', '', '']);
   const [hasError, setHasError] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const { handleSubmit } = useForm();
@@ -31,7 +32,14 @@ const Confirmation: React.FC<{
   const { login } = useAuth();
 
   const sendCodeAgain = () => {
-    verificationRequest.mutate({ phone_number });
+    verificationRequest.mutate(
+      { phone_number },
+      {
+        onSuccess() {
+          setTalues(['', '', '', '', '', '']);
+        },
+      }
+    );
   };
 
   const onSubmit = () => {
@@ -90,9 +98,12 @@ const Confirmation: React.FC<{
               error={hasError}
               size="lg"
               typingHandler={() => hasError && setHasError(false)}
+              loading={loginRequest.isLoading}
               setCode={(val: string) => {
+                setTalues(val.split(''));
                 setVerificationCode(val);
               }}
+              values={values}
             />
           </ConfirmCodeWrapper>
           <Button loading={loginRequest.isLoading} type="submit" fullWidth>

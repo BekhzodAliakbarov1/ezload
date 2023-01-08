@@ -36,7 +36,7 @@ interface LoadContextInterface {
       };
     };
     lugage_size: string;
-    cost: number;
+    cost: any;
     currency_type: string;
     description: string;
     id: string;
@@ -90,7 +90,7 @@ export const defaultdata = {
     },
   },
   lugage_size: '',
-  cost: 0,
+  cost: '',
   currency_type: 'USD',
   description: '',
   id: '',
@@ -161,7 +161,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
       },
     },
     lugage_size: '',
-    cost: 0,
+    cost: '',
     currency_type: 'USD',
     description: '',
     id: '',
@@ -239,7 +239,7 @@ export const LoadContextProvider: React.FC = ({ children }) => {
         lugage_size: editedLoadData?.weight
           ? String(editedLoadData?.weight)
           : '',
-        cost: editedLoadData?.price ?? 0,
+        cost: `${editedLoadData?.price}`,
         currency_type: editedLoadData?.currency ?? 'USD',
         description: editedLoadData?.description ?? '',
         id: state?.id ?? '',

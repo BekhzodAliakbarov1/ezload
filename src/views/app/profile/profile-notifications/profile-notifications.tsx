@@ -16,6 +16,7 @@ import {
 import { getSmallDate } from 'utils/getDate';
 import { EmptyReviewWrapper } from 'views/app/driver-info/driver-reviews/driver-reviews.styles';
 import FileIcon from 'components/icons/file.icon';
+import Spinner from 'components/loaders/spinner';
 
 const ProfileNotifications = () => {
   const { data, isLoading, fetchNextPage } = useNotificationsList();
@@ -55,57 +56,70 @@ const ProfileNotifications = () => {
         <Text color="main_100">{t('Notifications')}</Text>
       </ProfileNotificationsTopPartContainer>
       <NotificationsWrapper>
-        {data?.pages[0].count ? (
-          data?.pages.map((page) =>
-            page.results.map(
-              ({ id, is_viewed, object_id, status, created_at, creator }) => (
-                <SingleNotification
-                  key={id}
-                  onClick={() => handleClick({ status, object_id, id })}
-                >
-                  <NotificationRightContent is_viewed={is_viewed}>
-                    <NewNotificationCircle is_viewed={is_viewed} />
-                    {status === 1 && (
-                      <Text>
-                        {creator?.first_name} {t('send a bid')}
-                      </Text>
-                    )}
-                    {status === 2 && (
-                      <Text>
-                        {creator?.first_name} {t('accepted your bid')}
-                      </Text>
-                    )}
-                    {status === 3 && (
-                      <Text>
-                        {creator?.first_name} {t('canceled a bid')}
-                      </Text>
-                    )}
-                    {status === 4 && (
-                      <Text>
-                        {creator?.first_name} {t('created new load')}
-                      </Text>
-                    )}
-                    {status === 5 && (
-                      <Text>
-                        {creator?.first_name} {t('canceled a load')}
-                      </Text>
-                    )}
-                    {status === 6 && (
-                      <Text>
-                        {creator?.first_name} {t('delivered load')}
-                      </Text>
-                    )}
-                  </NotificationRightContent>
-                  <Text>{getSmallDate({ date: created_at })}</Text>
-                </SingleNotification>
+        {!isLoading ? (
+          <>
+            {data?.pages[0].count ? (
+              data?.pages.map((page) =>
+                page.results.map(
+                  ({
+                    id,
+                    is_viewed,
+                    object_id,
+                    status,
+                    created_at,
+                    creator,
+                  }) => (
+                    <SingleNotification
+                      key={id}
+                      onClick={() => handleClick({ status, object_id, id })}
+                    >
+                      <NotificationRightContent is_viewed={is_viewed}>
+                        <NewNotificationCircle is_viewed={is_viewed} />
+                        {status === 1 && (
+                          <Text>
+                            {creator?.first_name} {t('send a bid')}
+                          </Text>
+                        )}
+                        {status === 2 && (
+                          <Text>
+                            {creator?.first_name} {t('accepted your bid')}
+                          </Text>
+                        )}
+                        {status === 3 && (
+                          <Text>
+                            {creator?.first_name} {t('canceled a bid')}
+                          </Text>
+                        )}
+                        {status === 4 && (
+                          <Text>
+                            {creator?.first_name} {t('created new load')}
+                          </Text>
+                        )}
+                        {status === 5 && (
+                          <Text>
+                            {creator?.first_name} {t('canceled a load')}
+                          </Text>
+                        )}
+                        {status === 6 && (
+                          <Text>
+                            {creator?.first_name} {t('delivered load')}
+                          </Text>
+                        )}
+                      </NotificationRightContent>
+                      <Text>{getSmallDate({ date: created_at })}</Text>
+                    </SingleNotification>
+                  )
+                )
               )
-            )
-          )
+            ) : (
+              <EmptyReviewWrapper>
+                <FileIcon size="150" />
+                <Text>{t('No notifications yet')}</Text>
+              </EmptyReviewWrapper>
+            )}
+          </>
         ) : (
-          <EmptyReviewWrapper>
-            <FileIcon size="150" />
-            <Text>{t('No notifications yet')}</Text>
-          </EmptyReviewWrapper>
+          <Spinner loading />
         )}
       </NotificationsWrapper>
       {data?.pages.at(-1)?.hasNextPage && (

@@ -93,8 +93,8 @@ interface SingleBidDetail {
     }[];
   };
   price: number;
-  currecy?: string;
-  load_id?: string;
+  currency?: string;
+  load?: string;
 }
 
 export const useBidDetail = (bid_id?: string) =>
@@ -106,5 +106,6 @@ export const useBidDetail = (bid_id?: string) =>
         .then((res) => res.data),
     {
       enabled: false,
+      retry: false,
     }
   );

@@ -12,30 +12,25 @@ export interface LoadsResponse {
 }
 
 const fetchLoads = async ({
-  pageParam = 1,
+  pageParam,
   status = 1,
-  url,
 }: {
-  pageParam?: number;
+  pageParam: number;
   status: 1 | 2 | 3;
-  url: string;
 }) => {
   const data = await request
-    .get<LoadsResponse>(`${url}?status=${status}&page=${pageParam}&limit=6`)
+    .get<LoadsResponse>(`/load/list/?status=${status}&page=${pageParam}`)
     .then((res) => res.data);
   return {
     results: data.results,
     nextPage: pageParam + 1,
     totalPages: Math.ceil(Number(data?.count) / 6),
     count: data.count,
+    hasNextPage: Boolean(data.next),
   };
 };
 
-export const useLoads = (
-  type: 'new' | 'on_the_way' | 'delivered',
-  language?: string
-) => {
-  const lng = language ?? localStorage.getItem('language') ?? 'en';
+export const useLoads = (type: 'new' | 'on_the_way' | 'delivered') => {
   let status: 1 | 2 | 3;
   if (type === 'new') {
     status = 1;
@@ -45,11 +40,9 @@ export const useLoads = (
     status = 3;
   }
 
-  const url = '/load/list/';
-
   return useInfiniteQuery(
     [`loads_${type}`],
-    () => fetchLoads({ status, url }),
+    ({ pageParam = 1 }) => fetchLoads({ status, pageParam }),
     {
       enabled: false,
       getNextPageParam(lastPage) {

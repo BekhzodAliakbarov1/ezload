@@ -107,7 +107,7 @@ const LoadBids: React.FC<{
               load_id={Number(load_id)}
               reviewee_id={data.driver?.id}
             >
-              <Button fullWidth>{t('Review the driver')}</Button>
+              <Button>{t('Review the driver')}</Button>
             </ReviewDriverModal>
           )}
         </LoadBidsWrapper>

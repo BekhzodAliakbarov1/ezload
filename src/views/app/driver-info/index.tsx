@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import NoItemComponent from 'components/no-item';
 import Text from 'components/typography/text';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +16,9 @@ const DriverInfo = () => {
   const biddedDriverRequest = useBidDetail(bid_id);
   const { t } = useTranslation();
 
+  const isError = driverRequest.isError || biddedDriverRequest.isError;
+  const isLoading = driverRequest.isLoading || biddedDriverRequest.isLoading;
+
   useEffect(() => {
     if (id) {
       driverRequest.refetch();
@@ -25,27 +29,36 @@ const DriverInfo = () => {
 
   return (
     <DriverInfoWrapper>
-      <Text weight="700">{t('Driver details')}</Text>
-      <DriverInfoBox>
-        {id && (
-          <>
-            <DriverMainInfos data={driverRequest.data} />
-            <DriverReviews data={driverRequest.data} />
-          </>
-        )}
-        {bid_id && (
-          <>
-            <DriverMainInfos
-              data={biddedDriverRequest.data?.owner}
-              bid_id={bid_id}
-              bidded_price={biddedDriverRequest.data?.price}
-              currency={biddedDriverRequest.data?.currecy}
-              bidded_load_Id={biddedDriverRequest.data?.load_id}
-            />
-            <DriverReviews data={biddedDriverRequest.data?.owner} />
-          </>
-        )}
-      </DriverInfoBox>
+      {isError && (
+        <>
+          <NoItemComponent text={t('Not found')} />
+        </>
+      )}
+      {!isLoading && !isError && (
+        <>
+          <Text weight="700">{t('Driver details')}</Text>
+          <DriverInfoBox>
+            {id && (
+              <>
+                <DriverMainInfos data={driverRequest.data} />
+                <DriverReviews data={driverRequest.data} />
+              </>
+            )}
+            {bid_id && (
+              <>
+                <DriverMainInfos
+                  data={biddedDriverRequest.data?.owner}
+                  bid_id={bid_id}
+                  bidded_price={biddedDriverRequest.data?.price}
+                  currency={biddedDriverRequest.data?.currency}
+                  bidded_load_Id={biddedDriverRequest.data?.load}
+                />
+                <DriverReviews data={biddedDriverRequest.data?.owner} />
+              </>
+            )}
+          </DriverInfoBox>
+        </>
+      )}
     </DriverInfoWrapper>
   );
 };

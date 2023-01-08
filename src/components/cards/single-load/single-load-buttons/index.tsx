@@ -1,7 +1,7 @@
 import Text from 'components/typography/text';
 import React from 'react';
 import { LoadCardButtonWrapper } from './single-load-buttons.styles';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { SingleLoadResponse } from 'types/load.types';
 import { useTranslation } from 'react-i18next';
 import { useModal } from 'hooks/use-modal';
@@ -16,12 +16,13 @@ const SingleLoadButtons: React.FC<{
   const { t } = useTranslation();
   const navigate = useNavigate();
   const reviewDriverModal = useModal();
+  const params = useParams() as { load_id?: string };
 
   const handleEdit = () => {
     navigate('/edit-load', {
       state: {
         type: 'EDIT',
-        id: load.id,
+        id: load.id ?? params.load_id,
       },
     });
   };
@@ -30,7 +31,7 @@ const SingleLoadButtons: React.FC<{
     <>
       {status === 1 && (
         <LoadCardButtonWrapper>
-          <DeletLoadModal load_id={load.id}>
+          <DeletLoadModal load_id={load.id ?? params.load_id}>
             <Text>{t('Delete load')}</Text>
           </DeletLoadModal>
           <Text onClick={handleEdit}>{t('Change details')}</Text>
@@ -40,7 +41,7 @@ const SingleLoadButtons: React.FC<{
         <CancelDriverModal
           accepted_bid={load.accepted_bid}
           driver_name={load.driver?.first_name}
-          load_id={String(load.id)}
+          load_id={String(load.id ?? params.load_id)}
         >
           <LoadCardButtonWrapper>
             <Text>{t('Cancel the driver')}</Text>
@@ -48,7 +49,10 @@ const SingleLoadButtons: React.FC<{
         </CancelDriverModal>
       )}
       {status === 3 && (
-        <ReviewDriverModal load_id={load.id} reviewee_id={load.driver?.id}>
+        <ReviewDriverModal
+          load_id={load.id ?? params.load_id}
+          reviewee_id={load.driver?.id}
+        >
           <LoadCardButtonWrapper>
             <Text onClick={reviewDriverModal.open}>
               {t('Review the driver')}

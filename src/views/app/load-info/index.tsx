@@ -36,7 +36,7 @@ const LoadInfoView = () => {
     <>
       {isError ? (
         <NoLoadWrapper>
-          <NoItemComponent text="No load info" />
+          <NoItemComponent text={t('Not found')} />
         </NoLoadWrapper>
       ) : (
         <LoadInfoViewWrapper>
@@ -49,7 +49,11 @@ const LoadInfoView = () => {
                     <Button aria-label="delete">{t('Delete bid')}</Button>
                   </CancelBidModal>
                 ) : (
-                  <MakeBidModal load_id={load_id} wanted_price={data.price}>
+                  <MakeBidModal
+                    load_id={load_id}
+                    wanted_price={data.price}
+                    currency={data.currency}
+                  >
                     <Button aria-label="bid load">
                       {t('Bid to the load')}
                     </Button>
@@ -63,7 +67,7 @@ const LoadInfoView = () => {
               <LoadCard
                 clickable={false}
                 load={data}
-                // withButtons
+                withButtons
                 status={data.status}
               />
             ) : (
