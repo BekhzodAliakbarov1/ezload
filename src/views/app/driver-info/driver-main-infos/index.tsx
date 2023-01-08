@@ -25,7 +25,7 @@ const DriverMainInfos: React.FC<{
 }> = ({
   data,
   bid_id,
-  bidded_price = 0,
+  bidded_price,
   currency = '-',
   bidded_load_Id = 'nononono',
 }) => {

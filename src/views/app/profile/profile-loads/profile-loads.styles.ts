@@ -4,7 +4,7 @@ export const ProfileLoadsWrapper = styled.div`
   width: 100%;
   height: 100%;
   padding: 0px 48px;
-
+  position: relative;
   @media (max-width: 800px) {
     padding: 0px 24px;
     padding-bottom: 30px;
@@ -43,4 +43,18 @@ export const SingleController = styled.div<{ active: boolean }>`
       font-size: 12px;
     }
   }
+`;
+
+export const PlusIconWrapper = styled.div`
+  position: absolute;
+  top: 0px;
+  right: 20px;
+  background-color: ${(props) => props.theme.button.contained};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 50px;
+  height: 50px;
 `;

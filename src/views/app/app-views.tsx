@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import { useSnackbar } from 'notistack';
 import { useTranslation } from 'react-i18next';
 import { useQueryClient } from 'react-query';
+import { useUpdateNotification } from 'server-state/mutations/use-update-notification';
 
 const CustomerView = () => (
   <Routes>
@@ -45,6 +46,12 @@ const AppViews = () => {
   const { isDriver } = useDriver();
   const { socket } = useWebsocket();
   const { enqueueSnackbar } = useSnackbar();
+  const updateNotification = useUpdateNotification();
+
+  const notificationClickHandler = (notification_id: number) => {
+    updateNotification.mutate({ notification_id });
+  };
+
   useEffect(() => {
     socket?.addEventListener('message', (e) => {
       const message: {
@@ -56,7 +63,6 @@ const AppViews = () => {
         };
       } = JSON.parse(e.data);
       qc.invalidateQueries([`notifications`]);
-
       switch (message.data.status) {
         case 1: //bid created
           enqueueSnackbar(t('Driver sent a bid'), {
@@ -66,6 +72,7 @@ const AppViews = () => {
             action: () => (
               <>
                 <Link
+                  onClick={() => notificationClickHandler(message.data.id)}
                   to={`/load-bidded-driver/${message.data.object_id}`}
                   style={{
                     color: 'white',
@@ -86,6 +93,7 @@ const AppViews = () => {
             action: () => (
               <>
                 <Link
+                  onClick={() => notificationClickHandler(message.data.id)}
                   to={`/load/${message.data.object_id}`}
                   style={{
                     color: 'white',
@@ -106,6 +114,7 @@ const AppViews = () => {
             action: () => (
               <>
                 <Link
+                  onClick={() => notificationClickHandler(message.data.id)}
                   to={`/load/${message.data.object_id}`}
                   style={{
                     color: 'white',
@@ -126,6 +135,7 @@ const AppViews = () => {
             action: () => (
               <>
                 <Link
+                  onClick={() => notificationClickHandler(message.data.id)}
                   to={`/load/${message.data.object_id}`}
                   style={{
                     color: 'white',
@@ -148,6 +158,7 @@ const AppViews = () => {
             action: () => (
               <>
                 <Link
+                  onClick={() => notificationClickHandler(message.data.id)}
                   to={`/load/${message.data.object_id}`}
                   style={{
                     color: 'white',

@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 interface CreateBidRequest {
   price: string;
+  currency: string;
 }
 
 export const useCreateBid = ({ load_id }: { load_id?: string }) => {
@@ -18,6 +19,7 @@ export const useCreateBid = ({ load_id }: { load_id?: string }) => {
         .post<{ success: boolean }>('/driver/bid/create/', {
           load: load_id,
           price: data.price,
+          currency: data.currency,
         })
         .then((res) => res.data),
     {

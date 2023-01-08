@@ -18,6 +18,8 @@ interface StateType {
 
 const ActionLoad = () => {
   const { state } = useLocation() as StateType;
+  console.log(state);
+
   const { data } = useData();
   const createLoadRequest = useCreateLoad();
   const editLoadRequest = useEditLoad();

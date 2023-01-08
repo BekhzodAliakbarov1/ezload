@@ -164,6 +164,7 @@ const SecondStats: React.FC<
       },
     ],
   };
+
   return (
     <SecondStatsWrapper>
       <HeaderAndYearWrapper>

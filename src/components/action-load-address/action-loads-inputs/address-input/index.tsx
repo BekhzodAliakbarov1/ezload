@@ -43,6 +43,7 @@ const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
         label={t('Choose from my routes')}
         disabled={!addressRequest.data?.pages[0].results[0]?.id}
       >
+        {/* {data[`${type}_route`] && <MenuItem value={'none'}>Clear</MenuItem>} */}
         {addressRequest.data?.pages &&
           addressRequest.data.pages.map((page) =>
             page?.results.map(({ address, id }) => (

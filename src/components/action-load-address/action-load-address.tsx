@@ -96,6 +96,7 @@ const ActionLoadAddress: React.FC<{
               });
             }}
             required={!data[`${type}_route`]}
+            disabled={!!data[`${type}_route`]}
           />
           <RegionInput
             country={country.title}
@@ -107,6 +108,7 @@ const ActionLoadAddress: React.FC<{
             }}
             value={region.title}
             required={!data[`${type}_route`]}
+            disabled={!!data[`${type}_route`]}
           />
           <DistrictInput
             country={country.title}
@@ -119,6 +121,7 @@ const ActionLoadAddress: React.FC<{
               });
             }}
             required={!data[`${type}_route`]}
+            disabled={!!data[`${type}_route`]}
           />
           <Input
             onChange={(e) => {
@@ -129,6 +132,7 @@ const ActionLoadAddress: React.FC<{
             }}
             placeholder={`${t('addressline')} 2`}
             value={address_2}
+            disabled={!!data[`${type}_route`]}
           />
           <Input
             onChange={(e) => {
@@ -139,6 +143,7 @@ const ActionLoadAddress: React.FC<{
             }}
             placeholder={`${t('addressline')} 1`}
             value={address_1}
+            disabled={!!data[`${type}_route`]}
           />
           <Input
             onChange={(e) => {
@@ -149,6 +154,7 @@ const ActionLoadAddress: React.FC<{
             }}
             placeholder="Zip Code"
             value={zip_code}
+            disabled={!!data[`${type}_route`]}
           />
         </ActionLoadInputsWrapper>
         <ActionLoadMapContentWrapper>

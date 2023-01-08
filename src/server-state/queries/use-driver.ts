@@ -45,5 +45,6 @@ export const useSingleDriver = (driver_id?: string) =>
         .then((res) => res.data),
     {
       enabled: false,
+      retry: false,
     }
   );

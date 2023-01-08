@@ -41,7 +41,8 @@ const LoadExtraInformation = () => {
       <LoadExtraInformationInputsWrapper>
         <LoadExtraInformationLeftSideInputsBox>
           <Input
-            placeholder={t('Lugage size')}
+            type="number"
+            placeholder={`${t('Lugage size')} (ton)`}
             value={data.lugage_size}
             onChange={handleChangeLugageSize}
           />

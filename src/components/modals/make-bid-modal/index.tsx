@@ -15,7 +15,8 @@ import {
 const MakeBidModal: React.FC<{
   load_id?: string;
   wanted_price?: number;
-}> = ({ children, load_id, wanted_price }) => {
+  currency?: 'USD' | 'UZS' | 'RUB';
+}> = ({ children, load_id, wanted_price, currency = 'UZS' }) => {
   const { close, isOpen, open } = useModal();
   const { t } = useTranslation();
   const createBidRequest = useCreateBid({ load_id });
@@ -28,6 +29,7 @@ const MakeBidModal: React.FC<{
     createBidRequest.mutate(
       {
         price: target.price.value,
+        currency,
       },
       {
         onSuccess() {
@@ -44,9 +46,12 @@ const MakeBidModal: React.FC<{
         <ModalWrapper onSubmit={submitHandler}>
           <Text className="header">{t('Make a bid')}</Text>
           <Text className="cost">
-            {t('Customer’s suggestion')} {wanted_price} USD
+            {t('Customer’s suggestion')} {wanted_price} {currency}
           </Text>
-          <Input name="price" placeholder={t('Your bid')} />
+          <Input
+            name="price"
+            placeholder={`${t('Your bid')}: ${currency?.toLowerCase()}`}
+          />
           <ModalButtonsWrapper>
             <Button loading={createBidRequest.isLoading} aria-label="submit">
               {t('Submit')}
