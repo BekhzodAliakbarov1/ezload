@@ -3,6 +3,7 @@ import Text from 'components/typography/text';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { SingleLoadDetailsResponse } from 'types/load.types';
+import { moneyFormatter } from 'utils/money-formatter';
 import {
   LoadBidAndViewBox,
   LoadBidAndViewCountWrapper,
@@ -39,7 +40,10 @@ const LoadInfoCard: React.FC<{
         <LoadInfoCardDataSingleBox>
           <Text>{t('Payment')}</Text>
           <Text color="main_100">
-            {data.price} {data.currency ?? '-'}
+            {moneyFormatter({
+              currency: data.currency ?? 'USD',
+              number: data.price ?? 0,
+            })}
           </Text>
         </LoadInfoCardDataSingleBox>
       </LoadInfoCardDataBox>

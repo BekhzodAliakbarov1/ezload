@@ -6,6 +6,7 @@ import {
   DriverMainInfosWrapper,
   DriversMainInfoDataWrapper,
   DriversMainInfoLocationsWrapper,
+  // LoadCardButtonWrapper,
 } from './driver-main-infos.styles';
 import RatingComponent from 'components/rating/rating';
 import Text from 'components/typography/text';
@@ -15,19 +16,23 @@ import { useTranslation } from 'react-i18next';
 import AcceptBidModal from 'components/modals/accept-bid-modal';
 import DriverInfoCardSkeloton from 'components/skelotons/driver-info-card';
 import { useNavigate } from 'react-router';
+import CancelDriverModal from 'components/modals/cancel-driver-bid-modal';
+import { moneyFormatter } from 'utils/money-formatter';
 
 const DriverMainInfos: React.FC<{
   data?: SingleDriverResponse;
   bid_id?: string;
   bidded_price?: number;
-  currency?: string;
+  currency?: 'USD' | 'UZS' | 'RUB';
   bidded_load_Id?: string;
+  status?: number;
 }> = ({
   data,
   bid_id,
   bidded_price,
-  currency = '-',
+  currency = 'USD',
   bidded_load_Id = 'nononono',
+  status,
 }) => {
   const { t } = useTranslation();
   const biddedDriver = Boolean(bid_id);
@@ -78,7 +83,7 @@ const DriverMainInfos: React.FC<{
               <>
                 <Text className="label">{t('Offered price')}</Text>
                 <h2 className="number">
-                  {bidded_price} {currency}
+                  {moneyFormatter({ currency, number: bidded_price })}
                 </h2>
               </>
             )}
@@ -94,16 +99,35 @@ const DriverMainInfos: React.FC<{
             </Button>
           )}
           {biddedDriver && (
-            <AcceptBidModal
-              bid_id={bid_id}
-              currency={currency}
-              bidded_price={bidded_price}
-              driver_name={data?.first_name}
-            >
-              <Button aria-label="accept bid" fullWidth buttonType="warning">
-                {t('Accept bid')}
-              </Button>
-            </AcceptBidModal>
+            <>
+              {status === 1 && (
+                <AcceptBidModal
+                  bid_id={bid_id}
+                  currency={currency}
+                  bidded_price={bidded_price}
+                  driver_name={data?.first_name}
+                >
+                  <Button
+                    aria-label="accept bid"
+                    fullWidth
+                    buttonType="warning"
+                  >
+                    {t('Accept bid')}
+                  </Button>
+                </AcceptBidModal>
+              )}
+              {status === 2 && (
+                <CancelDriverModal
+                  accepted_bid={Number(bid_id)}
+                  driver_name={data?.first_name}
+                  load_id={bidded_load_Id}
+                >
+                  <Button buttonType="warning" fullWidth>
+                    {t('Cancel the driver')}
+                  </Button>
+                </CancelDriverModal>
+              )}
+            </>
           )}
         </DriverMainInfosWrapper>
       ) : (

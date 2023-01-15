@@ -28,12 +28,16 @@ const ProfileNotifications = () => {
     status,
     object_id,
     id,
+    is_viewed,
   }: {
     status: number;
     object_id: number;
     id: number;
+    is_viewed: boolean;
   }) => {
-    mutate({ notification_id: id });
+    if (!is_viewed) {
+      mutate({ notification_id: id });
+    }
 
     if (status === 1) {
       navigate(`/load-bidded-driver/${object_id}`);
@@ -44,7 +48,7 @@ const ProfileNotifications = () => {
     } else if (status === 4) {
       navigate(`/load/${object_id}`);
     } else if (status === 5) {
-      // navigate(`/load/${object_id}`);
+      navigate(`/load/${object_id}`);
     } else if (status === 6) {
       navigate(`/load/${object_id}`);
     }
@@ -71,7 +75,9 @@ const ProfileNotifications = () => {
                   }) => (
                     <SingleNotification
                       key={id}
-                      onClick={() => handleClick({ status, object_id, id })}
+                      onClick={() =>
+                        handleClick({ status, object_id, id, is_viewed })
+                      }
                     >
                       <NotificationRightContent is_viewed={is_viewed}>
                         <NewNotificationCircle is_viewed={is_viewed} />
