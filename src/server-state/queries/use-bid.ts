@@ -93,8 +93,9 @@ interface SingleBidDetail {
     }[];
   };
   price: number;
-  currency?: string;
+  currency?: 'USD' | 'UZS' | 'RUB';
   load?: string;
+  status?: number;
 }
 
 export const useBidDetail = (bid_id?: string) =>

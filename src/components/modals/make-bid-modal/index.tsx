@@ -6,6 +6,7 @@ import { useModal } from 'hooks/use-modal';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCreateBid } from 'server-state/mutations/use-create-bid';
+import { moneyFormatter } from 'utils/money-formatter';
 import {
   ModalButtonsWrapper,
   ModalWrapper,
@@ -16,7 +17,7 @@ const MakeBidModal: React.FC<{
   load_id?: string;
   wanted_price?: number;
   currency?: 'USD' | 'UZS' | 'RUB';
-}> = ({ children, load_id, wanted_price, currency = 'UZS' }) => {
+}> = ({ children, load_id, wanted_price = 0, currency = 'UZS' }) => {
   const { close, isOpen, open } = useModal();
   const { t } = useTranslation();
   const createBidRequest = useCreateBid({ load_id });
@@ -46,7 +47,8 @@ const MakeBidModal: React.FC<{
         <ModalWrapper onSubmit={submitHandler}>
           <Text className="header">{t('Make a bid')}</Text>
           <Text className="cost">
-            {t('Customer’s suggestion')} {wanted_price} {currency}
+            {t('Customer’s suggestion')}{' '}
+            {moneyFormatter({ currency, number: wanted_price })}
           </Text>
           <Input
             name="price"

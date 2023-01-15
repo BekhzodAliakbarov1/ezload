@@ -6,6 +6,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useAcceptBid } from 'server-state/queries/use-bid';
+import { moneyFormatter } from 'utils/money-formatter';
 import {
   ChildrenWrapper,
   ModalButtonsWrapper,
@@ -16,8 +17,14 @@ const AcceptBidModal: React.FC<{
   bid_id?: string;
   driver_name?: string;
   bidded_price?: number;
-  currency: string;
-}> = ({ bid_id, children, bidded_price, driver_name, currency }) => {
+  currency: 'USD' | 'UZS' | 'RUB';
+}> = ({
+  bid_id,
+  children,
+  bidded_price = 0,
+  driver_name,
+  currency = 'USD',
+}) => {
   const acceptBidRequest = useAcceptBid();
   const { close, isOpen, open } = useModal();
   const { t } = useTranslation();
@@ -44,8 +51,8 @@ const AcceptBidModal: React.FC<{
         <ModalWrapper>
           <Text>
             {t('Are you sure you want to accept this bid from ')} {driver_name}
-            {t(' with the amount of ')} {currency}
-            {bidded_price}?
+            {t(' with the amount of ')}{' '}
+            {moneyFormatter({ currency, number: bidded_price })} ?
           </Text>
           <ModalButtonsWrapper>
             <Button
