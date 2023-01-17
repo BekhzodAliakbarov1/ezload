@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { getStorage, removeStorage } from '../utils/local-storage';
 
 const request = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL,
+  baseURL: 'http://3.111.197.25/api/v1/',
 });
 
 request.interceptors.request.use(
