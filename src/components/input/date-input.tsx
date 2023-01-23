@@ -1,5 +1,5 @@
 import React from 'react';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import Text from 'components/typography/text';
 import {
   DateInputComponentWrapper,
@@ -7,7 +7,6 @@ import {
 } from './date-input.styles';
 import { useData } from 'layouts/load-action-layout/load-action-layout.context';
 import { useTranslation } from 'react-i18next';
-import moment from 'moment';
 
 export const DateRangePickerInput: React.FC<{
   type: 'pickup' | 'delivery';
@@ -44,7 +43,7 @@ export const DateRangePickerInput: React.FC<{
     <DateInputComponentWrapper>
       <div>
         <Text weight="500">{t('From')}</Text>
-        <DatePicker
+        <DateTimePicker
           value={data.dates[type].start}
           onChange={handleStartDateChange}
           renderInput={(params) => <StyledTextFiled {...params} />}
@@ -54,7 +53,7 @@ export const DateRangePickerInput: React.FC<{
       </div>
       <div>
         <Text weight="500">{t('To')}</Text>
-        <DatePicker
+        <DateTimePicker
           value={data.dates[type].end}
           onChange={handleEndDateChange}
           renderInput={(params) => <StyledTextFiled {...params} />}

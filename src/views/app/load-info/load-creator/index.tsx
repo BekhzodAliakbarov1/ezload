@@ -1,5 +1,4 @@
 import React from 'react';
-import ProfileImg from 'assets/img/profile.png';
 import {
   LoadCardButtonWrapper,
   LoadCardDataWrapper,
@@ -23,7 +22,7 @@ const LoadCreator: React.FC<{
   return (
     <>
       <LoadCreatorWrapper>
-        <Avatar sizes="96px" src={ProfileImg} />
+        <Avatar sizes="96px" src={data?.owner.profile_picture?.file} />
         <LoadCardDataWrapper>
           <Text color="main_60">{t('Load owner')}</Text>
           <Text weight="600">{data?.owner.first_name}</Text>

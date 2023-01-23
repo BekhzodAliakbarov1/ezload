@@ -72,8 +72,7 @@ const LoadCard: React.FC<{
           <LoadCardDistanceSizeBox></LoadCardDistanceSizeBox>
           <LoadBidCountWrapper>
             <Text>
-              {t('Bid count:')}
-              {load.bids_count}
+              {t('Bid count:')} {load.bids_count}
             </Text>
             <Text>
               {t('View count:')} {load.visits_count}

@@ -5,6 +5,9 @@ export const LoadsContainerBox = styled.div`
   gap: 32px;
   flex-wrap: wrap;
   margin-bottom: 30px;
+  @media (max-width: 800px) {
+    justify-content: center;
+  }
 `;
 
 export const NoLoadsFindSection = styled.div`

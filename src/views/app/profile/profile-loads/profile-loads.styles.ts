@@ -46,9 +46,10 @@ export const SingleController = styled.div<{ active: boolean }>`
 `;
 
 export const PlusIconWrapper = styled.div`
-  position: absolute;
-  top: 0px;
-  right: 20px;
+  position: fixed;
+  z-index: 10;
+  bottom: 100px;
+  right: 100px;
   background-color: ${(props) => props.theme.button.contained};
   display: flex;
   justify-content: center;
@@ -57,4 +58,10 @@ export const PlusIconWrapper = styled.div`
   border-radius: 8px;
   width: 50px;
   height: 50px;
+  @media (max-width: 800px) {
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
 `;

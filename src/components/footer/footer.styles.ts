@@ -5,10 +5,12 @@ import img from 'assets/img/footer_bg.png';
 
 export const FooterWrapper = styled.div`
   width: 100%;
+  z-index: 11;
 `;
 
 export const FooterContentBox = styled.div`
   width: 100%;
+  z-index: 11;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -19,6 +21,8 @@ export const FooterContentBox = styled.div`
 `;
 
 export const FooterLeftContent = styled.div`
+  z-index: 11;
+
   background-color: ${`${colors.dark_100}`};
   width: 100%;
   max-width: 515px;
@@ -103,6 +107,7 @@ export const LinksWrapper = styled.div`
 
 export const FooterRightContent = styled.div`
   height: 100%;
+  z-index: 11;
 
   background-color: ${`${colors.dark_90}`};
   width: 100%;

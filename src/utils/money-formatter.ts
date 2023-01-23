@@ -14,5 +14,5 @@ export const moneyFormatter = ({
       currencyDisplay: 'code',
     }
   );
-  return formatter.format(number);
+  return formatter.format(number).split('.')[0];
 };
