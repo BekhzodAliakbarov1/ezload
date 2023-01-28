@@ -45,9 +45,9 @@ const LoadBids: React.FC<{
                     >
                       <DriverCard
                         first_name={bid.owner.first_name}
-                        id={3} //add correct id when backend send true
-                        rates_avg={bid.average_rate}
+                        rates_avg={bid.owner.average_rate}
                         image={bid.owner.profile_picture?.file}
+                        vehicle={bid.owner.vehicle}
                         shadow
                         sizes="104px"
                         clickable

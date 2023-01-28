@@ -52,6 +52,7 @@ interface StatsResponse {
   earned_amount_usd: number;
   earned_amount_rub: number;
   earned_amount_uzs: number;
+  bids_waiting:number
 }
 
 export const useStats = ({ year = '2022' }: { year?: string }) => {

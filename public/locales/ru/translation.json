@@ -255,5 +255,8 @@
   "Continue": "Продолжать",
   "Offered price": "Предлагаемая цена",
   "Load info": "Hагрузку информацию",
-  "Not found": "Не найден"
+  "Not found": "Не найден",
+  "Total": "Общее",
+  "Awaiting response": "В ожидании ответа",
+  "Awaiting": "Ожидание"
 }

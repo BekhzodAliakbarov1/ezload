@@ -12,6 +12,8 @@
 
 # production
 /build
+.yarnrc
+.npmrc
 
 # misc
 .DS_Store

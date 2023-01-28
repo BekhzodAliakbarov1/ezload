@@ -181,8 +181,8 @@ export const LoadContextProvider: React.FC = ({ children }) => {
           address_1: editedLoadData?.pickup_point.orientation ?? '',
           address_2: '',
           district: {
-            title: editedLoadData?.pickup_point.district.title ?? '',
-            id: editedLoadData?.pickup_point.district.id ?? '',
+            title: editedLoadData?.pickup_point.district?.title ?? '',
+            id: editedLoadData?.pickup_point.district?.id ?? '',
           },
           region: {
             title: editedLoadData?.pickup_point.region.title ?? '',
@@ -204,8 +204,8 @@ export const LoadContextProvider: React.FC = ({ children }) => {
           address_1: editedLoadData?.destination.orientation ?? '',
           address_2: '',
           district: {
-            title: editedLoadData?.destination.district.title ?? '',
-            id: editedLoadData?.destination.district.id ?? '',
+            title: editedLoadData?.destination.district?.title ?? '',
+            id: editedLoadData?.destination.district?.id ?? '',
           },
           region: {
             title: editedLoadData?.destination.region.title ?? '',
