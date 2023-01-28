@@ -120,7 +120,6 @@ const ActionLoadAddress: React.FC<{
                 val: { id: value.id, title: value.title },
               });
             }}
-            required={!data[`${type}_route`]}
             disabled={!!data[`${type}_route`]}
           />
           <Input
