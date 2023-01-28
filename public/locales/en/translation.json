@@ -252,5 +252,8 @@
   "Continue": "Continue",
   "Offered price": "Offered price",
   "Load info": "Load info",
-  "Not found": "Not found"
+  "Not found": "Not found",
+  "Total": "Total",
+  "Awaiting response": "Awaiting response",
+  "Awaiting": "Awaiting"
 }

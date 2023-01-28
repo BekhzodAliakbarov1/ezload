@@ -16,6 +16,7 @@ export const LoadCardWrapper = styled.div<{ clickable: boolean }>`
   }
   @media (max-width: 800px) {
     min-width: auto;
+    padding: 18px;
   }
 `;
 

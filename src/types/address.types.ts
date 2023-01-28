@@ -27,7 +27,7 @@ export interface AddressInterface {
 export interface CreateProfileAddressRequestInterface {
   country: number;
   region: number;
-  district: number;
+  district: number|null;
   location: {
     latitude: number;
     longitude: number;

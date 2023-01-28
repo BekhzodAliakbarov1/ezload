@@ -49,7 +49,11 @@ const LoadCard: React.FC<{
             <LoadCardLocationInfoWrapper>
               <GreenText>{t('Pickup location')}</GreenText>
               <Text weight="600">
-                {load.pickup_point.district.title} {t('District')},{' '}
+                {load.pickup_point.district && (
+                  <>
+                    {load.pickup_point.district?.title} {t('District')},
+                  </>
+                )}
                 {load.pickup_point.region.title} {t('Region')}
               </Text>
               <Text>{load.pickup_point.country.title}</Text>
@@ -59,7 +63,11 @@ const LoadCard: React.FC<{
             <LoadCardLocationInfoWrapper>
               <GreenText>{t('Delivery location')}</GreenText>
               <Text weight="600">
-                {load.destination.district.title} {t('District')},{' '}
+                {load.destination.district && (
+                  <>
+                    {load.destination.district?.title} {t('District')},
+                  </>
+                )}
                 {load.destination.region.title} {t('Region')}
               </Text>
               <Text>{load.destination.country.title}</Text>
@@ -72,8 +80,7 @@ const LoadCard: React.FC<{
           <LoadCardDistanceSizeBox></LoadCardDistanceSizeBox>
           <LoadBidCountWrapper>
             <Text>
-              {t('Bid count:')}
-              {load.bids_count}
+              {t('Bid count:')} {load.bids_count}
             </Text>
             <Text>
               {t('View count:')} {load.visits_count}

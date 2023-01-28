@@ -32,9 +32,11 @@ const ActionLoad = () => {
   }: {
     type: 'pickup' | 'delivery';
   }) => {
+    console.log(data);
+
     const result = await createAddressRequest.mutateAsync({
       country: Number(data[type].country.id),
-      district: Number(data[type].district.id),
+      district: data[type].district.id ? Number(data[type].district.id) : null,
       location: {
         latitude: data[type].latLong.lat ?? 0,
         longitude: data[type].latLong.lng ?? 0,

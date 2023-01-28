@@ -14,9 +14,9 @@ interface LocationPoint {
     title: string;
     id: string;
   };
-  district: {
-    title: string;
-    id: string;
+  district?: {
+    title?: string;
+    id?: string;
   };
 }
 
@@ -66,8 +66,12 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
   owner: {
     first_name: string;
     phone_number: string;
+    profile_picture?: {
+      file: string;
+    };
   };
   bids?: {
+    currency?: 'USD' | 'UZS' | 'RUB';
     id: number;
     owner: {
       profile_picture?: {
@@ -75,9 +79,15 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
       };
       first_name: string;
       phone_number: string;
+      average_rate: number;
+      id: number;
+      vehicle: {
+        capacity: string;
+        licence_plate: string;
+        title: string;
+      };
     };
     price: number;
-    average_rate: number;
   }[];
   is_bidden?: boolean;
   bid_id?: number;

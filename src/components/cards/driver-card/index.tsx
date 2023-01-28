@@ -7,7 +7,7 @@ import { CSSProperties } from 'styled-components';
 import { useTranslation } from 'react-i18next';
 
 const DriverCard: React.FC<{
-  id: number;
+  id?: number;
   image?: string;
   first_name: string;
   vehicle?: {

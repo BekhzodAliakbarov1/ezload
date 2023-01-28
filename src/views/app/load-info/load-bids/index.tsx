@@ -18,6 +18,7 @@ import ReviewDriverModal from 'components/modals/review-driver-modal';
 import CancelDriverModal from 'components/modals/cancel-driver-bid-modal';
 import DeletLoadModal from 'components/modals/delete-load-modal';
 import BiddedDriversSkeleton from 'components/skelotons/bidded-drivers-part';
+import { moneyFormatter } from 'utils/money-formatter';
 
 const LoadBids: React.FC<{
   data?: SingleLoadDetailsResponse;
@@ -44,9 +45,9 @@ const LoadBids: React.FC<{
                     >
                       <DriverCard
                         first_name={bid.owner.first_name}
-                        id={3} //add correct id when backend send true
-                        rates_avg={bid.average_rate}
+                        rates_avg={bid.owner.average_rate}
                         image={bid.owner.profile_picture?.file}
+                        vehicle={bid.owner.vehicle}
                         shadow
                         sizes="104px"
                         clickable
@@ -55,7 +56,12 @@ const LoadBids: React.FC<{
                     </div>
                     <LoadBidDriverCostWrapper>
                       <DollarIcon />
-                      <Text weight="600">{bid.price} USD</Text>
+                      <Text weight="600">
+                        {moneyFormatter({
+                          currency: bid.currency ?? 'UZS',
+                          number: bid.price,
+                        })}
+                      </Text>
                     </LoadBidDriverCostWrapper>
                   </LoadBidDriverCard>
                 ))

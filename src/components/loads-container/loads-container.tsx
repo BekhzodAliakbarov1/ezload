@@ -5,26 +5,16 @@ import {
   NoLoadsFindSection,
 } from './loads-container.styles';
 import { SingleLoadResponse } from 'types/load.types';
-import Button from 'components/button/button';
 import FileIcon from 'components/icons/file.icon';
 import Text from 'components/typography/text';
 import { useTranslation } from 'react-i18next';
 
 const LoadsContainer: React.FC<{
   loads?: SingleLoadResponse[];
-  hasNextPage?: boolean;
   clickable?: boolean;
   status: 1 | 2 | 3;
   withButton?: boolean;
-  fetchNextPage?: () => void;
-}> = ({
-  loads = [],
-  clickable,
-  hasNextPage,
-  status,
-  withButton,
-  fetchNextPage,
-}) => {
+}> = ({ loads = [], clickable, status, withButton }) => {
   const { t } = useTranslation();
 
   return (
