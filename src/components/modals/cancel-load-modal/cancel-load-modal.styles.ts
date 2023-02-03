@@ -59,8 +59,11 @@ export const ModalStyledTextFiled = styled(TextField)`
 `;
 
 export const ModalButtonsWrapper = styled.div`
-  width: fit-content;
+  width: max-content;
   display: flex;
   gap: 16px;
   margin: auto;
+  button {
+    width: max-content;
+  }
 `;

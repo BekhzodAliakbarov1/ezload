@@ -53,7 +53,7 @@ const DriverMainInfos: React.FC<{
               {data?.vehicle?.capacity} Ton)
             </Text>
             <Text className="number_loads" weight="700">
-              1K+ {t('LOADS')}
+              {data.loads_count ?? 0} {t('LOADS')}
             </Text>
             <Text className="label_number">{t('Plate number')}</Text>
             <Text className="car_number" weight="700">

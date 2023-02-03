@@ -30,6 +30,16 @@ const LoadInfoCard: React.FC<{
       </Button>
       <LoadInfoCardDataBox>
         <LoadInfoCardDataSingleBox>
+          <Text>{t('Load title')}</Text>
+          <Text color="main_100">{data.title}</Text>
+        </LoadInfoCardDataSingleBox>
+        <LoadInfoCardDataSingleBox>
+          <Text>{t('Load order number')}</Text>
+          <Text color="main_100">{data.order_number}</Text>
+        </LoadInfoCardDataSingleBox>
+      </LoadInfoCardDataBox>
+      <LoadInfoCardDataBox>
+        <LoadInfoCardDataSingleBox>
           <Text>{t('Load owner')}</Text>
           <Text color="main_100">{data.owner.first_name}</Text>
         </LoadInfoCardDataSingleBox>

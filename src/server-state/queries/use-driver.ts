@@ -9,6 +9,7 @@ export interface SingleDriverResponse {
   last_name?: string;
   average_rate?: number;
   phone_number?: string;
+  loads_count?: number;
   vehicle?: {
     title: string;
     licence_plate: string;
