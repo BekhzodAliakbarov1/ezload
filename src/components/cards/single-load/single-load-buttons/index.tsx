@@ -26,6 +26,7 @@ const SingleLoadButtons: React.FC<{
       },
     });
   };
+  console.log(load.accepted_bid);
 
   return (
     <>
@@ -39,7 +40,7 @@ const SingleLoadButtons: React.FC<{
       )}
       {status === 2 && (
         <CancelDriverModal
-          accepted_bid={load.accepted_bid}
+          accepted_bid={load.accepted_bid?.id}
           driver_name={load.driver?.first_name}
           load_id={String(load.id ?? params.load_id)}
         >

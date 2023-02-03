@@ -258,5 +258,10 @@
   "Not found": "Topilmadi",
   "Total": "Barchasi",
   "Awaiting response": "Javob kutilmoqda",
-  "Awaiting": "Kutilmoqda"
+  "Awaiting": "Kutilmoqda",
+  "Couldn't agree on a price": "Narx bo'yicha kelisha olmadim",
+  "The customer's transporting cargo is not suitable for this transportation": "Buyurtmachining tashish yuki bu taklif uchun mos emas",
+  "Customer asked to cancel": "Xaridor bekor qilishni so'radi",
+  "Changed my mind": "Fikrimni o'zgartirdim",
+  "Load order number": "Buyurtma raqami"
 }

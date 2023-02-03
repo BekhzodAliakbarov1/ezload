@@ -13,7 +13,8 @@ import {
   ModalStyledTextFiled,
   ChildrenWrapper,
 } from './cancel-load-modal.styles';
-
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 const CancelLoadModal: React.FC<{
   load_id?: string;
 }> = ({ children, load_id }) => {
@@ -21,12 +22,13 @@ const CancelLoadModal: React.FC<{
   const { t } = useTranslation();
   const cancelLoadRequest = useCancelLoad({ load_id });
   const [comment, setComment] = useState<string>('');
+  const [customer_reason, setCustomer_reason] = useState<any>();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     // after know what should use then implement inputs
     cancelLoadRequest.mutate(
-      { comment, customer_reason: 1 },
+      { comment, customer_reason },
       {
         onSuccess() {
           close();
@@ -45,9 +47,21 @@ const CancelLoadModal: React.FC<{
             {t('Are you sure you want to cancel the load?')}
           </Text>
           <ModalInputsWrapper>
-            <Input placeholder="Other" />
-            <ModalStyledTextFiled
+            <Select
               required
+              placeholder="Other"
+              onChange={(e) => setCustomer_reason(e.target.value)}
+            >
+              <MenuItem value={1}>{t("Couldn't agree on a price")}</MenuItem>
+              <MenuItem value={2}>
+                {t(
+                  "The customer's transporting cargo is not suitable for this transportation"
+                )}
+              </MenuItem>
+              <MenuItem value={3}>{t('Customer asked to cancel')}</MenuItem>
+              <MenuItem value={4}>{t('Changed my mind')}</MenuItem>
+            </Select>
+            <ModalStyledTextFiled
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               multiline

@@ -32,7 +32,11 @@ interface LoadMainPart {
   visits_count: number;
   id: number;
   status?: 1 | 2 | 3;
-  accepted_bid?: number;
+  accepted_bid?: {
+    currency: 'RUB' | 'UZS' | 'USD';
+    id: number;
+    price: number;
+  };
 }
 
 export interface SingleLoadResponse extends LoadMainPart {
@@ -47,7 +51,6 @@ export interface SingleLoadResponse extends LoadMainPart {
 }
 
 export interface SingleLoadDetailsResponse extends LoadMainPart {
-  accepted_bid: number;
   title: string;
   description: string;
   price: number;

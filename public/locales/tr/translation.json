@@ -258,5 +258,10 @@
   "Not found": "Bulunamadı",
   "Total": "Toplam",
   "Awaiting response": "В ожидании ответа",
-  "Awaiting": "Bekliyor"
+  "Awaiting": "Bekliyor",
+  "Couldn't agree on a price": "Fiyatta anlaşamadık",
+  "The customer's transporting cargo is not suitable for this transportation": "Müşterinin taşıdığı kargo bu taşımaya uygun değil",
+  "Customer asked to cancel": "Müşteri iptal etmek istedi",
+  "Changed my mind": "Fikrimi değiştirdim",
+  "Load order number": "Yükleme siparişi numarası"
 }

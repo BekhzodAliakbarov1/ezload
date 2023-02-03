@@ -98,7 +98,7 @@ const LoadBids: React.FC<{
 
           {data.status === 2 && (
             <CancelDriverModal
-              accepted_bid={data.accepted_bid}
+              accepted_bid={data.accepted_bid?.id}
               driver_name={data.driver?.first_name}
               load_id={load_id}
             >
