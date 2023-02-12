@@ -263,5 +263,7 @@
   "The customer's transporting cargo is not suitable for this transportation": "Müşterinin taşıdığı kargo bu taşımaya uygun değil",
   "Customer asked to cancel": "Müşteri iptal etmek istedi",
   "Changed my mind": "Fikrimi değiştirdim",
-  "Load order number": "Yükleme siparişi numarası"
+  "Load order number": "Yükleme siparişi numarası",
+  "This region is already exist in your routes!": "Bu bölge rotalarınızda zaten var!",
+  "Read all": "Hepsini oku"
 }

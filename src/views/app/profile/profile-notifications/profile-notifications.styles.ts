@@ -22,8 +22,23 @@ export const ProfileNotificationsTopPartContainer = styled.div`
     line-height: 24px;
     color: ${(props) => props.theme.text.main_100};
   }
+  > h4 {
+    font-size: 16px;
+    cursor: pointer;
+    color: ${(props) => props.theme.colors.secondary};
+    font-weight: 400;
+    :hover {
+      text-decoration: underline;
+    }
+  }
   @media (max-width: 800px) {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+    p {
+      font-size: 20px;
+    }
+    h4 {
+      font-size: 14px;
+    }
   }
 `;
 

@@ -50,7 +50,7 @@ const DriverMainInfos: React.FC<{
             <Text className="name">{data?.first_name}</Text>
             <Text className="weight_loads">
               {data?.vehicle?.title.toLocaleUpperCase()} (
-              {data?.vehicle?.capacity} Ton)
+              {Number(data?.vehicle?.capacity)} Ton)
             </Text>
             <Text className="number_loads" weight="700">
               {data.loads_count ?? 0} {t('LOADS')}

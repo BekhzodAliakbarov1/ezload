@@ -17,12 +17,15 @@ import { getSmallDate } from 'utils/getDate';
 import { EmptyReviewWrapper } from 'views/app/driver-info/driver-reviews/driver-reviews.styles';
 import FileIcon from 'components/icons/file.icon';
 import Spinner from 'components/loaders/spinner';
+import { useReadAllNotification } from 'server-state/mutations/ue-read-notification';
 
 const ProfileNotifications = () => {
-  const { data, isLoading, fetchNextPage } = useNotificationsList();
+  const { data, isLoading, fetchNextPage, isRefetching } =
+    useNotificationsList();
   const { mutate } = useUpdateNotification();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const { mutate: mutateAll } = useReadAllNotification();
 
   const handleClick = ({
     status,
@@ -58,9 +61,10 @@ const ProfileNotifications = () => {
     <ProfileNotificationsWrapper>
       <ProfileNotificationsTopPartContainer>
         <Text color="main_100">{t('Notifications')}</Text>
+        <h4 onClick={() => mutateAll()}>{t('Read all')}</h4>
       </ProfileNotificationsTopPartContainer>
       <NotificationsWrapper>
-        {!isLoading ? (
+        {!isLoading || !isRefetching ? (
           <>
             {data?.pages[0].count ? (
               data?.pages.map((page) =>
