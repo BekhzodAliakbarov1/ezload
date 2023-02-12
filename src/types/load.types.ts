@@ -64,7 +64,12 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
     profile_picture?: {
       file: string;
     };
-    loads_count: number;
+    delivered_loads: number;
+    vehicle: {
+      capacity: string;
+      licence_plate: string;
+      title: string;
+    };
   };
   owner: {
     first_name: string;
@@ -80,6 +85,7 @@ export interface SingleLoadDetailsResponse extends LoadMainPart {
       profile_picture?: {
         file: string;
       };
+      delivered_loads:number;
       first_name: string;
       phone_number: string;
       average_rate: number;

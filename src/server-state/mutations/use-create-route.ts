@@ -32,8 +32,17 @@ export const useCreateRoute = (token?: string) => {
           variant: 'success',
         });
       },
-      onError() {
-        enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+      onError(err: any) {
+        if (
+          err?.response?.data?.errors?.message ===
+          'Region already added to drivers routes'
+        ) {
+          enqueueSnackbar(t('This region is already exist in your routes!'), {
+            variant: 'info',
+          });
+        } else {
+          enqueueSnackbar(t('Something went wrong!'), { variant: 'error' });
+        }
       },
     }
   );
