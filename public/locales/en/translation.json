@@ -260,5 +260,7 @@
   "The customer's transporting cargo is not suitable for this transportation": "The customer's transporting cargo is not suitable for this transportation",
   "Customer asked to cancel": "Customer asked to cancel",
   "Changed my mind": "Changed my mind",
-  "Load order number": "Load order number"
+  "Load order number": "Load order number",
+  "This region is already exist in your routes!": "This region is already exist in your routes!",
+  "Read all": "Read all"
 }

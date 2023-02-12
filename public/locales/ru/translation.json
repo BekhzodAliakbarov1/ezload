@@ -263,5 +263,7 @@
   "The customer's transporting cargo is not suitable for this transportation": "Груз заказчика не подходит для данной перевозки",
   "Customer asked to cancel": "Клиент попросил отменить",
   "Changed my mind": "Изменило мое решение",
-  "Load order number": "Номер заказа"
+  "Load order number": "Номер заказа",
+  "This region is already exist in your routes!": "Этот регион уже есть в ваших маршрутах!",
+  "Read all": "Читать все"
 }

@@ -26,6 +26,7 @@ const LoadBids: React.FC<{
   const navigate = useNavigate();
   const { t } = useTranslation();
   const { load_id } = useParams<{ load_id: string }>();
+  console.log(data);
 
   return (
     <>
@@ -51,6 +52,8 @@ const LoadBids: React.FC<{
                         shadow
                         sizes="104px"
                         clickable
+                        loads_count={bid.owner.delivered_loads}
+
                         // bg_color={colors.green_5}
                       />
                     </div>
@@ -82,9 +85,10 @@ const LoadBids: React.FC<{
                 sizes="104px"
                 first_name={data?.driver?.first_name ?? ''}
                 id={3}
+                vehicle={data.driver?.vehicle}
                 rates_avg={data?.driver?.average_rate ?? 3}
                 image={data?.driver?.profile_picture?.file}
-                loads_count={data?.driver?.loads_count}
+                loads_count={data?.driver?.delivered_loads}
               />
             </LoadBidsDataBox>
           )}
