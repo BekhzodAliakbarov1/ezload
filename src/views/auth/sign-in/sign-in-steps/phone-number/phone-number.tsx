@@ -25,11 +25,18 @@ type Inputs = {
   phone_num: string;
 };
 
-const PhoneNumber: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
-  setPhoneNumber,
-}) => {
+const PhoneNumber: React.FC<{
+  setPhoneNumber: ({
+    countryValue,
+    phone_number,
+  }: {
+    phone_number: string;
+    countryValue: string;
+  }) => void;
+}> = ({ setPhoneNumber }) => {
   const navigate = useNavigate();
   const [countryCode, setCountryCode] = useState('+998');
+  const [countryValue, setSountryValue] = useState('UZ');
   const { nextStep } = useSteps();
   const { mutate, isLoading } = useVerification();
   const {
@@ -45,10 +52,16 @@ const PhoneNumber: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     mutate(
-      { phone_number: `${countryCode}${data.phone_num}`.substring(1) },
+      {
+        phone_number: `${countryCode}${data.phone_num}`.substring(1),
+        country_code: countryValue,
+      },
       {
         onSuccess() {
-          setPhoneNumber(`${countryCode}${data.phone_num}`.substring(1));
+          setPhoneNumber({
+            countryValue,
+            phone_number: `${countryCode}${data.phone_num}`.substring(1),
+          });
           nextStep();
         },
         onError() {
@@ -64,8 +77,9 @@ const PhoneNumber: React.FC<{ setPhoneNumber: (data: string) => void }> = ({
     );
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCountryCode(e.target.value);
+  const handleChange = ({ code, value }: { code: string; value: string }) => {
+    setCountryCode(code);
+    setSountryValue(value);
   };
 
   return (

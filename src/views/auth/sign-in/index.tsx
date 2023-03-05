@@ -15,17 +15,25 @@ const SignIn = () => {
     user_id: string;
     userType: 'customer' | 'driver' | string;
     name: string;
+    countryValue: string;
   }>({
     phone_number: '',
     token: '',
     user_id: '',
     userType: '',
     name: '',
+    countryValue: 'UZ',
   });
   const { login } = useAuth();
 
-  const handlePhoneNumber = (phone_number: string) => {
-    setData({ ...data, phone_number });
+  const handlePhoneNumber = ({
+    countryValue,
+    phone_number,
+  }: {
+    phone_number: string;
+    countryValue: string;
+  }) => {
+    setData({ ...data, phone_number, countryValue });
   };
   const handleTokenAnUserId = (accessToken: string, user_id: string) => {
     setData({ ...data, token: accessToken, user_id });
@@ -55,6 +63,7 @@ const SignIn = () => {
         <Confirmation
           phone_number={data.phone_number}
           saveTokenAndId={handleTokenAnUserId}
+          countryValue={data.countryValue}
         />
       </Step>
       <Step step={3}>
