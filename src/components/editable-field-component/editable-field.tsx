@@ -58,7 +58,7 @@ const EditableField: React.FC<{
         setErrorMessage('Current phone is entered!');
       } else {
         setErrorMessage('');
-        verificationRequest.mutate({ phone_number: inputValue });
+        // verificationRequest.mutate({ phone_number: inputValue });
         setIsPhoneSubmitclicked(true);
       }
     }
@@ -85,7 +85,7 @@ const EditableField: React.FC<{
   };
 
   const resendButtonClick = () => {
-    verificationRequest.mutate({ phone_number: inputValue });
+    // verificationRequest.mutate({ phone_number: inputValue });
   };
 
   return (
@@ -97,12 +97,14 @@ const EditableField: React.FC<{
             {inputType === 'number' && '+'}
             {value}
           </Text>
-          <PersonalInformationSvgWrapper onClick={() => setEditClicked(true)}>
-            <StyledIconButton>
-              <PenIcon />
-            </StyledIconButton>
-            <Text>{t('Edit')}</Text>
-          </PersonalInformationSvgWrapper>
+          {inputType === 'text' && (
+            <PersonalInformationSvgWrapper onClick={() => setEditClicked(true)}>
+              <StyledIconButton>
+                <PenIcon />
+              </StyledIconButton>
+              <Text>{t('Edit')}</Text>
+            </PersonalInformationSvgWrapper>
+          )}
         </EditableFieldWrapper>
       ) : (
         <EditFiedlForm onSubmit={handleSubmit}>

@@ -13,7 +13,7 @@ import Text from 'components/typography/text';
 const PhoneInput: React.FC<{
   value: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setValue: (val: any) => void;
+  setValue: ({ code, value }: { code: string; value: string }) => void;
 }> = ({ children, value, setValue }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -25,7 +25,9 @@ const PhoneInput: React.FC<{
     <PhoneInputWrapper>
       <StyledSelect
         value={value}
-        onChange={setValue}
+        onChange={(_, a: any) => {
+          setValue({ code: a.props.value, value: a.props.title });
+        }}
         open={isDropdownOpen}
         onClick={handleClick}
         IconComponent={() => <ChevronDownIcon onClick={handleClick} />}
@@ -44,7 +46,12 @@ const PhoneInput: React.FC<{
       >
         {countries.map(({ code, dial_code, name, image }) => {
           return (
-            <MenuItem key={name} value={dial_code} style={{ display: 'flex' }}>
+            <MenuItem
+              key={name}
+              title={code}
+              value={dial_code}
+              style={{ display: 'flex' }}
+            >
               <CountryFlagWrapper>
                 <CountryFlagImage
                   style={{ backgroundImage: `url(${image})` }}
