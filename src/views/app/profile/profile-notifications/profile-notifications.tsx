@@ -61,7 +61,11 @@ const ProfileNotifications = () => {
     <ProfileNotificationsWrapper>
       <ProfileNotificationsTopPartContainer>
         <Text color="main_100">{t('Notifications')}</Text>
-        <h4 onClick={() => mutateAll()}>{t('Read all')}</h4>
+        {data?.pages[0].count ? (
+          <h4 onClick={() => mutateAll()}>{t('Read all')}</h4>
+        ) : (
+          ''
+        )}
       </ProfileNotificationsTopPartContainer>
       <NotificationsWrapper>
         {!isLoading || !isRefetching ? (

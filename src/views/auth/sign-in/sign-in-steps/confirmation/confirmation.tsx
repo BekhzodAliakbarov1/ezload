@@ -19,8 +19,9 @@ import { useTranslation } from 'react-i18next';
 
 const Confirmation: React.FC<{
   phone_number: string;
+  countryValue: string;
   saveTokenAndId: (accessToken: string, user_id: string) => void;
-}> = ({ phone_number, saveTokenAndId }) => {
+}> = ({ phone_number, saveTokenAndId, countryValue }) => {
   const { t } = useTranslation();
   const [values, setTalues] = useState(['', '', '', '', '', '']);
   const [hasError, setHasError] = useState(false);
@@ -33,7 +34,7 @@ const Confirmation: React.FC<{
 
   const sendCodeAgain = () => {
     verificationRequest.mutate(
-      { phone_number },
+      { phone_number, country_code: countryValue },
       {
         onSuccess() {
           setTalues(['', '', '', '', '', '']);

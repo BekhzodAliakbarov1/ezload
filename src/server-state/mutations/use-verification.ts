@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 
 interface IVerificationRequest {
   phone_number: string;
+  country_code: string;
 }
 
 interface IVerificationResponse {
