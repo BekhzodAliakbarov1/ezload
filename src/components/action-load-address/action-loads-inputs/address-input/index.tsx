@@ -48,9 +48,9 @@ const AddressInput: React.FC<{ type: 'pickup' | 'delivery' }> = ({ type }) => {
           addressRequest.data.pages.map((page) =>
             page?.results.map(({ address, id }) => (
               <MenuItem key={id} value={id}>
-                {address.country.title && address.country.title}
-                {address.region.title && `, ${address.region.title}`}
-                {address.district.title && `, ${address.district.title}`}
+                {address.country?.title && address.country?.title}
+                {address.region?.title && `, ${address.region?.title}`}
+                {address.district?.title && `, ${address.district?.title}`}
                 {address.postal_code && `, ${address.postal_code}`}
                 {address.orientation && `, ${address.orientation}`}
               </MenuItem>

@@ -31,9 +31,9 @@ const AddressCard: React.FC<AddressInterface> = ({ address, id }) => {
       <AddressCardWrapper>
         <AddressCardDataLine>
           <Text>
-            {address.country.title}
-            {address.region.title && `, ${address.region.title}`}
-            {address.district.title && `, ${address.district.title}`}
+            {address.country?.title}
+            {address.region?.title && `, ${address.region?.title}`}
+            {address.district?.title && `, ${address.district?.title}`}
             {address.postal_code && `, ${address.postal_code}`}
           </Text>
           <AddressCardButtonsWrapper>
