@@ -79,12 +79,12 @@ const DistrictInput: React.FC<{
                       onClick={() => {
                         handleSelect({
                           id: String(item.id),
-                          title: item.title,
+                          title: item?.title,
                         });
                         popperState.close();
                       }}
                     >
-                      {item.title}
+                      {item?.title}
                     </Rows>
                   ))
                 ) : (

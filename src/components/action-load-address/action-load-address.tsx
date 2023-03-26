@@ -88,11 +88,11 @@ const ActionLoadAddress: React.FC<{
       <ActionLoadInputAndMapWrapper>
         <ActionLoadInputsWrapper>
           <CountryInput
-            value={country.title}
+            value={country?.title}
             selectHanlder={(value) => {
               searchInputSelectHandler({
                 fieldName: 'country',
-                val: { id: value.id, title: value.title },
+                val: { id: value.id, title: value?.title },
               });
             }}
             required={!data[`${type}_route`]}
@@ -103,21 +103,21 @@ const ActionLoadAddress: React.FC<{
             selectHanlder={(value) => {
               searchInputSelectHandler({
                 fieldName: 'region',
-                val: { id: value.id, title: value.title },
+                val: { id: value.id, title: value?.title },
               });
             }}
-            value={region.title}
+            value={region?.title}
             required={!data[`${type}_route`]}
             disabled={!!data[`${type}_route`]}
           />
           <DistrictInput
-            country={country.title}
-            region={region.title}
-            value={district.title}
+            country={country?.title}
+            region={region?.title}
+            value={district?.title}
             selectHanlder={(value) => {
               searchInputSelectHandler({
                 fieldName: 'district',
-                val: { id: value.id, title: value.title },
+                val: { id: value.id, title: value?.title },
               });
             }}
             disabled={!!data[`${type}_route`]}
@@ -159,7 +159,7 @@ const ActionLoadAddress: React.FC<{
         <ActionLoadMapContentWrapper>
           <ActionLoadMapWrapper>
             <Map
-              address={`${country.title}, ${region.title}, ${district.title}`}
+              address={`${country?.title}, ${region?.title}, ${district?.title}`}
               getAddressLine={simpleInputSelectionHandler}
               getLatLong={getLatLong}
             />
