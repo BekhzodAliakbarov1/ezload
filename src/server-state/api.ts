@@ -2,7 +2,7 @@ import axios, { AxiosError } from 'axios';
 import { getStorage, removeStorage } from '../utils/local-storage';
 
 const request = axios.create({
-  baseURL: 'http://api.ezload.uz/api/v1/',
+  baseURL: 'https://api.ezload.uz/api/v1/',
 });
 
 request.interceptors.request.use(
