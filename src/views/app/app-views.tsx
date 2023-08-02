@@ -44,7 +44,7 @@ const AppViews = () => {
   const qc = useQueryClient();
   const { t } = useTranslation();
   const { isDriver } = useDriver();
-  const { socket } = useWebsocket();
+  // const { socket } = useWebsocket();
   const { enqueueSnackbar } = useSnackbar();
   const updateNotification = useUpdateNotification();
 
@@ -52,130 +52,130 @@ const AppViews = () => {
     updateNotification.mutate({ notification_id });
   };
 
-  useEffect(() => {
-    socket?.addEventListener('message', (e) => {
-      const message: {
-        data: {
-          id: number;
-          model_name: string;
-          object_id: number;
-          status: number;
-        };
-      } = JSON.parse(e.data);
-      qc.invalidateQueries([`notifications`]);
-      switch (message.data.status) {
-        case 1: //bid created
-          enqueueSnackbar(t('Driver sent a bid'), {
-            variant: 'info',
-            preventDuplicate: true,
-            autoHideDuration: 3000,
-            action: () => (
-              <>
-                <Link
-                  onClick={() => notificationClickHandler(message.data.id)}
-                  to={`/load-bidded-driver/${message.data.object_id}`}
-                  style={{
-                    color: 'white',
-                    fontSize: '12px',
-                  }}
-                >
-                  Full detail
-                </Link>
-              </>
-            ),
-          });
-          break;
-        case 2: //bid accepted
-          enqueueSnackbar(t('Your bid accepted'), {
-            variant: 'info',
-            preventDuplicate: true,
-            autoHideDuration: 3000,
-            action: () => (
-              <>
-                <Link
-                  onClick={() => notificationClickHandler(message.data.id)}
-                  to={`/load/${message.data.object_id}`}
-                  style={{
-                    color: 'white',
-                    fontSize: '12px',
-                  }}
-                >
-                  Full detail
-                </Link>
-              </>
-            ),
-          });
-          break;
-        case 3: //bid canceled
-          enqueueSnackbar(t('Your bid canceled'), {
-            variant: 'info',
-            preventDuplicate: true,
-            autoHideDuration: 3000,
-            action: () => (
-              <>
-                <Link
-                  onClick={() => notificationClickHandler(message.data.id)}
-                  to={`/load/${message.data.object_id}`}
-                  style={{
-                    color: 'white',
-                    fontSize: '12px',
-                  }}
-                >
-                  Full detail
-                </Link>
-              </>
-            ),
-          });
-          break;
-        case 4:
-          enqueueSnackbar(t('New load created'), {
-            variant: 'info',
-            preventDuplicate: true,
-            autoHideDuration: 3000,
-            action: () => (
-              <>
-                <Link
-                  onClick={() => notificationClickHandler(message.data.id)}
-                  to={`/load/${message.data.object_id}`}
-                  style={{
-                    color: 'white',
-                    fontSize: '12px',
-                  }}
-                >
-                  Full detail
-                </Link>
-              </>
-            ),
-          });
-          break;
-        case 5: // should know condition when it should works
-          break;
-        case 6: //load finished
-          enqueueSnackbar(t('Driver finish the load'), {
-            variant: 'info',
-            preventDuplicate: true,
-            autoHideDuration: 3000,
-            action: () => (
-              <>
-                <Link
-                  onClick={() => notificationClickHandler(message.data.id)}
-                  to={`/load/${message.data.object_id}`}
-                  style={{
-                    color: 'white',
-                    fontSize: '12px',
-                  }}
-                >
-                  Full detail
-                </Link>
-              </>
-            ),
-          });
-          break;
-        default:
-          console.log(t('Something went wrong') + message);
-      }
-    });
-  }, [socket]);
+  // useEffect(() => {
+  //   socket?.addEventListener('message', (e) => {
+  //     const message: {
+  //       data: {
+  //         id: number;
+  //         model_name: string;
+  //         object_id: number;
+  //         status: number;
+  //       };
+  //     } = JSON.parse(e.data);
+  //     qc.invalidateQueries([`notifications`]);
+  //     switch (message.data.status) {
+  //       case 1: //bid created
+  //         enqueueSnackbar(t('Driver sent a bid'), {
+  //           variant: 'info',
+  //           preventDuplicate: true,
+  //           autoHideDuration: 3000,
+  //           action: () => (
+  //             <>
+  //               <Link
+  //                 onClick={() => notificationClickHandler(message.data.id)}
+  //                 to={`/load-bidded-driver/${message.data.object_id}`}
+  //                 style={{
+  //                   color: 'white',
+  //                   fontSize: '12px',
+  //                 }}
+  //               >
+  //                 Full detail
+  //               </Link>
+  //             </>
+  //           ),
+  //         });
+  //         break;
+  //       case 2: //bid accepted
+  //         enqueueSnackbar(t('Your bid accepted'), {
+  //           variant: 'info',
+  //           preventDuplicate: true,
+  //           autoHideDuration: 3000,
+  //           action: () => (
+  //             <>
+  //               <Link
+  //                 onClick={() => notificationClickHandler(message.data.id)}
+  //                 to={`/load/${message.data.object_id}`}
+  //                 style={{
+  //                   color: 'white',
+  //                   fontSize: '12px',
+  //                 }}
+  //               >
+  //                 Full detail
+  //               </Link>
+  //             </>
+  //           ),
+  //         });
+  //         break;
+  //       case 3: //bid canceled
+  //         enqueueSnackbar(t('Your bid canceled'), {
+  //           variant: 'info',
+  //           preventDuplicate: true,
+  //           autoHideDuration: 3000,
+  //           action: () => (
+  //             <>
+  //               <Link
+  //                 onClick={() => notificationClickHandler(message.data.id)}
+  //                 to={`/load/${message.data.object_id}`}
+  //                 style={{
+  //                   color: 'white',
+  //                   fontSize: '12px',
+  //                 }}
+  //               >
+  //                 Full detail
+  //               </Link>
+  //             </>
+  //           ),
+  //         });
+  //         break;
+  //       case 4:
+  //         enqueueSnackbar(t('New load created'), {
+  //           variant: 'info',
+  //           preventDuplicate: true,
+  //           autoHideDuration: 3000,
+  //           action: () => (
+  //             <>
+  //               <Link
+  //                 onClick={() => notificationClickHandler(message.data.id)}
+  //                 to={`/load/${message.data.object_id}`}
+  //                 style={{
+  //                   color: 'white',
+  //                   fontSize: '12px',
+  //                 }}
+  //               >
+  //                 Full detail
+  //               </Link>
+  //             </>
+  //           ),
+  //         });
+  //         break;
+  //       case 5: // should know condition when it should works
+  //         break;
+  //       case 6: //load finished
+  //         enqueueSnackbar(t('Driver finish the load'), {
+  //           variant: 'info',
+  //           preventDuplicate: true,
+  //           autoHideDuration: 3000,
+  //           action: () => (
+  //             <>
+  //               <Link
+  //                 onClick={() => notificationClickHandler(message.data.id)}
+  //                 to={`/load/${message.data.object_id}`}
+  //                 style={{
+  //                   color: 'white',
+  //                   fontSize: '12px',
+  //                 }}
+  //               >
+  //                 Full detail
+  //               </Link>
+  //             </>
+  //           ),
+  //         });
+  //         break;
+  //       default:
+  //         console.log(t('Something went wrong') + message);
+  //     }
+  //   });
+  // }, [socket]);
 
   return <>{isDriver ? <DriverView /> : <CustomerView />}</>;
 };
